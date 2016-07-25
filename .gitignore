@@ -1,0 +1,6 @@
+.DS_Store
+*.xcbk*
+*.pbxuser
+Ping/Ping.xcworkspace/xcuserdata/
+Ping/Ping.xcworkproj/xcuserdata/
+Ping/Pods/

@@ -1,0 +1,17 @@
+PODS:
+  - Backendless (3.0.28)
+  - SDWebImage (3.8.1):
+    - SDWebImage/Core (= 3.8.1)
+  - SDWebImage/Core (3.8.1)
+
+DEPENDENCIES:
+  - Backendless
+  - SDWebImage
+
+SPEC CHECKSUMS:
+  Backendless: d906a34cac38dbdbfaed55c8c06689eefe6b8873
+  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
+
+PODFILE CHECKSUM: b9336f5003ddce964bb640324d639a954c7599e4
+
+COCOAPODS: 1.0.1
