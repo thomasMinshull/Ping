@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		5594DAFD1D45E2DE0096D5DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594DAFC1D45E2DE0096D5DF /* main.m */; };
 		5594DB001D45E2DE0096D5DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594DAFF1D45E2DE0096D5DF /* AppDelegate.m */; };
-		5594DB031D45E2DE0096D5DF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594DB021D45E2DE0096D5DF /* ViewController.m */; };
 		5594DB061D45E2DE0096D5DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5594DB041D45E2DE0096D5DF /* Main.storyboard */; };
 		5594DB091D45E2DE0096D5DF /* Ping.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5594DB071D45E2DE0096D5DF /* Ping.xcdatamodeld */; };
 		5594DB0B1D45E2DE0096D5DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5594DB0A1D45E2DE0096D5DF /* Assets.xcassets */; };
 		5594DB0E1D45E2DE0096D5DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5594DB0C1D45E2DE0096D5DF /* LaunchScreen.storyboard */; };
+		55A0985D1D46CB3E005100BC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A0985C1D46CB3E005100BC /* LoginViewController.m */; };
+		55A0985F1D46CEC7005100BC /* linkedin-sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A0985E1D46CEC7005100BC /* linkedin-sdk.framework */; };
 		71678BD4F8B7654916D3F4B0 /* libPods-Ping.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 099398FE9E3F4648F16B801E /* libPods-Ping.a */; };
 /* End PBXBuildFile section */
 
@@ -23,13 +24,14 @@
 		5594DAFC1D45E2DE0096D5DF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5594DAFE1D45E2DE0096D5DF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5594DAFF1D45E2DE0096D5DF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5594DB011D45E2DE0096D5DF /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		5594DB021D45E2DE0096D5DF /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		5594DB051D45E2DE0096D5DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5594DB081D45E2DE0096D5DF /* Ping.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Ping.xcdatamodel; sourceTree = "<group>"; };
 		5594DB0A1D45E2DE0096D5DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5594DB0D1D45E2DE0096D5DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5594DB0F1D45E2DE0096D5DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		55A0985B1D46CB3E005100BC /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		55A0985C1D46CB3E005100BC /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		55A0985E1D46CEC7005100BC /* linkedin-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "linkedin-sdk.framework"; sourceTree = "<group>"; };
 		BBF5D50F2E3876EE0E2E3951 /* Pods-Ping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ping/Pods-Ping.debug.xcconfig"; sourceTree = "<group>"; };
 		EB38DA1028CD9B2B046846B0 /* Pods-Ping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ping.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ping/Pods-Ping.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -40,6 +42,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				71678BD4F8B7654916D3F4B0 /* libPods-Ping.a in Frameworks */,
+				55A0985F1D46CEC7005100BC /* linkedin-sdk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -49,6 +52,7 @@
 		08964D78EC31F1C43E173827 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				55A0985E1D46CEC7005100BC /* linkedin-sdk.framework */,
 				099398FE9E3F4648F16B801E /* libPods-Ping.a */,
 			);
 			name = Frameworks;
@@ -77,13 +81,10 @@
 			children = (
 				5594DAFE1D45E2DE0096D5DF /* AppDelegate.h */,
 				5594DAFF1D45E2DE0096D5DF /* AppDelegate.m */,
-				5594DB011D45E2DE0096D5DF /* ViewController.h */,
-				5594DB021D45E2DE0096D5DF /* ViewController.m */,
-				5594DB041D45E2DE0096D5DF /* Main.storyboard */,
-				5594DB0A1D45E2DE0096D5DF /* Assets.xcassets */,
-				5594DB0C1D45E2DE0096D5DF /* LaunchScreen.storyboard */,
-				5594DB0F1D45E2DE0096D5DF /* Info.plist */,
-				5594DB071D45E2DE0096D5DF /* Ping.xcdatamodeld */,
+				55A0985A1D46CAE7005100BC /* View */,
+				55A098501D46CA69005100BC /* ViewControllers */,
+				55A098591D46CAD2005100BC /* Model */,
+				55A098511D46CA7B005100BC /* UI */,
 				5594DAFB1D45E2DE0096D5DF /* Supporting Files */,
 			);
 			path = Ping;
@@ -92,9 +93,52 @@
 		5594DAFB1D45E2DE0096D5DF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5594DB0F1D45E2DE0096D5DF /* Info.plist */,
+				5594DB071D45E2DE0096D5DF /* Ping.xcdatamodeld */,
 				5594DAFC1D45E2DE0096D5DF /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		55A098501D46CA69005100BC /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				55A0985B1D46CB3E005100BC /* LoginViewController.h */,
+				55A0985C1D46CB3E005100BC /* LoginViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		55A098511D46CA7B005100BC /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				55A098521D46CA94005100BC /* images */,
+				5594DB041D45E2DE0096D5DF /* Main.storyboard */,
+				5594DB0A1D45E2DE0096D5DF /* Assets.xcassets */,
+				5594DB0C1D45E2DE0096D5DF /* LaunchScreen.storyboard */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		55A098521D46CA94005100BC /* images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		55A098591D46CAD2005100BC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		55A0985A1D46CAE7005100BC /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		CE1CC1FAE2B604755B95FB8F /* Pods */ = {
@@ -227,7 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5594DB031D45E2DE0096D5DF /* ViewController.m in Sources */,
+				55A0985D1D46CB3E005100BC /* LoginViewController.m in Sources */,
 				5594DB001D45E2DE0096D5DF /* AppDelegate.m in Sources */,
 				5594DAFD1D45E2DE0096D5DF /* main.m in Sources */,
 				5594DB091D45E2DE0096D5DF /* Ping.xcdatamodeld in Sources */,
@@ -343,6 +387,10 @@
 			baseConfigurationReference = BBF5D50F2E3876EE0E2E3951 /* Pods-Ping.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Ping/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomm.Ping;
@@ -355,6 +403,10 @@
 			baseConfigurationReference = EB38DA1028CD9B2B046846B0 /* Pods-Ping.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Ping/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomm.Ping;

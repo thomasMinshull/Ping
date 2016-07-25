@@ -7,6 +7,13 @@
 //
 
 #import "AppDelegate.h"
+#import <linkedin-sdk/LISDK.h>
+#import "Backendless.h"
+
+#define APP_ID @"9D4CD068-86ED-EE23-FFA3-9BA9140C1800"
+#define SECRET_KEY @"38C89559-F92A-B793-FF3C-CF09B6A31E00"
+#define VERSION @"v1"
+
 
 @interface AppDelegate ()
 
@@ -16,7 +23,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    //Backendless setup
+    [backendless initApp:APP_ID secret:SECRET_KEY version:VERSION];
+    
     return YES;
 }
 
@@ -42,6 +51,13 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    if ([LISDKCallbackHandler shouldHandleUrl:url]) {
+        return [LISDKCallbackHandler application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+    }
+    return YES;
 }
 
 #pragma mark - Core Data stack
