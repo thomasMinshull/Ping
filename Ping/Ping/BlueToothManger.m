@@ -30,8 +30,6 @@
 @property NSArray *uuidList;
 @property NSString *currentUserUUID;
 //@property RecordManager *recordManager;
-@property NSMutableArray *bluetoothData;
-@property NSMutableArray *bluetoothToSendData;
 
 @property NSMutableArray *cbuuidLists;
 
@@ -50,7 +48,6 @@
 -(void)stop{
     [self.peripheralManager stopAdvertising];
     
-    // Stop scanning
     [self.centralManager stopScan];
     NSLog(@"Scanning stopped, Advertising stopped");
 }
@@ -74,9 +71,6 @@
         self.distances = [NSMutableArray array];
         self.timeStamps = [NSMutableArray array];
         
-        self.bluetoothData = [NSMutableArray array];
-        self.bluetoothToSendData = [NSMutableArray array];
-        
         self.cbuuidLists = [NSMutableArray array];
         
         //chaning uuid to cbuuid
@@ -89,20 +83,9 @@
         
         _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
         
-        [self start];
-        
     }
     return self;
 }
-
-- (void)sendInBluetoothData{
-    for(int i = 0; i < self.uuids.count; i++){
-        self.bluetoothData = [@[self.uuids[i], self.distances[i], self.timeStamps[i]] mutableCopy];
-        [self.bluetoothToSendData addObject:self.bluetoothData];
-    }
-}
-
-
 
 #pragma mark - Central Methods
 
@@ -132,19 +115,15 @@
 {
     NSLog(@"Discovered %@ at %@", peripheral.name, RSSI);
     
-    [self.fetchedDistances addObject:[NSString stringWithFormat:@"%ld", (long)RSSI.integerValue]];
+    [self.fetchedDistances addObject:[NSNumber numberWithInteger:[RSSI integerValue]]];
     
-    NSString *localDate = [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterMediumStyle];
+    NSDate *localDate = [NSDate date];
     
     [self.fetchedTimeStamp addObject:localDate];
     
-    if (self.discoveredPeripheral != peripheral) {
-        
-        self.discoveredPeripheral = peripheral;
-        
-        NSLog(@"Connecting to peripheral %@", peripheral);
-        [self.centralManager connectPeripheral:peripheral options:nil];
-    }
+    self.discoveredPeripheral = peripheral;
+    
+    [self.centralManager connectPeripheral:peripheral options:nil];
 }
 
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
@@ -158,13 +137,8 @@
 {
     NSLog(@"Peripheral Connected");
     
-    // Clear the data that we may already have
-    [self.data setLength:0];
+    peripheral.delegate = self;
     
-    // Make sure we get the discovery callbacks
-    peripheral.delegate = self;                 // will this be a problem with multiple devices
-    
-    // Search only for services that match our UUID
     [peripheral discoverServices:self.cbuuidLists];
 }
 
@@ -179,7 +153,6 @@
     
     /////////////////////////////////////////////////////////////////////////////
     for (CBService *service in peripheral.services) {
-        [peripheral discoverCharacteristics:@[[CBUUID UUIDWithString:self.currentUserUUID]] forService:service];
         
         [self.fetchedUUIDs addObject:service.UUID.UUIDString];
         
@@ -187,11 +160,10 @@
         [self.distances addObject: [self.fetchedDistances lastObject]];
         [self.timeStamps addObject:[self.fetchedTimeStamp lastObject]];
         
-        if (self.uuids.count > 1){
-            for(int i =0 ; i < self.uuids.count; i++){
-                NSLog(@"blueToothData: %@, %ld, %@", self.timeStamps[i], (long)self.distances[i], self.uuids[i]);
-            }
-        }
+        //                NSNumber *proximity = [self.fetchedDistances lastObject];
+        //               [self.recordManager storeBlueToothDataByUUID:[self.fetchedUUIDs lastObject] userProximity:proximity.integerValue andTime:[self.fetchedTimeStamp lastObject]];
+        
+        NSLog(@"blueToothData: %@, %@, %@", [self.fetchedUUIDs lastObject],[self.fetchedDistances lastObject],[self.fetchedTimeStamp lastObject]);
     }
     ////////////////////////////////////////////////////////////////////////////
 }

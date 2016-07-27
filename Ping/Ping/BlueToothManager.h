@@ -16,6 +16,4 @@
 
 - (instancetype)initWithUUIDList:(NSArray *)uuidList andCurrentUUID:(NSString *)currentUUID;
 
-- (void)sendInBluetoothData;
-
 @end
