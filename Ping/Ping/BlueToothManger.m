@@ -27,6 +27,13 @@
 @property NSMutableArray *distances;
 @property NSMutableArray *timeStamps;
 
+@property NSArray *uuidList;
+@property NSString *currentUserUUID;
+//@property RecordManager *recordManager;
+@property NSMutableArray *bluetoothData;
+
+@property NSMutableArray *cbuuidLists;
+
 @end
 
 @implementation BlueToothManager
@@ -45,6 +52,10 @@
 
 -(void)stop{
     [self.peripheralManager stopAdvertising];
+    
+    // Stop scanning
+    [self.centralManager stopScan];
+    NSLog(@"Scanning stopped, Advertising stopped");
 }
 
 
@@ -68,6 +79,14 @@
         
         self.bluetoothData = [NSMutableArray array];
         
+        self.cbuuidLists = [NSMutableArray array];
+        
+        //chaning uuid to cbuuid
+        for(NSString *aUUIDString in self.uuidList){
+            CBUUID *cbuuidString = [CBUUID UUIDWithString:aUUIDString];
+            [self.cbuuidLists addObject:cbuuidString];
+        }
+        
         [self start];
         
     }
@@ -90,17 +109,13 @@
     if (central.state != CBCentralManagerStatePoweredOn) {
         return;
     }
-    
     [self scan];
-    
 }
 
 
 - (void)scan
 {
-    [
-     self.centralManager
-     scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID], [CBUUID UUIDWithString:TRANSFER_SERVICE_UUID2], [CBUUID UUIDWithString:TRANSFER_SERVICE_UUID3]]
+    [self.centralManager scanForPeripheralsWithServices:self.cbuuidLists
      options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES }
      ];
     
@@ -117,7 +132,6 @@
     NSString *localDate = [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterMediumStyle];
     
     [self.fetchedTimeStamp addObject:localDate];
-    
     
     if (self.discoveredPeripheral != peripheral) {
         
@@ -141,10 +155,6 @@
 {
     NSLog(@"Peripheral Connected");
     
-    // Stop scanning
-    // [self.centralManager stopScan];
-    NSLog(@"Scanning stopped");
-    
     // Clear the data that we may already have
     [self.data setLength:0];
     
@@ -152,7 +162,7 @@
     peripheral.delegate = self;                 // will this be a problem with multiple devices
     
     // Search only for services that match our UUID
-    [peripheral discoverServices:@[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID], [CBUUID UUIDWithString:TRANSFER_SERVICE_UUID2], [CBUUID UUIDWithString:TRANSFER_SERVICE_UUID3]]];
+    [peripheral discoverServices:self.cbuuidLists];
 }
 
 
@@ -166,7 +176,7 @@
     
     /////////////////////////////////////////////////////////////////////////////
     for (CBService *service in peripheral.services) {
-        [peripheral discoverCharacteristics:@[[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]] forService:service];
+        [peripheral discoverCharacteristics:@[[CBUUID UUIDWithString:self.currentUserUUID]] forService:service];
         
         [self.fetchedUUIDs addObject:service.UUID.UUIDString];
         
@@ -207,28 +217,15 @@
 
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral
 {
-    // Opt out from any other state
     if (peripheral.state != CBPeripheralManagerStatePoweredOn) {
         return;
     }
     
     NSLog(@"self.peripheralManager powered on.");
     
-    CBMutableService *transferService = [[CBMutableService alloc] initWithType:[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]
-                                                                       primary:YES];
+    CBMutableService *transferService = [[CBMutableService alloc] initWithType:[CBUUID UUIDWithString:self.currentUserUUID] primary:YES];
     
     [self.peripheralManager addService:transferService];
-}
-
-
-- (void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didSubscribeToCharacteristic:(CBCharacteristic *)characteristic
-{
-    NSLog(@"Central subscribed to characteristic");
-}
-
-- (void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didUnsubscribeFromCharacteristic:(CBCharacteristic *)characteristic
-{
-    NSLog(@"Central unsubscribed from characteristic");
 }
 
 @end

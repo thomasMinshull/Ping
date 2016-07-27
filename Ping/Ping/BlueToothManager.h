@@ -8,14 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
-#import "TransferService.h"
 
 @interface BlueToothManager : NSObject
-
-@property NSArray *uuidList;
-@property NSString *currentUserUUID;
-//@property RecordManager *recordManager;
-@property NSMutableArray *bluetoothData;
 
 - (void)start;
 - (void)stop;

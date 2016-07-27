@@ -24,7 +24,6 @@
 		099398FE9E3F4648F16B801E /* libPods-Ping.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Ping.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4002961C1D48647700D863D5 /* BlueToothManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueToothManager.h; sourceTree = "<group>"; };
 		4002961D1D48647700D863D5 /* BlueToothManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueToothManger.m; sourceTree = "<group>"; };
-		400296201D4865C300D863D5 /* TransferService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransferService.h; sourceTree = "<group>"; };
 		404FA5D31D49233600DE7EC8 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		5594DAF81D45E2DD0096D5DF /* Ping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5594DAFC1D45E2DE0096D5DF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -93,7 +92,6 @@
 				5594DB021D45E2DE0096D5DF /* ViewController.m */,
 				4002961C1D48647700D863D5 /* BlueToothManager.h */,
 				4002961D1D48647700D863D5 /* BlueToothManger.m */,
-				400296201D4865C300D863D5 /* TransferService.h */,
 				5594DB041D45E2DE0096D5DF /* Main.storyboard */,
 				5594DB0A1D45E2DE0096D5DF /* Assets.xcassets */,
 				5594DB0C1D45E2DE0096D5DF /* LaunchScreen.storyboard */,
