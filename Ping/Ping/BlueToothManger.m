@@ -42,13 +42,9 @@
 #pragma mark - Start and Stop
 
 -(void)start{
-    // Start up the CBCentralManager
-    _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
-    
-    // Start up the CBPeripheralManager
-    _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
     
     [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:self.currentUserUUID]]}];
+    [self scan];
 }
 
 -(void)stop{
@@ -88,6 +84,10 @@
             CBUUID *cbuuidString = [CBUUID UUIDWithString:aUUIDString];
             [self.cbuuidLists addObject:cbuuidString];
         }
+        
+        _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+        
+        _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
         
         [self start];
         
@@ -145,8 +145,6 @@
         NSLog(@"Connecting to peripheral %@", peripheral);
         [self.centralManager connectPeripheral:peripheral options:nil];
     }
-    
-    
 }
 
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
@@ -203,7 +201,6 @@
     NSLog(@"Peripheral Disconnected");
     self.discoveredPeripheral = nil;
     
-    // We're disconnected, so start scanning again
     [self scan];
 }
 
