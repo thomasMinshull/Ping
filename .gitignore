@@ -2,5 +2,5 @@
 *.xcbk*
 *.pbxuser
 Ping/Ping.xcworkspace/xcuserdata/
-Ping/Ping.xcworkproj/xcuserdata/
+Ping/Ping.xcodeproj/xcuserdata/
 Ping/Pods/
