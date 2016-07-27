@@ -31,6 +31,7 @@
 @property NSString *currentUserUUID;
 //@property RecordManager *recordManager;
 @property NSMutableArray *bluetoothData;
+@property NSMutableArray *bluetoothToSendData;
 
 @property NSMutableArray *cbuuidLists;
 
@@ -78,6 +79,7 @@
         self.timeStamps = [NSMutableArray array];
         
         self.bluetoothData = [NSMutableArray array];
+        self.bluetoothToSendData = [NSMutableArray array];
         
         self.cbuuidLists = [NSMutableArray array];
         
@@ -94,7 +96,10 @@
 }
 
 - (void)sendInBluetoothData{
-    self.bluetoothData = [@[self.uuids, self.distances, self.timeStamps] mutableCopy];
+    for(int i = 0; i < self.uuids.count; i++){
+        self.bluetoothData = [@[self.uuids[i], self.distances[i], self.timeStamps[i]] mutableCopy];
+        [self.bluetoothToSendData addObject:self.bluetoothData];
+    }
 }
 
 
