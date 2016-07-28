@@ -30,6 +30,10 @@
     [self.lastNameLabel setText:user.lastName];
     [self.headLineLabel setText:user.headline];
     
+    if (user.profilePicURL == nil) {
+       user.profilePicURL = @"";
+    }
+    
     [self.profileImageView sd_setImageWithURL:[NSURL URLWithString:user.profilePicURL] placeholderImage:[UIImage imageNamed:@"ghost_person.png"]];
 }
 @end

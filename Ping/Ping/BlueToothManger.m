@@ -37,6 +37,19 @@
 
 @implementation BlueToothManager
 
++ (instancetype)sharedrecordManager:(NSArray *)uuidList andCurrentUUID:(NSString *)currentUUID {
+    static BlueToothManager *sharedrecordManager = nil;
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        sharedrecordManager = [[BlueToothManager alloc] initWithUUIDList:uuidList andCurrentUUID:currentUUID];
+    });
+    
+    [sharedrecordManager start];
+    
+    return sharedrecordManager;
+}
+
 #pragma mark - Start and Stop
 
 -(void)start{
@@ -55,7 +68,7 @@
 
 #pragma mark - View Lifecycle
 
-- (instancetype)initWithUUIDList:(NSArray *)uuidList andCurrentUUID:(NSString *)currentUUID
+- (instancetype) initWithUUIDList:(NSArray *)uuidList andCurrentUUID:(NSString *)currentUUID
 {
     self = [super init];
     if (self) {

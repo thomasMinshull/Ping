@@ -10,13 +10,13 @@
 
 @implementation TimePeriod
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        [NSDate date];  
-    }
-    return self;
-}
+//- (instancetype)init
+//{
+//    self = [super init];
+//    if (self) {
+//        [NSDate date];  
+//    }
+//    return self;
+//}
 
 @end

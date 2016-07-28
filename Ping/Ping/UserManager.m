@@ -10,9 +10,16 @@
 #import <linkedin-sdk/LISDK.h>
 #import "PingUser.h"
 #import "Backendless.h"
+#import "BlueToothManager.h"
 
 #define LINKEDIN_USER_URL @"https://api.linkedin.com/v1/people/~"
 #define LINKEDIN_ADDITIONAL_INFO_URL @"https://api.linkedin.com/v1/people/~:(id,num-connections,picture-url)?format=json"
+
+@interface UserManager ()
+
+@property (strong, nonatomic) BlueToothManager *blueToothManager;
+
+@end
 
 @implementation UserManager
 
@@ -26,8 +33,54 @@
         sharedUserManager.currentUser = [PingUser new];
     });
     
+    [sharedUserManager updateUserList];
+    
     return sharedUserManager;
 }
+
+
+
+- (PingUser *)userForUUID:(NSString *)uuid {
+    // ToDo implement
+    
+    return nil;
+}
+
+- (void)updateUserList {
+    // get latest userList
+    id<IDataStore> dataStore = [backendless.persistenceService of:[PingUser class]];
+    
+    @try {
+        BackendlessCollection *backendlessUserListCollection = [dataStore find];
+        // set page size to include the whole list of objects because backendless's pagination sucks!
+        // ToDo fix pagination so it works properly
+        [backendlessUserListCollection pageSize:[[backendlessUserListCollection getTotalObjects] integerValue]];
+        
+        NSArray *backendlessUserList = [backendlessUserListCollection getCurrentPage];
+        self.userList = [NSMutableSet new];
+        
+        NSMutableArray *uuidList = [NSMutableArray new];
+        for (PingUser *u in backendlessUserList) {
+            [self.userList addObject:u];
+            [uuidList addObject:u.userUUID];
+        }
+        
+            self.blueToothManager = [BlueToothManager sharedrecordManager:[uuidList copy] andCurrentUUID:self.currentUser.userUUID];
+        
+    } @catch (Fault *fault) {
+        NSLog(@"Server reported an error: %@", fault);
+    }
+    
+    [self.blueToothManager start];
+}
+
+- (void)updateProfilePicForUser:(PingUser *)user {
+    [self setProfilePicForUser:user WithCompletion:nil];
+    
+}
+
+
+#pragma  mark -Loggin Methods 
 
 - (BOOL)previouslyLoggedIn {
     //query keychain
@@ -90,6 +143,7 @@
                                                 
                                                 PingUser *selfUser = [self createUserWithResponseString:response.data];
                                                 
+                                                self.currentUser = selfUser;
                                                 // Add Profile Pic
                                                 
                                                 __weak UserManager *weakSelf = self;
@@ -161,7 +215,8 @@
     [LISDKSessionManager createSessionWithAuth:@[LISDK_BASIC_PROFILE_PERMISSION] state:@"login with button" showGoToAppStoreDialog:YES successBlock:^(NSString *state) {
         NSLog(@"Success Segue to new screen");
         
-        // am I a new user? check realm for currentUser
+        // ToDo am I a new user? check realm for currentUser
+        
         
         // if currentUser does not exist in realm
         [self createUserWithCompletion:completion];
@@ -172,37 +227,6 @@
         //ToDo display error message to user
         
     }];
-}
-
-- (PingUser *)userForUUID:(NSUUID *)uuid {
-    return nil;
-}
-
-- (void)updateUserList {
-    // get latest userList
-    id<IDataStore> dataStore = [backendless.persistenceService of:[PingUser class]];
-    
-    @try {
-        BackendlessCollection *backendlessUserListCollection = [dataStore find];
-        // set page size to include the whole list of objects because backendless's pagination sucks!
-        // ToDo fix pagination so it works properly
-        [backendlessUserListCollection pageSize:[[backendlessUserListCollection getTotalObjects] integerValue]];
-        NSArray *backendlessUserList = [backendlessUserListCollection getCurrentPage];
-        self.userList = [NSMutableSet new];
-        
-        for (PingUser *u in backendlessUserList) {
-            [self.userList addObject:u];
-        }
-
-    } @catch (Fault *fault) {
-        NSLog(@"Server reported an error: %@", fault);
-    }
-    
-}
-
-- (void)updateProfilePicForUser:(PingUser *)user {
-    [self setProfilePicForUser:user WithCompletion:nil];
-    
 }
 
 #pragma mark -Convience Methods

@@ -31,13 +31,11 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self]; //TEMP FOR TESTING ToDo DELETE THIS LINE!!!
-    
-//    if ([self.userManager previouslyLoggedIn]) {
-//        [self.userManager createNewSessionWithoutNewUsersWithCompletion:^{
-//            [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
-//        }];
-//    }
+    if ([self.userManager previouslyLoggedIn]) {
+        [self.userManager createNewSessionWithoutNewUsersWithCompletion:^{
+            [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
+        }];
+    }
 }
 
 
