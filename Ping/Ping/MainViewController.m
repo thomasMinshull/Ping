@@ -10,6 +10,9 @@
 
 @interface MainViewController ()
 
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @end
 
 @implementation MainViewController

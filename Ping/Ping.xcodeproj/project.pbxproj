@@ -127,6 +127,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		5599E78E1D49BA4A00E61B0E /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				55A098AF1D47F0FD005100BC /* PingUser.h */,
+				55A098B01D47F0FD005100BC /* PingUser.m */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
 		55A098501D46CA69005100BC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,8 +180,7 @@
 				5599E7891D499E1C00E61B0E /* UserRecord.h */,
 				5599E78A1D499E1C00E61B0E /* UserRecord.m */,
 				55A098B51D47FD2F005100BC /* catagories */,
-				55A098AF1D47F0FD005100BC /* PingUser.h */,
-				55A098B01D47F0FD005100BC /* PingUser.m */,
+				5599E78E1D49BA4A00E61B0E /* Entities */,
 			);
 			name = Model;
 			sourceTree = "<group>";
