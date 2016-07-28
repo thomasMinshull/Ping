@@ -1,5 +1,5 @@
 //
-//  MainViewController.h
+//  PingUserTableViewCell.h
 //  Ping
 //
 //  Created by thomas minshull on 2016-07-27.
@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PingUser.h"
 
-@interface MainViewController : UIViewController
+@interface PingUserTableViewCell : UITableViewCell
 
+- (void)setUpWithPingUser:(PingUser *)user;
 
 @end
