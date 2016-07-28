@@ -7,6 +7,7 @@
 //
 
 #import "MainViewController.h"
+#import "RecordManager.h"
 
 @interface MainViewController ()
 
@@ -17,6 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    RecordManager *aRecordManager = [[RecordManager alloc] init];
+//    aRecordManager.timePeriods
+    [aRecordManager storeBlueToothDataByUUID:@"14EE37F6-C9EC-4E15-9676-EB9491BD71F1" userProximity:27 andTime:[NSDate date]];
 }
 
 - (void)didReceiveMemoryWarning {

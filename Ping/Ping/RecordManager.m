@@ -8,15 +8,15 @@
 
 #import "RecordManager.h"
 
-#define TIME_INTERVAL 10 *60
+#define TIME_INTERVAL 10 * 60
 
 @interface RecordManager ()
 
-@property (nonatomic, strong) NSOperationQueue * readQueue;
-@property (nonatomic, strong) NSOperationQueue * writeQueue;
+//@property (nonatomic, strong) NSOperationQueue *readQueue;
+@property (nonatomic, strong) NSOperationQueue *writeQueue;
 
-@property (nonatomic, strong) RLMRealm * readRealm;
-@property (nonatomic, strong) RLMRealm * writeRealm;
+//@property (nonatomic, strong) RLMRealm *readRealm;
+@property (nonatomic, strong) RLMRealm *writeRealm;
 
 @end
 
@@ -31,20 +31,22 @@
         self.timePeriods = [NSMutableArray array];
         
         // initialize read/write queues
-        self.readQueue = [[NSOperationQueue alloc] init];
+//        self.readQueue = [[NSOperationQueue alloc] init];
         self.writeQueue = [[NSOperationQueue alloc] init];
         
         // initialize read/write realms
         RLMRealmConfiguration *defaultConfiguration = [RLMRealmConfiguration defaultConfiguration];
-        [self.readQueue addOperationWithBlock:^{
-            NSError *error = nil;
-            self.readRealm = [RLMRealm realmWithConfiguration:defaultConfiguration error:&error];
-        }];
+//        [self.readQueue addOperationWithBlock:^{
+//            NSError *error = nil;
+//            self.readRealm = [RLMRealm realmWithConfiguration:defaultConfiguration error:&error];
+//        }];
         
-        [self.writeQueue addOperationWithBlock:^{
-            NSError *error = nil;
-            self.writeRealm = [RLMRealm realmWithConfiguration:defaultConfiguration error:&error];
-        }];
+//        [self.writeQueue addOperationWithBlock:^{
+//            NSError *error = nil;
+//            self.writeRealm = [RLMRealm realmWithConfiguration:defaultConfiguration error:&error];
+//            NSLog(@"Error: %@", error);
+//        }];
+        self.writeRealm = [RLMRealm defaultRealm];
     }
     return self;
 }
@@ -115,12 +117,12 @@
 
 -(void)persistToDefaultRealm {
     
-    [self.writeQueue addOperationWithBlock:^{
+//    [self.writeQueue addOperationWithBlock:^{
 //        RLMRealm *defaultRealm = [RLMRealm defaultRealm];
         [self.writeRealm beginWriteTransaction];
         [self.writeRealm addObjects:self.timePeriods];
         [self.writeRealm commitWriteTransaction];
-    }];
+//    }];
 
 //    [self.readQueue addOperationWithBlock:^{
 //        <#code#>
