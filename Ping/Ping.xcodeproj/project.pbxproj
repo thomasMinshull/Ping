@@ -15,6 +15,12 @@
 		5594DB0E1D45E2DE0096D5DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5594DB0C1D45E2DE0096D5DF /* LaunchScreen.storyboard */; };
 		55A0985D1D46CB3E005100BC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A0985C1D46CB3E005100BC /* LoginViewController.m */; };
 		55A0985F1D46CEC7005100BC /* linkedin-sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A0985E1D46CEC7005100BC /* linkedin-sdk.framework */; };
+		55A098611D46DC6A005100BC /* linkedin_login.png in Resources */ = {isa = PBXBuildFile; fileRef = 55A098601D46DC6A005100BC /* linkedin_login.png */; };
+		55A098631D46DC89005100BC /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 55A098621D46DC89005100BC /* logo.png */; };
+		55A098651D46DC9C005100BC /* ghost_person.png in Resources */ = {isa = PBXBuildFile; fileRef = 55A098641D46DC9C005100BC /* ghost_person.png */; };
+		55A098B11D47F0FD005100BC /* PingUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A098B01D47F0FD005100BC /* PingUser.m */; };
+		55A098B81D47FD73005100BC /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A098B71D47FD73005100BC /* NSString+UUID.m */; };
+		55A098E11D4907CE005100BC /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A098E01D4907CE005100BC /* UserManager.m */; };
 		71678BD4F8B7654916D3F4B0 /* libPods-Ping.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 099398FE9E3F4648F16B801E /* libPods-Ping.a */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +38,15 @@
 		55A0985B1D46CB3E005100BC /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		55A0985C1D46CB3E005100BC /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		55A0985E1D46CEC7005100BC /* linkedin-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "linkedin-sdk.framework"; sourceTree = "<group>"; };
+		55A098601D46DC6A005100BC /* linkedin_login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = linkedin_login.png; sourceTree = "<group>"; };
+		55A098621D46DC89005100BC /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		55A098641D46DC9C005100BC /* ghost_person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ghost_person.png; sourceTree = "<group>"; };
+		55A098AF1D47F0FD005100BC /* PingUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingUser.h; sourceTree = "<group>"; };
+		55A098B01D47F0FD005100BC /* PingUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingUser.m; sourceTree = "<group>"; };
+		55A098B61D47FD73005100BC /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UUID.h"; sourceTree = "<group>"; };
+		55A098B71D47FD73005100BC /* NSString+UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UUID.m"; sourceTree = "<group>"; };
+		55A098DF1D4907CE005100BC /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
+		55A098E01D4907CE005100BC /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
 		BBF5D50F2E3876EE0E2E3951 /* Pods-Ping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ping/Pods-Ping.debug.xcconfig"; sourceTree = "<group>"; };
 		EB38DA1028CD9B2B046846B0 /* Pods-Ping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ping.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ping/Pods-Ping.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,6 +138,9 @@
 		55A098521D46CA94005100BC /* images */ = {
 			isa = PBXGroup;
 			children = (
+				55A098641D46DC9C005100BC /* ghost_person.png */,
+				55A098621D46DC89005100BC /* logo.png */,
+				55A098601D46DC6A005100BC /* linkedin_login.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -130,6 +148,11 @@
 		55A098591D46CAD2005100BC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				55A098DF1D4907CE005100BC /* UserManager.h */,
+				55A098E01D4907CE005100BC /* UserManager.m */,
+				55A098B51D47FD2F005100BC /* catagories */,
+				55A098AF1D47F0FD005100BC /* PingUser.h */,
+				55A098B01D47F0FD005100BC /* PingUser.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -139,6 +162,15 @@
 			children = (
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		55A098B51D47FD2F005100BC /* catagories */ = {
+			isa = PBXGroup;
+			children = (
+				55A098B61D47FD73005100BC /* NSString+UUID.h */,
+				55A098B71D47FD73005100BC /* NSString+UUID.m */,
+			);
+			name = catagories;
 			sourceTree = "<group>";
 		};
 		CE1CC1FAE2B604755B95FB8F /* Pods */ = {
@@ -184,6 +216,12 @@
 				TargetAttributes = {
 					5594DAF71D45E2DD0096D5DF = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = FHZ72ELYQ2;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -211,8 +249,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5594DB0E1D45E2DE0096D5DF /* LaunchScreen.storyboard in Resources */,
+				55A098631D46DC89005100BC /* logo.png in Resources */,
 				5594DB0B1D45E2DE0096D5DF /* Assets.xcassets in Resources */,
 				5594DB061D45E2DE0096D5DF /* Main.storyboard in Resources */,
+				55A098651D46DC9C005100BC /* ghost_person.png in Resources */,
+				55A098611D46DC6A005100BC /* linkedin_login.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,9 +312,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55A098B11D47F0FD005100BC /* PingUser.m in Sources */,
+				55A098E11D4907CE005100BC /* UserManager.m in Sources */,
 				55A0985D1D46CB3E005100BC /* LoginViewController.m in Sources */,
 				5594DB001D45E2DE0096D5DF /* AppDelegate.m in Sources */,
 				5594DAFD1D45E2DE0096D5DF /* main.m in Sources */,
+				55A098B81D47FD73005100BC /* NSString+UUID.m in Sources */,
 				5594DB091D45E2DE0096D5DF /* Ping.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -387,6 +431,8 @@
 			baseConfigurationReference = BBF5D50F2E3876EE0E2E3951 /* Pods-Ping.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -395,6 +441,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomm.Ping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -403,6 +450,8 @@
 			baseConfigurationReference = EB38DA1028CD9B2B046846B0 /* Pods-Ping.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -411,6 +460,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomm.Ping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
