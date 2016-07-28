@@ -156,24 +156,6 @@
     NSLog(@"log global list of users: %@", collection);
 }
 
-//- (void)createNewBackendlessUserWithUser:(User *)user {
-
-//    BackendlessUser *backendUser = [BackendlessUser new];
-//    [backendUser setProperty:@"UID" object:user.userUUID];
-//    backendUser.password = user.linkedInID;
-
-//    [backendless.userService registering:backendUser
-//                                response:^(BackendlessUser *backendUser) {
-//                                    NSLog(@"User Registered");
-//                                } error:^(Fault *fault) {
-//                                    NSLog(@"Fault: %@", fault);
-//                                }];
-//}
-
-
-/*[[LISDKDeeplinkHelper sharedInstance] viewOtherProfile:martinID withState:@"viewMemberProfileButton" showGoToAppStoreDialog:NO success:success error:error];
- */
-
 
 - (void)loginAndCreateNewUserWithCompletion:(void(^)())completion{
     [LISDKSessionManager createSessionWithAuth:@[LISDK_BASIC_PROFILE_PERMISSION] state:@"login with button" showGoToAppStoreDialog:YES successBlock:^(NSString *state) {
@@ -202,18 +184,20 @@
     
     @try {
         BackendlessCollection *backendlessUserListCollection = [dataStore find];
+        // set page size to include the whole list of objects because backendless's pagination sucks!
+        // ToDo fix pagination so it works properly
+        [backendlessUserListCollection pageSize:[[backendlessUserListCollection getTotalObjects] integerValue]];
         NSArray *backendlessUserList = [backendlessUserListCollection getCurrentPage];
         self.userList = [NSMutableSet new];
         
-        for (PingUser *u in backendlessUserList) { // will work for first 100 users
+        for (PingUser *u in backendlessUserList) {
             [self.userList addObject:u];
         }
-        
-        //ToDo deal with getting multiple pages and adding all users to self.userList
-        
+
     } @catch (Fault *fault) {
         NSLog(@"Server reported an error: %@", fault);
     }
+    
 }
 
 - (void)updateProfilePicForUser:(PingUser *)user {

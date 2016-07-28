@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		555C1E7A1D4A9DE700007980 /* BlueToothManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 555C1E791D4A9DE700007980 /* BlueToothManger.m */; };
 		5594DAFD1D45E2DE0096D5DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594DAFC1D45E2DE0096D5DF /* main.m */; };
 		5594DB001D45E2DE0096D5DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594DAFF1D45E2DE0096D5DF /* AppDelegate.m */; };
 		5594DB061D45E2DE0096D5DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5594DB041D45E2DE0096D5DF /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 		5599E78B1D499E1C00E61B0E /* RecordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5599E7861D499E1C00E61B0E /* RecordManager.m */; };
 		5599E78C1D499E1C00E61B0E /* TimePeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 5599E7881D499E1C00E61B0E /* TimePeriod.m */; };
 		5599E78D1D499E1C00E61B0E /* UserRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 5599E78A1D499E1C00E61B0E /* UserRecord.m */; };
+		5599E7931D49C14F00E61B0E /* PingUserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5599E7921D49C14F00E61B0E /* PingUserTableViewCell.m */; };
 		55A0985D1D46CB3E005100BC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A0985C1D46CB3E005100BC /* LoginViewController.m */; };
 		55A0985F1D46CEC7005100BC /* linkedin-sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A0985E1D46CEC7005100BC /* linkedin-sdk.framework */; };
 		55A098611D46DC6A005100BC /* linkedin_login.png in Resources */ = {isa = PBXBuildFile; fileRef = 55A098601D46DC6A005100BC /* linkedin_login.png */; };
@@ -30,6 +32,8 @@
 
 /* Begin PBXFileReference section */
 		099398FE9E3F4648F16B801E /* libPods-Ping.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Ping.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		555C1E781D4A9DE700007980 /* BlueToothManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueToothManager.h; sourceTree = "<group>"; };
+		555C1E791D4A9DE700007980 /* BlueToothManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueToothManger.m; sourceTree = "<group>"; };
 		5594DAF81D45E2DD0096D5DF /* Ping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5594DAFC1D45E2DE0096D5DF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5594DAFE1D45E2DE0096D5DF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -45,6 +49,8 @@
 		5599E7881D499E1C00E61B0E /* TimePeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePeriod.m; sourceTree = "<group>"; };
 		5599E7891D499E1C00E61B0E /* UserRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRecord.h; sourceTree = "<group>"; };
 		5599E78A1D499E1C00E61B0E /* UserRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRecord.m; sourceTree = "<group>"; };
+		5599E7911D49C14F00E61B0E /* PingUserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingUserTableViewCell.h; sourceTree = "<group>"; };
+		5599E7921D49C14F00E61B0E /* PingUserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingUserTableViewCell.m; sourceTree = "<group>"; };
 		55A0985B1D46CB3E005100BC /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		55A0985C1D46CB3E005100BC /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		55A0985E1D46CEC7005100BC /* linkedin-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "linkedin-sdk.framework"; sourceTree = "<group>"; };
@@ -127,6 +133,48 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		5599E78E1D49BA4A00E61B0E /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				55A098AF1D47F0FD005100BC /* PingUser.h */,
+				55A098B01D47F0FD005100BC /* PingUser.m */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		5599E78F1D49C0FA00E61B0E /* realmObjects */ = {
+			isa = PBXGroup;
+			children = (
+				5599E7871D499E1C00E61B0E /* TimePeriod.h */,
+				5599E7881D499E1C00E61B0E /* TimePeriod.m */,
+				5599E7891D499E1C00E61B0E /* UserRecord.h */,
+				5599E78A1D499E1C00E61B0E /* UserRecord.m */,
+			);
+			name = realmObjects;
+			sourceTree = "<group>";
+		};
+		5599E7901D49C12600E61B0E /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				55A098DF1D4907CE005100BC /* UserManager.h */,
+				55A098E01D4907CE005100BC /* UserManager.m */,
+				5599E7851D499E1C00E61B0E /* RecordManager.h */,
+				5599E7861D499E1C00E61B0E /* RecordManager.m */,
+				555C1E781D4A9DE700007980 /* BlueToothManager.h */,
+				555C1E791D4A9DE700007980 /* BlueToothManger.m */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
+		5599E7941D49C15800E61B0E /* tabelViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				5599E7911D49C14F00E61B0E /* PingUserTableViewCell.h */,
+				5599E7921D49C14F00E61B0E /* PingUserTableViewCell.m */,
+			);
+			name = tabelViewCells;
+			sourceTree = "<group>";
+		};
 		55A098501D46CA69005100BC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,17 +210,11 @@
 		55A098591D46CAD2005100BC /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				55A098DF1D4907CE005100BC /* UserManager.h */,
-				55A098E01D4907CE005100BC /* UserManager.m */,
-				5599E7851D499E1C00E61B0E /* RecordManager.h */,
-				5599E7861D499E1C00E61B0E /* RecordManager.m */,
-				5599E7871D499E1C00E61B0E /* TimePeriod.h */,
-				5599E7881D499E1C00E61B0E /* TimePeriod.m */,
-				5599E7891D499E1C00E61B0E /* UserRecord.h */,
-				5599E78A1D499E1C00E61B0E /* UserRecord.m */,
+				5599E78F1D49C0FA00E61B0E /* realmObjects */,
+				5599E7901D49C12600E61B0E /* Managers */,
 				55A098B51D47FD2F005100BC /* catagories */,
-				55A098AF1D47F0FD005100BC /* PingUser.h */,
-				55A098B01D47F0FD005100BC /* PingUser.m */,
+				5599E78E1D49BA4A00E61B0E /* Entities */,
+				5599E7941D49C15800E61B0E /* tabelViewCells */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -239,7 +281,7 @@
 						DevelopmentTeam = FHZ72ELYQ2;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -334,6 +376,7 @@
 			files = (
 				55A098B11D47F0FD005100BC /* PingUser.m in Sources */,
 				55A098E11D4907CE005100BC /* UserManager.m in Sources */,
+				5599E7931D49C14F00E61B0E /* PingUserTableViewCell.m in Sources */,
 				55A0985D1D46CB3E005100BC /* LoginViewController.m in Sources */,
 				55A099071D498F27005100BC /* MainViewController.m in Sources */,
 				5599E78D1D499E1C00E61B0E /* UserRecord.m in Sources */,
@@ -343,6 +386,7 @@
 				5599E78C1D499E1C00E61B0E /* TimePeriod.m in Sources */,
 				55A098B81D47FD73005100BC /* NSString+UUID.m in Sources */,
 				5594DB091D45E2DE0096D5DF /* Ping.xcdatamodeld in Sources */,
+				555C1E7A1D4A9DE700007980 /* BlueToothManger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
