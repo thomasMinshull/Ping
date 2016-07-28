@@ -14,9 +14,13 @@
 @property (strong, nonatomic)NSMutableSet *userList;
 @property (strong, nonatomic)PingUser *currentUser; // may end up storing as realm user
 
-- (void)attemptToLoginWithPreviousToken; //check for UUID in UserDefaults, if not there return, else
-- (void)loginAndCreateNewUser; //Login with linked in, attempt to fetch User, add to backendless
++ (instancetype)sharedUserManager;
+
+- (BOOL)previouslyLoggedIn; //check for UUID in UserDefaults, if not there return, else
+- (void)loginAndCreateNewUserWithCompletion:(void(^)())completion; //Login with linked in, attempt to fetch User, add to backendless
+- (void)createNewSessionWithoutNewUsersWithCompletion:(void(^)())completion;
 - (PingUser *)userForUUID:(NSUUID *)uuid;
 - (void)updateUserList;
 
 @end
+

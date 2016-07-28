@@ -16,7 +16,20 @@
 
 @implementation UserManager
 
-- (void)attemptToLoginWithPreviousToken {
++ (instancetype)sharedUserManager {
+    static UserManager *sharedUserManager = nil;
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        sharedUserManager = [[UserManager alloc] init];
+        sharedUserManager.userList = [NSMutableSet new];
+        sharedUserManager.currentUser = [PingUser new];
+    });
+    
+    return sharedUserManager;
+}
+
+- (BOOL)previouslyLoggedIn {
     //query keychain
     
     NSMutableDictionary *query = [@{
@@ -31,10 +44,11 @@
     NSLog(@"%@", (__bridge id)result);
     
     if (result != NULL) { // We found the key, maybe we should check it
+        return YES; // Nahh never mind :P
         
-        // Nahh never mind :P
-        [self createNewSessionWithoutNewUsers];
+//              [self createNewSessionWithoutNewUsers];
     }
+    return NO;
     
     /* ToDo Unfinished Code used to validate the key and create new session 
      NSArray *resultArray = (__bridge_transfer NSArray *)result;
@@ -54,19 +68,19 @@
      */
 }
 
-- (void)createNewSessionWithoutNewUsers {
+- (void)createNewSessionWithoutNewUsersWithCompletion:(void(^)())completion {
     [LISDKSessionManager createSessionWithAuth:@[LISDK_BASIC_PROFILE_PERMISSION] state:@"login with button" showGoToAppStoreDialog:YES successBlock:^(NSString *state) {
         NSLog(@"Success Segue to new screen");
+        completion();
     } errorBlock:^(NSError *error) {
         NSLog(@"Error when logging in with LinkedIn %@", error);
-        
         //ToDo display error message to user
         
     }];
 }
 
 
-- (void)createUser {
+- (void)createUserWithCompletion:(void(^)())completion {
 
     if ([LISDKSessionManager hasValidSession]) {// double check that we are logged in
         // get profile
@@ -81,6 +95,7 @@
                                                 __weak UserManager *weakSelf = self;
                                                 [self setProfilePicForUser:selfUser WithCompletion:^{
                                                     [weakSelf saveBackendlessUser:selfUser];
+                                                    completion();
                                                 }];
                                                 
                                             }
@@ -160,14 +175,14 @@
  */
 
 
-- (void)loginAndCreateNewUser{
+- (void)loginAndCreateNewUserWithCompletion:(void(^)())completion{
     [LISDKSessionManager createSessionWithAuth:@[LISDK_BASIC_PROFILE_PERMISSION] state:@"login with button" showGoToAppStoreDialog:YES successBlock:^(NSString *state) {
         NSLog(@"Success Segue to new screen");
         
         // am I a new user? check realm for currentUser
         
         // if currentUser does not exist in realm
-        [self createUser];
+        [self createUserWithCompletion:completion];
         
     } errorBlock:^(NSError *error) {
         NSLog(@"Error when logging in with LinkedIn %@", error);
