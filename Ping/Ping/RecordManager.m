@@ -35,7 +35,7 @@
         self.writeQueue = [[NSOperationQueue alloc] init];
         
         // initialize read/write realms
-        RLMRealmConfiguration *defaultConfiguration = [RLMRealmConfiguration defaultConfiguration];
+//        RLMRealmConfiguration *defaultConfiguration = [RLMRealmConfiguration defaultConfiguration];
 //        [self.readQueue addOperationWithBlock:^{
 //            NSError *error = nil;
 //            self.readRealm = [RLMRealm realmWithConfiguration:defaultConfiguration error:&error];
@@ -82,7 +82,8 @@
         }
     }
     NSLog(@"The current time period: %@. The user's UUID: %@. Total distance: %d. Number of obs: %d.", [[self.timePeriods lastObject] startTime], [[[[self.timePeriods lastObject] userRecords]lastObject]uUID], [[[[self.timePeriods lastObject] userRecords]lastObject]totalDistance], [[[[self.timePeriods lastObject] userRecords]lastObject]numberOfObs]);
-    [self persistToDefaultRealm];
+//    [self persistToDefaultRealm];
+    [self persistToDefaultRealmOnBackgroundThread];
 }
 
 -(void)generateNewTimePeriodAndUserRecordWithUserUUID:(NSString *)uUID proximity:(int)proximity andTime:(NSDate *)time {
@@ -129,7 +130,65 @@
 //    }];
 }
 
+-(void)persistToDefaultRealmOnBackgroundThread {
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        RLMRealm *backgroundRealm = [RLMRealm defaultRealm];
+        [backgroundRealm beginWriteTransaction];
+        [backgroundRealm addObjects:self.timePeriods];
+        [backgroundRealm commitWriteTransaction];
+        // Using old global realm object for saving
+//        [self.writeRealm beginWriteTransaction];
+//        [self.writeRealm addObjects:self.timePeriods];
+//        [self.writeRealm commitWriteTransaction];
+    });
+}
+
+-(NSMutableArray *)sortingUserRecordsInTimePeriodByProximity:(TimePeriod *)aTimePeriod {
+    for (TimePeriod *tp in self.timePeriods) { // Getting one of the existing time periods already recorded
+        if (aTimePeriod.startTime == tp.startTime) { // If the starting time of the time period matches the starting time of the time period passed in do below
+            NSMutableArray *userRecordsArrayInTimePeriod = [[NSMutableArray alloc] init];
+            for (UserRecord *aUserRecord in tp.userRecords) {
+                aUserRecord.userAverage = aUserRecord.totalDistance / aUserRecord.numberOfObs;
+                [userRecordsArrayInTimePeriod addObject:aUserRecord];
+            }
+            NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"userAverage" ascending:YES];
+            userRecordsArrayInTimePeriod = [[userRecordsArrayInTimePeriod sortedArrayUsingDescriptors:@[descriptor]] mutableCopy];
+            
+            return userRecordsArrayInTimePeriod;
+        }
+    }
+    return nil;
+}
+
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
