@@ -36,28 +36,16 @@
     dispatch_once(&onceToken, ^{
         sharedUserManager = [[UserManager alloc] init];
         sharedUserManager.userList = [NSMutableSet new];
-        sharedUserManager.currentUser = [PingUser new];
-        sharedUserManager.temp = false;
+//        sharedUserManager.currentUser = [PingUser new];
+//        sharedUserManager.temp = false;
     });
     
-    [sharedUserManager updateUserList];
+//    [sharedUserManager updateUserList];
     
     return sharedUserManager;
 }
 
-
-
-- (PingUser *)userForUUID:(NSString *)uuid {
-    
-    for (PingUser *user in self.userList) {
-        if ([user.userUUID isEqualToString:uuid]) {
-            return user;
-        }
-    }
-    return nil;
-}
-
-- (void)updateUserList {
+- (void)setUp {
     // get latest userList
     id<IDataStore> dataStore = [backendless.persistenceService of:[PingUser class]];
     
@@ -68,25 +56,30 @@
         [backendlessUserListCollection pageSize:[[backendlessUserListCollection getTotalObjects] integerValue]];
         
         NSArray *backendlessUserList = [backendlessUserListCollection getCurrentPage];
-        self.userList = [NSMutableSet new];
         
-        if (self.temp) {
-            NSMutableArray *uuidList = [NSMutableArray new];
-            for (PingUser *u in backendlessUserList) {
-                [self.userList addObject:u];
-                [uuidList addObject:u.userUUID];
-            }
-            
-            AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-            
-            self.blueToothManager = [BlueToothManager sharedrecordManager:[uuidList copy] andCurrentUUID:app.currentUser.userUUID];
+        NSMutableArray *uuidList = [NSMutableArray new];
+        for (PingUser *u in backendlessUserList) {
+            [self.userList addObject:u];
+            [uuidList addObject:u.userUUID];
         }
+        
+        AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        
+        self.blueToothManager = [BlueToothManager sharedrecordManager:[uuidList copy] andCurrentUUID:app.currentUser.userUUID];
         
     } @catch (Fault *fault) {
         NSLog(@"Server reported an error: %@", fault);
     }
+}
+
+- (PingUser *)userForUUID:(NSString *)uuid {
     
-    [self.blueToothManager start];
+    for (PingUser *user in self.userList) {
+        if ([user.userUUID isEqualToString:uuid]) {
+            return user;
+        }
+    }
+    return nil;
 }
 
 - (void)updateProfilePicForUser:(PingUser *)user {
@@ -136,22 +129,21 @@
      */
 }
 
-- (void)createNewSessionWithoutNewUsersWithCompletion:(void(^)())completion {
-    [LISDKSessionManager createSessionWithAuth:@[LISDK_BASIC_PROFILE_PERMISSION] state:@"login with button" showGoToAppStoreDialog:YES successBlock:^(NSString *state) {
-        NSLog(@"Success Segue to new screen");
-        completion();
-    } errorBlock:^(NSError *error) {
-        NSLog(@"Error when logging in with LinkedIn %@", error);
-        //ToDo display error message to user
-        
-    }];
-}
+
+//- (void)createNewSessionWithoutNewUsersWithCompletion:(void(^)())completion {
+//    [LISDKSessionManager createSessionWithAuth:@[LISDK_BASIC_PROFILE_PERMISSION] state:@"login with button" showGoToAppStoreDialog:YES successBlock:^(NSString *state) {
+//        NSLog(@"Success Segue to new screen");
+//        completion();
+//    } errorBlock:^(NSError *error) {
+//        NSLog(@"Error when logging in with LinkedIn %@", error);
+//        //ToDo display error message to user
+//        
+//    }];
+//}
 
 
 - (void)createUserWithCompletion:(void(^)())completion {
 
-    if ([LISDKSessionManager hasValidSession]) {// double check that we are logged in
-        // get profile
         [[LISDKAPIHelper sharedInstance] getRequest:LINKEDIN_USER_URL
                                             success:^(LISDKAPIResponse *response) {
                                                 NSLog(@"got user profile: %@", response.data);
@@ -159,29 +151,19 @@
                                                 PingUser *selfUser = [self createUserWithResponseString:response.data];
                                                 NSLog(@"self user uuid: %@", selfUser.userUUID);
                                                 
+                                                AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                                                app.currentUser = selfUser;
                                                 
                                                 // Add Profile Pic
                                                 
                                                 __weak UserManager *weakSelf = self;
                                                 [self setProfilePicForUser:selfUser WithCompletion:^{
+                                                    
                                                     [weakSelf saveBackendlessUser:selfUser];
                                                     
-                                                    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-                                                    app.currentUser = selfUser;
-                                                    
-//                                                    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-//                                                    dispatch_async(queue, ^{
-//                                                        RLMRealm *backgroundRealm = [RLMRealm defaultRealm];
-//                                                        [backgroundRealm beginWriteTransaction];
-//                                                        [backgroundRealm addObjects:currentUser];
-//                                                        [backgroundRealm commitWriteTransaction];
-//                                                      
-//                                                    });
-
-                                                    
-                                                    completion();
                                                 }];
                                                 
+                                                completion();
                                             }
                                               error:^(LISDKAPIError *apiError) {
                                                   // do something with error
@@ -189,7 +171,6 @@
                                                   
                                                   //ToDo display error
                                               }];
-    }
 }
 
 - (PingUser *)createUserWithResponseString:(NSString *)response {
@@ -220,6 +201,8 @@
         NSString *picURl = myPic[@"pictureUrl"];
         
         user.profilePicURL = picURl;
+        
+        completion();
     
     } error:^(LISDKAPIError *error) {
         NSLog(@"Error when loading profile Pic: %@", error);
@@ -227,6 +210,7 @@
     }];
 }
 
+#pragma mark - Backendless Methods
 
 - (void)saveBackendlessUser:(PingUser *)user {
     id<IDataStore> dataStore = [backendless.persistenceService of:[PingUser class]];
@@ -239,7 +223,6 @@
     BackendlessCollection *collection = [dataStore findFault:&fault];
     NSLog(@"log global list of users: %@", collection);
 }
-
 
 - (void)loginAndCreateNewUserWithCompletion:(void(^)())completion {
     [LISDKSessionManager createSessionWithAuth:@[LISDK_BASIC_PROFILE_PERMISSION] state:@"login with button" showGoToAppStoreDialog:YES successBlock:^(NSString *state) {
@@ -283,6 +266,7 @@
     return nil;
 }
 
+
 #pragma mark -Convience Methods
 
 - (void)realmUserFromBackendlessUser:(PingUser *)backendlessUser {
@@ -297,10 +281,5 @@
 //    return NO;
 //}
 
-- (void)changeTemp {
-    self.temp = true;
-    [self.blueToothManager start];
-    [self updateUserList];
-}
 
 @end

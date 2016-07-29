@@ -15,7 +15,7 @@
 
 @interface MainViewController ()  <UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) NSMutableArray<PingUser *> *orderedListOfUsers;
@@ -26,7 +26,9 @@
 
 @end
 
-@implementation MainViewController
+@implementation MainViewController {
+    UIDatePicker *datePicker;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,9 +36,22 @@
     self.recordManager = [[RecordManager alloc] init];
     self.userManager = [UserManager sharedUserManager];
     
+    [self.userManager setUp];
     
     self.orderedListOfUUIDs= [self.recordManager sortingUserRecordsInTimePeriodByProximity:[NSDate date]];
+    if (!self.orderedListOfUUIDs) {
+        self.orderedListOfUUIDs = @[];
+    }
     
+    CGRect datePickerFrame = CGRectMake(20.0, 0.0, self.view.frame.size.width-16.0, 200.0);
+    datePicker = [[UIDatePicker alloc] initWithFrame:datePickerFrame];
+    
+    [datePicker addTarget:self action:@selector(datePickerChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:datePicker];
+    
+    
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     
     
 ////    aRecordManager.timePeriods
@@ -66,11 +81,25 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"number of rows in section %d", (int)[self.orderedListOfUUIDs count]);
     return [self.orderedListOfUUIDs count];
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    PingUserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PingUserTableViewCell class])];
+    //@"PingUserTableViewCell" // identifier
+//    PingUserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PingUserTableViewCell class])];
+
+    PingUserTableViewCell *cell = (PingUserTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:@"PingUserTableViewCell" forIndexPath:indexPath];
+    if (cell == nil) {
+        PingUserTableViewCell *cell = [[PingUserTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PingUserTableViewCell"];
+        return cell;
+    }
+    
+//    PingUserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PingUserTableViewCell"];
     
     PingUser *user = [self.userManager userForUUID:self.orderedListOfUUIDs[indexPath.row]];
     
@@ -90,14 +119,17 @@
 #pragma mark -Actions 
 
 - (IBAction)nowButtonTapped:(id)sender {
-    self.datePicker.date = [self getStartTimeForTimePeriod:[NSDate date]];
-    [self.userManager changeTemp];
+    datePicker.date = [self getStartTimeForTimePeriod:[NSDate date]];
+    [self datePickerChanged:datePicker];
 }
 
-- (IBAction)datePickerChanged:(UIDatePicker *)sender {
+- (void)datePickerChanged:(UIDatePicker *)sender {
     
     // change orderedListOfUsers to be the list for this new date
-    self.orderedListOfUUIDs = [self.recordManager sortingUserRecordsInTimePeriodByProximity:self.datePicker.date];
+    self.orderedListOfUUIDs = [self.recordManager sortingUserRecordsInTimePeriodByProximity:datePicker.date];
+    if (!self.orderedListOfUUIDs) {
+        self.orderedListOfUUIDs = @[];
+    }
     [self.tableView reloadData];
 }
 

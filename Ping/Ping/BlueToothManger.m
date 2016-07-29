@@ -8,6 +8,7 @@
 
 #import "BlueToothManager.h"
 #import "RecordManager.h"
+#import "AppDelegate.h"
 
 @interface BlueToothManager() <CBCentralManagerDelegate, CBPeripheralDelegate, CBPeripheralManagerDelegate>
 
@@ -56,7 +57,9 @@
 
 -(void)start{
     
-    [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:self.currentUserUUID]]}];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:app.currentUser.userUUID]]}];
     [self scan];
 }
 

@@ -13,18 +13,20 @@
 @interface UserManager : NSObject
 
 @property (strong, nonatomic)NSMutableSet *userList;
-@property (strong, nonatomic)PingUser *currentUser; // may end up storing as realm user
+//@property (strong, nonatomic)PingUser *currentUser; // may end up storing as realm user
 
 + (instancetype)sharedUserManager;
 
 - (BOOL)previouslyLoggedIn; //check for UUID in UserDefaults, if not there return, else
+
 - (void)loginAndCreateNewUserWithCompletion:(void(^)())completion; //Login with linked in, attempt to fetch User, add to backendless
-- (void)createNewSessionWithoutNewUsersWithCompletion:(void(^)())completion;
+
+//- (void)createNewSessionWithoutNewUsersWithCompletion:(void(^)())completion;
 
 - (PingUser *)userForUUID:(NSString *)uuid;
 - (void)updateUserList;
 
-- (void)changeTemp;
-
+//- (void)changeTemp;
+- (void)setUp;
 @end
 

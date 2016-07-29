@@ -31,11 +31,12 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    if ([self.userManager previouslyLoggedIn]) {
-        [self.userManager createNewSessionWithoutNewUsersWithCompletion:^{
-            [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
-        }];
-    }
+    
+//    if ([self.userManager previouslyLoggedIn]) {
+//        [self.userManager createNewSessionWithoutNewUsersWithCompletion:^{
+//            [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
+//        }];
+//    }
 }
 
 
@@ -45,15 +46,19 @@
     // do I have a account already
     
     // yes
+    
+    
     [self.userManager loginAndCreateNewUserWithCompletion:^{
         [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
+     
     }];
     
+    /*
     // No
 //    [self.userManager createNewSessionWithoutNewUsersWithCompletion:^{
 //        [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
 //    }];
-    
+    */
 }
 
 @end

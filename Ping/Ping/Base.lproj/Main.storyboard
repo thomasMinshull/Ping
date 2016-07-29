@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -74,15 +74,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0Mc-pZ-idR">
-                                <rect key="frame" x="0.0" y="252" width="375" height="415"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0Mc-pZ-idR">
+                                <rect key="frame" x="0.0" y="334" width="375" height="333"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PingUserTableViewCell" rowHeight="100" id="wFF-lQ-QBZ" customClass="PingUserTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wFF-lQ-QBZ" id="E6x-eD-PE3">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Zx-hl-FGc">
@@ -132,38 +132,22 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="li8-sv-mvp" id="h0g-rw-1kF"/>
-                                    <outlet property="delegate" destination="li8-sv-mvp" id="WND-G2-Tq2"/>
-                                </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="boR-Uz-HVT">
-                                <rect key="frame" x="0.0" y="216" width="375" height="36"/>
+                                <rect key="frame" x="0.0" y="298" width="375" height="36"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                 <state key="normal" title="Right NOW !!"/>
                                 <connections>
                                     <action selector="nowButtonTapped:" destination="li8-sv-mvp" eventType="touchUpInside" id="9PH-nh-m8L"/>
                                 </connections>
                             </button>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="10" translatesAutoresizingMaskIntoConstraints="NO" id="JHV-Ww-MXg">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="216"/>
-                                <date key="date" timeIntervalSinceReferenceDate="491370383.01593798">
-                                    <!--2016-07-28 03:46:23 +0000-->
-                                </date>
-                                <connections>
-                                    <action selector="datePickerChanged:" destination="li8-sv-mvp" eventType="valueChanged" id="HyH-Lg-WBW"/>
-                                </connections>
-                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="JHV-Ww-MXg" firstAttribute="top" secondItem="ZXb-gm-mdW" secondAttribute="top" id="5fw-xZ-iGL"/>
-                            <constraint firstAttribute="trailing" secondItem="JHV-Ww-MXg" secondAttribute="trailing" id="F7d-pa-bbd"/>
                             <constraint firstAttribute="trailing" secondItem="boR-Uz-HVT" secondAttribute="trailing" id="MI9-2p-dJZ"/>
-                            <constraint firstItem="JHV-Ww-MXg" firstAttribute="leading" secondItem="ZXb-gm-mdW" secondAttribute="leading" id="T35-3Q-h5H"/>
                             <constraint firstAttribute="trailing" secondItem="0Mc-pZ-idR" secondAttribute="trailing" id="YL0-wU-UXt"/>
-                            <constraint firstItem="boR-Uz-HVT" firstAttribute="top" secondItem="JHV-Ww-MXg" secondAttribute="bottom" id="eXj-ao-ZzX"/>
                             <constraint firstItem="boR-Uz-HVT" firstAttribute="leading" secondItem="ZXb-gm-mdW" secondAttribute="leading" id="lqk-ll-Hr6"/>
+                            <constraint firstItem="0Mc-pZ-idR" firstAttribute="height" secondItem="ZXb-gm-mdW" secondAttribute="height" multiplier="1:2" id="oT1-K4-NyU"/>
                             <constraint firstItem="0Mc-pZ-idR" firstAttribute="leading" secondItem="ZXb-gm-mdW" secondAttribute="leading" id="pvv-Ea-P27"/>
                             <constraint firstItem="Sel-BC-bjf" firstAttribute="top" secondItem="0Mc-pZ-idR" secondAttribute="bottom" id="snw-7Q-y4t"/>
                             <constraint firstItem="0Mc-pZ-idR" firstAttribute="top" secondItem="boR-Uz-HVT" secondAttribute="bottom" id="tsR-rU-lmk"/>
@@ -171,8 +155,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="datePicker" destination="JHV-Ww-MXg" id="Hih-9c-pFf"/>
-                        <outlet property="tableView" destination="0Mc-pZ-idR" id="MRd-gG-edN"/>
+                        <outlet property="tableView" destination="0Mc-pZ-idR" id="dKY-ta-RqL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aWA-9L-ra6" userLabel="First Responder" sceneMemberID="firstResponder"/>
