@@ -20,6 +20,6 @@
 -(NSDate *)getStartTimeForTimePeriod:(NSDate *)time;
 -(void)increaseUserTotalDistanceAndObs:(UserRecord *)userRecord userProximity:(int)proximity;
 -(void)persistToDefaultRealm;
--(NSMutableArray *)sortingUserRecordsInTimePeriodByProximity:(TimePeriod *)aTimePeriod;
+-(NSMutableArray *)sortingUserRecordsInTimePeriodByProximity:(NSDate *)date;
 
 @end

@@ -19,8 +19,11 @@
 - (BOOL)previouslyLoggedIn; //check for UUID in UserDefaults, if not there return, else
 - (void)loginAndCreateNewUserWithCompletion:(void(^)())completion; //Login with linked in, attempt to fetch User, add to backendless
 - (void)createNewSessionWithoutNewUsersWithCompletion:(void(^)())completion;
-- (PingUser *)userForUUID:(NSUUID *)uuid;
+
+- (PingUser *)userForUUID:(NSString *)uuid;
 - (void)updateUserList;
+
+- (void)changeTemp;
 
 @end
 

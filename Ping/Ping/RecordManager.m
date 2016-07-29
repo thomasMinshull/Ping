@@ -144,7 +144,13 @@
     });
 }
 
--(NSMutableArray *)sortingUserRecordsInTimePeriodByProximity:(TimePeriod *)aTimePeriod {
+-(NSMutableArray *)sortingUserRecordsInTimePeriodByProximity:(NSDate *)date {
+    
+    date = [self getStartTimeForTimePeriod:date]; // rounds down to correct start date
+    
+    TimePeriod *aTimePeriod = [TimePeriod new];
+    aTimePeriod.startTime = date;
+    
     for (TimePeriod *tp in self.timePeriods) { // Getting one of the existing time periods already recorded
         if (aTimePeriod.startTime == tp.startTime) { // If the starting time of the time period matches the starting time of the time period passed in do below
             NSMutableArray *userRecordsArrayInTimePeriod = [[NSMutableArray alloc] init];
@@ -154,8 +160,12 @@
             }
             NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"userAverage" ascending:YES];
             userRecordsArrayInTimePeriod = [[userRecordsArrayInTimePeriod sortedArrayUsingDescriptors:@[descriptor]] mutableCopy];
+            NSMutableArray *uuidArray = [NSMutableArray new];
+            for (UserRecord *ur in userRecordsArrayInTimePeriod) {
+                [uuidArray addObject:ur.uUID];
+            }
             
-            return userRecordsArrayInTimePeriod;
+            return uuidArray;
         }
     }
     return nil;

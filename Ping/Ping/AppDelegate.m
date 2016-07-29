@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "UserManager.h"
+
 #import <linkedin-sdk/LISDK.h>
 #import "Backendless.h"
 
@@ -17,6 +19,8 @@
 
 @interface AppDelegate ()
 
+@property (strong, nonatomic) UserManager *userManger;
+
 @end
 
 @implementation AppDelegate
@@ -25,6 +29,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //Backendless setup
     [backendless initApp:APP_ID secret:SECRET_KEY version:VERSION];
+    
+    self.userManger = [UserManager sharedUserManager];
+    
+   // [self.userManger updateUserList];
     
     return YES;
 }
