@@ -28,11 +28,11 @@
     if (self) {
 // No need to init RLMArray?
 //        self.timePeriods = [[RLMArray alloc] init];
-        self.timePeriods = [NSMutableArray array];
+        _timePeriods = [NSMutableArray array];
         
         // initialize read/write queues
 //        self.readQueue = [[NSOperationQueue alloc] init];
-        self.writeQueue = [[NSOperationQueue alloc] init];
+        _writeQueue = [[NSOperationQueue alloc] init];
         
         // initialize read/write realms
 //        RLMRealmConfiguration *defaultConfiguration = [RLMRealmConfiguration defaultConfiguration];
@@ -46,7 +46,7 @@
 //            self.writeRealm = [RLMRealm realmWithConfiguration:defaultConfiguration error:&error];
 //            NSLog(@"Error: %@", error);
 //        }];
-        self.writeRealm = [RLMRealm defaultRealm];
+        _writeRealm = [RLMRealm defaultRealm];
     }
     return self;
 }
@@ -137,7 +137,7 @@
         [backgroundRealm beginWriteTransaction];
         [backgroundRealm addObjects:self.timePeriods];
         [backgroundRealm commitWriteTransaction];
-        // Using old global realm object for saving
+        // Using previous global realm object for saving
 //        [self.writeRealm beginWriteTransaction];
 //        [self.writeRealm addObjects:self.timePeriods];
 //        [self.writeRealm commitWriteTransaction];
@@ -172,24 +172,6 @@
 }
 
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -14,15 +14,15 @@
 {
     self = [super init];
     if (self) {
-        self.uUID = uUID;
-        self.totalDistance = distance;
-        self.numberOfObs = 1;
+        _uUID = uUID;
+        _totalDistance = distance;
+        _numberOfObs = 1;
     }
     return self;
 }
 
 -(void)setTotalDistance:(int)totalDistance {
-    _totalDistance = abs(totalDistance);
+    self.totalDistance = abs(totalDistance);
 }
 
 @end
