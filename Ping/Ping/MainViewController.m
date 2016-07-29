@@ -15,7 +15,7 @@
 
 @interface MainViewController ()  <UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) NSMutableArray<PingUser *> *orderedListOfUsers;
@@ -26,7 +26,9 @@
 
 @end
 
-@implementation MainViewController
+@implementation MainViewController {
+    UIDatePicker *datePicker;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,6 +42,12 @@
     if (!self.orderedListOfUUIDs) {
         self.orderedListOfUUIDs = @[];
     }
+    
+    CGRect datePickerFrame = CGRectMake(20.0, 0.0, self.view.frame.size.width-16.0, 200.0);
+    datePicker = [[UIDatePicker alloc] initWithFrame:datePickerFrame];
+    
+    [datePicker addTarget:self action:@selector(datePickerChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:datePicker];
     
     
     self.tableView.dataSource = self;
@@ -111,18 +119,18 @@
 #pragma mark -Actions 
 
 - (IBAction)nowButtonTapped:(id)sender {
-//    self.datePicker.date = [self getStartTimeForTimePeriod:[NSDate date]];
-//    //[self.userManager changeTemp];
+    datePicker.date = [self getStartTimeForTimePeriod:[NSDate date]];
+    [self datePickerChanged:datePicker];
 }
 
-- (IBAction)datePickerChanged:(UIDatePicker *)sender {
-//    
-//    // change orderedListOfUsers to be the list for this new date
-//    self.orderedListOfUUIDs = [self.recordManager sortingUserRecordsInTimePeriodByProximity:self.datePicker.date];
-//    if (!self.orderedListOfUUIDs) {
-//        self.orderedListOfUUIDs = @[];
-//    }
-//    [self.tableView reloadData];
+- (void)datePickerChanged:(UIDatePicker *)sender {
+    
+    // change orderedListOfUsers to be the list for this new date
+    self.orderedListOfUUIDs = [self.recordManager sortingUserRecordsInTimePeriodByProximity:datePicker.date];
+    if (!self.orderedListOfUUIDs) {
+        self.orderedListOfUUIDs = @[];
+    }
+    [self.tableView reloadData];
 }
 
 #pragma mark -Helper Methodes 
