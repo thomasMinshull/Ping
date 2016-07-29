@@ -261,7 +261,7 @@ dispatch_queue_t backgroundQueue() {
                 
             }
             
-            NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"userAverage" ascending:YES];
+            NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"userAverage" ascending:NO];
             userRecordsArrayInTimePeriod = [[userRecordsArrayInTimePeriod sortedArrayUsingDescriptors:@[descriptor]] mutableCopy];
             
             NSMutableArray *uuidArray = [NSMutableArray new];
