@@ -128,6 +128,7 @@
 - (IBAction)nowButtonTapped:(id)sender {
     datePicker.date = [self getStartTimeForTimePeriod:[NSDate date]];
     [self datePickerChanged:datePicker];
+    [self.userManager updateUserList];
 }
 
 - (void)datePickerChanged:(UIDatePicker *)sender {
