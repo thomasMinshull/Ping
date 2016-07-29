@@ -129,19 +129,6 @@
      */
 }
 
-- (void)loginAndCreateNewUserWithCompletion:(void(^)())completion{
-    [LISDKSessionManager createSessionWithAuth:@[LISDK_BASIC_PROFILE_PERMISSION] state:@"login with button" showGoToAppStoreDialog:YES successBlock:^(NSString *state) {
-        NSLog(@"Success Segue to new screen");
-        
-        [self createUserWithCompletion:completion];
-        
-    } errorBlock:^(NSError *error) {
-        NSLog(@"Error when logging in with LinkedIn %@", error);
-        
-        //ToDo display error message to user
-        
-    }];
-}
 
 //- (void)createNewSessionWithoutNewUsersWithCompletion:(void(^)())completion {
 //    [LISDKSessionManager createSessionWithAuth:@[LISDK_BASIC_PROFILE_PERMISSION] state:@"login with button" showGoToAppStoreDialog:YES successBlock:^(NSString *state) {
