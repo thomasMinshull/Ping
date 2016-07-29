@@ -29,6 +29,7 @@
 		55A099071D498F27005100BC /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A099061D498F27005100BC /* MainViewController.m */; };
 		55AD89351D4AD5B80097DE9B /* CurrentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 55AD89341D4AD5B80097DE9B /* CurrentUser.m */; };
 		71678BD4F8B7654916D3F4B0 /* libPods-Ping.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 099398FE9E3F4648F16B801E /* libPods-Ping.a */; };
+		9C18CAF81D4AE89B008519E1 /* PingUserRealm.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C18CAF71D4AE89B008519E1 /* PingUserRealm.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,8 @@
 		55A099061D498F27005100BC /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		55AD89331D4AD5B80097DE9B /* CurrentUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentUser.h; sourceTree = "<group>"; };
 		55AD89341D4AD5B80097DE9B /* CurrentUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentUser.m; sourceTree = "<group>"; };
+		9C18CAF61D4AE89B008519E1 /* PingUserRealm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingUserRealm.h; sourceTree = "<group>"; };
+		9C18CAF71D4AE89B008519E1 /* PingUserRealm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingUserRealm.m; sourceTree = "<group>"; };
 		BBF5D50F2E3876EE0E2E3951 /* Pods-Ping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ping/Pods-Ping.debug.xcconfig"; sourceTree = "<group>"; };
 		EB38DA1028CD9B2B046846B0 /* Pods-Ping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ping.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ping/Pods-Ping.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -152,6 +155,8 @@
 				55AD89341D4AD5B80097DE9B /* CurrentUser.m */,
 				5599E7871D499E1C00E61B0E /* TimePeriod.h */,
 				5599E7881D499E1C00E61B0E /* TimePeriod.m */,
+				9C18CAF61D4AE89B008519E1 /* PingUserRealm.h */,
+				9C18CAF71D4AE89B008519E1 /* PingUserRealm.m */,
 				5599E7891D499E1C00E61B0E /* UserRecord.h */,
 				5599E78A1D499E1C00E61B0E /* UserRecord.m */,
 			);
@@ -380,6 +385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55A098B11D47F0FD005100BC /* PingUser.m in Sources */,
+				9C18CAF81D4AE89B008519E1 /* PingUserRealm.m in Sources */,
 				55A098E11D4907CE005100BC /* UserManager.m in Sources */,
 				5599E7931D49C14F00E61B0E /* PingUserTableViewCell.m in Sources */,
 				55A0985D1D46CB3E005100BC /* LoginViewController.m in Sources */,

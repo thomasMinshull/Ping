@@ -12,6 +12,7 @@
 #import "CurrentUser.h"
 #import "Backendless.h"
 #import "BlueToothManager.h"
+#import "PingUserRealm.h"
 
 #import "AppDelegate.h"
 
@@ -22,6 +23,7 @@
 
 @property (nonatomic) BOOL temp;
 @property (strong, nonatomic) BlueToothManager *blueToothManager;
+@property (nonatomic) RLMRealm *currentRealmUser;
 
 @end
 
@@ -235,6 +237,49 @@
     NSLog(@"log global list of users: %@", collection);
 }
 
+- (void)loginAndCreateNewUserWithCompletion:(void(^)())completion {
+    [LISDKSessionManager createSessionWithAuth:@[LISDK_BASIC_PROFILE_PERMISSION] state:@"login with button" showGoToAppStoreDialog:YES successBlock:^(NSString *state) {
+        NSLog(@"Success Segue to new screen");
+        
+        // ToDo am I a new user? check realm for currentUser
+        
+        
+        // if currentUser does not exist in realm
+        [self createUserWithCompletion:completion];
+        
+    } errorBlock:^(NSError *error) {
+        NSLog(@"Error when logging in with LinkedIn %@", error);
+        
+        //ToDo display error message to user
+        
+    }];
+}
+
+- (void)persistCurrentUserToRealm:(PingUser *)currentUser {
+    self.currentRealmUser = [RLMRealm defaultRealm];
+    PingUserRealm *pingUserForRealm = [[PingUserRealm alloc] initWithPingUserValue:currentUser];
+    [self.currentRealmUser beginWriteTransaction];
+    [self.currentRealmUser addObject:pingUserForRealm];
+    [self.currentRealmUser commitWriteTransaction];
+}
+
+- (PingUser *)fetchCurrentUserFromRealm {
+    if (![self.currentRealmUser isEmpty]) {
+        RLMResults<PingUserRealm *> *userResult = [PingUserRealm allObjects];
+        PingUserRealm *userFromRealm = [userResult firstObject];
+        PingUser *user = [[PingUser alloc] init];
+        user.firstName = userFromRealm.firstName;
+        user.lastName = userFromRealm.lastName;
+        user.headline = userFromRealm.headline;
+        user.linkedInID = userFromRealm.linkedInID;
+        user.profilePicURL = userFromRealm.profilePicURL;
+        user.userUUID = userFromRealm.userUUID;
+        return user;
+    }
+    return nil;
+}
+
+
 #pragma mark -Convience Methods
 
 - (void)realmUserFromBackendlessUser:(PingUser *)backendlessUser {
@@ -249,9 +294,5 @@
 //    return NO;
 //}
 
-//- (void)changeTemp {
-//    self.temp = true;
-//    [self.blueToothManager start];
-//    [self updateUserList];
-//}
+
 @end

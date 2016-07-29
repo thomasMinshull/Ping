@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PingUser.h"
+#import <Realm/Realm.h>
 
 @interface UserManager : NSObject
 
