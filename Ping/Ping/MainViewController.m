@@ -91,13 +91,13 @@
 
 - (IBAction)nowButtonTapped:(id)sender {
     self.datePicker.date = [self getStartTimeForTimePeriod:[NSDate date]];
+    [self.userManager changeTemp];
 }
 
 - (IBAction)datePickerChanged:(UIDatePicker *)sender {
     
     // change orderedListOfUsers to be the list for this new date
     self.orderedListOfUUIDs = [self.recordManager sortingUserRecordsInTimePeriodByProximity:self.datePicker.date];
-    
     [self.tableView reloadData];
 }
 

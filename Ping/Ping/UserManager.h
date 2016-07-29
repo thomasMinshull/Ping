@@ -23,5 +23,7 @@
 - (PingUser *)userForUUID:(NSString *)uuid;
 - (void)updateUserList;
 
+- (void)changeTemp;
+
 @end
 

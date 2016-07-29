@@ -31,7 +31,8 @@
     [backendless initApp:APP_ID secret:SECRET_KEY version:VERSION];
     
     self.userManger = [UserManager sharedUserManager];
-    [self.userManger updateUserList];
+    
+   // [self.userManger updateUserList];
     
     return YES;
 }
