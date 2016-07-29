@@ -130,16 +130,16 @@
 }
 
 
-//- (void)createNewSessionWithoutNewUsersWithCompletion:(void(^)())completion {
-//    [LISDKSessionManager createSessionWithAuth:@[LISDK_BASIC_PROFILE_PERMISSION] state:@"login with button" showGoToAppStoreDialog:YES successBlock:^(NSString *state) {
-//        NSLog(@"Success Segue to new screen");
-//        completion();
-//    } errorBlock:^(NSError *error) {
-//        NSLog(@"Error when logging in with LinkedIn %@", error);
-//        //ToDo display error message to user
-//        
-//    }];
-//}
+- (void)createNewSessionWithoutNewUsersWithCompletion:(void(^)())completion {
+    [LISDKSessionManager createSessionWithAuth:@[LISDK_BASIC_PROFILE_PERMISSION] state:@"login with button" showGoToAppStoreDialog:YES successBlock:^(NSString *state) {
+        NSLog(@"Success Segue to new screen");
+        completion();
+    } errorBlock:^(NSError *error) {
+        NSLog(@"Error when logging in with LinkedIn %@", error);
+        //ToDo display error message to user
+        
+    }];
+}
 
 
 - (void)createUserWithCompletion:(void(^)())completion {
@@ -152,6 +152,7 @@
                                                 NSLog(@"self user uuid: %@", selfUser.userUUID);
                                                 
                                                 AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                                                
                                                 app.currentUser = selfUser;
                                                 
                                                 // Add Profile Pic
@@ -160,7 +161,8 @@
                                                 [self setProfilePicForUser:selfUser WithCompletion:^{
                                                     
                                                     [weakSelf saveBackendlessUser:selfUser];
-                                                    
+                                                    // save to realm as current user
+                                                    [weakSelf persistCurrentUserToRealm:selfUser];
                                                 }];
                                                 
                                                 completion();
@@ -206,7 +208,7 @@
     
     } error:^(LISDKAPIError *error) {
         NSLog(@"Error when loading profile Pic: %@", error);
-        
+        completion();
     }];
 }
 
@@ -243,9 +245,11 @@
 }
 
 - (void)persistCurrentUserToRealm:(PingUser *)currentUser {
+    // wrap in queue ?
     self.currentRealmUser = [RLMRealm defaultRealm];
     PingUserRealm *pingUserForRealm = [[PingUserRealm alloc] initWithPingUserValue:currentUser];
     [self.currentRealmUser beginWriteTransaction];
+    [self.currentRealmUser deleteAllObjects];
     [self.currentRealmUser addObject:pingUserForRealm];
     [self.currentRealmUser commitWriteTransaction];
 }

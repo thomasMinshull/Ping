@@ -11,6 +11,8 @@
 #import "PingUser.h"
 #import "Backendless.h"
 
+#import "AppDelegate.h"
+
 #import "MainViewController.h"
 
 #import "UserManager.h"
@@ -32,11 +34,17 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     
-//    if ([self.userManager previouslyLoggedIn]) {
-//        [self.userManager createNewSessionWithoutNewUsersWithCompletion:^{
-//            [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
-//        }];
-//    }
+    PingUser *previouslyLoggedInUser = [self.userManager fetchCurrentUserFromRealm];
+    
+    if (previouslyLoggedInUser && previouslyLoggedInUser.userUUID) {
+        AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        app.currentUser = previouslyLoggedInUser;
+        
+        // login with but don't create new user
+        [self.userManager createNewSessionWithoutNewUsersWithCompletion:^{
+            [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
+        }];
+    }
 }
 
 
@@ -44,21 +52,22 @@
 
 - (IBAction)linkedInLoginButtonTapped:(id)sender {
     // do I have a account already
+ 
+    PingUser *previouslyLoggedInUser = [self.userManager fetchCurrentUserFromRealm];
     
-    // yes
-    
-    
-    [self.userManager loginAndCreateNewUserWithCompletion:^{
-        [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
-     
-    }];
-    
-    /*
-    // No
-//    [self.userManager createNewSessionWithoutNewUsersWithCompletion:^{
-//        [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
-//    }];
-    */
+    if (previouslyLoggedInUser && previouslyLoggedInUser.userUUID) { //Yup
+        AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        app.currentUser = previouslyLoggedInUser;
+        
+        // login with but don't create new user
+        [self.userManager createNewSessionWithoutNewUsersWithCompletion:^{
+            [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
+        }];
+    } else { // NOPE
+        [self.userManager loginAndCreateNewUserWithCompletion:^{
+            [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
+        }];
+    }
 }
 
 @end

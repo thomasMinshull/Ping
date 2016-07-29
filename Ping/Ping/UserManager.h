@@ -21,12 +21,14 @@
 
 - (void)loginAndCreateNewUserWithCompletion:(void(^)())completion; //Login with linked in, attempt to fetch User, add to backendless
 
-//- (void)createNewSessionWithoutNewUsersWithCompletion:(void(^)())completion;
+- (void)createNewSessionWithoutNewUsersWithCompletion:(void(^)())completion;
 
 - (PingUser *)userForUUID:(NSString *)uuid;
 - (void)updateUserList;
 
-//- (void)changeTemp;
+- (PingUser *)fetchCurrentUserFromRealm;
+- (void)persistCurrentUserToRealm:(PingUser *)currentUser;
+
 - (void)setUp;
 @end
 
