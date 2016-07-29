@@ -5,17 +5,24 @@
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "B104C08C29E7CE5A3431BA9330FE6843B4B8F221" : 0,
-    "F2800A697EB7AE359E57277ABC73C9A16534F343" : 0
+    "F2800A697EB7AE359E57277ABC73C9A16534F343" : 0,
+    "198491D51858A14A51297DC31D2AE31251C02D6B" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "33EA7B7C-8C4B-4AFA-8EEC-74DB57A42593",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "B104C08C29E7CE5A3431BA9330FE6843B4B8F221" : "Ping\/",
-    "F2800A697EB7AE359E57277ABC73C9A16534F343" : ".."
+    "F2800A697EB7AE359E57277ABC73C9A16534F343" : "..",
+    "198491D51858A14A51297DC31D2AE31251C02D6B" : ""
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "Ping",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Ping\/Ping.xcworkspace",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jeffeom\/obj_c.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "198491D51858A14A51297DC31D2AE31251C02D6B"
+    },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/thomasMinshull\/Ping.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",

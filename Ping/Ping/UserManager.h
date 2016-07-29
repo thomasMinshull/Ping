@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "PingUser.h"
 #import <Realm/Realm.h>
+#import "BlueToothManager.h"
 
 @interface UserManager : NSObject
 
+@property (strong, nonatomic) BlueToothManager *blueToothManager;
 @property (strong, nonatomic)NSMutableSet *userList;
 //@property (strong, nonatomic)PingUser *currentUser; // may end up storing as realm user
 
@@ -21,12 +23,15 @@
 
 - (void)loginAndCreateNewUserWithCompletion:(void(^)())completion; //Login with linked in, attempt to fetch User, add to backendless
 
-//- (void)createNewSessionWithoutNewUsersWithCompletion:(void(^)())completion;
+- (void)createNewSessionWithoutNewUsersWithCompletion:(void(^)())completion;
 
 - (PingUser *)userForUUID:(NSString *)uuid;
 - (void)updateUserList;
 
-//- (void)changeTemp;
+- (PingUser *)fetchCurrentUserFromRealm;
+- (void)persistCurrentUserToRealm:(PingUser *)currentUser;
+
 - (void)setUp;
+- (void)stopScanning;
 @end
 

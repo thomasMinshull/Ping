@@ -16,9 +16,10 @@
 @interface MainViewController ()  <UITableViewDelegate, UITableViewDataSource>
 
 
+@property (weak, nonatomic) IBOutlet UISwitch *advertisingSwitch;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (strong, nonatomic) NSMutableArray<PingUser *> *orderedListOfUsers;
+@property (strong, nonatomic) NSMutableArray<PingUser *> *orderedListOfUsers; // might be able to delete 
 @property (strong, nonatomic) NSArray<NSString *> *orderedListOfUUIDs;
 
 @property (strong, nonatomic) UserManager *userManager;
@@ -75,6 +76,12 @@
 //    
 //    self.orderedListOfUsers = [@[hardCodedUser, martin, hardCodedUser, hardCodedUser, martin] mutableCopy];
 }
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    
+    NSLog(@"Received Memory Warning");
+    [self.userManager stopScanning];
+}
 
 
 #pragma mark -TableViewDataSourceMethods
@@ -112,7 +119,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Segue To Linked In profile page
-    [[LISDKDeeplinkHelper sharedInstance] viewOtherProfile:self.orderedListOfUsers[indexPath.row].linkedInID withState:@"viewedMemberProfilePage" showGoToAppStoreDialog:NO success:nil error:nil];
+    [[LISDKDeeplinkHelper sharedInstance] viewOtherProfile:[self.userManager userForUUID:self.orderedListOfUUIDs[indexPath.row]].linkedInID withState:@"viewedMemberProfilePage" showGoToAppStoreDialog:NO success:nil error:nil];
 }
 
 
@@ -131,6 +138,18 @@
         self.orderedListOfUUIDs = @[];
     }
     [self.tableView reloadData];
+}
+
+- (IBAction)switchChanged:(id)sender {
+    {
+        if (self.advertisingSwitch.on) {
+            [self.userManager.blueToothManager start];
+        }
+        
+        else {
+            [self.userManager.blueToothManager stop];
+        }
+    }
 }
 
 #pragma mark -Helper Methodes 

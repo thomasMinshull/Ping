@@ -7,16 +7,17 @@
 //
 
 #import "RecordManager.h"
+#import "AverageUUidDuple.h"
 
 #define TIME_INTERVAL 10 * 60
 
 @interface RecordManager ()
 
 //@property (nonatomic, strong) NSOperationQueue *readQueue;
-@property (nonatomic, strong) NSOperationQueue *writeQueue;
+@property (atomic, strong) NSOperationQueue *writeQueue;
 
 //@property (nonatomic, strong) RLMRealm *readRealm;
-@property (nonatomic, strong) RLMRealm *writeRealm;
+@property (atomic, strong) RLMRealm *writeRealm;
 
 @end
 
@@ -46,57 +47,135 @@
 //            self.writeRealm = [RLMRealm realmWithConfiguration:defaultConfiguration error:&error];
 //            NSLog(@"Error: %@", error);
 //        }];
+
         _writeRealm = [RLMRealm defaultRealm];
+
     }
     return self;
 }
 
+dispatch_queue_t backgroundQueue() {
+    static dispatch_once_t queueCreationGuard;
+    static dispatch_queue_t queue;
+    dispatch_once(&queueCreationGuard, ^{
+        queue = dispatch_queue_create("com.tomm.Ping.backgroundQueue", 0);
+    });
+    return queue;
+}
+
+
+
 // convert userProximity string into a int 
 
 -(void)storeBlueToothDataByUUID:(NSString *)userUUID userProximity:(int)proximity andTime:(NSDate *)time {
+    dispatch_queue_t queue = backgroundQueue();
+    dispatch_async(queue, ^{
+        @synchronized (self) {
+            RLMRealm *backgroundRealm = [RLMRealm defaultRealm];
+            [backgroundRealm transactionWithBlock:^{
+                
+                TimePeriod *previousTimePeriod = [self.timePeriods lastObject];
+                if (previousTimePeriod == nil) {
+                    TimePeriod *newTimePeriod = [[TimePeriod alloc] init];
+                    UserRecord *newUserRecord = [[UserRecord alloc] initWithUUID:userUUID andDistance:proximity];
+                    
+                   // RLMRealm *backgroundRealm = [RLMRealm defaultRealm];
+                    //[backgroundRealm beginWriteTransaction];
+                    
+                    newTimePeriod.startTime = [self getStartTimeForTimePeriod:time];
+                    [self.timePeriods addObject:newTimePeriod];
+                    [newTimePeriod.userRecords addObject:newUserRecord];
+                    
+                   // [backgroundRealm commitWriteTransaction];
+                } else {
+                    
+                    NSDate *endTime = [previousTimePeriod.startTime dateByAddingTimeInterval:TIME_INTERVAL];
+                    
+                    if ([time timeIntervalSinceReferenceDate] > [previousTimePeriod.startTime timeIntervalSinceReferenceDate] && [time timeIntervalSinceReferenceDate] < [endTime timeIntervalSinceReferenceDate]) {
+                        
+                        BOOL foundUser = NO;
+                        
+                        for (int i = 0; i < previousTimePeriod.userRecords.count; i++) {
+                            @synchronized (previousTimePeriod.userRecords[i]) { // prevents race condition
+                                UserRecord *aUserRec = previousTimePeriod.userRecords[i];
+                                
+                                if ([aUserRec.uUID isEqualToString: userUUID]) {
+                                    dispatch_queue_t queue = backgroundQueue();
+                                    dispatch_async(queue, ^{
+                                        RLMRealm *backgroundRealm = [RLMRealm defaultRealm];
+                                        [backgroundRealm beginWriteTransaction];
+                                        aUserRec.totalDistance += proximity;
+                                        aUserRec.numberOfObs ++;
+                                        [backgroundRealm commitWriteTransaction];
+                                    });
+                                    foundUser = YES;
+                                }
+                            }
+                        }
 
-    TimePeriod *previousTimePeriod = [self.timePeriods lastObject];
-    if (previousTimePeriod == nil) {
-        [self generateNewTimePeriodAndUserRecordWithUserUUID:userUUID proximity:proximity andTime:time];
-    } else {
-        NSDate *endTime = [previousTimePeriod.startTime dateByAddingTimeInterval:TIME_INTERVAL];
-       
-        if ([time timeIntervalSinceReferenceDate] > [previousTimePeriod.startTime timeIntervalSinceReferenceDate] && [time timeIntervalSinceReferenceDate] < [endTime timeIntervalSinceReferenceDate]) {
-            
-            BOOL foundUser = NO;
-            for (UserRecord *aUser in previousTimePeriod.userRecords) {
-                if ([aUser.uUID isEqualToString: userUUID]) {
-                    [self increaseUserTotalDistanceAndObs:aUser userProximity:proximity];
-                    foundUser = YES;
+                        
+                        if (foundUser == NO) {
+                            UserRecord *newRecord = [[UserRecord alloc] initWithUUID:userUUID andDistance:proximity];
+                            [previousTimePeriod.userRecords addObject:newRecord];
+                        }
+                    }
+                    
+                    else if ([time timeIntervalSinceReferenceDate] > [endTime timeIntervalSinceReferenceDate]) {
+                        TimePeriod *newTimePeriod = [[TimePeriod alloc] init];
+                        UserRecord *newUserRecord = [[UserRecord alloc] initWithUUID:userUUID andDistance:proximity];
+                        
+                        //RLMRealm *backgroundRealm = [RLMRealm defaultRealm];
+                        //[backgroundRealm beginWriteTransaction];
+                        
+                        newTimePeriod.startTime = [self getStartTimeForTimePeriod:time];
+                        [self.timePeriods addObject:newTimePeriod];
+                        [newTimePeriod.userRecords addObject:newUserRecord];
+                        
+                        //[backgroundRealm commitWriteTransaction];
+                    }
                 }
-            }
-            
-            if (foundUser == NO) {
-                UserRecord *newRecord = [[UserRecord alloc] initWithUUID:userUUID andDistance:proximity];
-                [previousTimePeriod.userRecords addObject:newRecord];
-            }
-        }
-        
-        else if ([time timeIntervalSinceReferenceDate] > [endTime timeIntervalSinceReferenceDate]) {
-            [self generateNewTimePeriodAndUserRecordWithUserUUID:userUUID proximity:proximity andTime:time];
-        }
-    }
-    NSLog(@"The current time period: %@. The user's UUID: %@. Total distance: %d. Number of obs: %d.", [[self.timePeriods lastObject] startTime], [[[[self.timePeriods lastObject] userRecords]lastObject]uUID], [[[[self.timePeriods lastObject] userRecords]lastObject]totalDistance], [[[[self.timePeriods lastObject] userRecords]lastObject]numberOfObs]);
-//    [self persistToDefaultRealm];
-    [self persistToDefaultRealmOnBackgroundThread];
-}
+                NSLog(@"The current time period: %@. The user's UUID: %@. Total distance: %d. Number of obs: %d.", [[self.timePeriods lastObject] startTime], [[[[self.timePeriods lastObject] userRecords]lastObject]uUID], [[[[self.timePeriods lastObject] userRecords]lastObject]totalDistance], [[[[self.timePeriods lastObject] userRecords]lastObject]numberOfObs]);
+                //    [self persistToDefaultRealm];
+                [self persistToDefaultRealmOnBackgroundThread];
+            }];
 
+        }
+    });
+}
+/*
 -(void)generateNewTimePeriodAndUserRecordWithUserUUID:(NSString *)uUID proximity:(int)proximity andTime:(NSDate *)time {
-    TimePeriod *newTimePeriod = [[TimePeriod alloc] init];
-    newTimePeriod.startTime = [self getStartTimeForTimePeriod:time];
-    [self.timePeriods addObject:newTimePeriod];
-    UserRecord *newUserRecord = [[UserRecord alloc] initWithUUID:uUID andDistance:proximity];
-    [newTimePeriod.userRecords addObject:newUserRecord];
+    dispatch_queue_t queue = backgroundQueue();
+    dispatch_async(queue, ^{
+        
+        TimePeriod *newTimePeriod = [[TimePeriod alloc] init];
+        UserRecord *newUserRecord = [[UserRecord alloc] initWithUUID:uUID andDistance:proximity];
+        
+        RLMRealm *backgroundRealm = [RLMRealm defaultRealm];
+        [backgroundRealm beginWriteTransaction];
+       
+        newTimePeriod.startTime = [self getStartTimeForTimePeriod:time];
+        [self.timePeriods addObject:newTimePeriod];
+        [newTimePeriod.userRecords addObject:newUserRecord];
+        
+        [backgroundRealm commitWriteTransaction];
+    });
+    
 }
-
+*/
 -(void)increaseUserTotalDistanceAndObs:(UserRecord *)userRecord userProximity:(int)proximity {
-    userRecord.totalDistance += proximity;
-    userRecord.numberOfObs ++;
+    dispatch_queue_t queue = backgroundQueue();
+    dispatch_async(queue, ^{
+        // [self.writeRealm beginWriteTransaction];
+        
+        RLMRealm *backgroundRealm = [RLMRealm defaultRealm];
+        [backgroundRealm beginWriteTransaction];
+        userRecord.totalDistance += proximity;
+        userRecord.numberOfObs ++;
+        [backgroundRealm commitWriteTransaction];
+        
+       // [self.writeRealm commitWriteTransaction];
+    });
+    
 }
 
 -(NSDate *)getStartTimeForTimePeriod:(NSDate *)time{
@@ -120,9 +199,12 @@
     
 //    [self.writeQueue addOperationWithBlock:^{
 //        RLMRealm *defaultRealm = [RLMRealm defaultRealm];
+    dispatch_queue_t queue = backgroundQueue();
+    dispatch_async(queue, ^{
         [self.writeRealm beginWriteTransaction];
         [self.writeRealm addObjects:self.timePeriods];
         [self.writeRealm commitWriteTransaction];
+    });
 //    }];
 
 //    [self.readQueue addOperationWithBlock:^{
@@ -131,7 +213,7 @@
 }
 
 -(void)persistToDefaultRealmOnBackgroundThread {
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_queue_t queue = backgroundQueue();
     dispatch_async(queue, ^{
         RLMRealm *backgroundRealm = [RLMRealm defaultRealm];
         [backgroundRealm beginWriteTransaction];
@@ -148,21 +230,35 @@
     
     date = [self getStartTimeForTimePeriod:date]; // rounds down to correct start date
     
-    TimePeriod *aTimePeriod = [TimePeriod new];
-    aTimePeriod.startTime = date;
+//    TimePeriod *aTimePeriod = [TimePeriod new];
+//    aTimePeriod.startTime = date;
     
-    for (TimePeriod *tp in self.timePeriods) { // Getting one of the existing time periods already recorded
-        if (aTimePeriod.startTime == tp.startTime) { // If the starting time of the time period matches the starting time of the time period passed in do below
+    // FETCH IT FROM REALM
+//    self.timePeriods = [[TimePeriod allObjects] mutableCopy];
+    
+//    for (TimePeriod *tp in self.timePeriods) {
+
+    for (TimePeriod *tp in [TimePeriod allObjects]) {
+        if (date == tp.startTime) { // This is the time period you are looking for
             NSMutableArray *userRecordsArrayInTimePeriod = [[NSMutableArray alloc] init];
+            
             for (UserRecord *aUserRecord in tp.userRecords) {
-                aUserRecord.userAverage = aUserRecord.totalDistance / aUserRecord.numberOfObs;
-                [userRecordsArrayInTimePeriod addObject:aUserRecord];
+                AverageUUidDuple *duple = [AverageUUidDuple new];
+                duple.userAverage = aUserRecord.totalDistance / aUserRecord.numberOfObs;
+                duple.uUID = aUserRecord.uUID;
+                [userRecordsArrayInTimePeriod addObject:duple];
+                
+               // aUserRecord.userAverage = aUserRecord.totalDistance / aUserRecord.numberOfObs;
+               // [userRecordsArrayInTimePeriod addObject:aUserRecord];
+                
             }
+            
             NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"userAverage" ascending:YES];
             userRecordsArrayInTimePeriod = [[userRecordsArrayInTimePeriod sortedArrayUsingDescriptors:@[descriptor]] mutableCopy];
+            
             NSMutableArray *uuidArray = [NSMutableArray new];
-            for (UserRecord *ur in userRecordsArrayInTimePeriod) {
-                [uuidArray addObject:ur.uUID];
+            for (AverageUUidDuple *dup in userRecordsArrayInTimePeriod) {
+                [uuidArray addObject:dup.uUID];
             }
             
             return uuidArray;

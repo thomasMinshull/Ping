@@ -11,7 +11,6 @@
 #import "PingUser.h"
 #import "CurrentUser.h"
 #import "Backendless.h"
-#import "BlueToothManager.h"
 #import "PingUserRealm.h"
 
 #import "AppDelegate.h"
@@ -22,7 +21,6 @@
 @interface UserManager ()
 
 @property (nonatomic) BOOL temp;
-@property (strong, nonatomic) BlueToothManager *blueToothManager;
 @property (nonatomic) RLMRealm *currentRealmUser;
 
 @end
@@ -66,7 +64,7 @@
         AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         
         self.blueToothManager = [BlueToothManager sharedrecordManager:[uuidList copy] andCurrentUUID:app.currentUser.userUUID];
-        
+//        self.blueToothManager = [BlueToothManager sharedrecordManager:@[@"E20A39F4-73F5-4BC4-A12F-17D1AD07A961", @"1C6AAE1E-E4D1-42CB-A642-0856C315A75F", @"F124015B-5AF2-4969-A7A0-38BF2759600F"] andCurrentUUID:@"1C6AAE1E-E4D1-42CB-A642-0856C315A75F"];
     } @catch (Fault *fault) {
         NSLog(@"Server reported an error: %@", fault);
     }
@@ -130,16 +128,16 @@
 }
 
 
-//- (void)createNewSessionWithoutNewUsersWithCompletion:(void(^)())completion {
-//    [LISDKSessionManager createSessionWithAuth:@[LISDK_BASIC_PROFILE_PERMISSION] state:@"login with button" showGoToAppStoreDialog:YES successBlock:^(NSString *state) {
-//        NSLog(@"Success Segue to new screen");
-//        completion();
-//    } errorBlock:^(NSError *error) {
-//        NSLog(@"Error when logging in with LinkedIn %@", error);
-//        //ToDo display error message to user
-//        
-//    }];
-//}
+- (void)createNewSessionWithoutNewUsersWithCompletion:(void(^)())completion {
+    [LISDKSessionManager createSessionWithAuth:@[LISDK_BASIC_PROFILE_PERMISSION] state:@"login with button" showGoToAppStoreDialog:YES successBlock:^(NSString *state) {
+        NSLog(@"Success Segue to new screen");
+        completion();
+    } errorBlock:^(NSError *error) {
+        NSLog(@"Error when logging in with LinkedIn %@", error);
+        //ToDo display error message to user
+        
+    }];
+}
 
 
 - (void)createUserWithCompletion:(void(^)())completion {
@@ -152,6 +150,7 @@
                                                 NSLog(@"self user uuid: %@", selfUser.userUUID);
                                                 
                                                 AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                                                
                                                 app.currentUser = selfUser;
                                                 
                                                 // Add Profile Pic
@@ -160,7 +159,8 @@
                                                 [self setProfilePicForUser:selfUser WithCompletion:^{
                                                     
                                                     [weakSelf saveBackendlessUser:selfUser];
-                                                    
+                                                    // save to realm as current user
+                                                    [weakSelf persistCurrentUserToRealm:selfUser];
                                                 }];
                                                 
                                                 completion();
@@ -206,7 +206,7 @@
     
     } error:^(LISDKAPIError *error) {
         NSLog(@"Error when loading profile Pic: %@", error);
-        
+        completion();
     }];
 }
 
@@ -242,10 +242,13 @@
     }];
 }
 
+
 - (void)persistCurrentUserToRealm:(PingUser *)currentUser {
+    // wrap in queue ?
     self.currentRealmUser = [RLMRealm defaultRealm];
     PingUserRealm *pingUserForRealm = [[PingUserRealm alloc] initWithPingUserValue:currentUser];
     [self.currentRealmUser beginWriteTransaction];
+    [self.currentRealmUser deleteAllObjects];
     [self.currentRealmUser addObject:pingUserForRealm];
     [self.currentRealmUser commitWriteTransaction];
 }
@@ -267,6 +270,7 @@
 }
 
 
+
 #pragma mark -Convience Methods
 
 - (void)realmUserFromBackendlessUser:(PingUser *)backendlessUser {
@@ -281,5 +285,8 @@
 //    return NO;
 //}
 
+- (void)stopScanning {
+    [self.blueToothManager stop];
+}
 
 @end
