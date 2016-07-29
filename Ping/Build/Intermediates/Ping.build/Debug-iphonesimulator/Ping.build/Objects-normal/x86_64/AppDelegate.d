@@ -1,5 +1,7 @@
 dependencies: /Users/martinzhang/Desktop/Ping/Ping/Ping/AppDelegate.m \
   /Users/martinzhang/Desktop/Ping/Ping/Ping/AppDelegate.h \
+  /Users/martinzhang/Desktop/Ping/Ping/Ping/PingUser.h \
+  /Users/martinzhang/Desktop/Ping/Ping/Ping/UserManager.h \
   /Users/martinzhang/Desktop/Ping/Ping/linkedin-sdk.framework/Headers/LISDK.h \
   /Users/martinzhang/Desktop/Ping/Ping/linkedin-sdk.framework/Headers/LISDKSessionManager.h \
   /Users/martinzhang/Desktop/Ping/Ping/linkedin-sdk.framework/Headers/LISDKSession.h \
