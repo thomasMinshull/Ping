@@ -22,7 +22,12 @@
 }
 
 -(void)setTotalDistance:(int)totalDistance {
-    _totalDistance = abs(totalDistance);
+     // for some reason abs(totalDistance) was giving neg numbers ? 
+    if (totalDistance <= 0) {
+        _totalDistance = (-1)*totalDistance;
+    } else {
+        _totalDistance = totalDistance;
+    }
 }
 
 @end
