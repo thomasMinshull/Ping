@@ -34,9 +34,15 @@
     self.recordManager = [[RecordManager alloc] init];
     self.userManager = [UserManager sharedUserManager];
     
+    [self.userManager setUp];
     
     self.orderedListOfUUIDs= [self.recordManager sortingUserRecordsInTimePeriodByProximity:[NSDate date]];
+    if (!self.orderedListOfUUIDs) {
+        self.orderedListOfUUIDs = @[];
+    }
     
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self; 
     
     
 ////    aRecordManager.timePeriods
@@ -70,7 +76,16 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    PingUserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PingUserTableViewCell class])];
+    //@"PingUserTableViewCell" // identifier
+//    PingUserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PingUserTableViewCell class])];
+
+    PingUserTableViewCell *cell = (PingUserTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:@"PingUserTableViewCell" forIndexPath:indexPath];
+    if (cell == nil) {
+        PingUserTableViewCell *cell = [[PingUserTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PingUserTableViewCell"];
+        return cell;
+    }
+    
+//    PingUserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PingUserTableViewCell"];
     
     PingUser *user = [self.userManager userForUUID:self.orderedListOfUUIDs[indexPath.row]];
     
@@ -91,13 +106,16 @@
 
 - (IBAction)nowButtonTapped:(id)sender {
     self.datePicker.date = [self getStartTimeForTimePeriod:[NSDate date]];
-    [self.userManager changeTemp];
+    //[self.userManager changeTemp];
 }
 
 - (IBAction)datePickerChanged:(UIDatePicker *)sender {
     
     // change orderedListOfUsers to be the list for this new date
     self.orderedListOfUUIDs = [self.recordManager sortingUserRecordsInTimePeriodByProximity:self.datePicker.date];
+    if (!self.orderedListOfUUIDs) {
+        self.orderedListOfUUIDs = @[];
+    }
     [self.tableView reloadData];
 }
 
