@@ -45,7 +45,8 @@
     static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{
-        sharedrecordManager = [[BlueToothManager alloc] initWithUUIDList:@[@"E20A39F4-73F5-4BC4-A12F-17D1AD07A961", @"1C6AAE1E-E4D1-42CB-A642-0856C315A75F", @"F124015B-5AF2-4969-A7A0-38BF2759600F"] andCurrentUUID:@"1C6AAE1E-E4D1-42CB-A642-0856C315A75F"];
+//        sharedrecordManager = [[BlueToothManager alloc] initWithUUIDList:@[@"E20A39F4-73F5-4BC4-A12F-17D1AD07A961", @"1C6AAE1E-E4D1-42CB-A642-0856C315A75F", @"F124015B-5AF2-4969-A7A0-38BF2759600F"] andCurrentUUID:@"1C6AAE1E-E4D1-42CB-A642-0856C315A75F"];
+        sharedrecordManager = [[BlueToothManager alloc] initWithUUIDList:uuidList andCurrentUUID:currentUUID];
         sharedrecordManager.recordManager = [RecordManager new];
         sharedrecordManager.saveSwitch = NO;
         
@@ -63,7 +64,7 @@
     
     AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:@"1C6AAE1E-E4D1-42CB-A642-0856C315A75F"]]}];
+    [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:self.currentUserUUID]]}];
     
     //[self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:app.currentUser.userUUID]]}];  // Keep For later
     [self scan];

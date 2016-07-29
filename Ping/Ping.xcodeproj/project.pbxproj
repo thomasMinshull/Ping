@@ -28,6 +28,7 @@
 		55A098E11D4907CE005100BC /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A098E01D4907CE005100BC /* UserManager.m */; };
 		55A099071D498F27005100BC /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A099061D498F27005100BC /* MainViewController.m */; };
 		55AD89351D4AD5B80097DE9B /* CurrentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 55AD89341D4AD5B80097DE9B /* CurrentUser.m */; };
+		55AD89381D4B87F90097DE9B /* AverageUUidDuple.m in Sources */ = {isa = PBXBuildFile; fileRef = 55AD89371D4B87F90097DE9B /* AverageUUidDuple.m */; };
 		71678BD4F8B7654916D3F4B0 /* libPods-Ping.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 099398FE9E3F4648F16B801E /* libPods-Ping.a */; };
 		9C18CAF81D4AE89B008519E1 /* PingUserRealm.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C18CAF71D4AE89B008519E1 /* PingUserRealm.m */; };
 /* End PBXBuildFile section */
@@ -69,6 +70,8 @@
 		55A099061D498F27005100BC /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		55AD89331D4AD5B80097DE9B /* CurrentUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentUser.h; sourceTree = "<group>"; };
 		55AD89341D4AD5B80097DE9B /* CurrentUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentUser.m; sourceTree = "<group>"; };
+		55AD89361D4B87F90097DE9B /* AverageUUidDuple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AverageUUidDuple.h; sourceTree = "<group>"; };
+		55AD89371D4B87F90097DE9B /* AverageUUidDuple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AverageUUidDuple.m; sourceTree = "<group>"; };
 		9C18CAF61D4AE89B008519E1 /* PingUserRealm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingUserRealm.h; sourceTree = "<group>"; };
 		9C18CAF71D4AE89B008519E1 /* PingUserRealm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingUserRealm.m; sourceTree = "<group>"; };
 		BBF5D50F2E3876EE0E2E3951 /* Pods-Ping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ping/Pods-Ping.debug.xcconfig"; sourceTree = "<group>"; };
@@ -142,6 +145,8 @@
 		5599E78E1D49BA4A00E61B0E /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				55AD89361D4B87F90097DE9B /* AverageUUidDuple.h */,
+				55AD89371D4B87F90097DE9B /* AverageUUidDuple.m */,
 				55A098AF1D47F0FD005100BC /* PingUser.h */,
 				55A098B01D47F0FD005100BC /* PingUser.m */,
 			);
@@ -393,6 +398,7 @@
 				5599E78D1D499E1C00E61B0E /* UserRecord.m in Sources */,
 				55AD89351D4AD5B80097DE9B /* CurrentUser.m in Sources */,
 				5599E78B1D499E1C00E61B0E /* RecordManager.m in Sources */,
+				55AD89381D4B87F90097DE9B /* AverageUUidDuple.m in Sources */,
 				5594DB001D45E2DE0096D5DF /* AppDelegate.m in Sources */,
 				5594DAFD1D45E2DE0096D5DF /* main.m in Sources */,
 				5599E78C1D499E1C00E61B0E /* TimePeriod.m in Sources */,

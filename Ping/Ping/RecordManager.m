@@ -7,6 +7,7 @@
 //
 
 #import "RecordManager.h"
+#import "AverageUUidDuple.h"
 
 #define TIME_INTERVAL 10 * 60
 
@@ -232,18 +233,32 @@ dispatch_queue_t backgroundQueue() {
 //    TimePeriod *aTimePeriod = [TimePeriod new];
 //    aTimePeriod.startTime = date;
     
-    for (TimePeriod *tp in self.timePeriods) { // Getting one of the existing time periods already recorded
-        if (date == tp.startTime) { // If the starting time of the time period matches the starting time of the time period passed in do below
+    // FETCH IT FROM REALM
+//    self.timePeriods = [[TimePeriod allObjects] mutableCopy];
+    
+//    for (TimePeriod *tp in self.timePeriods) {
+
+    for (TimePeriod *tp in [TimePeriod allObjects]) {
+        if (date == tp.startTime) { // This is the time period you are looking for
             NSMutableArray *userRecordsArrayInTimePeriod = [[NSMutableArray alloc] init];
+            
             for (UserRecord *aUserRecord in tp.userRecords) {
-                aUserRecord.userAverage = aUserRecord.totalDistance / aUserRecord.numberOfObs;
-                [userRecordsArrayInTimePeriod addObject:aUserRecord];
+                AverageUUidDuple *duple = [AverageUUidDuple new];
+                duple.userAverage = aUserRecord.totalDistance / aUserRecord.numberOfObs;
+                duple.uUID = aUserRecord.uUID;
+                [userRecordsArrayInTimePeriod addObject:duple];
+                
+               // aUserRecord.userAverage = aUserRecord.totalDistance / aUserRecord.numberOfObs;
+               // [userRecordsArrayInTimePeriod addObject:aUserRecord];
+                
             }
+            
             NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"userAverage" ascending:YES];
             userRecordsArrayInTimePeriod = [[userRecordsArrayInTimePeriod sortedArrayUsingDescriptors:@[descriptor]] mutableCopy];
+            
             NSMutableArray *uuidArray = [NSMutableArray new];
-            for (UserRecord *ur in userRecordsArrayInTimePeriod) {
-                [uuidArray addObject:ur.uUID];
+            for (AverageUUidDuple *dup in userRecordsArrayInTimePeriod) {
+                [uuidArray addObject:dup.uUID];
             }
             
             return uuidArray;
