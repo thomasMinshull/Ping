@@ -242,29 +242,29 @@
     }];
 }
 
-- (void)persistCurrentUserToRealm:(PingUser *)currentUser {
-    self.currentRealmUser = [RLMRealm defaultRealm];
-    PingUserRealm *pingUserForRealm = [[PingUserRealm alloc] initWithPingUserValue:currentUser];
-    [self.currentRealmUser beginWriteTransaction];
-    [self.currentRealmUser addObject:pingUserForRealm];
-    [self.currentRealmUser commitWriteTransaction];
-}
-
-- (PingUser *)fetchCurrentUserFromRealm {
-    if (![self.currentRealmUser isEmpty]) {
-        RLMResults<PingUserRealm *> *userResult = [PingUserRealm allObjects];
-        PingUserRealm *userFromRealm = [userResult firstObject];
-        PingUser *user = [[PingUser alloc] init];
-        user.firstName = userFromRealm.firstName;
-        user.lastName = userFromRealm.lastName;
-        user.headline = userFromRealm.headline;
-        user.linkedInID = userFromRealm.linkedInID;
-        user.profilePicURL = userFromRealm.profilePicURL;
-        user.userUUID = userFromRealm.userUUID;
-        return user;
-    }
-    return nil;
-}
+//- (void)persistCurrentUserToRealm:(PingUser *)currentUser {
+//    self.currentRealmUser = [RLMRealm defaultRealm];
+//    PingUserRealm *pingUserForRealm = [[PingUserRealm alloc] initWithPingUserValue:currentUser];
+//    [self.currentRealmUser beginWriteTransaction];
+//    [self.currentRealmUser addObject:pingUserForRealm];
+//    [self.currentRealmUser commitWriteTransaction];
+//}
+//
+//- (PingUser *)fetchCurrentUserFromRealm {
+//    if (![self.currentRealmUser isEmpty]) {
+//        RLMResults<PingUserRealm *> *userResult = [PingUserRealm allObjects];
+//        PingUserRealm *userFromRealm = [userResult firstObject];
+//        PingUser *user = [[PingUser alloc] init];
+//        user.firstName = userFromRealm.firstName;
+//        user.lastName = userFromRealm.lastName;
+//        user.headline = userFromRealm.headline;
+//        user.linkedInID = userFromRealm.linkedInID;
+//        user.profilePicURL = userFromRealm.profilePicURL;
+//        user.userUUID = userFromRealm.userUUID;
+//        return user;
+//    }
+//    return nil;
+//}
 
 
 #pragma mark -Convience Methods
@@ -281,5 +281,8 @@
 //    return NO;
 //}
 
+- (void)stopScanning {
+    [self.blueToothManager stop];
+}
 
 @end

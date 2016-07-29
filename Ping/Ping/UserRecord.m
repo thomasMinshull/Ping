@@ -22,7 +22,7 @@
 }
 
 -(void)setTotalDistance:(int)totalDistance {
-    self.totalDistance = abs(totalDistance);
+    _totalDistance = abs(totalDistance);
 }
 
 @end

@@ -34,6 +34,7 @@
 @property RecordManager *recordManager;
 
 @property NSMutableArray *cbuuidLists;
+@property BOOL saveSwitch;
 
 @end
 
@@ -44,8 +45,11 @@
     static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{
-        sharedrecordManager = [[BlueToothManager alloc] initWithUUIDList:uuidList andCurrentUUID:currentUUID];
+        sharedrecordManager = [[BlueToothManager alloc] initWithUUIDList:@[@"E20A39F4-73F5-4BC4-A12F-17D1AD07A961", @"1C6AAE1E-E4D1-42CB-A642-0856C315A75F", @"F124015B-5AF2-4969-A7A0-38BF2759600F"] andCurrentUUID:@"1C6AAE1E-E4D1-42CB-A642-0856C315A75F"];
         sharedrecordManager.recordManager = [RecordManager new];
+        sharedrecordManager.saveSwitch = NO;
+        
+//        [sharedrecordManager flickSaveSwitch:self];
     });
     
     [sharedrecordManager start];
@@ -78,6 +82,9 @@
     self = [super init];
     if (self) {
         
+//        self.uuidList = @[@"E20A39F4-73F5-4BC4-A12F-17D1AD07A961", @"1C6AAE1E-E4D1-42CB-A642-0856C315A75F", @"F124015B-5AF2-4969-A7A0-38BF2759600F"];
+//        self.currentUserUUID = @"F124015B-5AF2-4969-A7A0-38BF2759600F";
+       
         self.uuidList = uuidList;
         self.currentUserUUID = currentUUID;
         
@@ -100,7 +107,7 @@
         _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         
         _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
-        
+       
     }
     return self;
 }
@@ -121,10 +128,9 @@
 
 - (void)scan
 {
-    [self.centralManager scanForPeripheralsWithServices:self.cbuuidLists
+    [self.centralManager scanForPeripheralsWithServices:[self.cbuuidLists copy]
      options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES }
      ];
-    
     NSLog(@"Scanning started");
 }
 
@@ -177,15 +183,45 @@
         [self.uuids addObject:[self.fetchedUUIDs lastObject]];
         [self.distances addObject: [self.fetchedDistances lastObject]];
         [self.timeStamps addObject:[self.fetchedTimeStamp lastObject]];
+
+      //  if (self.saveSwitch == true) {
+            NSNumber *proximity = [self.fetchedDistances lastObject];
+            [self.recordManager storeBlueToothDataByUUID:[self.fetchedUUIDs lastObject] userProximity:[proximity intValue] andTime:[self.fetchedTimeStamp lastObject]];
+      //  }
+
+
         
-                        NSNumber *proximity = [self.fetchedDistances lastObject];
-        [self.recordManager storeBlueToothDataByUUID:[self.fetchedUUIDs lastObject] userProximity:[proximity intValue] andTime:[self.fetchedTimeStamp lastObject]];
+//
         
 //        [self.recordManager storeBlueToothDataByUUID:[self.fetchedUUIDs lastObject] userProximity:proximity.integerValue andTime:[self.fetchedTimeStamp lastObject]];
         
         NSLog(@"blueToothData: %@, %@, %@", [self.fetchedUUIDs lastObject],[self.fetchedDistances lastObject],[self.fetchedTimeStamp lastObject]);
     }
     ////////////////////////////////////////////////////////////////////////////
+}
+
+-(void)flickSaveSwitch:(id)sender {
+    // first call turns it on
+    if (self.saveSwitch) {
+        self.saveSwitch = NO;
+        NSLog(@"Switch off");
+    } else {
+        self.saveSwitch = YES;
+        NSLog(@"switch On");
+    }
+//    // will turn off in 0.1
+//    [NSTimer scheduledTimerWithTimeInterval:0.1
+//                                     target:self
+//                                   selector:@selector(flickSaveSwitch:)
+//                                   userInfo:nil
+//                                    repeats:YES];
+    
+    // repeate every 5 sec
+    [NSTimer scheduledTimerWithTimeInterval:1.0
+                                     target:self
+                                   selector:@selector(flickSaveSwitch:)
+                                   userInfo:nil
+                                    repeats:YES];
 }
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error

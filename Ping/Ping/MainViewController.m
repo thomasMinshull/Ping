@@ -75,6 +75,12 @@
 //    
 //    self.orderedListOfUsers = [@[hardCodedUser, martin, hardCodedUser, hardCodedUser, martin] mutableCopy];
 }
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    
+    NSLog(@"Received Memory Warning");
+    [self.userManager stopScanning];
+}
 
 
 #pragma mark -TableViewDataSourceMethods

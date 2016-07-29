@@ -28,5 +28,6 @@
 
 //- (void)changeTemp;
 - (void)setUp;
+- (void)stopScanning;
 @end
 
