@@ -141,24 +141,11 @@
                                     <action selector="nowButtonTapped:" destination="li8-sv-mvp" eventType="touchUpInside" id="9PH-nh-m8L"/>
                                 </connections>
                             </button>
-                            <datePicker contentMode="scaleToFill" verticalHuggingPriority="249" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="10" translatesAutoresizingMaskIntoConstraints="NO" id="JHV-Ww-MXg">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="298"/>
-                                <date key="date" timeIntervalSinceReferenceDate="491370383.01593798">
-                                    <!--2016-07-28 03:46:23 +0000-->
-                                </date>
-                                <connections>
-                                    <action selector="datePickerChanged:" destination="li8-sv-mvp" eventType="valueChanged" id="HyH-Lg-WBW"/>
-                                </connections>
-                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="JHV-Ww-MXg" firstAttribute="top" secondItem="ZXb-gm-mdW" secondAttribute="top" id="5fw-xZ-iGL"/>
-                            <constraint firstAttribute="trailing" secondItem="JHV-Ww-MXg" secondAttribute="trailing" id="F7d-pa-bbd"/>
                             <constraint firstAttribute="trailing" secondItem="boR-Uz-HVT" secondAttribute="trailing" id="MI9-2p-dJZ"/>
-                            <constraint firstItem="JHV-Ww-MXg" firstAttribute="leading" secondItem="ZXb-gm-mdW" secondAttribute="leading" id="T35-3Q-h5H"/>
                             <constraint firstAttribute="trailing" secondItem="0Mc-pZ-idR" secondAttribute="trailing" id="YL0-wU-UXt"/>
-                            <constraint firstItem="boR-Uz-HVT" firstAttribute="top" secondItem="JHV-Ww-MXg" secondAttribute="bottom" id="eXj-ao-ZzX"/>
                             <constraint firstItem="boR-Uz-HVT" firstAttribute="leading" secondItem="ZXb-gm-mdW" secondAttribute="leading" id="lqk-ll-Hr6"/>
                             <constraint firstItem="0Mc-pZ-idR" firstAttribute="height" secondItem="ZXb-gm-mdW" secondAttribute="height" multiplier="1:2" id="oT1-K4-NyU"/>
                             <constraint firstItem="0Mc-pZ-idR" firstAttribute="leading" secondItem="ZXb-gm-mdW" secondAttribute="leading" id="pvv-Ea-P27"/>
@@ -168,8 +155,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="datePicker" destination="JHV-Ww-MXg" id="Hih-9c-pFf"/>
-                        <outlet property="tableView" destination="0Mc-pZ-idR" id="MRd-gG-edN"/>
+                        <outlet property="tableView" destination="0Mc-pZ-idR" id="dKY-ta-RqL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aWA-9L-ra6" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -41,8 +41,9 @@
         self.orderedListOfUUIDs = @[];
     }
     
+    
     self.tableView.dataSource = self;
-    self.tableView.delegate = self; 
+    self.tableView.delegate = self;
     
     
 ////    aRecordManager.timePeriods
@@ -72,7 +73,12 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"number of rows in section %d", (int)[self.orderedListOfUUIDs count]);
     return [self.orderedListOfUUIDs count];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -105,18 +111,18 @@
 #pragma mark -Actions 
 
 - (IBAction)nowButtonTapped:(id)sender {
-    self.datePicker.date = [self getStartTimeForTimePeriod:[NSDate date]];
-    //[self.userManager changeTemp];
+//    self.datePicker.date = [self getStartTimeForTimePeriod:[NSDate date]];
+//    //[self.userManager changeTemp];
 }
 
 - (IBAction)datePickerChanged:(UIDatePicker *)sender {
-    
-    // change orderedListOfUsers to be the list for this new date
-    self.orderedListOfUUIDs = [self.recordManager sortingUserRecordsInTimePeriodByProximity:self.datePicker.date];
-    if (!self.orderedListOfUUIDs) {
-        self.orderedListOfUUIDs = @[];
-    }
-    [self.tableView reloadData];
+//    
+//    // change orderedListOfUsers to be the list for this new date
+//    self.orderedListOfUUIDs = [self.recordManager sortingUserRecordsInTimePeriodByProximity:self.datePicker.date];
+//    if (!self.orderedListOfUUIDs) {
+//        self.orderedListOfUUIDs = @[];
+//    }
+//    [self.tableView reloadData];
 }
 
 #pragma mark -Helper Methodes 
