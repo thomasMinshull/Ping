@@ -9,14 +9,18 @@
 #import "UserManager.h"
 #import <linkedin-sdk/LISDK.h>
 #import "PingUser.h"
+#import "CurrentUser.h"
 #import "Backendless.h"
 #import "BlueToothManager.h"
+
+#import "AppDelegate.h"
 
 #define LINKEDIN_USER_URL @"https://api.linkedin.com/v1/people/~"
 #define LINKEDIN_ADDITIONAL_INFO_URL @"https://api.linkedin.com/v1/people/~:(id,num-connections,picture-url)?format=json"
 
 @interface UserManager ()
 
+@property (nonatomic) BOOL temp;
 @property (strong, nonatomic) BlueToothManager *blueToothManager;
 
 @end
@@ -31,6 +35,7 @@
         sharedUserManager = [[UserManager alloc] init];
         sharedUserManager.userList = [NSMutableSet new];
         sharedUserManager.currentUser = [PingUser new];
+        sharedUserManager.temp = false;
     });
     
     [sharedUserManager updateUserList];
@@ -41,8 +46,12 @@
 
 
 - (PingUser *)userForUUID:(NSString *)uuid {
-    // ToDo implement
     
+    for (PingUser *user in self.userList) {
+        if ([user.userUUID isEqualToString:uuid]) {
+            return user;
+        }
+    }
     return nil;
 }
 
@@ -59,13 +68,17 @@
         NSArray *backendlessUserList = [backendlessUserListCollection getCurrentPage];
         self.userList = [NSMutableSet new];
         
-        NSMutableArray *uuidList = [NSMutableArray new];
-        for (PingUser *u in backendlessUserList) {
-            [self.userList addObject:u];
-            [uuidList addObject:u.userUUID];
+        if (self.temp) {
+            NSMutableArray *uuidList = [NSMutableArray new];
+            for (PingUser *u in backendlessUserList) {
+                [self.userList addObject:u];
+                [uuidList addObject:u.userUUID];
+            }
+            
+            AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            
+            self.blueToothManager = [BlueToothManager sharedrecordManager:[uuidList copy] andCurrentUUID:app.currentUser.userUUID];
         }
-        
-            self.blueToothManager = [BlueToothManager sharedrecordManager:[uuidList copy] andCurrentUUID:self.currentUser.userUUID];
         
     } @catch (Fault *fault) {
         NSLog(@"Server reported an error: %@", fault);
@@ -142,13 +155,28 @@
                                                 NSLog(@"got user profile: %@", response.data);
                                                 
                                                 PingUser *selfUser = [self createUserWithResponseString:response.data];
+                                                NSLog(@"self user uuid: %@", selfUser.userUUID);
                                                 
-                                                self.currentUser = selfUser;
+                                                
                                                 // Add Profile Pic
                                                 
                                                 __weak UserManager *weakSelf = self;
                                                 [self setProfilePicForUser:selfUser WithCompletion:^{
                                                     [weakSelf saveBackendlessUser:selfUser];
+                                                    
+                                                    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                                                    app.currentUser = selfUser;
+                                                    
+//                                                    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//                                                    dispatch_async(queue, ^{
+//                                                        RLMRealm *backgroundRealm = [RLMRealm defaultRealm];
+//                                                        [backgroundRealm beginWriteTransaction];
+//                                                        [backgroundRealm addObjects:currentUser];
+//                                                        [backgroundRealm commitWriteTransaction];
+//                                                      
+//                                                    });
+
+                                                    
                                                     completion();
                                                 }];
                                                 
@@ -243,5 +271,9 @@
 //    return NO;
 //}
 
-
+- (void)changeTemp {
+    self.temp = true;
+    [self.blueToothManager start];
+    [self updateUserList];
+}
 @end

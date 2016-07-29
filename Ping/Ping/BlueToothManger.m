@@ -7,6 +7,7 @@
 //
 
 #import "BlueToothManager.h"
+#import "RecordManager.h"
 
 @interface BlueToothManager() <CBCentralManagerDelegate, CBPeripheralDelegate, CBPeripheralManagerDelegate>
 
@@ -29,7 +30,7 @@
 
 @property NSArray *uuidList;
 @property NSString *currentUserUUID;
-//@property RecordManager *recordManager;
+@property RecordManager *recordManager;
 
 @property NSMutableArray *cbuuidLists;
 
@@ -43,6 +44,7 @@
     
     dispatch_once(&onceToken, ^{
         sharedrecordManager = [[BlueToothManager alloc] initWithUUIDList:uuidList andCurrentUUID:currentUUID];
+        sharedrecordManager.recordManager = [RecordManager new];
     });
     
     [sharedrecordManager start];
@@ -66,7 +68,7 @@
 }
 
 
-#pragma mark - View Lifecycle
+#pragma mark - Lifecycle
 
 - (instancetype) initWithUUIDList:(NSArray *)uuidList andCurrentUUID:(NSString *)currentUUID
 {
@@ -173,8 +175,10 @@
         [self.distances addObject: [self.fetchedDistances lastObject]];
         [self.timeStamps addObject:[self.fetchedTimeStamp lastObject]];
         
-        //                NSNumber *proximity = [self.fetchedDistances lastObject];
-        //               [self.recordManager storeBlueToothDataByUUID:[self.fetchedUUIDs lastObject] userProximity:proximity.integerValue andTime:[self.fetchedTimeStamp lastObject]];
+                        NSNumber *proximity = [self.fetchedDistances lastObject];
+        [self.recordManager storeBlueToothDataByUUID:[self.fetchedUUIDs lastObject] userProximity:[proximity intValue] andTime:[self.fetchedTimeStamp lastObject]];
+        
+//        [self.recordManager storeBlueToothDataByUUID:[self.fetchedUUIDs lastObject] userProximity:proximity.integerValue andTime:[self.fetchedTimeStamp lastObject]];
         
         NSLog(@"blueToothData: %@, %@, %@", [self.fetchedUUIDs lastObject],[self.fetchedDistances lastObject],[self.fetchedTimeStamp lastObject]);
     }
