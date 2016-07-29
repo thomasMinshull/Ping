@@ -63,7 +63,9 @@
     
     AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:app.currentUser.userUUID]]}];
+    [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:@"1C6AAE1E-E4D1-42CB-A642-0856C315A75F"]]}];
+    
+    //[self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:app.currentUser.userUUID]]}];  // Keep For later
     [self scan];
 }
 

@@ -11,7 +11,6 @@
 #import "PingUser.h"
 #import "CurrentUser.h"
 #import "Backendless.h"
-#import "BlueToothManager.h"
 #import "PingUserRealm.h"
 
 #import "AppDelegate.h"
@@ -22,7 +21,6 @@
 @interface UserManager ()
 
 @property (nonatomic) BOOL temp;
-@property (strong, nonatomic) BlueToothManager *blueToothManager;
 @property (nonatomic) RLMRealm *currentRealmUser;
 
 @end
@@ -65,8 +63,8 @@
         
         AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         
-        self.blueToothManager = [BlueToothManager sharedrecordManager:[uuidList copy] andCurrentUUID:app.currentUser.userUUID];
-        
+//        self.blueToothManager = [BlueToothManager sharedrecordManager:[uuidList copy] andCurrentUUID:app.currentUser.userUUID];
+        self.blueToothManager = [BlueToothManager sharedrecordManager:@[@"E20A39F4-73F5-4BC4-A12F-17D1AD07A961", @"1C6AAE1E-E4D1-42CB-A642-0856C315A75F", @"F124015B-5AF2-4969-A7A0-38BF2759600F"] andCurrentUUID:@"1C6AAE1E-E4D1-42CB-A642-0856C315A75F"];
     } @catch (Fault *fault) {
         NSLog(@"Server reported an error: %@", fault);
     }

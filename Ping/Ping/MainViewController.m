@@ -16,6 +16,7 @@
 @interface MainViewController ()  <UITableViewDelegate, UITableViewDataSource>
 
 
+@property (weak, nonatomic) IBOutlet UISwitch *advertisingSwitch;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) NSMutableArray<PingUser *> *orderedListOfUsers;
@@ -137,6 +138,18 @@
         self.orderedListOfUUIDs = @[];
     }
     [self.tableView reloadData];
+}
+
+- (IBAction)switchChanged:(id)sender {
+    {
+        if (self.advertisingSwitch.on) {
+            [self.userManager.blueToothManager start];
+        }
+        
+        else {
+            [self.userManager.blueToothManager stop];
+        }
+    }
 }
 
 #pragma mark -Helper Methodes 
