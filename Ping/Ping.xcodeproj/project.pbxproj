@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		40F135421D4C33C200376973 /* BlueToothManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 555C1E791D4A9DE700007980 /* BlueToothManger.m */; };
 		5594DAFD1D45E2DE0096D5DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594DAFC1D45E2DE0096D5DF /* main.m */; };
 		5594DB001D45E2DE0096D5DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594DAFF1D45E2DE0096D5DF /* AppDelegate.m */; };
 		5594DB061D45E2DE0096D5DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5594DB041D45E2DE0096D5DF /* Main.storyboard */; };
@@ -267,7 +268,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5594DB121D45E2DE0096D5DF /* Build configuration list for PBXNativeTarget "Ping" */;
 			buildPhases = (
-				45CCFDE1DBC68F6807C2F5D1 /* Check Pods Manifest.lock */,
+				45CCFDE1DBC68F6807C2F5D1 /* [CP] Check Pods Manifest.lock */,
 				1BFF36F89B859702223C9EA0 /* [CP] Check Pods Manifest.lock */,
 				5594DAF41D45E2DD0096D5DF /* Sources */,
 				5594DAF51D45E2DD0096D5DF /* Frameworks */,
@@ -297,7 +298,7 @@
 				TargetAttributes = {
 					5594DAF71D45E2DD0096D5DF = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 377GK7SNQB;
+						DevelopmentTeam = FHZ72ELYQ2;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -356,14 +357,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		45CCFDE1DBC68F6807C2F5D1 /* Check Pods Manifest.lock */ = {
+		45CCFDE1DBC68F6807C2F5D1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -383,7 +384,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ping/Pods-Ping-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C602BDFBCD72ABB977828ACF /* Embed Pods Frameworks */ = {
@@ -398,7 +399,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ping/Pods-Ping-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CF9E1F8AD85E1EED3ACA6223 /* [CP] Copy Pods Resources */ = {
@@ -438,6 +439,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40F135421D4C33C200376973 /* BlueToothManger.m in Sources */,
 				55A098B11D47F0FD005100BC /* PingUser.m in Sources */,
 				9C18CAF81D4AE89B008519E1 /* PingUserRealm.m in Sources */,
 				55A098E11D4907CE005100BC /* UserManager.m in Sources */,
@@ -573,7 +575,7 @@
 				);
 				INFOPLIST_FILE = Ping/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jeff.Ping;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tomm.Ping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -592,7 +594,7 @@
 				);
 				INFOPLIST_FILE = Ping/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jeff.Ping;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tomm.Ping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

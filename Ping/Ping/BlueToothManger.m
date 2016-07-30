@@ -7,11 +7,8 @@
 //
 
 #import "BlueToothManager.h"
-<<<<<<< HEAD
-=======
 #import "RecordManager.h"
 #import "AppDelegate.h"
->>>>>>> JeffsBranch
 
 @interface BlueToothManager() <CBCentralManagerDelegate, CBPeripheralDelegate, CBPeripheralManagerDelegate>
 
@@ -34,23 +31,15 @@
 
 @property NSArray *uuidList;
 @property NSString *currentUserUUID;
-<<<<<<< HEAD
-//@property RecordManager *recordManager;
-
-@property NSMutableArray *cbuuidLists;
-=======
 @property RecordManager *recordManager;
 
 @property NSMutableArray *cbuuidLists;
 @property BOOL saveSwitch;
->>>>>>> JeffsBranch
 
 @end
 
 @implementation BlueToothManager
 
-<<<<<<< HEAD
-=======
 + (instancetype)sharedrecordManager:(NSArray *)uuidList andCurrentUUID:(NSString *)currentUUID {
     static BlueToothManager *sharedrecordManager = nil;
     static dispatch_once_t onceToken;
@@ -69,20 +58,15 @@
     return sharedrecordManager;
 }
 
->>>>>>> JeffsBranch
 #pragma mark - Start and Stop
 
 -(void)start{
     
-<<<<<<< HEAD
-    [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:self.currentUserUUID]]}];
-=======
     AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:self.currentUserUUID]]}];
     
     //[self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:app.currentUser.userUUID]]}];  // Keep For later
->>>>>>> JeffsBranch
     [self scan];
 }
 
@@ -93,26 +77,16 @@
     NSLog(@"Scanning stopped, Advertising stopped");
 }
 
-
-<<<<<<< HEAD
-#pragma mark - View Lifecycle
-
-- (instancetype)initWithUUIDList:(NSArray *)uuidList andCurrentUUID:(NSString *)currentUUID
-=======
 #pragma mark - Lifecycle
 
 - (instancetype) initWithUUIDList:(NSArray *)uuidList andCurrentUUID:(NSString *)currentUUID
->>>>>>> JeffsBranch
 {
     self = [super init];
     if (self) {
         
-<<<<<<< HEAD
-=======
 //        self.uuidList = @[@"E20A39F4-73F5-4BC4-A12F-17D1AD07A961", @"1C6AAE1E-E4D1-42CB-A642-0856C315A75F", @"F124015B-5AF2-4969-A7A0-38BF2759600F"];
 //        self.currentUserUUID = @"F124015B-5AF2-4969-A7A0-38BF2759600F";
        
->>>>>>> JeffsBranch
         self.uuidList = uuidList;
         self.currentUserUUID = currentUUID;
         
@@ -135,11 +109,7 @@
         _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         
         _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
-<<<<<<< HEAD
-        
-=======
        
->>>>>>> JeffsBranch
     }
     return self;
 }
@@ -160,16 +130,10 @@
 
 - (void)scan
 {
-<<<<<<< HEAD
-    [self.centralManager scanForPeripheralsWithServices:self.cbuuidLists
-     options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES }
-     ];
-    
-=======
     [self.centralManager scanForPeripheralsWithServices:[self.cbuuidLists copy]
      options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES }
      ];
->>>>>>> JeffsBranch
+    
     NSLog(@"Scanning started");
 }
 
@@ -222,11 +186,6 @@
         [self.uuids addObject:[self.fetchedUUIDs lastObject]];
         [self.distances addObject: [self.fetchedDistances lastObject]];
         [self.timeStamps addObject:[self.fetchedTimeStamp lastObject]];
-<<<<<<< HEAD
-        
-        //                NSNumber *proximity = [self.fetchedDistances lastObject];
-        //               [self.recordManager storeBlueToothDataByUUID:[self.fetchedUUIDs lastObject] userProximity:proximity.integerValue andTime:[self.fetchedTimeStamp lastObject]];
-=======
 
       //  if (self.saveSwitch == true) {
             NSNumber *proximity = [self.fetchedDistances lastObject];
@@ -238,15 +197,12 @@
 //
         
 //        [self.recordManager storeBlueToothDataByUUID:[self.fetchedUUIDs lastObject] userProximity:proximity.integerValue andTime:[self.fetchedTimeStamp lastObject]];
->>>>>>> JeffsBranch
         
         NSLog(@"blueToothData: %@, %@, %@", [self.fetchedUUIDs lastObject],[self.fetchedDistances lastObject],[self.fetchedTimeStamp lastObject]);
     }
     ////////////////////////////////////////////////////////////////////////////
 }
 
-<<<<<<< HEAD
-=======
 -(void)flickSaveSwitch:(id)sender {
     // first call turns it on
     if (self.saveSwitch) {
@@ -271,7 +227,7 @@
                                     repeats:YES];
 }
 
->>>>>>> JeffsBranch
+
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
     NSLog(@"Peripheral Disconnected");
