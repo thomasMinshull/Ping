@@ -7,35 +7,73 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4002961E1D48647700D863D5 /* BlueToothManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 4002961D1D48647700D863D5 /* BlueToothManger.m */; };
-		404FA5D41D49233600DE7EC8 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404FA5D31D49233600DE7EC8 /* SafariServices.framework */; };
+		40F135421D4C33C200376973 /* BlueToothManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 555C1E791D4A9DE700007980 /* BlueToothManger.m */; };
 		5594DAFD1D45E2DE0096D5DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594DAFC1D45E2DE0096D5DF /* main.m */; };
 		5594DB001D45E2DE0096D5DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594DAFF1D45E2DE0096D5DF /* AppDelegate.m */; };
-		5594DB031D45E2DE0096D5DF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594DB021D45E2DE0096D5DF /* ViewController.m */; };
 		5594DB061D45E2DE0096D5DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5594DB041D45E2DE0096D5DF /* Main.storyboard */; };
 		5594DB091D45E2DE0096D5DF /* Ping.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5594DB071D45E2DE0096D5DF /* Ping.xcdatamodeld */; };
 		5594DB0B1D45E2DE0096D5DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5594DB0A1D45E2DE0096D5DF /* Assets.xcassets */; };
 		5594DB0E1D45E2DE0096D5DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5594DB0C1D45E2DE0096D5DF /* LaunchScreen.storyboard */; };
+		5599E78B1D499E1C00E61B0E /* RecordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5599E7861D499E1C00E61B0E /* RecordManager.m */; };
+		5599E78C1D499E1C00E61B0E /* TimePeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 5599E7881D499E1C00E61B0E /* TimePeriod.m */; };
+		5599E78D1D499E1C00E61B0E /* UserRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 5599E78A1D499E1C00E61B0E /* UserRecord.m */; };
+		5599E7931D49C14F00E61B0E /* PingUserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5599E7921D49C14F00E61B0E /* PingUserTableViewCell.m */; };
+		55A0985D1D46CB3E005100BC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A0985C1D46CB3E005100BC /* LoginViewController.m */; };
+		55A0985F1D46CEC7005100BC /* linkedin-sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A0985E1D46CEC7005100BC /* linkedin-sdk.framework */; };
+		55A098611D46DC6A005100BC /* linkedin_login.png in Resources */ = {isa = PBXBuildFile; fileRef = 55A098601D46DC6A005100BC /* linkedin_login.png */; };
+		55A098631D46DC89005100BC /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 55A098621D46DC89005100BC /* logo.png */; };
+		55A098651D46DC9C005100BC /* ghost_person.png in Resources */ = {isa = PBXBuildFile; fileRef = 55A098641D46DC9C005100BC /* ghost_person.png */; };
+		55A098B11D47F0FD005100BC /* PingUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A098B01D47F0FD005100BC /* PingUser.m */; };
+		55A098B81D47FD73005100BC /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A098B71D47FD73005100BC /* NSString+UUID.m */; };
+		55A098E11D4907CE005100BC /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A098E01D4907CE005100BC /* UserManager.m */; };
+		55A099071D498F27005100BC /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A099061D498F27005100BC /* MainViewController.m */; };
+		55AD89351D4AD5B80097DE9B /* CurrentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 55AD89341D4AD5B80097DE9B /* CurrentUser.m */; };
+		55AD89381D4B87F90097DE9B /* AverageUUidDuple.m in Sources */ = {isa = PBXBuildFile; fileRef = 55AD89371D4B87F90097DE9B /* AverageUUidDuple.m */; };
 		71678BD4F8B7654916D3F4B0 /* libPods-Ping.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 099398FE9E3F4648F16B801E /* libPods-Ping.a */; };
-		CC592186A9B274204997C151 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F63550978A2AEB46EFE90C /* libPods.a */; };
+		9C18CAF81D4AE89B008519E1 /* PingUserRealm.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C18CAF71D4AE89B008519E1 /* PingUserRealm.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		099398FE9E3F4648F16B801E /* libPods-Ping.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Ping.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4002961C1D48647700D863D5 /* BlueToothManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueToothManager.h; sourceTree = "<group>"; };
-		4002961D1D48647700D863D5 /* BlueToothManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueToothManger.m; sourceTree = "<group>"; };
-		404FA5D31D49233600DE7EC8 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		555C1E781D4A9DE700007980 /* BlueToothManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueToothManager.h; sourceTree = "<group>"; };
+		555C1E791D4A9DE700007980 /* BlueToothManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueToothManger.m; sourceTree = "<group>"; };
 		5594DAF81D45E2DD0096D5DF /* Ping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5594DAFC1D45E2DE0096D5DF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5594DAFE1D45E2DE0096D5DF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5594DAFF1D45E2DE0096D5DF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5594DB011D45E2DE0096D5DF /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		5594DB021D45E2DE0096D5DF /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		5594DB051D45E2DE0096D5DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5594DB081D45E2DE0096D5DF /* Ping.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Ping.xcdatamodel; sourceTree = "<group>"; };
 		5594DB0A1D45E2DE0096D5DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5594DB0D1D45E2DE0096D5DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5594DB0F1D45E2DE0096D5DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5599E7851D499E1C00E61B0E /* RecordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordManager.h; sourceTree = "<group>"; };
+		5599E7861D499E1C00E61B0E /* RecordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordManager.m; sourceTree = "<group>"; };
+		5599E7871D499E1C00E61B0E /* TimePeriod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePeriod.h; sourceTree = "<group>"; };
+		5599E7881D499E1C00E61B0E /* TimePeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePeriod.m; sourceTree = "<group>"; };
+		5599E7891D499E1C00E61B0E /* UserRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRecord.h; sourceTree = "<group>"; };
+		5599E78A1D499E1C00E61B0E /* UserRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRecord.m; sourceTree = "<group>"; };
+		5599E7911D49C14F00E61B0E /* PingUserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingUserTableViewCell.h; sourceTree = "<group>"; };
+		5599E7921D49C14F00E61B0E /* PingUserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingUserTableViewCell.m; sourceTree = "<group>"; };
+		55A0985B1D46CB3E005100BC /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		55A0985C1D46CB3E005100BC /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		55A0985E1D46CEC7005100BC /* linkedin-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "linkedin-sdk.framework"; sourceTree = "<group>"; };
+		55A098601D46DC6A005100BC /* linkedin_login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = linkedin_login.png; sourceTree = "<group>"; };
+		55A098621D46DC89005100BC /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		55A098641D46DC9C005100BC /* ghost_person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ghost_person.png; sourceTree = "<group>"; };
+		55A098AF1D47F0FD005100BC /* PingUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingUser.h; sourceTree = "<group>"; };
+		55A098B01D47F0FD005100BC /* PingUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingUser.m; sourceTree = "<group>"; };
+		55A098B61D47FD73005100BC /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UUID.h"; sourceTree = "<group>"; };
+		55A098B71D47FD73005100BC /* NSString+UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UUID.m"; sourceTree = "<group>"; };
+		55A098DF1D4907CE005100BC /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
+		55A098E01D4907CE005100BC /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
+		55A099051D498F27005100BC /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		55A099061D498F27005100BC /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		55AD89331D4AD5B80097DE9B /* CurrentUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentUser.h; sourceTree = "<group>"; };
+		55AD89341D4AD5B80097DE9B /* CurrentUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentUser.m; sourceTree = "<group>"; };
+		55AD89361D4B87F90097DE9B /* AverageUUidDuple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AverageUUidDuple.h; sourceTree = "<group>"; };
+		55AD89371D4B87F90097DE9B /* AverageUUidDuple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AverageUUidDuple.m; sourceTree = "<group>"; };
+		9C18CAF61D4AE89B008519E1 /* PingUserRealm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingUserRealm.h; sourceTree = "<group>"; };
+		9C18CAF71D4AE89B008519E1 /* PingUserRealm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingUserRealm.m; sourceTree = "<group>"; };
 		BBF5D50F2E3876EE0E2E3951 /* Pods-Ping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ping/Pods-Ping.debug.xcconfig"; sourceTree = "<group>"; };
 		D2F63550978A2AEB46EFE90C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB38DA1028CD9B2B046846B0 /* Pods-Ping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ping.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ping/Pods-Ping.release.xcconfig"; sourceTree = "<group>"; };
@@ -46,9 +84,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				404FA5D41D49233600DE7EC8 /* SafariServices.framework in Frameworks */,
 				71678BD4F8B7654916D3F4B0 /* libPods-Ping.a in Frameworks */,
-				CC592186A9B274204997C151 /* libPods.a in Frameworks */,
+				55A0985F1D46CEC7005100BC /* linkedin-sdk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,7 +95,7 @@
 		08964D78EC31F1C43E173827 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				404FA5D31D49233600DE7EC8 /* SafariServices.framework */,
+				55A0985E1D46CEC7005100BC /* linkedin-sdk.framework */,
 				099398FE9E3F4648F16B801E /* libPods-Ping.a */,
 				D2F63550978A2AEB46EFE90C /* libPods.a */,
 			);
@@ -88,15 +125,10 @@
 			children = (
 				5594DAFE1D45E2DE0096D5DF /* AppDelegate.h */,
 				5594DAFF1D45E2DE0096D5DF /* AppDelegate.m */,
-				5594DB011D45E2DE0096D5DF /* ViewController.h */,
-				5594DB021D45E2DE0096D5DF /* ViewController.m */,
-				4002961C1D48647700D863D5 /* BlueToothManager.h */,
-				4002961D1D48647700D863D5 /* BlueToothManger.m */,
-				5594DB041D45E2DE0096D5DF /* Main.storyboard */,
-				5594DB0A1D45E2DE0096D5DF /* Assets.xcassets */,
-				5594DB0C1D45E2DE0096D5DF /* LaunchScreen.storyboard */,
-				5594DB0F1D45E2DE0096D5DF /* Info.plist */,
-				5594DB071D45E2DE0096D5DF /* Ping.xcdatamodeld */,
+				55A0985A1D46CAE7005100BC /* View */,
+				55A098501D46CA69005100BC /* ViewControllers */,
+				55A098591D46CAD2005100BC /* Model */,
+				55A098511D46CA7B005100BC /* UI */,
 				5594DAFB1D45E2DE0096D5DF /* Supporting Files */,
 			);
 			path = Ping;
@@ -105,9 +137,119 @@
 		5594DAFB1D45E2DE0096D5DF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5594DB0F1D45E2DE0096D5DF /* Info.plist */,
+				5594DB071D45E2DE0096D5DF /* Ping.xcdatamodeld */,
 				5594DAFC1D45E2DE0096D5DF /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5599E78E1D49BA4A00E61B0E /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				55AD89361D4B87F90097DE9B /* AverageUUidDuple.h */,
+				55AD89371D4B87F90097DE9B /* AverageUUidDuple.m */,
+				55A098AF1D47F0FD005100BC /* PingUser.h */,
+				55A098B01D47F0FD005100BC /* PingUser.m */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		5599E78F1D49C0FA00E61B0E /* realmObjects */ = {
+			isa = PBXGroup;
+			children = (
+				55AD89331D4AD5B80097DE9B /* CurrentUser.h */,
+				55AD89341D4AD5B80097DE9B /* CurrentUser.m */,
+				5599E7871D499E1C00E61B0E /* TimePeriod.h */,
+				5599E7881D499E1C00E61B0E /* TimePeriod.m */,
+				9C18CAF61D4AE89B008519E1 /* PingUserRealm.h */,
+				9C18CAF71D4AE89B008519E1 /* PingUserRealm.m */,
+				5599E7891D499E1C00E61B0E /* UserRecord.h */,
+				5599E78A1D499E1C00E61B0E /* UserRecord.m */,
+			);
+			name = realmObjects;
+			sourceTree = "<group>";
+		};
+		5599E7901D49C12600E61B0E /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				55A098DF1D4907CE005100BC /* UserManager.h */,
+				55A098E01D4907CE005100BC /* UserManager.m */,
+				5599E7851D499E1C00E61B0E /* RecordManager.h */,
+				5599E7861D499E1C00E61B0E /* RecordManager.m */,
+				555C1E781D4A9DE700007980 /* BlueToothManager.h */,
+				555C1E791D4A9DE700007980 /* BlueToothManger.m */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
+		5599E7941D49C15800E61B0E /* tabelViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				5599E7911D49C14F00E61B0E /* PingUserTableViewCell.h */,
+				5599E7921D49C14F00E61B0E /* PingUserTableViewCell.m */,
+			);
+			name = tabelViewCells;
+			sourceTree = "<group>";
+		};
+		55A098501D46CA69005100BC /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				55A0985B1D46CB3E005100BC /* LoginViewController.h */,
+				55A0985C1D46CB3E005100BC /* LoginViewController.m */,
+				55A099051D498F27005100BC /* MainViewController.h */,
+				55A099061D498F27005100BC /* MainViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		55A098511D46CA7B005100BC /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				55A098521D46CA94005100BC /* images */,
+				5594DB041D45E2DE0096D5DF /* Main.storyboard */,
+				5594DB0A1D45E2DE0096D5DF /* Assets.xcassets */,
+				5594DB0C1D45E2DE0096D5DF /* LaunchScreen.storyboard */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		55A098521D46CA94005100BC /* images */ = {
+			isa = PBXGroup;
+			children = (
+				55A098641D46DC9C005100BC /* ghost_person.png */,
+				55A098621D46DC89005100BC /* logo.png */,
+				55A098601D46DC6A005100BC /* linkedin_login.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		55A098591D46CAD2005100BC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5599E78F1D49C0FA00E61B0E /* realmObjects */,
+				5599E7901D49C12600E61B0E /* Managers */,
+				55A098B51D47FD2F005100BC /* catagories */,
+				5599E78E1D49BA4A00E61B0E /* Entities */,
+				5599E7941D49C15800E61B0E /* tabelViewCells */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		55A0985A1D46CAE7005100BC /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		55A098B51D47FD2F005100BC /* catagories */ = {
+			isa = PBXGroup;
+			children = (
+				55A098B61D47FD73005100BC /* NSString+UUID.h */,
+				55A098B71D47FD73005100BC /* NSString+UUID.m */,
+			);
+			name = catagories;
 			sourceTree = "<group>";
 		};
 		CE1CC1FAE2B604755B95FB8F /* Pods */ = {
@@ -126,7 +268,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5594DB121D45E2DE0096D5DF /* Build configuration list for PBXNativeTarget "Ping" */;
 			buildPhases = (
-				45CCFDE1DBC68F6807C2F5D1 /* Check Pods Manifest.lock */,
+				45CCFDE1DBC68F6807C2F5D1 /* [CP] Check Pods Manifest.lock */,
 				1BFF36F89B859702223C9EA0 /* [CP] Check Pods Manifest.lock */,
 				5594DAF41D45E2DD0096D5DF /* Sources */,
 				5594DAF51D45E2DD0096D5DF /* Frameworks */,
@@ -156,7 +298,12 @@
 				TargetAttributes = {
 					5594DAF71D45E2DD0096D5DF = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 377GK7SNQB;
+						DevelopmentTeam = FHZ72ELYQ2;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -184,8 +331,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5594DB0E1D45E2DE0096D5DF /* LaunchScreen.storyboard in Resources */,
+				55A098631D46DC89005100BC /* logo.png in Resources */,
 				5594DB0B1D45E2DE0096D5DF /* Assets.xcassets in Resources */,
 				5594DB061D45E2DE0096D5DF /* Main.storyboard in Resources */,
+				55A098651D46DC9C005100BC /* ghost_person.png in Resources */,
+				55A098611D46DC6A005100BC /* linkedin_login.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,14 +357,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		45CCFDE1DBC68F6807C2F5D1 /* Check Pods Manifest.lock */ = {
+		45CCFDE1DBC68F6807C2F5D1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -234,7 +384,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ping/Pods-Ping-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C602BDFBCD72ABB977828ACF /* Embed Pods Frameworks */ = {
@@ -249,7 +399,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ping/Pods-Ping-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CF9E1F8AD85E1EED3ACA6223 /* [CP] Copy Pods Resources */ = {
@@ -289,10 +439,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5594DB031D45E2DE0096D5DF /* ViewController.m in Sources */,
+				40F135421D4C33C200376973 /* BlueToothManger.m in Sources */,
+				55A098B11D47F0FD005100BC /* PingUser.m in Sources */,
+				9C18CAF81D4AE89B008519E1 /* PingUserRealm.m in Sources */,
+				55A098E11D4907CE005100BC /* UserManager.m in Sources */,
+				5599E7931D49C14F00E61B0E /* PingUserTableViewCell.m in Sources */,
+				55A0985D1D46CB3E005100BC /* LoginViewController.m in Sources */,
+				55A099071D498F27005100BC /* MainViewController.m in Sources */,
+				5599E78D1D499E1C00E61B0E /* UserRecord.m in Sources */,
+				55AD89351D4AD5B80097DE9B /* CurrentUser.m in Sources */,
+				5599E78B1D499E1C00E61B0E /* RecordManager.m in Sources */,
+				55AD89381D4B87F90097DE9B /* AverageUUidDuple.m in Sources */,
 				5594DB001D45E2DE0096D5DF /* AppDelegate.m in Sources */,
 				5594DAFD1D45E2DE0096D5DF /* main.m in Sources */,
-				4002961E1D48647700D863D5 /* BlueToothManger.m in Sources */,
+				5599E78C1D499E1C00E61B0E /* TimePeriod.m in Sources */,
+				55A098B81D47FD73005100BC /* NSString+UUID.m in Sources */,
 				5594DB091D45E2DE0096D5DF /* Ping.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -408,9 +569,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Ping/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jeff.Ping;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tomm.Ping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -423,9 +588,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Ping/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jeff.Ping;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tomm.Ping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
