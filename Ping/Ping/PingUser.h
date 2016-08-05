@@ -19,6 +19,7 @@
 
 @property (strong, nonatomic) NSString *userUUID;
 
+// CR: why not an init method?
 - (void)setPropertiesWithProfileDictionary:(NSDictionary *)dic;
 
 @end

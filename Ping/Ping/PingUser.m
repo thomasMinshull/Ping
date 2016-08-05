@@ -20,6 +20,18 @@
     return self;
 }
 
+- (instancetype)initWithProfileDictionary:(NSDictionary *)dic
+{
+    self = [self init];
+    if (self) {
+        _lastName = dic[@"lastName"];
+        _firstName = dic[@"firstName"];
+        _headline = dic[@"headline"];
+        _linkedInID = dic[@"id"];
+    }
+    return self;
+}
+
 - (void)setPropertiesWithProfileDictionary:(NSDictionary *)dic {
     self.lastName = dic[@"lastName"];
     self.firstName = dic[@"firstName"];

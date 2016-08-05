@@ -25,6 +25,7 @@
 
 @end
 
+
 @implementation UserManager
 
 + (instancetype)sharedUserManager {
@@ -34,6 +35,8 @@
     dispatch_once(&onceToken, ^{
         sharedUserManager = [[UserManager alloc] init];
         sharedUserManager.userList = [NSMutableSet new];
+        // CR: this line probably belongs in init, esp if multiple initial values set
+        
 //        sharedUserManager.currentUser = [PingUser new];
 //        sharedUserManager.temp = false;
     });

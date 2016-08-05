@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+
+// CR: "Duple" not a data structure. Better names: "AveragedUUID", "UUIDAverage", "AveragedScore", "Score", "Distance" etc. (ideally exclude types from the class name).
+
 @interface AverageUUidDuple : NSObject
 
 @property int userAverage;

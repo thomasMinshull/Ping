@@ -56,6 +56,7 @@
     PingUser *previouslyLoggedInUser = [self.userManager fetchCurrentUserFromRealm];
     
     if (previouslyLoggedInUser && previouslyLoggedInUser.userUUID) { //Yup
+        // CR: Gross:
         AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         app.currentUser = previouslyLoggedInUser;
         

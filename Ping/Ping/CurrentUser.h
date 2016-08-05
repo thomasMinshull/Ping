@@ -8,6 +8,7 @@
 
 #import "PingUser.h"
 
+// CR: Why?
 @interface CurrentUser : NSObject
 
 @property (strong, nonatomic) PingUser *currentUser; 

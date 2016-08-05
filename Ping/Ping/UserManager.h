@@ -13,8 +13,10 @@
 
 @interface UserManager : NSObject
 
+//CR: user manager owns bluetooth manager. Bluetooth Manager owns record manager
 @property (strong, nonatomic) BlueToothManager *blueToothManager;
-@property (strong, nonatomic)NSMutableSet *userList;
+// CR: Not really a "list" is it?
+@property (strong, nonatomic) NSMutableSet *userList;
 //@property (strong, nonatomic)PingUser *currentUser; // may end up storing as realm user
 
 + (instancetype)sharedUserManager;

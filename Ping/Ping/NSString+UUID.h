@@ -10,6 +10,7 @@
 
 @interface NSString (UUID)
 
+// CR: [[[NSUUID alloc] init] UUIDString];
 + (NSString*)getUUID;
 
 @end
