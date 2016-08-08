@@ -205,14 +205,14 @@ dispatch_queue_t backgroundQueue() {
     
 //    [self.writeQueue addOperationWithBlock:^{
 //        RLMRealm *defaultRealm = [RLMRealm defaultRealm];
-<<<<<<< HEAD
+
     dispatch_queue_t queue = backgroundQueue();
     dispatch_async(queue, ^{
         [self.writeRealm beginWriteTransaction];
         [self.writeRealm addObjects:self.timePeriods];
         [self.writeRealm commitWriteTransaction];
     });
-=======
+
 //    dispatch_queue_t queue = backgroundQueue();
 //    dispatch_async(queue, ^{
 //        
@@ -221,7 +221,7 @@ dispatch_queue_t backgroundQueue() {
 //        }];
 //    });
 //    }];
->>>>>>> a1b1d4e016403dad31ee1a021fbfbee2a1ddc31f
+
 
 }
 

@@ -10,11 +10,11 @@
 #import "TimePeriod.h"
 #import "UserRecord.h"
 
-//RLM_ARRAY_TYPE(TimePeriod)
+RLM_ARRAY_TYPE(TimePeriod)
 
 @interface RecordManager : NSObject
 
-//@property (nonatomic) NSMutableArray *timePeriods;
+@property (nonatomic) NSMutableArray *timePeriods;
 
 -(void)storeBlueToothDataByUUID:(NSString *)userUUID userProximity:(int)proximity andTime:(NSDate *)time;
 -(NSDate *)getStartTimeForTimePeriod:(NSDate *)time;
