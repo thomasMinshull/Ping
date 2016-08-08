@@ -77,7 +77,6 @@
     NSLog(@"Scanning stopped, Advertising stopped");
 }
 
-
 #pragma mark - Lifecycle
 
 - (instancetype) initWithUUIDList:(NSArray *)uuidList andCurrentUUID:(NSString *)currentUUID
@@ -134,6 +133,7 @@
     [self.centralManager scanForPeripheralsWithServices:[self.cbuuidLists copy]
      options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES }
      ];
+    
     NSLog(@"Scanning started");
 }
 
@@ -226,6 +226,7 @@
                                    userInfo:nil
                                     repeats:YES];
 }
+
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {

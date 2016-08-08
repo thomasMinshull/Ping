@@ -13,7 +13,7 @@ RLM_ARRAY_TYPE(UserRecord)
 
 @interface TimePeriod : RLMObject
 
-@property (nonatomic) NSDate *startTime;
-@property (nonatomic) RLMArray<UserRecord *><UserRecord> *userRecords;
+@property (atomic) NSDate *startTime;
+@property (atomic) RLMArray<UserRecord *><UserRecord> *userRecords;
 
 @end

@@ -14,7 +14,7 @@
 @interface RecordManager ()
 
 //@property (nonatomic, strong) NSOperationQueue *readQueue;
-@property (atomic, strong) NSOperationQueue *writeQueue;
+//@property (atomic, strong) NSOperationQueue *writeQueue;
 
 //@property (nonatomic, strong) RLMRealm *readRealm;
 @property (atomic, strong) RLMRealm *writeRealm;
@@ -29,11 +29,11 @@
     if (self) {
 // No need to init RLMArray?
 //        self.timePeriods = [[RLMArray alloc] init];
-        _timePeriods = [NSMutableArray array];
+//        _timePeriods = [NSMutableArray array];
         
         // initialize read/write queues
 //        self.readQueue = [[NSOperationQueue alloc] init];
-        _writeQueue = [[NSOperationQueue alloc] init];
+//        _writeQueue = [[NSOperationQueue alloc] init];
         
         // initialize read/write realms
 //        RLMRealmConfiguration *defaultConfiguration = [RLMRealmConfiguration defaultConfiguration];
@@ -53,6 +53,8 @@
     }
     return self;
 }
+
+
 
 dispatch_queue_t backgroundQueue() {
     static dispatch_once_t queueCreationGuard;
@@ -74,7 +76,10 @@ dispatch_queue_t backgroundQueue() {
             RLMRealm *backgroundRealm = [RLMRealm defaultRealm];
             [backgroundRealm transactionWithBlock:^{
                 
-                TimePeriod *previousTimePeriod = [self.timePeriods lastObject];
+                TimePeriod *previousTimePeriod = [[TimePeriod objectsWhere:@"startTime = %@", [self getStartTimeForTimePeriod:time]] firstObject];
+                
+//                TimePeriod *previousTimePeriod = [self.timePeriods lastObject];
+                
                 if (previousTimePeriod == nil) {
                     TimePeriod *newTimePeriod = [[TimePeriod alloc] init];
                     UserRecord *newUserRecord = [[UserRecord alloc] initWithUUID:userUUID andDistance:proximity];
@@ -83,13 +88,13 @@ dispatch_queue_t backgroundQueue() {
                     //[backgroundRealm beginWriteTransaction];
                     
                     newTimePeriod.startTime = [self getStartTimeForTimePeriod:time];
-                    [self.timePeriods addObject:newTimePeriod];
+//                    [self.timePeriods addObject:newTimePeriod];
                     [newTimePeriod.userRecords addObject:newUserRecord];
-                    
+                    [backgroundRealm addObject:newTimePeriod];
                    // [backgroundRealm commitWriteTransaction];
                 } else {
-                    
-                    NSDate *endTime = [previousTimePeriod.startTime dateByAddingTimeInterval:TIME_INTERVAL];
+                    NSDate *endTimeDate = previousTimePeriod.startTime;
+                    NSDate *endTime = [endTimeDate dateByAddingTimeInterval:TIME_INTERVAL];
                     
                     if ([time timeIntervalSinceReferenceDate] > [previousTimePeriod.startTime timeIntervalSinceReferenceDate] && [time timeIntervalSinceReferenceDate] < [endTime timeIntervalSinceReferenceDate]) {
                         
@@ -128,13 +133,14 @@ dispatch_queue_t backgroundQueue() {
                         //[backgroundRealm beginWriteTransaction];
                         
                         newTimePeriod.startTime = [self getStartTimeForTimePeriod:time];
-                        [self.timePeriods addObject:newTimePeriod];
+//                        [self.timePeriods addObject:newTimePeriod];
+                        [backgroundRealm addObject:newTimePeriod];
                         [newTimePeriod.userRecords addObject:newUserRecord];
                         
                         //[backgroundRealm commitWriteTransaction];
                     }
                 }
-                NSLog(@"The current time period: %@. The user's UUID: %@. Total distance: %d. Number of obs: %d.", [[self.timePeriods lastObject] startTime], [[[[self.timePeriods lastObject] userRecords]lastObject]uUID], [[[[self.timePeriods lastObject] userRecords]lastObject]totalDistance], [[[[self.timePeriods lastObject] userRecords]lastObject]numberOfObs]);
+//                NSLog(@"The current time period: %@. The user's UUID: %@. Total distance: %d. Number of obs: %d.", [[self.timePeriods lastObject] startTime], [[[[self.timePeriods lastObject] userRecords]lastObject]uUID], [[[[self.timePeriods lastObject] userRecords]lastObject]totalDistance], [[[[self.timePeriods lastObject] userRecords]lastObject]numberOfObs]);
                 //    [self persistToDefaultRealm];
                 [self persistToDefaultRealmOnBackgroundThread];
             }];
@@ -199,27 +205,39 @@ dispatch_queue_t backgroundQueue() {
     
 //    [self.writeQueue addOperationWithBlock:^{
 //        RLMRealm *defaultRealm = [RLMRealm defaultRealm];
+<<<<<<< HEAD
     dispatch_queue_t queue = backgroundQueue();
     dispatch_async(queue, ^{
         [self.writeRealm beginWriteTransaction];
         [self.writeRealm addObjects:self.timePeriods];
         [self.writeRealm commitWriteTransaction];
     });
+=======
+//    dispatch_queue_t queue = backgroundQueue();
+//    dispatch_async(queue, ^{
+//        
+//        [[RLMRealm defaultRealm] transactionWithBlock:^{
+//            [[RLMRealm defaultRealm] addObjects:self.timePeriods];
+//        }];
+//    });
+//    }];
+>>>>>>> a1b1d4e016403dad31ee1a021fbfbee2a1ddc31f
 
 }
 
 -(void)persistToDefaultRealmOnBackgroundThread {
-    dispatch_queue_t queue = backgroundQueue();
-    dispatch_async(queue, ^{
-        RLMRealm *backgroundRealm = [RLMRealm defaultRealm];
-        [backgroundRealm beginWriteTransaction];
-        [backgroundRealm addObjects:self.timePeriods];
-        [backgroundRealm commitWriteTransaction];
-        // Using previous global realm object for saving
-//        [self.writeRealm beginWriteTransaction];
-//        [self.writeRealm addObjects:self.timePeriods];
-//        [self.writeRealm commitWriteTransaction];
-    });
+//    dispatch_queue_t queue = backgroundQueue();
+//    dispatch_async(queue, ^{
+//        
+//        [[RLMRealm defaultRealm] transactionWithBlock:^{
+//            [[RLMRealm defaultRealm] addObjects:self.timePeriods];
+//        }];
+//        
+//        // Using previous global realm object for saving
+////        [self.writeRealm beginWriteTransaction];
+////        [self.writeRealm addObjects:self.timePeriods];
+////        [self.writeRealm commitWriteTransaction];
+//    });
 }
 
 -(NSMutableArray *)sortingUserRecordsInTimePeriodByProximity:(NSDate *)date {
@@ -249,7 +267,7 @@ dispatch_queue_t backgroundQueue() {
                 
             }
             
-            NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"userAverage" ascending:YES];
+            NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"userAverage" ascending:NO];
             userRecordsArrayInTimePeriod = [[userRecordsArrayInTimePeriod sortedArrayUsingDescriptors:@[descriptor]] mutableCopy];
             
             NSMutableArray *uuidArray = [NSMutableArray new];
