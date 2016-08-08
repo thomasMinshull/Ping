@@ -6,6 +6,7 @@ dependencies: \
   /Users/martinzhang/Desktop/Ping/Ping/Ping/UserRecord.h \
   /Users/martinzhang/Desktop/Ping/Ping/Ping/UserManager.h \
   /Users/martinzhang/Desktop/Ping/Ping/Ping/PingUser.h \
+  /Users/martinzhang/Desktop/Ping/Ping/Ping/BlueToothManager.h \
   /Users/martinzhang/Desktop/Ping/Ping/Ping/PingUserTableViewCell.h \
   /Users/martinzhang/Desktop/Ping/Ping/linkedin-sdk.framework/Headers/LISDK.h \
   /Users/martinzhang/Desktop/Ping/Ping/linkedin-sdk.framework/Headers/LISDKSessionManager.h \

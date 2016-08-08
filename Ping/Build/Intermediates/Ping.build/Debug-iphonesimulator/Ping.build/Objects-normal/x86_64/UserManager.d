@@ -1,6 +1,7 @@
 dependencies: /Users/martinzhang/Desktop/Ping/Ping/Ping/UserManager.m \
   /Users/martinzhang/Desktop/Ping/Ping/Ping/UserManager.h \
   /Users/martinzhang/Desktop/Ping/Ping/Ping/PingUser.h \
+  /Users/martinzhang/Desktop/Ping/Ping/Ping/BlueToothManager.h \
   /Users/martinzhang/Desktop/Ping/Ping/linkedin-sdk.framework/Headers/LISDK.h \
   /Users/martinzhang/Desktop/Ping/Ping/linkedin-sdk.framework/Headers/LISDKSessionManager.h \
   /Users/martinzhang/Desktop/Ping/Ping/linkedin-sdk.framework/Headers/LISDKSession.h \
@@ -13,6 +14,5 @@ dependencies: /Users/martinzhang/Desktop/Ping/Ping/Ping/UserManager.m \
   /Users/martinzhang/Desktop/Ping/Ping/linkedin-sdk.framework/Headers/LISDKErrorCode.h \
   /Users/martinzhang/Desktop/Ping/Ping/linkedin-sdk.framework/Headers/LISDKPermission.h \
   /Users/martinzhang/Desktop/Ping/Ping/Ping/CurrentUser.h \
-  /Users/martinzhang/Desktop/Ping/Ping/Ping/BlueToothManager.h \
   /Users/martinzhang/Desktop/Ping/Ping/Ping/PingUserRealm.h \
   /Users/martinzhang/Desktop/Ping/Ping/Ping/AppDelegate.h

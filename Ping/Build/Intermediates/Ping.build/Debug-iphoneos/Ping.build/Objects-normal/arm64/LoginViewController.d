@@ -13,5 +13,7 @@ dependencies: \
   /Users/martinzhang/Desktop/Ping/Ping/linkedin-sdk.framework/Headers/LISDKErrorCode.h \
   /Users/martinzhang/Desktop/Ping/Ping/linkedin-sdk.framework/Headers/LISDKPermission.h \
   /Users/martinzhang/Desktop/Ping/Ping/Ping/PingUser.h \
+  /Users/martinzhang/Desktop/Ping/Ping/Ping/AppDelegate.h \
   /Users/martinzhang/Desktop/Ping/Ping/Ping/MainViewController.h \
-  /Users/martinzhang/Desktop/Ping/Ping/Ping/UserManager.h
+  /Users/martinzhang/Desktop/Ping/Ping/Ping/UserManager.h \
+  /Users/martinzhang/Desktop/Ping/Ping/Ping/BlueToothManager.h

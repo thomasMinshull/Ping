@@ -205,11 +205,7 @@ dispatch_queue_t backgroundQueue() {
         [self.writeRealm addObjects:self.timePeriods];
         [self.writeRealm commitWriteTransaction];
     });
-//    }];
 
-//    [self.readQueue addOperationWithBlock:^{
-//        <#code#>
-//    }];
 }
 
 -(void)persistToDefaultRealmOnBackgroundThread {
