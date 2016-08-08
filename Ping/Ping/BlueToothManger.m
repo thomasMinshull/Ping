@@ -25,10 +25,6 @@
 @property NSMutableArray *fetchedDistances;
 @property NSMutableArray *fetchedTimeStamp;
 
-@property NSMutableArray *uuids;
-@property NSMutableArray *distances;
-@property NSMutableArray *timeStamps;
-
 @property NSArray *uuidList;
 @property NSString *currentUserUUID;
 @property RecordManager *recordManager;
@@ -48,7 +44,7 @@
         sharedrecordManager.recordManager = [RecordManager new];
     });
     
-    [sharedrecordManager start];
+//    [sharedrecordManager start];
     
     return sharedrecordManager;
 }
@@ -81,10 +77,6 @@
         self.fetchedUUIDs = [NSMutableArray array];
         self.fetchedDistances = [NSMutableArray array];
         self.fetchedTimeStamp = [NSMutableArray array];
-        
-        self.uuids = [NSMutableArray array];
-        self.distances = [NSMutableArray array];
-        self.timeStamps = [NSMutableArray array];
         
         self.cbuuidLists = [NSMutableArray array];
         
@@ -119,7 +111,7 @@
 - (void)scan
 {
     [self.centralManager scanForPeripheralsWithServices:[self.cbuuidLists copy]
-                                                options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES }
+                                                options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @NO }
      ];
     
     NSLog(@"Scanning started");
@@ -170,9 +162,6 @@
     for (CBService *service in peripheral.services) {
         
         [self.fetchedUUIDs addObject:service.UUID.UUIDString];
-        
-        [self.uuids addObject:[self.fetchedUUIDs lastObject]];
-        [self.distances addObject: [self.fetchedDistances lastObject]];
         
         NSNumber *proximity = [self.fetchedDistances lastObject];
         [self.recordManager storeBlueToothDataByUUID:[self.fetchedUUIDs lastObject] userProximity:[proximity intValue] andTime:[self.fetchedTimeStamp lastObject]];
