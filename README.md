@@ -21,3 +21,22 @@ Ping measures the distance between users at networking events using Bluetooth ru
  4. improve blue tooth communication to use central and peripheral deligates 
   
  
+### list of features for final project 
+Features/Tasks 
+Priority: 
+
+1. Add Throttling of bluetooth connections (send/store less data) 
+2. Add the ability to manually add an event into the app (this will include start time and end time for the event). We will automatically turn the bluetooth on just prior to the event and turn it off just after the event 
+3. Refactor the app Architecture as per Cories comments 
+4. Fix UI (Date picker, etc) 
+5. Create a simple animation for launch screen/onboarding 
+6. Create an onboarding experience (the initial screens a first time user will see when logging into the app) 
+7. Free up locally stored data. Data more than x day’s old is backed up to the server and removed from the device
+8. Refactor the login process (improve the persistence of users/handle sign up edge cases) 
+9. Integrate with MeetUp API to automatically get start time and end time of events you are signed up to attend
+10. Improve the bluetooth architecture to use delegates (and conform to standard?) 
+11. Add a comment field that will allow users to make a comment about how they met a user for them to reference later
+12. Add hand off to view on OSX
+13. Use geofencing to turn on/off bluetooth 
+14. Display people grouped by distance in sections of the table view
+15. Make comments (mentioned above) exportable via text messages/email 
