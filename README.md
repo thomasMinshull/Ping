@@ -36,6 +36,7 @@ Priority:
 9. Integrate with MeetUp API to automatically get start time and end time of events you are signed up to attend
 10. Improve the bluetooth architecture to use delegates (and conform to standard?) 
 11. Add a comment field that will allow users to make a comment about how they met a user for them to reference later
-12. Use geofencing to turn on/off bluetooth 
-13. Display people grouped by distance in sections of the table view
-14. Make comments (mentioned above) exportable via text messages/email 
+12. Add hand off to view on OSX
+13. Use geofencing to turn on/off bluetooth 
+14. Display people grouped by distance in sections of the table view
+15. Make comments (mentioned above) exportable via text messages/email 
