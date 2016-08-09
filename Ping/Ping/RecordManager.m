@@ -13,10 +13,6 @@
 
 @interface RecordManager ()
 
-//@property (nonatomic, strong) NSOperationQueue *readQueue;
-//@property (atomic, strong) NSOperationQueue *writeQueue;
-
-//@property (nonatomic, strong) RLMRealm *readRealm;
 @property (atomic, strong) RLMRealm *writeRealm;
 
 @end
@@ -27,34 +23,10 @@
 {
     self = [super init];
     if (self) {
-// No need to init RLMArray?
-//        self.timePeriods = [[RLMArray alloc] init];
-//        _timePeriods = [NSMutableArray array];
-        
-        // initialize read/write queues
-//        self.readQueue = [[NSOperationQueue alloc] init];
-//        _writeQueue = [[NSOperationQueue alloc] init];
-        
-        // initialize read/write realms
-//        RLMRealmConfiguration *defaultConfiguration = [RLMRealmConfiguration defaultConfiguration];
-//        [self.readQueue addOperationWithBlock:^{
-//            NSError *error = nil;
-//            self.readRealm = [RLMRealm realmWithConfiguration:defaultConfiguration error:&error];
-//        }];
-        
-//        [self.writeQueue addOperationWithBlock:^{
-//            NSError *error = nil;
-//            self.writeRealm = [RLMRealm realmWithConfiguration:defaultConfiguration error:&error];
-//            NSLog(@"Error: %@", error);
-//        }];
-
         _writeRealm = [RLMRealm defaultRealm];
-
     }
     return self;
 }
-
-
 
 dispatch_queue_t backgroundQueue() {
     static dispatch_once_t queueCreationGuard;
@@ -64,8 +36,6 @@ dispatch_queue_t backgroundQueue() {
     });
     return queue;
 }
-
-
 
 // convert userProximity string into a int 
 
@@ -78,25 +48,19 @@ dispatch_queue_t backgroundQueue() {
                 
                 TimePeriod *previousTimePeriod = [[TimePeriod objectsWhere:@"startTime = %@", [self getStartTimeForTimePeriod:time]] firstObject];
                 
-//                TimePeriod *previousTimePeriod = [self.timePeriods lastObject];
-                
-                if (previousTimePeriod == nil) {
+                if (previousTimePeriod == nil) { // Didn't find a time Period for this time, lets make one!
                     TimePeriod *newTimePeriod = [[TimePeriod alloc] init];
                     UserRecord *newUserRecord = [[UserRecord alloc] initWithUUID:userUUID andDistance:proximity];
                     
-                   // RLMRealm *backgroundRealm = [RLMRealm defaultRealm];
-                    //[backgroundRealm beginWriteTransaction];
-                    
                     newTimePeriod.startTime = [self getStartTimeForTimePeriod:time];
-//                    [self.timePeriods addObject:newTimePeriod];
                     [newTimePeriod.userRecords addObject:newUserRecord];
                     [backgroundRealm addObject:newTimePeriod];
-                   // [backgroundRealm commitWriteTransaction];
+
                 } else {
                     NSDate *endTimeDate = previousTimePeriod.startTime;
                     NSDate *endTime = [endTimeDate dateByAddingTimeInterval:TIME_INTERVAL];
                     
-                    if ([time timeIntervalSinceReferenceDate] > [previousTimePeriod.startTime timeIntervalSinceReferenceDate] && [time timeIntervalSinceReferenceDate] < [endTime timeIntervalSinceReferenceDate]) {
+                    if ([time timeIntervalSinceReferenceDate] > [previousTimePeriod.startTime timeIntervalSinceReferenceDate] && [time timeIntervalSinceReferenceDate] < [endTime timeIntervalSinceReferenceDate]) { //Found a time period where this start time, This should be the current time period, but we're double checking to be safe
                         
                         BOOL foundUser = NO;
                         
@@ -125,53 +89,26 @@ dispatch_queue_t backgroundQueue() {
                         }
                     }
                     
-                    else if ([time timeIntervalSinceReferenceDate] > [endTime timeIntervalSinceReferenceDate]) {
+                    else if ([time timeIntervalSinceReferenceDate] > [endTime timeIntervalSinceReferenceDate]) { // Wow, we are passed the end time for this time interval, beter create a new one
                         TimePeriod *newTimePeriod = [[TimePeriod alloc] init];
                         UserRecord *newUserRecord = [[UserRecord alloc] initWithUUID:userUUID andDistance:proximity];
                         
-                        //RLMRealm *backgroundRealm = [RLMRealm defaultRealm];
-                        //[backgroundRealm beginWriteTransaction];
-                        
                         newTimePeriod.startTime = [self getStartTimeForTimePeriod:time];
-//                        [self.timePeriods addObject:newTimePeriod];
                         [backgroundRealm addObject:newTimePeriod];
                         [newTimePeriod.userRecords addObject:newUserRecord];
                         
-                        //[backgroundRealm commitWriteTransaction];
                     }
                 }
-//                NSLog(@"The current time period: %@. The user's UUID: %@. Total distance: %d. Number of obs: %d.", [[self.timePeriods lastObject] startTime], [[[[self.timePeriods lastObject] userRecords]lastObject]uUID], [[[[self.timePeriods lastObject] userRecords]lastObject]totalDistance], [[[[self.timePeriods lastObject] userRecords]lastObject]numberOfObs]);
-                //    [self persistToDefaultRealm];
-                [self persistToDefaultRealmOnBackgroundThread];
+
             }];
 
         }
     });
 }
-/*
--(void)generateNewTimePeriodAndUserRecordWithUserUUID:(NSString *)uUID proximity:(int)proximity andTime:(NSDate *)time {
-    dispatch_queue_t queue = backgroundQueue();
-    dispatch_async(queue, ^{
-        
-        TimePeriod *newTimePeriod = [[TimePeriod alloc] init];
-        UserRecord *newUserRecord = [[UserRecord alloc] initWithUUID:uUID andDistance:proximity];
-        
-        RLMRealm *backgroundRealm = [RLMRealm defaultRealm];
-        [backgroundRealm beginWriteTransaction];
-       
-        newTimePeriod.startTime = [self getStartTimeForTimePeriod:time];
-        [self.timePeriods addObject:newTimePeriod];
-        [newTimePeriod.userRecords addObject:newUserRecord];
-        
-        [backgroundRealm commitWriteTransaction];
-    });
-    
-}
-*/
+
 -(void)increaseUserTotalDistanceAndObs:(UserRecord *)userRecord userProximity:(int)proximity {
     dispatch_queue_t queue = backgroundQueue();
     dispatch_async(queue, ^{
-        // [self.writeRealm beginWriteTransaction];
         
         RLMRealm *backgroundRealm = [RLMRealm defaultRealm];
         [backgroundRealm beginWriteTransaction];
@@ -179,7 +116,6 @@ dispatch_queue_t backgroundQueue() {
         userRecord.numberOfObs ++;
         [backgroundRealm commitWriteTransaction];
         
-       // [self.writeRealm commitWriteTransaction];
     });
     
 }
@@ -201,56 +137,9 @@ dispatch_queue_t backgroundQueue() {
     
 }
 
--(void)persistToDefaultRealm {
-    
-//    [self.writeQueue addOperationWithBlock:^{
-//        RLMRealm *defaultRealm = [RLMRealm defaultRealm];
-
-    dispatch_queue_t queue = backgroundQueue();
-    dispatch_async(queue, ^{
-        [self.writeRealm beginWriteTransaction];
-        [self.writeRealm addObjects:self.timePeriods];
-        [self.writeRealm commitWriteTransaction];
-    });
-
-//    dispatch_queue_t queue = backgroundQueue();
-//    dispatch_async(queue, ^{
-//        
-//        [[RLMRealm defaultRealm] transactionWithBlock:^{
-//            [[RLMRealm defaultRealm] addObjects:self.timePeriods];
-//        }];
-//    });
-//    }];
-
-
-}
-
--(void)persistToDefaultRealmOnBackgroundThread {
-//    dispatch_queue_t queue = backgroundQueue();
-//    dispatch_async(queue, ^{
-//        
-//        [[RLMRealm defaultRealm] transactionWithBlock:^{
-//            [[RLMRealm defaultRealm] addObjects:self.timePeriods];
-//        }];
-//        
-//        // Using previous global realm object for saving
-////        [self.writeRealm beginWriteTransaction];
-////        [self.writeRealm addObjects:self.timePeriods];
-////        [self.writeRealm commitWriteTransaction];
-//    });
-}
-
 -(NSMutableArray *)sortingUserRecordsInTimePeriodByProximity:(NSDate *)date {
     
     date = [self getStartTimeForTimePeriod:date]; // rounds down to correct start date
-    
-//    TimePeriod *aTimePeriod = [TimePeriod new];
-//    aTimePeriod.startTime = date;
-    
-    // FETCH IT FROM REALM
-//    self.timePeriods = [[TimePeriod allObjects] mutableCopy];
-    
-//    for (TimePeriod *tp in self.timePeriods) {
 
     for (TimePeriod *tp in [TimePeriod allObjects]) {
         if (date == tp.startTime) { // This is the time period you are looking for

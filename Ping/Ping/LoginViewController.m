@@ -14,13 +14,13 @@
 #import "AppDelegate.h"
 
 #import "MainViewController.h"
-
-#import "UserManager.h"
+#import "LoginManager.h"
+#import "Ping-Swift.h"
 
 @interface LoginViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *linkedInLoginButton;
-@property (strong, nonatomic) UserManager *userManager;
+@property (strong, nonatomic) LoginManager *loginManager;
 
 @end
 
@@ -29,45 +29,40 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.userManager = [UserManager sharedUserManager];
+    //IntegrationManager *integrationManager = [IntegrationManager sharedIntegrationManager];
+    self.loginManager = [LoginManager new];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     
-    PingUser *previouslyLoggedInUser = [self.userManager fetchCurrentUserFromRealm];
+    if (self.loginManager.isFirstTimeUser) {
+        // ToDo display Onboarding else continue
+    }
     
-    if (previouslyLoggedInUser && previouslyLoggedInUser.userUUID) {
-        AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        app.currentUser = previouslyLoggedInUser;
-        
-        // login with but don't create new user
-        [self.userManager createNewSessionWithoutNewUsersWithCompletion:^{
-            [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
+    if (self.loginManager.isLoggedIn) {
+        [self.loginManager attemptToLoginWithCompletion:^(BOOL success) {
+            if (success) {
+                [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
+            } else {
+                // ToDo display error message
+            }
         }];
     }
+    
 }
 
 
 #pragma mark -Actions
 
 - (IBAction)linkedInLoginButtonTapped:(id)sender {
-    // do I have a account already
- 
-    PingUser *previouslyLoggedInUser = [self.userManager fetchCurrentUserFromRealm];
     
-    if (previouslyLoggedInUser && previouslyLoggedInUser.userUUID) { //Yup
-        AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        app.currentUser = previouslyLoggedInUser;
-        
-        // login with but don't create new user
-        [self.userManager createNewSessionWithoutNewUsersWithCompletion:^{
+    [self.loginManager createNewUserAndLoginWithCompletion:^(BOOL success) {
+        if (success) {
             [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
-        }];
-    } else { // NOPE
-        [self.userManager loginAndCreateNewUserWithCompletion:^{
-            [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
-        }];
-    }
+        } else {
+            // Display Error
+        }
+    }];
 }
 
 @end

@@ -10,6 +10,8 @@
 
 @interface CurrentUser : NSObject
 
-@property (strong, nonatomic) PingUser *currentUser; 
+@property (strong, nonatomic) PingUser *currentUser;
+
+- (BOOL)currentUserExists;
 
 @end

@@ -19,15 +19,19 @@
 
 + (instancetype)sharedUserManager;
 
-- (BOOL)previouslyLoggedIn; //check for UUID in UserDefaults, if not there return, else
+// - (BOOL)previouslyLoggedIn; //check for UUID in UserDefaults, if not there return, else
 
-- (void)loginAndCreateNewUserWithCompletion:(void(^)())completion; //Login with linked in, attempt to fetch User, add to backendless
+- (void)loginAndCreateNewUserWithCompletion:(void(^)(BOOL))completion; //Login with linked in, attempt to fetch User, add to backendless
 
-- (void)createNewSessionWithoutNewUsersWithCompletion:(void(^)())completion;
+- (void)createNewSessionWithoutNewUsersWithCompletion:(void(^)(BOOL))completion;
+
+- (void)setProfilePicForUser:(PingUser *)user WithCompletion:(void(^)())completion;
+- (void)saveBackendlessUser:(PingUser *)user;
 
 - (PingUser *)userForUUID:(NSString *)uuid;
 - (void)updateUserList;
 
+- (BOOL)currentUserExists;
 - (PingUser *)fetchCurrentUserFromRealm;
 - (void)persistCurrentUserToRealm:(PingUser *)currentUser;
 

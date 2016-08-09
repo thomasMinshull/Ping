@@ -7,14 +7,13 @@
 //
 
 #import "UserManager.h"
-#import <linkedin-sdk/LISDK.h>
 #import "PingUser.h"
 #import "CurrentUser.h"
 #import "Backendless.h"
 #import "PingUserRealm.h"
 
 #import "AppDelegate.h"
-
+#import <linkedin-sdk/LISDK.h>
 #define LINKEDIN_USER_URL @"https://api.linkedin.com/v1/people/~"
 #define LINKEDIN_ADDITIONAL_INFO_URL @"https://api.linkedin.com/v1/people/~:(id,num-connections,picture-url)?format=json"
 
@@ -88,105 +87,66 @@
 
 #pragma  mark -Loggin Methods 
 
-- (BOOL)previouslyLoggedIn {
-    //query keychain
-    
-    NSMutableDictionary *query = [@{
-                                    (__bridge id)kSecReturnAttributes : (__bridge id)kCFBooleanTrue,
-                                    (__bridge id)kSecMatchLimit : (__bridge id)kSecMatchLimitAll,
-                                    (__bridge id)kSecClass : (__bridge id)kSecClassGenericPassword,
-                                    (__bridge id)kSecReturnData : (__bridge  id)kCFBooleanTrue
-                                    } mutableCopy];
-    
-    CFTypeRef result = NULL;
-    SecItemCopyMatching((__bridge CFDictionaryRef)query, &result);
-    NSLog(@"%@", (__bridge id)result);
-    
-    if (result != NULL) { // We found the key, maybe we should check it
-        return YES; // Nahh never mind :P
-        
-//              [self createNewSessionWithoutNewUsers];
-    }
-    return NO;
-    
-    /* ToDo Unfinished Code used to validate the key and create new session 
-     NSArray *resultArray = (__bridge_transfer NSArray *)result;
-     NSDictionary *resultDict = [resultArray firstObject];
-     NSData *pswd = resultDict[(__bridge id)kSecValueData];
-     NSString *password = [[NSString alloc] initWithData:pswd encoding:NSUTF16StringEncoding];
-     
-     NSLog(@"serialized token: %@", password);
-     //CFRelease(result);
-     
-     
-     [LISDKSessionManager createSessionWithAccessToken:[LISDKAccessToken LISDKAccessTokenWithSerializedString:password]];
-     
-     [self createNewSession];
-     
-     NSLog(@"ACcess tokens %@ ::::: %@",[[LISDKSessionManager sharedInstance].session.accessToken serializedString], password);
-     */
-}
+//- (void)createNewSessionWithoutNewUsersWithCompletion:(void(^)(bool))completion {
+//    [LISDKSessionManager createSessionWithAuth:@[LISDK_BASIC_PROFILE_PERMISSION] state:@"login with button" showGoToAppStoreDialog:YES successBlock:^(NSString *state) {
+//        NSLog(@"Success Segue to new screen");
+//        completion(true);
+//    } errorBlock:^(NSError *error) {
+//        NSLog(@"Error when logging in with LinkedIn %@", error);
+//        //ToDo display error message to user
+//        completion(false);
+//        
+//    }];
+//}
 
 
-- (void)createNewSessionWithoutNewUsersWithCompletion:(void(^)())completion {
-    [LISDKSessionManager createSessionWithAuth:@[LISDK_BASIC_PROFILE_PERMISSION] state:@"login with button" showGoToAppStoreDialog:YES successBlock:^(NSString *state) {
-        NSLog(@"Success Segue to new screen");
-        completion();
-    } errorBlock:^(NSError *error) {
-        NSLog(@"Error when logging in with LinkedIn %@", error);
-        //ToDo display error message to user
-        
-    }];
-}
+//- (void)createUserWithCompletion:(void(^)(bool))completion {
+//
+//        [[LISDKAPIHelper sharedInstance] getRequest:LINKEDIN_USER_URL
+//                                            success:^(LISDKAPIResponse *response) {
+//                                                NSLog(@"got user profile: %@", response.data);
+//                                                
+//                                                PingUser *selfUser = [self createUserWithResponseString:response.data];
+//                                                NSLog(@"self user uuid: %@", selfUser.userUUID);
+//                                                
+//                                                AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+//                                                
+//                                                app.currentUser = selfUser;
+//                                                
+//                                                // Add Profile Pic
+//                                                
+//                                                __weak UserManager *weakSelf = self;
+//                                                [self setProfilePicForUser:selfUser WithCompletion:^{
+//                                                    
+//                                                    [weakSelf saveBackendlessUser:selfUser];
+//                                                    // save to realm as current user
+//                                                    [weakSelf persistCurrentUserToRealm:selfUser];
+//                                                }];
+//                                                
+//                                                completion(true);
+//                                            }
+//                                              error:^(LISDKAPIError *apiError) {
+//                                                  // do something with error
+//                                                  NSLog(@"Failed to get user profile: %@", apiError);
+//                                                  
+//                                                  completion(false);
+//                                              }];
+//}
 
-
-- (void)createUserWithCompletion:(void(^)())completion {
-
-        [[LISDKAPIHelper sharedInstance] getRequest:LINKEDIN_USER_URL
-                                            success:^(LISDKAPIResponse *response) {
-                                                NSLog(@"got user profile: %@", response.data);
-                                                
-                                                PingUser *selfUser = [self createUserWithResponseString:response.data];
-                                                NSLog(@"self user uuid: %@", selfUser.userUUID);
-                                                
-                                                AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-                                                
-                                                app.currentUser = selfUser;
-                                                
-                                                // Add Profile Pic
-                                                
-                                                __weak UserManager *weakSelf = self;
-                                                [self setProfilePicForUser:selfUser WithCompletion:^{
-                                                    
-                                                    [weakSelf saveBackendlessUser:selfUser];
-                                                    // save to realm as current user
-                                                    [weakSelf persistCurrentUserToRealm:selfUser];
-                                                }];
-                                                
-                                                completion();
-                                            }
-                                              error:^(LISDKAPIError *apiError) {
-                                                  // do something with error
-                                                  NSLog(@"Failed to get user profile: %@", apiError);
-                                                  
-                                                  //ToDo display error
-                                              }];
-}
-
-- (PingUser *)createUserWithResponseString:(NSString *)response {
-    NSData *responseData = [response dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSError *jsonError;
-    
-    NSDictionary *myProfile = [NSJSONSerialization JSONObjectWithData:responseData
-                                                              options:NSJSONReadingMutableContainers
-                                                                error:&jsonError];
-    
-    PingUser *selfUser = [[PingUser alloc] init];
-    [selfUser setPropertiesWithProfileDictionary:myProfile];
-    
-    return selfUser;
-}
+//- (PingUser *)createUserWithResponseString:(NSString *)response {
+//    NSData *responseData = [response dataUsingEncoding:NSUTF8StringEncoding];
+//    
+//    NSError *jsonError;
+//    
+//    NSDictionary *myProfile = [NSJSONSerialization JSONObjectWithData:responseData
+//                                                              options:NSJSONReadingMutableContainers
+//                                                                error:&jsonError];
+//    
+//    PingUser *selfUser = [[PingUser alloc] init];
+//    [selfUser setPropertiesWithProfileDictionary:myProfile];
+//    
+//    return selfUser;
+//}
 
 - (void)setProfilePicForUser:(PingUser *)user WithCompletion:(void(^)())completion {
     [[LISDKAPIHelper sharedInstance] getRequest:LINKEDIN_ADDITIONAL_INFO_URL success:^(LISDKAPIResponse *response) {
@@ -224,24 +184,30 @@
     NSLog(@"log global list of users: %@", collection);
 }
 
-- (void)loginAndCreateNewUserWithCompletion:(void(^)())completion {
-    [LISDKSessionManager createSessionWithAuth:@[LISDK_BASIC_PROFILE_PERMISSION] state:@"login with button" showGoToAppStoreDialog:YES successBlock:^(NSString *state) {
-        NSLog(@"Success Segue to new screen");
-        
-        // ToDo am I a new user? check realm for currentUser
-        
-        
-        // if currentUser does not exist in realm
-        [self createUserWithCompletion:completion];
-        
-    } errorBlock:^(NSError *error) {
-        NSLog(@"Error when logging in with LinkedIn %@", error);
-        
-        //ToDo display error message to user
-        
-    }];
-}
+//- (void)loginAndCreateNewUserWithCompletion:(void(^)(bool))completion {
+//    [LISDKSessionManager createSessionWithAuth:@[LISDK_BASIC_PROFILE_PERMISSION] state:@"login with button" showGoToAppStoreDialog:YES successBlock:^(NSString *state) {
+//        NSLog(@"Success Segue to new screen");
+//        
+//        // ToDo am I a new user? check realm for currentUser
+//        
+//        // if currentUser does not exist in realm
+//        [self createUserWithCompletion:completion];
+//        
+//    } errorBlock:^(NSError *error) {
+//        NSLog(@"Error when logging in with LinkedIn %@", error);
+//        
+//        //ToDo display error message to user
+//        completion(false);
+//    }];
+//}
 
+//- (BOOL)currentUserExists {
+//    if ([self.currentRealmUser isEmpty]) {
+//        return false;
+//    } else {
+//        return true;
+//    }
+//}
 
 - (void)persistCurrentUserToRealm:(PingUser *)currentUser {
     // wrap in queue ?
@@ -276,14 +242,6 @@
 - (void)realmUserFromBackendlessUser:(PingUser *)backendlessUser {
     
 }
-
-//- (BOOL)isUserListUpToDate {
-//    return true;
-//}
-
-//- (BOOL)profilePicExistesForUser:(PingUser *)user {
-//    return NO;
-//}
 
 - (void)stopScanning {
     [self.blueToothManager stop];
