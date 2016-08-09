@@ -31,6 +31,10 @@
 
 @property NSMutableArray *cbuuidLists;
 
+@property NSTimer *myTimer;
+@property BOOL isScanning;
+@property BOOL isTimerValid;
+
 @end
 
 @implementation BlueToothManager
@@ -44,24 +48,42 @@
         sharedrecordManager.recordManager = [RecordManager new];
     });
     
-//    [sharedrecordManager start];
     
     return sharedrecordManager;
 }
 
 #pragma mark - Start and Stop
 
+-(void)flickSwitch:(NSTimer *)timer{
+    if (self.isTimerValid) {
+        if (self.isScanning == TRUE) {
+            //////
+            [self.centralManager stopScan];
+            self.isScanning = FALSE;
+            ///////
+            NSLog(@"switch flicked to false");
+        }else{
+            //////
+            [self scan];
+            self.isScanning = TRUE;
+            //////
+            NSLog(@"switch flicked to true");
+        }
+    }
+}
+
 -(void)start{
+    self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:self.currentUserUUID]]}];
-    
-    [self scan];
+    self.isTimerValid = TRUE;
+    NSLog(@"timer on");
 }
 
 -(void)stop{
     [self.peripheralManager stopAdvertising];
+    self.isTimerValid = FALSE;
+    NSLog(@"timer off");
     
-    [self.centralManager stopScan];
-    NSLog(@"Scanning stopped, Advertising stopped");
 }
 
 #pragma mark - Lifecycle
@@ -80,16 +102,19 @@
         
         self.cbuuidLists = [NSMutableArray array];
         
+        self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+        
+        self.isScanning = FALSE;
+        self.isTimerValid = FALSE;
+        self.myTimer = [NSTimer scheduledTimerWithTimeInterval: 1.0f
+                                                        target: self
+                                                      selector:@selector(flickSwitch:)
+                                                      userInfo: nil repeats:YES];
         //chaning uuid to cbuuid
         for(NSString *aUUIDString in self.uuidList){
             CBUUID *cbuuidString = [CBUUID UUIDWithString:aUUIDString];
             [self.cbuuidLists addObject:cbuuidString];
         }
-        
-        _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
-        
-        _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
-        
     }
     return self;
 }
@@ -166,7 +191,7 @@
         NSNumber *proximity = [self.fetchedDistances lastObject];
         [self.recordManager storeBlueToothDataByUUID:[self.fetchedUUIDs lastObject] userProximity:[proximity intValue] andTime:[self.fetchedTimeStamp lastObject]];
         
-        NSLog(@"blueToothData: %@, %@, %@", [self.fetchedUUIDs lastObject],[self.fetchedDistances lastObject],[self.fetchedTimeStamp lastObject]);
+        NSLog(@"blueToothData: %@, %d, %@", [self.fetchedUUIDs lastObject],[proximity intValue],[self.fetchedTimeStamp lastObject]);
     }
     ////////////////////////////////////////////////////////////////////////////
 }
