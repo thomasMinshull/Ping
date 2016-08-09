@@ -24,8 +24,6 @@
 //    return @[];
 //}
 
-// Realm objects do NOT support initializing.........................................................sadness
-
 - (instancetype)initWithPingUserValue:(PingUser *)aPingUser
 {
     self = [super init];
