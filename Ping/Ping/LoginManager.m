@@ -7,26 +7,35 @@
 //
 
 #import "LoginManager.h"
-#import "PingUserRealm.h"
+#import "UserManager.h"
+#import "CurrentUser.h"
+#import "User.h"
 #import <linkedin-sdk/LISDK.h>
+#import "Ping-Swift.h"
 
 #define LINKEDIN_USER_URL @"https://api.linkedin.com/v1/people/~"
 #define LINKEDIN_ADDITIONAL_INFO_URL @"https://api.linkedin.com/v1/people/~:(id,num-connections,picture-url)?format=json"
 
-//will need to be deleted once we have current user cleaned up
-#import "UserManager.h"
-#import "AppDelegate.h"
 
 @interface LoginManager ()
 
-@property (nonatomic) RLMRealm *currentRealmUser; // should be getting this from realm
+@property (weak, nonatomic) IntegrationManager *iM;
 
 @end
 
 @implementation LoginManager
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.iM = [IntegrationManager sharedIntegrationManager];
+    }
+    return self;
+}
+
 - (BOOL)isFirstTimeUser {
-    if ([self.currentRealmUser isEmpty]) {
+    if ([CurrentUser getCurrentUser]) {
         return false;
     } else {
         return true;
@@ -34,7 +43,9 @@
 }
 
 - (BOOL)isLoggedIn {
-    if (![self.currentRealmUser isEmpty] && [UserManager sharedUserManager].fetchCurrentUserFromRealm.userUUID ) { // need to just get current user and check the UUID directly
+    CurrentUser *currentUser = [CurrentUser getCurrentUser];
+    if (!currentUser && currentUser.UUID ) {
+        // need to just get current user and check the UUID directly
         return true;
     } else {
         return false;
@@ -78,24 +89,24 @@
                                         success:^(LISDKAPIResponse *response) {
                                             NSLog(@"got user profile: %@", response.data);
                                             
-                                            PingUser *selfUser = [self createUserWithResponseString:response.data];
-                                            NSLog(@"self user uuid: %@", selfUser.userUUID);
+                                            NSData *responseData = [(NSString *)response dataUsingEncoding:NSUTF8StringEncoding];
                                             
+                                            NSError *jsonError;
                                             
-                                            // ToDo store current user in realm
-                                            AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                                            NSDictionary *currentProfile = [NSJSONSerialization JSONObjectWithData:responseData
+                                                                                                      options:NSJSONReadingMutableContainers
+                                                                                                        error:&jsonError];
                                             
-                                            app.currentUser = selfUser;
+                                            CurrentUser *currentUser;
+                                            @synchronized (self) {// make sure we can't create duplicate users
+                                                if (![CurrentUser getCurrentUser] && !jsonError) {
+                                                    currentUser = [CurrentUser makeCurrentUserWithProfileDictionary:currentProfile];
+                                                }
+                                            }
+                                            NSLog(@"self user uuid: %@", currentUser.UUID);
                                             
                                             // Add Profile Pic
-                                            
-                                            __weak UserManager *um = [UserManager sharedUserManager];
-                                            [um setProfilePicForUser:selfUser WithCompletion:^{
-                                                
-                                                [um saveBackendlessUser:selfUser];
-                                                // save to realm as current user
-                                                [um persistCurrentUserToRealm:selfUser];
-                                            }];
+                                            [self.iM.userManager setProfilePicForUser:currentUser WithCompletion:nil];
                                             
                                             completion(true);
                                         }

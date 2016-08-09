@@ -13,12 +13,11 @@ public class IntegrationManager: NSObject {
     public static let sharedIntegrationManager = IntegrationManager()
     
     //MARK: Properties
-    public let userManager:UserManager
-    public let blueToothManager:BlueToothManager
+    public let loginManager:LoginManager = LoginManager()
+    public let userManager:UserManager = UserManager()
+    public let blueToothManager:BlueToothManager = BlueToothManager()
     
     private override init() {
-        self.userManager = UserManager()
-        self.blueToothManager = BlueToothManager()
     }
     
     

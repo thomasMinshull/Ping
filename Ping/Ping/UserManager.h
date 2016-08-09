@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PingUser.h"
+#import "User.h"
 #import <Realm/Realm.h>
 #import "BlueToothManager.h"
 
@@ -15,27 +15,19 @@
 
 @property (strong, nonatomic) BlueToothManager *blueToothManager;
 @property (strong, nonatomic)NSMutableSet *userList;
-//@property (strong, nonatomic)PingUser *currentUser; // may end up storing as realm user
 
 + (instancetype)sharedUserManager;
 
-// - (BOOL)previouslyLoggedIn; //check for UUID in UserDefaults, if not there return, else
+- (void)setProfilePicForUser:(User *)user WithCompletion:(void(^)())completion;
 
-- (void)loginAndCreateNewUserWithCompletion:(void(^)(BOOL))completion; //Login with linked in, attempt to fetch User, add to backendless
+- (void)saveBackendlessUser:(User *)user; // this is only ever used to save current user, may want to refactor to reflect this?
 
-- (void)createNewSessionWithoutNewUsersWithCompletion:(void(^)(BOOL))completion;
-
-- (void)setProfilePicForUser:(PingUser *)user WithCompletion:(void(^)())completion;
-- (void)saveBackendlessUser:(PingUser *)user;
-
-- (PingUser *)userForUUID:(NSString *)uuid;
+- (User *)userForUUID:(NSString *)uuid;
 - (void)updateUserList;
 
-- (BOOL)currentUserExists;
-- (PingUser *)fetchCurrentUserFromRealm;
-- (void)persistCurrentUserToRealm:(PingUser *)currentUser;
-
+// refactor into integration manager
 - (void)setUp;
 - (void)stopScanning;
+
 @end
 

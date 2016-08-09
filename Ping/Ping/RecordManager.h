@@ -19,7 +19,7 @@ RLM_ARRAY_TYPE(TimePeriod)
 -(void)storeBlueToothDataByUUID:(NSString *)userUUID userProximity:(int)proximity andTime:(NSDate *)time;
 -(NSDate *)getStartTimeForTimePeriod:(NSDate *)time;
 -(void)increaseUserTotalDistanceAndObs:(UserRecord *)userRecord userProximity:(int)proximity;
--(void)persistToDefaultRealm;
+//-(void)persistToDefaultRealm;
 -(NSMutableArray *)sortingUserRecordsInTimePeriodByProximity:(NSDate *)date;
 
 @end

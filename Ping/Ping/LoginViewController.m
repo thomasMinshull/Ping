@@ -14,13 +14,13 @@
 #import "AppDelegate.h"
 
 #import "MainViewController.h"
-#import "LoginManager.h"
 #import "Ping-Swift.h"
+#import "LoginManager.h"
 
 @interface LoginViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *linkedInLoginButton;
-@property (strong, nonatomic) LoginManager *loginManager;
+@property (strong, nonatomic) IntegrationManager *iM;
 
 @end
 
@@ -29,18 +29,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //IntegrationManager *integrationManager = [IntegrationManager sharedIntegrationManager];
-    self.loginManager = [LoginManager new];
+    self.iM = [IntegrationManager sharedIntegrationManager];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     
-    if (self.loginManager.isFirstTimeUser) {
+    if (self.iM.loginManager.isFirstTimeUser) {
         // ToDo display Onboarding else continue
     }
     
-    if (self.loginManager.isLoggedIn) {
-        [self.loginManager attemptToLoginWithCompletion:^(BOOL success) {
+    if (self.iM.loginManager.isLoggedIn) {
+        [self.iM.loginManager attemptToLoginWithCompletion:^(BOOL success) {
             if (success) {
                 [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
             } else {
@@ -56,7 +56,7 @@
 
 - (IBAction)linkedInLoginButtonTapped:(id)sender {
     
-    [self.loginManager createNewUserAndLoginWithCompletion:^(BOOL success) {
+    [self.iM.loginManager createNewUserAndLoginWithCompletion:^(BOOL success) {
         if (success) {
             [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
         } else {
