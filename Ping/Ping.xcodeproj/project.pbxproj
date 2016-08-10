@@ -31,6 +31,7 @@
 		55AD89381D4B87F90097DE9B /* AverageUUidDuple.m in Sources */ = {isa = PBXBuildFile; fileRef = 55AD89371D4B87F90097DE9B /* AverageUUidDuple.m */; };
 		71678BD4F8B7654916D3F4B0 /* libPods-Ping.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 099398FE9E3F4648F16B801E /* libPods-Ping.a */; };
 		9C18CAF81D4AE89B008519E1 /* PingUserRealm.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C18CAF71D4AE89B008519E1 /* PingUserRealm.m */; };
+		9C4ACDB21D5AC1DE0012887A /* EventCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4ACDB11D5AC1DE0012887A /* EventCalendarViewController.m */; };
 		9C60CDE41D593A9100139C48 /* Event+EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C60CDE31D593A9100139C48 /* Event+EventManager.m */; };
 		9C93654E1D5925B0009E6262 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C93654D1D5925B0009E6262 /* Comment.m */; };
 		9C9365511D59287B009E6262 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9365501D59287B009E6262 /* Event.m */; };
@@ -77,6 +78,8 @@
 		55AD89371D4B87F90097DE9B /* AverageUUidDuple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AverageUUidDuple.m; sourceTree = "<group>"; };
 		9C18CAF61D4AE89B008519E1 /* PingUserRealm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingUserRealm.h; sourceTree = "<group>"; };
 		9C18CAF71D4AE89B008519E1 /* PingUserRealm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingUserRealm.m; sourceTree = "<group>"; };
+		9C4ACDB01D5AC1DE0012887A /* EventCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCalendarViewController.h; sourceTree = "<group>"; };
+		9C4ACDB11D5AC1DE0012887A /* EventCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCalendarViewController.m; sourceTree = "<group>"; };
 		9C60CDE21D593A9100139C48 /* Event+EventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Event+EventManager.h"; sourceTree = "<group>"; };
 		9C60CDE31D593A9100139C48 /* Event+EventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Event+EventManager.m"; sourceTree = "<group>"; };
 		9C9365491D592471009E6262 /* Ping-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ping-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -214,6 +217,8 @@
 				55A0985C1D46CB3E005100BC /* LoginViewController.m */,
 				55A099051D498F27005100BC /* MainViewController.h */,
 				55A099061D498F27005100BC /* MainViewController.m */,
+				9C4ACDB01D5AC1DE0012887A /* EventCalendarViewController.h */,
+				9C4ACDB11D5AC1DE0012887A /* EventCalendarViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -467,6 +472,7 @@
 				5599E78D1D499E1C00E61B0E /* UserRecord.m in Sources */,
 				55AD89351D4AD5B80097DE9B /* CurrentUser.m in Sources */,
 				5599E78B1D499E1C00E61B0E /* RecordManager.m in Sources */,
+				9C4ACDB21D5AC1DE0012887A /* EventCalendarViewController.m in Sources */,
 				55AD89381D4B87F90097DE9B /* AverageUUidDuple.m in Sources */,
 				9C60CDE41D593A9100139C48 /* Event+EventManager.m in Sources */,
 				5594DB001D45E2DE0096D5DF /* AppDelegate.m in Sources */,
