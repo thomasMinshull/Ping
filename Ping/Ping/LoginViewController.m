@@ -20,7 +20,6 @@
 @interface LoginViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *linkedInLoginButton;
-@property (strong, nonatomic) IntegrationManager *iM;
 
 @end
 
@@ -28,19 +27,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.iM = [IntegrationManager sharedIntegrationManager];
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     
-    if (self.iM.loginManager.isFirstTimeUser) {
+    IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
+    
+    if (iM.loginManager.isFirstTimeUser) {
         // ToDo display Onboarding else continue
+        NSLog(@"First time user");
     }
     
-    if (self.iM.loginManager.isLoggedIn) {
-        [self.iM.loginManager attemptToLoginWithCompletion:^(BOOL success) {
+    if (iM.loginManager.isLoggedIn) {
+        [iM.loginManager attemptToLoginWithCompletion:^(BOOL success) {
             if (success) {
                 [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
             } else {
@@ -55,8 +54,9 @@
 #pragma mark -Actions
 
 - (IBAction)linkedInLoginButtonTapped:(id)sender {
+    IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
     
-    [self.iM.loginManager createNewUserAndLoginWithCompletion:^(BOOL success) {
+    [iM.loginManager createNewUserAndLoginWithCompletion:^(BOOL success) {
         if (success) {
             [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
         } else {

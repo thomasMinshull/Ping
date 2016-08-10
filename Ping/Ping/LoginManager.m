@@ -17,22 +17,7 @@
 #define LINKEDIN_ADDITIONAL_INFO_URL @"https://api.linkedin.com/v1/people/~:(id,num-connections,picture-url)?format=json"
 
 
-@interface LoginManager ()
-
-@property (weak, nonatomic) IntegrationManager *iM;
-
-@end
-
 @implementation LoginManager
-
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        self.iM = [IntegrationManager sharedIntegrationManager];
-    }
-    return self;
-}
 
 - (BOOL)isFirstTimeUser {
     if ([CurrentUser getCurrentUser]) {
@@ -44,7 +29,7 @@
 
 - (BOOL)isLoggedIn {
     CurrentUser *currentUser = [CurrentUser getCurrentUser];
-    if (!currentUser && currentUser.UUID ) {
+    if (currentUser && currentUser.UUID ) {
         // need to just get current user and check the UUID directly
         return true;
     } else {
@@ -89,7 +74,9 @@
                                         success:^(LISDKAPIResponse *response) {
                                             NSLog(@"got user profile: %@", response.data);
                                             
-                                            NSData *responseData = [(NSString *)response dataUsingEncoding:NSUTF8StringEncoding];
+                                            NSString *responseString = response.data;
+                                            
+                                            NSData *responseData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
                                             
                                             NSError *jsonError;
                                             
@@ -106,7 +93,8 @@
                                             NSLog(@"self user uuid: %@", currentUser.UUID);
                                             
                                             // Add Profile Pic
-                                            [self.iM.userManager setProfilePicForUser:currentUser WithCompletion:nil];
+                                            IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
+                                            [iM.userManager setProfilePicForUser:currentUser WithCompletion:nil];
                                             
                                             completion(true);
                                         }
@@ -117,22 +105,5 @@
                                               completion(false);
                                           }];
 }
-
-- (PingUser *)createUserWithResponseString:(NSString *)response {
-    NSData *responseData = [response dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSError *jsonError;
-    
-    NSDictionary *myProfile = [NSJSONSerialization JSONObjectWithData:responseData
-                                                              options:NSJSONReadingMutableContainers
-                                                                error:&jsonError];
-    
-    PingUser *selfUser = [[PingUser alloc] init];
-    [selfUser setPropertiesWithProfileDictionary:myProfile];
-    
-    return selfUser;
-}
-
-
 
 @end

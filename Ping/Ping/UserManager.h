@@ -13,10 +13,7 @@
 
 @interface UserManager : NSObject
 
-@property (strong, nonatomic) BlueToothManager *blueToothManager;
-@property (strong, nonatomic)NSMutableSet *userList;
-
-+ (instancetype)sharedUserManager;
+@property (strong, nonatomic) NSMutableArray *uuids;
 
 - (void)setProfilePicForUser:(User *)user WithCompletion:(void(^)())completion;
 
@@ -27,7 +24,6 @@
 
 // refactor into integration manager
 - (void)setUp;
-- (void)stopScanning;
 
 @end
 

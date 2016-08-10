@@ -11,8 +11,7 @@
 
 @interface BlueToothManager : NSObject
 
-+ (instancetype)sharedrecordManager:(NSArray *)uuidList andCurrentUUID:(NSString *)currentUUID;
-
+- (void)setUUIDList:(NSArray *)uuidList andCurrentUUID:(NSString *)currentUUID;
 - (void)start;
 - (void)stop;
 

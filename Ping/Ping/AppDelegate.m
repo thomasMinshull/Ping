@@ -7,7 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "Ping-Bridging-Header.h"
 #import "UserManager.h"
+#import "Ping-Swift.h"
 
 #import <linkedin-sdk/LISDK.h>
 #import "Backendless.h"
@@ -27,11 +29,8 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
- 
-
-    NSLog(@"app will terminate");
-   // [self.userManger stopScanning];
+IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
+   [iM.blueToothManager stop];
 }
 
 #pragma mark -LinkedIn SDK

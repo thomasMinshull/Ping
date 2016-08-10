@@ -11,7 +11,8 @@
 #import "UserManager.h"
 #import "PingUserTableViewCell.h"
 #import <linkedin-sdk/LISDK.h>
-
+#import "Ping-Swift.h"
+#import "CurrentUser.h"
 
 @interface MainViewController ()  <UITableViewDelegate, UITableViewDataSource>
 
@@ -33,9 +34,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
+//    [iM.blueToothManager setUUIDList:iM.userManager.uuids andCurrentUUID:[CurrentUser getCurrentUser].UUID]; // ToDo refactor to remove passing in Current
+//    
 
     self.recordManager = [[RecordManager alloc] init];
-    self.userManager = [UserManager sharedUserManager];
     
     [self.userManager setUp];
     
@@ -76,13 +79,6 @@
 //    
 //    self.orderedListOfUsers = [@[hardCodedUser, martin, hardCodedUser, hardCodedUser, martin] mutableCopy];
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    
-    NSLog(@"Received Memory Warning");
-    [self.userManager stopScanning];
-}
-
 
 #pragma mark -TableViewDataSourceMethods
 
@@ -108,9 +104,11 @@
     
 //    PingUserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PingUserTableViewCell"];
     
-    PingUser *user = [self.userManager userForUUID:self.orderedListOfUUIDs[indexPath.row]];
+    IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
     
-    [cell setUpWithPingUser:user];
+    User *user = [iM.userManager userForUUID:self.orderedListOfUUIDs[indexPath.row]];
+    
+    [cell setUpWithUser:user];
     return cell;
 }
 
@@ -142,18 +140,17 @@
 }
 
 - (IBAction)switchChanged:(id)sender {
-    {
-        if (self.advertisingSwitch.on) {
-            [self.userManager.blueToothManager start];
-        }
-        
-        else {
-            [self.userManager.blueToothManager stop];
-        }
+    IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
+    if (self.advertisingSwitch.on) {
+        [iM.blueToothManager start];
+    }
+    
+    else {
+        [iM.blueToothManager stop];
     }
 }
 
-#pragma mark -Helper Methodes 
+#pragma mark -Helper Methodes
 
 // ToDo refactored martin's code so we "should" be able to delete this 
 

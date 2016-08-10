@@ -14,12 +14,9 @@ RLM_ARRAY_TYPE(TimePeriod)
 
 @interface RecordManager : NSObject
 
-//@property (nonatomic) NSMutableArray *timePeriods;
-
 -(void)storeBlueToothDataByUUID:(NSString *)userUUID userProximity:(int)proximity andTime:(NSDate *)time;
 -(NSDate *)getStartTimeForTimePeriod:(NSDate *)time;
 -(void)increaseUserTotalDistanceAndObs:(UserRecord *)userRecord userProximity:(int)proximity;
-//-(void)persistToDefaultRealm;
 -(NSMutableArray *)sortingUserRecordsInTimePeriodByProximity:(NSDate *)date;
 
 @end
