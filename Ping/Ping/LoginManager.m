@@ -74,20 +74,12 @@
                                         success:^(LISDKAPIResponse *response) {
                                             NSLog(@"got user profile: %@", response.data);
                                             
-                                            NSString *responseString = response.data;
-                                            
-                                            NSData *responseData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
-                                            
-                                            NSError *jsonError;
-                                            
-                                            NSDictionary *currentProfile = [NSJSONSerialization JSONObjectWithData:responseData
-                                                                                                      options:NSJSONReadingMutableContainers
-                                                                                                        error:&jsonError];
+                                            NSDictionary *responseDictionary = (NSDictionary *)response.data;
                                             
                                             CurrentUser *currentUser;
                                             @synchronized (self) {// make sure we can't create duplicate users
-                                                if (![CurrentUser getCurrentUser] && !jsonError) {
-                                                    currentUser = [CurrentUser makeCurrentUserWithProfileDictionary:currentProfile];
+                                                if (![CurrentUser getCurrentUser]) {
+                                                    currentUser = [CurrentUser makeCurrentUserWithProfileDictionary:responseDictionary];
                                                 }
                                             }
                                             NSLog(@"self user uuid: %@", currentUser.UUID);
