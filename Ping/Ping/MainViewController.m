@@ -20,7 +20,6 @@
 @property (weak, nonatomic) IBOutlet UISwitch *advertisingSwitch;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (strong, nonatomic) NSMutableArray<PingUser *> *orderedListOfUsers; // might be able to delete 
 @property (strong, nonatomic) NSArray<NSString *> *orderedListOfUUIDs;
 
 @property (strong, nonatomic) UserManager *userManager;

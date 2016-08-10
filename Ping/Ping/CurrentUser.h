@@ -14,8 +14,10 @@
 
 + (CurrentUser *)makeCurrentUserWithProfileDictionary:(NSDictionary *)dic;
 + (CurrentUser *)getCurrentUser;
-- (void)setCurrentUserProfilePic:(NSString *)profilePicURL;
 - (void)save;
+
+
+-(id)responseHandler:(id)response;
 
 @end
 

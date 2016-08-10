@@ -74,19 +74,23 @@
                                         success:^(LISDKAPIResponse *response) {
                                             NSLog(@"got user profile: %@", response.data);
                                             
-                                            NSDictionary *responseDictionary = (NSDictionary *)response.data;
+                                            NSData *data = [response.data dataUsingEncoding:NSUTF8StringEncoding];
+                                            
+                                            NSError *error;
+
+                                            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+                                            
                                             
                                             CurrentUser *currentUser;
                                             @synchronized (self) {// make sure we can't create duplicate users
                                                 if (![CurrentUser getCurrentUser]) {
-                                                    currentUser = [CurrentUser makeCurrentUserWithProfileDictionary:responseDictionary];
+                                                    currentUser = [CurrentUser makeCurrentUserWithProfileDictionary:json];
                                                 }
                                             }
                                             NSLog(@"self user uuid: %@", currentUser.UUID);
                                             
                                             // Add Profile Pic
-                                            IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
-                                            [iM.userManager setProfilePicForUser:currentUser WithCompletion:nil];
+                                            [self setProfilePicForUser:currentUser];
                                             
                                             completion(true);
                                         }
@@ -96,6 +100,27 @@
                                               
                                               completion(false);
                                           }];
+}
+
+
+
+- (void)setProfilePicForUser:(User *)user {
+    [[LISDKAPIHelper sharedInstance] getRequest:LINKEDIN_ADDITIONAL_INFO_URL success:^(LISDKAPIResponse *response) {
+        NSLog(@"successfully retrieved profile pic with response: %@", response.data);
+        
+        NSData *profilePicResponse = [response.data dataUsingEncoding:NSUTF8StringEncoding];
+        
+        NSError *picError;
+        NSDictionary *myPic = [NSJSONSerialization JSONObjectWithData:profilePicResponse
+                                                              options:NSJSONReadingMutableContainers
+                                                                error:&picError];
+        NSString *picURl = myPic[@"pictureUrl"];
+        
+        [user addProfilePic:picURl];
+        
+    } error:^(LISDKAPIError *error) {
+        NSLog(@"Error when loading profile Pic: %@", error);
+    }];
 }
 
 @end

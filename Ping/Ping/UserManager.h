@@ -15,8 +15,6 @@
 
 @property (strong, nonatomic) NSMutableArray *uuids;
 
-- (void)setProfilePicForUser:(User *)user WithCompletion:(void(^)())completion;
-
 - (void)saveBackendlessUser:(User *)user; // this is only ever used to save current user, may want to refactor to reflect this?
 
 - (User *)userForUUID:(NSString *)uuid;

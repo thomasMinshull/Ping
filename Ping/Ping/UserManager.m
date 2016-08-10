@@ -80,27 +80,6 @@
     return nil;
 }
 
-- (void)setProfilePicForUser:(User *)user WithCompletion:(void(^)())completion {
-    [[LISDKAPIHelper sharedInstance] getRequest:LINKEDIN_ADDITIONAL_INFO_URL success:^(LISDKAPIResponse *response) {
-        NSLog(@"successfully retrieved profile pic with response: %@", response.data);
-        
-        NSData *profilePicResponse = [response.data dataUsingEncoding:NSUTF8StringEncoding];
-        
-        NSError *picError;
-        NSDictionary *myPic = [NSJSONSerialization JSONObjectWithData:profilePicResponse
-                                                              options:NSJSONReadingMutableContainers
-                                                                error:&picError];
-        NSString *picURl = myPic[@"pictureUrl"];
-        
-        [user addProfilePic:picURl];
-        
-        completion();
-    
-    } error:^(LISDKAPIError *error) {
-        NSLog(@"Error when loading profile Pic: %@", error);
-        completion();
-    }];
-}
 
 #pragma mark - Backendless Methods
 

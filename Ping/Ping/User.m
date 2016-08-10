@@ -28,11 +28,16 @@
 // Realm objects do NOT support initializing.........................................................sadness
 
 - (void)setPropertiesWithProfileDictionary:(NSDictionary *)dic {
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    
+    [realm beginWriteTransaction];
     self.lastName = dic[@"lastName"];
     self.firstName = dic[@"firstName"];
     self.headline = dic[@"headline"];
     self.linkedInID = dic[@"id"];
     self.UUID = [NSString getUUID];
+    [realm commitWriteTransaction];
+    
 }
 
 - (void)addProfilePic:(NSString *)profilePicURL {
@@ -41,6 +46,8 @@
     [realm beginWriteTransaction];
     self.profilePicURL = profilePicURL;
     [realm commitWriteTransaction];
+    
+    // ToDo add code to set profile pic in backendless 
 }
 
 @end
