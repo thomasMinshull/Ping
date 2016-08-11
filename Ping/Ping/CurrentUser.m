@@ -13,14 +13,14 @@
 @implementation CurrentUser
 
 + (CurrentUser *)getCurrentUser {
+    RLMResults<CurrentUser *> *currentUsers = [CurrentUser allObjects];
+   
+    if ([currentUsers count] > 0) {
+        CurrentUser *currentUser = [currentUsers firstObject];
+        return currentUser;
+    }
     
-        RLMResults<CurrentUser *> *currentUsers = [CurrentUser allObjects];
-        if ([currentUsers count] > 0) {
-            CurrentUser *currentUser = [currentUsers firstObject];
-            return currentUser;
-        }
-        
-        return nil;
+    return nil;
 }
 
 + (CurrentUser *)makeCurrentUserWithProfileDictionary:(NSDictionary *)dic {
