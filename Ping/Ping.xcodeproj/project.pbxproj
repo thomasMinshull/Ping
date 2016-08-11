@@ -32,6 +32,7 @@
 		71678BD4F8B7654916D3F4B0 /* libPods-Ping.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 099398FE9E3F4648F16B801E /* libPods-Ping.a */; };
 		9C18CAF81D4AE89B008519E1 /* PingUserRealm.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C18CAF71D4AE89B008519E1 /* PingUserRealm.m */; };
 		9C26D1AE1D5BAD75000AB055 /* NewEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C26D1AD1D5BAD75000AB055 /* NewEventViewController.m */; };
+		9C425F7C1D5D39B600876D55 /* SurroundingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C425F7B1D5D39B600876D55 /* SurroundingsTableViewCell.swift */; };
 		9C4ACDB21D5AC1DE0012887A /* EventCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4ACDB11D5AC1DE0012887A /* EventCalendarViewController.m */; };
 		9C60CDE41D593A9100139C48 /* Event+EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C60CDE31D593A9100139C48 /* Event+EventManager.m */; };
 		9C93654E1D5925B0009E6262 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C93654D1D5925B0009E6262 /* Comment.m */; };
@@ -82,6 +83,7 @@
 		9C18CAF71D4AE89B008519E1 /* PingUserRealm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingUserRealm.m; sourceTree = "<group>"; };
 		9C26D1AC1D5BAD75000AB055 /* NewEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewEventViewController.h; sourceTree = "<group>"; };
 		9C26D1AD1D5BAD75000AB055 /* NewEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewEventViewController.m; sourceTree = "<group>"; };
+		9C425F7B1D5D39B600876D55 /* SurroundingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurroundingsTableViewCell.swift; sourceTree = "<group>"; };
 		9C4ACDB01D5AC1DE0012887A /* EventCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCalendarViewController.h; sourceTree = "<group>"; };
 		9C4ACDB11D5AC1DE0012887A /* EventCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCalendarViewController.m; sourceTree = "<group>"; };
 		9C60CDE21D593A9100139C48 /* Event+EventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Event+EventManager.h"; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				9C26D1AC1D5BAD75000AB055 /* NewEventViewController.h */,
 				9C26D1AD1D5BAD75000AB055 /* NewEventViewController.m */,
 				9CFBF2301D5C28C200031F06 /* CurrentSurroundingsViewController.swift */,
+				9C425F7B1D5D39B600876D55 /* SurroundingsTableViewCell.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -484,6 +487,7 @@
 				9C4ACDB21D5AC1DE0012887A /* EventCalendarViewController.m in Sources */,
 				55AD89381D4B87F90097DE9B /* AverageUUidDuple.m in Sources */,
 				9CFBF2311D5C28C200031F06 /* CurrentSurroundingsViewController.swift in Sources */,
+				9C425F7C1D5D39B600876D55 /* SurroundingsTableViewCell.swift in Sources */,
 				9C60CDE41D593A9100139C48 /* Event+EventManager.m in Sources */,
 				5594DB001D45E2DE0096D5DF /* AppDelegate.m in Sources */,
 				9C9365511D59287B009E6262 /* Event.m in Sources */,
