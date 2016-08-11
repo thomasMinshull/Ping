@@ -55,20 +55,20 @@ typedef void(^myCompletion)(BOOL);
             [weakSelf.loadingView removeFromSuperview];
             
             NSLog(@"Done Animating!");
+            PingUser *previouslyLoggedInUser = [weakSelf.userManager fetchCurrentUserFromRealm];
+            
+            if (previouslyLoggedInUser && previouslyLoggedInUser.userUUID) {
+                AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                app.currentUser = previouslyLoggedInUser;
+                
+                // login with but don't create new user
+                [weakSelf.userManager createNewSessionWithoutNewUsersWithCompletion:^{
+                    [weakSelf performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:weakSelf];
+                }];
+            }
         }
     }];
     
-    PingUser *previouslyLoggedInUser = [self.userManager fetchCurrentUserFromRealm];
-    
-    if (previouslyLoggedInUser && previouslyLoggedInUser.userUUID) {
-        AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        app.currentUser = previouslyLoggedInUser;
-        
-        // login with but don't create new user
-        [self.userManager createNewSessionWithoutNewUsersWithCompletion:^{
-            [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
-        }];
-    }
 }
 
 
