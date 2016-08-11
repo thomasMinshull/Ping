@@ -58,6 +58,7 @@
     
     [iM.loginManager createNewUserAndLoginWithCompletion:^(BOOL success) {
         if (success) {
+            
             [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
         } else {
             // Display Error

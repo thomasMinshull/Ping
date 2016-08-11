@@ -13,12 +13,14 @@
 @implementation CurrentUser
 
 + (CurrentUser *)getCurrentUser {
-    RLMResults<CurrentUser *> *currentUsers = [CurrentUser allObjects];
-    if ([currentUsers count] > 0) {
-        CurrentUser *currentUser = [currentUsers firstObject];
-        return currentUser;
-    }
-    return nil;
+    
+        RLMResults<CurrentUser *> *currentUsers = [CurrentUser allObjects];
+        if ([currentUsers count] > 0) {
+            CurrentUser *currentUser = [currentUsers firstObject];
+            return currentUser;
+        }
+        
+        return nil;
 }
 
 + (CurrentUser *)makeCurrentUserWithProfileDictionary:(NSDictionary *)dic {
@@ -47,15 +49,14 @@
 }
 
 - (void)save {
-    RecordManager *recordManager = [RecordManager new];
+    
     RLMRealm *currentUserRealm = [RLMRealm defaultRealm];
-    dispatch_queue_t queue = recordManager.backgroundQueue;
-    dispatch_async(queue, ^{
-        [currentUserRealm beginWriteTransaction];
+
+    [currentUserRealm transactionWithBlock:^{
         [currentUserRealm deleteAllObjects];
         [currentUserRealm addObject:self];
-        [currentUserRealm commitWriteTransaction];
-    });
+    }];
+    
 }
 
 

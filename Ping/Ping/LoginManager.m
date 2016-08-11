@@ -8,6 +8,7 @@
 
 #import "LoginManager.h"
 #import "UserManager.h"
+#import "RecordManager.h"
 #import "CurrentUser.h"
 #import "User.h"
 #import <linkedin-sdk/LISDK.h>
@@ -80,17 +81,35 @@
 
                                             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
                                             
+                                            RecordManager *recordManager = [RecordManager new];
+                                            dispatch_queue_t queue = recordManager.backgroundQueue;
                                             
-                                            CurrentUser *currentUser;
-                                            @synchronized (self) {// make sure we can't create duplicate users
+                                            dispatch_async(queue, ^{
+                                                
+                                                RLMRealm *currentUserRealm = [RLMRealm defaultRealm];
+                                                
                                                 if (![CurrentUser getCurrentUser]) {
-                                                    currentUser = [CurrentUser makeCurrentUserWithProfileDictionary:json];
+                                                        CurrentUser *currentUser = [CurrentUser makeCurrentUserWithProfileDictionary:json];
                                                 }
-                                            }
-                                            NSLog(@"self user uuid: %@", currentUser.UUID);
+                                                
+                                                
+                                            });
+                                            
+                                            
+//
+//
+//                                            __block CurrentUser *currentUser;
+//                                            @synchronized (self) {// make sure we can't create duplicate users
+//
+//
+//
+//
+//
+//                                                
+//                                            }
                                             
                                             // Add Profile Pic
-                                            [self setProfilePicForUser:currentUser];
+                                            //[self setProfilePicForUser:currentUser];
                                             
                                             completion(true);
                                         }

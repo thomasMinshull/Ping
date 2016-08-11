@@ -33,15 +33,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
-//    [iM.blueToothManager setUUIDList:iM.userManager.uuids andCurrentUUID:[CurrentUser getCurrentUser].UUID]; // ToDo refactor to remove passing in Current
-//    
+    IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
+    [iM.blueToothManager setUUIDList:iM.userManager.uuids andCurrentUUID:[CurrentUser getCurrentUser].UUID]; // ToDo refactor to remove passing in Current
 
     self.recordManager = [[RecordManager alloc] init];
     
-    [self.userManager setUp];
+    CurrentUser *user = [CurrentUser getCurrentUser];
+    NSLog(@"%@", user);
     
-    self.orderedListOfUUIDs= [self.recordManager sortingUserRecordsInTimePeriodByProximity:[NSDate date]];
+//    [self.userManager setUp];
+
+    self.orderedListOfUUIDs = [self.recordManager sortingUserRecordsInTimePeriodByProximity:[NSDate date]];
     if (!self.orderedListOfUUIDs) {
         self.orderedListOfUUIDs = @[];
     }
@@ -92,7 +94,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //@"PingUserTableViewCell" // identifier
+//    @"PingUserTableViewCell" // identifier
 //    PingUserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PingUserTableViewCell class])];
 
     PingUserTableViewCell *cell = (PingUserTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:@"PingUserTableViewCell" forIndexPath:indexPath];
@@ -108,6 +110,7 @@
     User *user = [iM.userManager userForUUID:self.orderedListOfUUIDs[indexPath.row]];
     
     [cell setUpWithUser:user];
+    
     return cell;
 }
 
