@@ -48,7 +48,7 @@
     return currentUser;
 }
 
-- (void)save {
+- (void)save { // not sure if used can propbably delete
     
     RLMRealm *currentUserRealm = [RLMRealm defaultRealm];
 

@@ -94,16 +94,12 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    @"PingUserTableViewCell" // identifier
-//    PingUserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PingUserTableViewCell class])];
 
     PingUserTableViewCell *cell = (PingUserTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:@"PingUserTableViewCell" forIndexPath:indexPath];
     if (cell == nil) {
         PingUserTableViewCell *cell = [[PingUserTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PingUserTableViewCell"];
         return cell;
     }
-    
-//    PingUserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PingUserTableViewCell"];
     
     IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
     

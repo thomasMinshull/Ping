@@ -8,13 +8,14 @@
 
 #import "UserManager.h"
 #import "CurrentUser.h"
+#import "ParseUser.h"
 #import <Parse/Parse.h>
 #import "Ping-Swift.h"
 
 @interface UserManager ()
 
 //@property (nonatomic) BOOL temp;
-@property (strong, nonatomic)NSMutableSet __block *users;
+@property (strong, nonatomic)NSMutableSet __block *parseUsers;
 @end
 
 @implementation UserManager
@@ -30,21 +31,18 @@
 
 - (void)setUp {
     
-    // get user from parse
-    // populate user list
-    // populate uuid list
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"User"];
+    PFQuery *query = [PFQuery queryWithClassName:@"ParseUser"];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (error) {
             NSLog(@"error retreiving users from parse ERROR: %@", error);
         } else {
-            self.users = [NSMutableSet new];
+            self.parseUsers = [NSMutableSet new];
             self.uuids = [NSMutableArray new];
             
-            for (PFObject *user in objects) {
-                [self.users addObject:(User *)user]; // is this going to work?
-                [self.uuids addObject:[user objectForKey:@"UUID"]];
+            for (PFObject *parseUser in objects) {
+                
+                [self.parseUsers addObject:parseUser];
+                [self.uuids addObject:[parseUser objectForKey:@"UUID"]];
             }
         }
         
@@ -65,8 +63,17 @@
 
 - (User *)userForUUID:(NSString *)uuid {
     
-    for (User *user in self.users) {
-        if ([user.UUID isEqualToString:uuid]) {
+    for (PFObject *parseUser in self.parseUsers) {
+        if ([parseUser[@"UUID"] isEqualToString:uuid]) {
+            
+            // copy parse user as regular user
+            User *user = [[User alloc] init];
+            user.firstName = parseUser[@"name"];
+            user.lastName = parseUser[@"lastName"];
+            user.headline = parseUser[@"headline"];
+            user.linkedInID = parseUser[@"linkedInID"];
+            user.UUID = parseUser[@"UUID"];
+            user.profilePicURL = parseUser[@"profilePicURL"]; // should return empty string if null?
             return user;
         }
     }

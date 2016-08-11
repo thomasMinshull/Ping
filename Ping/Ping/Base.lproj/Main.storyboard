@@ -42,13 +42,22 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hqu-WI-rnA">
+                                <rect key="frame" x="285" y="537" width="30" height="30"/>
+                                <state key="normal" title="Test"/>
+                                <connections>
+                                    <segue destination="3P6-gW-3cs" kind="show" id="5po-mN-LOq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="TXr-NC-92t" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5ID-Mf-1JG"/>
                             <constraint firstItem="0BF-55-ZLX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="AZj-FD-unt"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Hqu-WI-rnA" secondAttribute="bottom" constant="33" id="Nsp-TL-jPA"/>
                             <constraint firstItem="TXr-NC-92t" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="PBV-fh-bXW"/>
                             <constraint firstItem="0BF-55-ZLX" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="UTc-2B-ciK"/>
+                            <constraint firstItem="Hqu-WI-rnA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YkK-GW-Tlo"/>
                             <constraint firstItem="TXr-NC-92t" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="25" id="dc5-PG-zPJ"/>
                             <constraint firstItem="tFI-5t-CBR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iU5-ox-rfb"/>
                             <constraint firstItem="TXr-NC-92t" firstAttribute="top" secondItem="tFI-5t-CBR" secondAttribute="bottom" constant="15" id="kT7-62-Ooe"/>
@@ -344,6 +353,52 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aWA-9L-ra6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="738.5" y="647.5"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="KdX-cS-gaI">
+            <objects>
+                <viewController id="3P6-gW-3cs" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="naG-GF-n0N"/>
+                        <viewControllerLayoutGuide type="bottom" id="SbN-wF-9lY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Tx2-c5-2i7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h4o-Fl-fbX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="25" y="1468"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="wWJ-R1-YxK">
+            <objects>
+                <tableViewController id="UjM-L7-1Hl" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Bzy-fL-vp1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Yo9-Ka-JLd">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yo9-Ka-JLd" id="8Eh-bN-OWZ">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="UjM-L7-1Hl" id="oVV-HG-zKe"/>
+                            <outlet property="delegate" destination="UjM-L7-1Hl" id="EgK-f9-OJS"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C8i-ru-x8b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="703" y="1468"/>
         </scene>
     </scenes>
     <resources>
