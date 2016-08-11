@@ -7,8 +7,11 @@
 //
 
 #import "User.h"
+#import "Event.h"
 
 @interface CurrentUser : User
+
+@property (strong) RLMArray<Event *><Event> *Events;
 
 // ToDo add comment list
 

@@ -7,11 +7,15 @@
 //
 
 #import <Realm/Realm.h>
+#import "TimePeriod.h"
 
 @interface Event : RLMObject
 
 @property (nonatomic) NSDate *startTime;
 @property (nonatomic) NSDate *endTime;
 @property (nonatomic) NSString *eventName;
+@property (strong) RLMArray<TimePeriod *><TimePeriod> *timePeriods;
 
 @end
+
+RLM_ARRAY_TYPE(Event)
