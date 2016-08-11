@@ -11,7 +11,8 @@
 #import "UserManager.h"
 #import "PingUserTableViewCell.h"
 #import <linkedin-sdk/LISDK.h>
-
+#import "Ping-Swift.h"
+#import "CurrentUser.h"
 
 @interface MainViewController ()  <UITableViewDelegate, UITableViewDataSource>
 
@@ -19,7 +20,6 @@
 @property (weak, nonatomic) IBOutlet UISwitch *advertisingSwitch;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (strong, nonatomic) NSMutableArray<PingUser *> *orderedListOfUsers; // might be able to delete 
 @property (strong, nonatomic) NSArray<NSString *> *orderedListOfUUIDs;
 
 @property (strong, nonatomic) UserManager *userManager;
@@ -33,13 +33,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
+    [iM.blueToothManager setUUIDList:iM.userManager.uuids andCurrentUUID:[CurrentUser getCurrentUser].UUID]; // ToDo refactor to remove passing in Current
 
     self.recordManager = [[RecordManager alloc] init];
-    self.userManager = [UserManager sharedUserManager];
     
-    [self.userManager setUp];
+    CurrentUser *user = [CurrentUser getCurrentUser];
+    NSLog(@"%@", user);
     
-    self.orderedListOfUUIDs= [self.recordManager sortingUserRecordsInTimePeriodByProximity:[NSDate date]];
+//    [self.userManager setUp];
+
+    self.orderedListOfUUIDs = [self.recordManager sortingUserRecordsInTimePeriodByProximity:[NSDate date]];
     if (!self.orderedListOfUUIDs) {
         self.orderedListOfUUIDs = @[];
     }
@@ -76,13 +80,6 @@
 //    
 //    self.orderedListOfUsers = [@[hardCodedUser, martin, hardCodedUser, hardCodedUser, martin] mutableCopy];
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    
-    NSLog(@"Received Memory Warning");
-    [self.userManager stopScanning];
-}
-
 
 #pragma mark -TableViewDataSourceMethods
 
@@ -97,8 +94,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //@"PingUserTableViewCell" // identifier
-//    PingUserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PingUserTableViewCell class])];
 
     PingUserTableViewCell *cell = (PingUserTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:@"PingUserTableViewCell" forIndexPath:indexPath];
     if (cell == nil) {
@@ -106,11 +101,12 @@
         return cell;
     }
     
-//    PingUserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PingUserTableViewCell"];
+    IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
     
-    PingUser *user = [self.userManager userForUUID:self.orderedListOfUUIDs[indexPath.row]];
+    User *user = [iM.userManager userForUUID:self.orderedListOfUUIDs[indexPath.row]];
     
-    [cell setUpWithPingUser:user];
+    [cell setUpWithUser:user];
+    
     return cell;
 }
 
@@ -142,18 +138,17 @@
 }
 
 - (IBAction)switchChanged:(id)sender {
-    {
-        if (self.advertisingSwitch.on) {
-            [self.userManager.blueToothManager start];
-        }
-        
-        else {
-            [self.userManager.blueToothManager stop];
-        }
+    IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
+    if (self.advertisingSwitch.on) {
+        [iM.blueToothManager start];
+    }
+    
+    else {
+        [iM.blueToothManager stop];
     }
 }
 
-#pragma mark -Helper Methodes 
+#pragma mark -Helper Methodes
 
 // ToDo refactored martin's code so we "should" be able to delete this 
 

@@ -9,7 +9,6 @@
 #import <Realm/Realm.h>
 #import "UserRecord.h"
 
-RLM_ARRAY_TYPE(UserRecord)
 
 @interface TimePeriod : RLMObject
 
@@ -17,3 +16,5 @@ RLM_ARRAY_TYPE(UserRecord)
 @property (atomic) RLMArray<UserRecord *><UserRecord> *userRecords;
 
 @end
+
+RLM_ARRAY_TYPE(TimePeriod)

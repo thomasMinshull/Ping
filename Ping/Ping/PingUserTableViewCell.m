@@ -25,7 +25,7 @@
    
 }
 
-- (void)setUpWithPingUser:(PingUser *)user {
+- (void)setUpWithUser:(User *)user {
     [self.firstNameLabel setText:user.firstName];
     [self.lastNameLabel setText:user.lastName];
     [self.headLineLabel setText:user.headline];

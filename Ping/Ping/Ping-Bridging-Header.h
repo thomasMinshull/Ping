@@ -3,3 +3,9 @@
 //
 
 //#import <Realm/Realm.h>
+
+#import "UserManager.h"
+#import "RecordManager.h"
+#import "BlueToothManager.h"
+#import "LoginManager.h"
+
