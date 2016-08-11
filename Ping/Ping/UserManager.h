@@ -13,12 +13,9 @@
 
 @interface UserManager : NSObject
 
-@property (strong, nonatomic) NSMutableArray *uuids;
-
-- (void)saveBackendlessUser:(User *)user; // this is only ever used to save current user, may want to refactor to reflect this?
+@property (strong, nonatomic) NSMutableArray __block *uuids;
 
 - (User *)userForUUID:(NSString *)uuid;
-- (void)updateUserList;
 
 // refactor into integration manager
 - (void)setUp;

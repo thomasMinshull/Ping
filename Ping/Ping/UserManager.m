@@ -8,18 +8,13 @@
 
 #import "UserManager.h"
 #import "CurrentUser.h"
-#import "Backendless.h"
+#import <Parse/Parse.h>
 #import "Ping-Swift.h"
-
-#import "AppDelegate.h"
-#import <linkedin-sdk/LISDK.h>
-#define LINKEDIN_USER_URL @"https://api.linkedin.com/v1/people/~"
-#define LINKEDIN_ADDITIONAL_INFO_URL @"https://api.linkedin.com/v1/people/~:(id,num-connections,picture-url)?format=json"
 
 @interface UserManager ()
 
 //@property (nonatomic) BOOL temp;
-@property (strong, nonatomic)NSMutableSet *users;
+@property (strong, nonatomic)NSMutableSet __block *users;
 @end
 
 @implementation UserManager
@@ -34,40 +29,38 @@
 }
 
 - (void)setUp {
-    // get latest userList
-    id<IDataStore> dataStore = [backendless.persistenceService of:[PingUser class]];
     
-    @try {
-        BackendlessCollection *backendlessUserListCollection = [dataStore find];
-        // set page size to include the whole list of objects
-        // ToDo fix pagination so it works properly
-        [backendlessUserListCollection pageSize:[[backendlessUserListCollection getTotalObjects] integerValue]];
-        
-        NSArray *backendlessUserList = [backendlessUserListCollection getCurrentPage];
-        
-//        for (User *user in backendlessUserList) {
-//            [self.users addObject:user];
-//            [self.uuids addObject:user.UUID]; // refactor so we are not using two properties to store the same data
-//        }
-        
-        User *user1 = [User new];
-        user1.firstName = @"Martin";
-        user1.lastName = @"Zhang";
-        user1.headline = @"stuff";
-        user1.linkedInID = @"stuff";
-        user1.profilePicURL = @"https://media.licdn.com/mpr/mprx/0_toKw915dIk5rEJF8OU6IYKyHoARu2R5ygUeLKQodo1eD2INKgU6w41kdDkBD2Ib3YUEQ4FFWF1eS7xzKjMvBOF65C1e270r2RMvez61eW-g85dIKBHi6vtjMGQtp60bjtVAbtqut7mP";
-        
-        
-        self.uuids = [@[@"FEBAA2DD-CE1A-4125-96D0-097DFD047E83", @"0D623438-99D7-4B39-B6BB-03936A6B379B",@"C826D6CF-E64B-4159-8B6F-FCE60C18C12D",@"71C12256-AFE6-4D3D-9E5A-1B0E6ED0CB8F",@"19A86001-A1B4-44DE-879B-F9FD6B7D945F",@"84241393-5155-4307-B5F6-38C013447E02",@"FB2165CD-B0FF-4F96-87AB-C9BC6C3851BE",@"8E88F0CC-C79F-46E8-B323-C06DB3ED32E5"] mutableCopy];
-        
-        for (NSString *uuid in self.uuids) {
-            user1.UUID = uuid;
-            [self.users addObject:user1];
+    // get user from parse
+    // populate user list
+    // populate uuid list
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"User"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"error retreiving users from parse ERROR: %@", error);
+        } else {
+            self.users = [NSMutableSet new];
+            self.uuids = [NSMutableArray new];
+            
+            for (PFObject *user in objects) {
+                [self.users addObject:(User *)user]; // is this going to work?
+                [self.uuids addObject:[user objectForKey:@"UUID"]];
+            }
         }
+        
+    }];
+    
+//        User *user1 = [User new];
+//        user1.firstName = @"Martin";
+//        user1.lastName = @"Zhang";
+//        user1.headline = @"stuff";
+//        user1.linkedInID = @"stuff";
+//        user1.profilePicURL = @"https://media.licdn.com/mpr/mprx/0_toKw915dIk5rEJF8OU6IYKyHoARu2R5ygUeLKQodo1eD2INKgU6w41kdDkBD2Ib3YUEQ4FFWF1eS7xzKjMvBOF65C1e270r2RMvez61eW-g85dIKBHi6vtjMGQtp60bjtVAbtqut7mP";
+//        
+//        
+//        self.uuids = [@[@"FEBAA2DD-CE1A-4125-96D0-097DFD047E83", @"0D623438-99D7-4B39-B6BB-03936A6B379B",@"C826D6CF-E64B-4159-8B6F-FCE60C18C12D",@"71C12256-AFE6-4D3D-9E5A-1B0E6ED0CB8F",@"19A86001-A1B4-44DE-879B-F9FD6B7D945F",@"84241393-5155-4307-B5F6-38C013447E02",@"FB2165CD-B0FF-4F96-87AB-C9BC6C3851BE",@"8E88F0CC-C79F-46E8-B323-C06DB3ED32E5"] mutableCopy];
 
-    } @catch (Fault *fault) {
-        NSLog(@"Server reported an error: %@", fault);
-    }
+ 
 }
 
 - (User *)userForUUID:(NSString *)uuid {
@@ -78,21 +71,6 @@
         }
     }
     return nil;
-}
-
-
-#pragma mark - Backendless Methods
-
-- (void)saveBackendlessUser:(User *)user {
-    id<IDataStore> dataStore = [backendless.persistenceService of:[User class]];
-    
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-            [dataStore save:user];
-             });
-    
-    Fault *fault;
-    BackendlessCollection *collection = [dataStore findFault:&fault];
-    NSLog(@"log global list of users: %@", collection);
 }
 
 @end

@@ -14,6 +14,8 @@ RLM_ARRAY_TYPE(TimePeriod)
 
 @interface RecordManager : NSObject
 
+@property (strong, nonatomic) dispatch_queue_t backgroundQueue;
+
 -(void)storeBlueToothDataByUUID:(NSString *)userUUID userProximity:(int)proximity andTime:(NSDate *)time;
 -(NSDate *)getStartTimeForTimePeriod:(NSDate *)time;
 -(void)increaseUserTotalDistanceAndObs:(UserRecord *)userRecord userProximity:(int)proximity;

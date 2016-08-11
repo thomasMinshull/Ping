@@ -8,7 +8,7 @@
 
 #import "LoginViewController.h"
 #import <linkedin-sdk/LISDK.h>
-#import "PingUser.h"
+#import <Parse/Parse.h>
 #import "Backendless.h"
 
 #import "AppDelegate.h"

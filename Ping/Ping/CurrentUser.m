@@ -7,8 +7,8 @@
 //
 
 #import "currentUser.h"
-#import "Backendless.h"
-#import "BackendlessUser.h"
+#import <Parse/Parse.h>
+#import "RecordManager.h"
 
 @implementation CurrentUser
 
@@ -24,52 +24,39 @@
 + (CurrentUser *)makeCurrentUserWithProfileDictionary:(NSDictionary *)dic {
     CurrentUser *currentUser = [CurrentUser new];
     [currentUser setPropertiesWithProfileDictionary:dic];
+    [currentUser save];
     
-    //register user in backendless
-    BackendlessUser *backendUser = [BackendlessUser new];
-    [backendUser setProperty:@"Password" object:currentUser.UUID];
-    [backendUser setProperty:@"firstName" object:currentUser.firstName];
-    [backendUser setProperty:@"lastName" object:currentUser.lastName];
-    [backendUser setProperty:@"headline" object:currentUser.headline];
-    [backendUser setProperty:@"linkedInID" object:currentUser.linkedInID];
+    PFObject *parseUser = [PFObject objectWithClassName:@"User"];
+    parseUser[@"firstName"] = currentUser.firstName;
+    parseUser[@"lastName"] = currentUser.lastName;
+    parseUser[@"headline"] = currentUser.headline;
+    parseUser[@"linkedInID"] = currentUser.linkedInID;
+    parseUser[@"UUID"] = currentUser.UUID;
     if (currentUser.profilePicURL) {
-        [backendUser setProperty:@"profilePicURL" object:currentUser.profilePicURL];
+        parseUser[@"profilePicURL"] = currentUser.profilePicURL;
     }
-    [backendUser setProperty:@"UUID" object:currentUser.UUID];
     
-//    [backendless.userService registering:backendUser
-//                    response:^(BackendlessUser *backUser){
-//                        NSLog(@"User saved to backendless: %@",backUser);
-//                    }
-//                       error:^(Fault *fault){
-//                           NSLog(@"ERROR User not saved to backendless Fault:%@", fault);
-//                       }];
-    Responder *responder = [Responder responder:self
-                             selResponseHandler:@selector(responseHandler:)
-                                selErrorHandler:@selector(errorHandler:)];
-    [backendless.userService registering:backendUser responder:responder];
-    
-    
+    [parseUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded) {
+            NSLog(@"current user saved in parse");
+        } else {
+            NSLog(@"Failed to save current user in parse. ERROR: %@", error);
+        }
+    }];
     return currentUser;
 }
 
 - (void)save {
+    RecordManager *recordManager = [RecordManager new];
     RLMRealm *currentUserRealm = [RLMRealm defaultRealm];
-    [currentUserRealm beginWriteTransaction];
-    [currentUserRealm deleteAllObjects];
-    [currentUserRealm addObject:self];
-    [currentUserRealm commitWriteTransaction];
+    dispatch_queue_t queue = recordManager.backgroundQueue;
+    dispatch_async(queue, ^{
+        [currentUserRealm beginWriteTransaction];
+        [currentUserRealm deleteAllObjects];
+        [currentUserRealm addObject:self];
+        [currentUserRealm commitWriteTransaction];
+    });
 }
 
--(id)responseHandler:(id)response {
-    BackendlessUser *user = (BackendlessUser *)response;
-    NSLog(@"user = %@", user);
-    return user;
-}
-
--(void)errorHandler:(Fault *)fault
-{
-    NSLog(@"FAULT = %@ <%@>", fault.message, fault.detail);
-}
 
 @end
