@@ -29,15 +29,12 @@
 // Realm objects do NOT support initializing.........................................................sadness
 
 - (void)setPropertiesWithProfileDictionary:(NSDictionary *)dic {
-//    RLMRealm *realm = [RLMRealm defaultRealm];
-    
-//    [realm beginWriteTransaction];
+
     self.lastName = dic[@"lastName"];
     self.firstName = dic[@"firstName"];
     self.headline = dic[@"headline"];
     self.linkedInID = dic[@"id"];
     self.UUID = [NSString getUUID];
-//    [realm commitWriteTransaction];
     
 }
 
@@ -50,7 +47,6 @@
         [realm transactionWithBlock:^{
             self.profilePicURL = profilePicURL;
         }];
-//        [realm commitWriteTransaction];
     });
 }
 

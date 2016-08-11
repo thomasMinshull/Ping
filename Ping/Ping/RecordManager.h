@@ -10,8 +10,6 @@
 #import "TimePeriod.h"
 #import "UserRecord.h"
 
-RLM_ARRAY_TYPE(TimePeriod)
-
 @interface RecordManager : NSObject
 
 @property (strong, nonatomic) dispatch_queue_t backgroundQueue;
