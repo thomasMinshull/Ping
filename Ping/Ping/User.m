@@ -8,6 +8,7 @@
 
 #import "User.h"
 #import "NSString+UUID.h"
+#import "RecordManager.h"
 
 @implementation User
 
@@ -28,27 +29,30 @@
 // Realm objects do NOT support initializing.........................................................sadness
 
 - (void)setPropertiesWithProfileDictionary:(NSDictionary *)dic {
-    RLMRealm *realm = [RLMRealm defaultRealm];
+//    RLMRealm *realm = [RLMRealm defaultRealm];
     
-    [realm beginWriteTransaction];
+//    [realm beginWriteTransaction];
     self.lastName = dic[@"lastName"];
     self.firstName = dic[@"firstName"];
     self.headline = dic[@"headline"];
     self.linkedInID = dic[@"id"];
     self.UUID = [NSString getUUID];
-    [realm commitWriteTransaction];
+//    [realm commitWriteTransaction];
     
 }
 
 - (void)addProfilePic:(NSString *)profilePicURL {
+    RecordManager *recordManager = [RecordManager new];
     RLMRealm *realm = [RLMRealm defaultRealm];
     
-    [realm beginWriteTransaction];
-    self.profilePicURL = profilePicURL;
-    [realm commitWriteTransaction];
-    
-    // ToDo add code to set profile pic in parse
-    
+    dispatch_queue_t queue = recordManager.backgroundQueue;
+    dispatch_async(queue, ^{
+        [realm transactionWithBlock:^{
+            self.profilePicURL = profilePicURL;
+        }];
+//        [realm commitWriteTransaction];
+    });
 }
+
 
 @end

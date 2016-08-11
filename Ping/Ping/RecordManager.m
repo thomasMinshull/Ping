@@ -151,10 +151,6 @@
                 duple.userAverage = aUserRecord.totalDistance / aUserRecord.numberOfObs;
                 duple.uUID = aUserRecord.uUID;
                 [userRecordsArrayInTimePeriod addObject:duple];
-                
-               // aUserRecord.userAverage = aUserRecord.totalDistance / aUserRecord.numberOfObs;
-               // [userRecordsArrayInTimePeriod addObject:aUserRecord];
-                
             }
             
             NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"userAverage" ascending:NO];
