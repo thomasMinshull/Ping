@@ -9,6 +9,7 @@
 #import "BlueToothManager.h"
 #import "RecordManager.h"
 #import "AppDelegate.h"
+#import "CurrentUser.h"
 
 @interface BlueToothManager() <CBCentralManagerDelegate, CBPeripheralDelegate, CBPeripheralManagerDelegate>
 
@@ -26,7 +27,6 @@
 @property NSMutableArray *fetchedTimeStamp;
 
 @property NSArray *uuidList;
-@property NSString *currentUserUUID;
 @property RecordManager *recordManager;
 
 @property NSMutableArray *cbuuidLists;
@@ -39,17 +39,53 @@
 
 @implementation BlueToothManager
 
-+ (instancetype)sharedrecordManager:(NSArray *)uuidList andCurrentUUID:(NSString *)currentUUID {
-    static BlueToothManager *sharedrecordManager = nil;
-    static dispatch_once_t onceToken;
+//<<<<<<< HEAD
+//+ (instancetype)sharedrecordManager:(NSArray *)uuidList andCurrentUUID:(NSString *)currentUUID {
+//    static BlueToothManager *sharedrecordManager = nil;
+//    static dispatch_once_t onceToken;
+//    
+//    dispatch_once(&onceToken, ^{
+//        sharedrecordManager = [[BlueToothManager alloc] initWithUUIDList:uuidList andCurrentUUID:currentUUID];
+//        sharedrecordManager.recordManager = [RecordManager new];
+//    });
+//    
+//=======
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.recordManager = [RecordManager new];
+//        self.saveSwitch = NO;
+        
+        self.fetchedUUIDs = [NSMutableArray array];
+        self.fetchedDistances = [NSMutableArray array];
+        self.fetchedTimeStamp = [NSMutableArray array];
+        
+//        self.uuids = [NSMutableArray array];
+//        self.distances = [NSMutableArray array];
+//        self.timeStamps = [NSMutableArray array];
+        
+        self.cbuuidLists = [NSMutableArray array];
+        
+//        _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+//        
+//        _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+    }
+    return self;
+}
+
+- (void)setUUIDList:(NSArray *)uuidList andCurrentUUID:(NSString *)currentUUID {
+    self.uuidList = uuidList;
     
-    dispatch_once(&onceToken, ^{
-        sharedrecordManager = [[BlueToothManager alloc] initWithUUIDList:uuidList andCurrentUUID:currentUUID];
-        sharedrecordManager.recordManager = [RecordManager new];
-    });
+    //changing uuid to cbuuid
+    for(NSString *aUUIDString in self.uuidList){
+        CBUUID *cbuuidString = [CBUUID UUIDWithString:aUUIDString];
+        [self.cbuuidLists addObject:cbuuidString];
+    }
+//>>>>>>> refactorAfterMidterm
     
-    
-    return sharedrecordManager;
+    self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+    self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
 }
 
 #pragma mark - Start and Stop
@@ -74,9 +110,10 @@
 
 -(void)start{
     self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
-    [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:self.currentUserUUID]]}];
+    [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:[CurrentUser getCurrentUser].UUID]]}];
     self.isTimerValid = TRUE;
     NSLog(@"timer on");
+
 }
 
 -(void)stop{
@@ -86,38 +123,41 @@
     
 }
 
-#pragma mark - Lifecycle
-
-- (instancetype) initWithUUIDList:(NSArray *)uuidList andCurrentUUID:(NSString *)currentUUID
-{
-    self = [super init];
-    if (self) {
-        
-        self.uuidList = uuidList;
-        self.currentUserUUID = currentUUID;
-        
-        self.fetchedUUIDs = [NSMutableArray array];
-        self.fetchedDistances = [NSMutableArray array];
-        self.fetchedTimeStamp = [NSMutableArray array];
-        
-        self.cbuuidLists = [NSMutableArray array];
-        
-        self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
-        
-        self.isScanning = FALSE;
-        self.isTimerValid = FALSE;
-        self.myTimer = [NSTimer scheduledTimerWithTimeInterval: 1.0f
-                                                        target: self
-                                                      selector:@selector(flickSwitch:)
-                                                      userInfo: nil repeats:YES];
-        //chaning uuid to cbuuid
-        for(NSString *aUUIDString in self.uuidList){
-            CBUUID *cbuuidString = [CBUUID UUIDWithString:aUUIDString];
-            [self.cbuuidLists addObject:cbuuidString];
-        }
-    }
-    return self;
-}
+//<<<<<<< HEAD
+//#pragma mark - Lifecycle
+//
+//- (instancetype) initWithUUIDList:(NSArray *)uuidList andCurrentUUID:(NSString *)currentUUID
+//{
+//    self = [super init];
+//    if (self) {
+//        
+//        self.uuidList = uuidList;
+//        self.currentUserUUID = currentUUID;
+//        
+//        self.fetchedUUIDs = [NSMutableArray array];
+//        self.fetchedDistances = [NSMutableArray array];
+//        self.fetchedTimeStamp = [NSMutableArray array];
+//        
+//        self.cbuuidLists = [NSMutableArray array];
+//        
+//        self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+//        
+//        self.isScanning = FALSE;
+//        self.isTimerValid = FALSE;
+//        self.myTimer = [NSTimer scheduledTimerWithTimeInterval: 1.0f
+//                                                        target: self
+//                                                      selector:@selector(flickSwitch:)
+//                                                      userInfo: nil repeats:YES];
+//        //chaning uuid to cbuuid
+//        for(NSString *aUUIDString in self.uuidList){
+//            CBUUID *cbuuidString = [CBUUID UUIDWithString:aUUIDString];
+//            [self.cbuuidLists addObject:cbuuidString];
+//        }
+//    }
+//    return self;
+//}
+//=======
+//>>>>>>> refactorAfterMidterm
 
 #pragma mark - Central Methods
 
@@ -226,9 +266,13 @@
     
     NSLog(@"self.peripheralManager powered on.");
     
-    CBMutableService *transferService = [[CBMutableService alloc] initWithType:[CBUUID UUIDWithString:self.currentUserUUID] primary:YES];
+    CurrentUser *currentUser = [CurrentUser getCurrentUser];
+    if (currentUser) {
+        CBMutableService *transferService = [[CBMutableService alloc] initWithType:[CBUUID UUIDWithString:currentUser.UUID] primary:YES];
+        
+        [self.peripheralManager addService:transferService];
+    }
     
-    [self.peripheralManager addService:transferService];
 }
 
 @end
