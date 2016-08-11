@@ -31,10 +31,12 @@
 		55AD89381D4B87F90097DE9B /* AverageUUidDuple.m in Sources */ = {isa = PBXBuildFile; fileRef = 55AD89371D4B87F90097DE9B /* AverageUUidDuple.m */; };
 		71678BD4F8B7654916D3F4B0 /* libPods-Ping.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 099398FE9E3F4648F16B801E /* libPods-Ping.a */; };
 		9C18CAF81D4AE89B008519E1 /* PingUserRealm.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C18CAF71D4AE89B008519E1 /* PingUserRealm.m */; };
+		9C26D1AE1D5BAD75000AB055 /* NewEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C26D1AD1D5BAD75000AB055 /* NewEventViewController.m */; };
 		9C4ACDB21D5AC1DE0012887A /* EventCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4ACDB11D5AC1DE0012887A /* EventCalendarViewController.m */; };
 		9C60CDE41D593A9100139C48 /* Event+EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C60CDE31D593A9100139C48 /* Event+EventManager.m */; };
 		9C93654E1D5925B0009E6262 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C93654D1D5925B0009E6262 /* Comment.m */; };
 		9C9365511D59287B009E6262 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9365501D59287B009E6262 /* Event.m */; };
+		9CFBF22F1D5BE1F300031F06 /* PeopleAroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFBF22E1D5BE1F300031F06 /* PeopleAroundViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +80,8 @@
 		55AD89371D4B87F90097DE9B /* AverageUUidDuple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AverageUUidDuple.m; sourceTree = "<group>"; };
 		9C18CAF61D4AE89B008519E1 /* PingUserRealm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingUserRealm.h; sourceTree = "<group>"; };
 		9C18CAF71D4AE89B008519E1 /* PingUserRealm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingUserRealm.m; sourceTree = "<group>"; };
+		9C26D1AC1D5BAD75000AB055 /* NewEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewEventViewController.h; sourceTree = "<group>"; };
+		9C26D1AD1D5BAD75000AB055 /* NewEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewEventViewController.m; sourceTree = "<group>"; };
 		9C4ACDB01D5AC1DE0012887A /* EventCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCalendarViewController.h; sourceTree = "<group>"; };
 		9C4ACDB11D5AC1DE0012887A /* EventCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCalendarViewController.m; sourceTree = "<group>"; };
 		9C60CDE21D593A9100139C48 /* Event+EventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Event+EventManager.h"; sourceTree = "<group>"; };
@@ -87,6 +91,7 @@
 		9C93654D1D5925B0009E6262 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		9C93654F1D59287B009E6262 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		9C9365501D59287B009E6262 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		9CFBF22E1D5BE1F300031F06 /* PeopleAroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleAroundViewController.swift; sourceTree = "<group>"; };
 		BBF5D50F2E3876EE0E2E3951 /* Pods-Ping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ping/Pods-Ping.debug.xcconfig"; sourceTree = "<group>"; };
 		D2F63550978A2AEB46EFE90C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB38DA1028CD9B2B046846B0 /* Pods-Ping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ping.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ping/Pods-Ping.release.xcconfig"; sourceTree = "<group>"; };
@@ -219,6 +224,9 @@
 				55A099061D498F27005100BC /* MainViewController.m */,
 				9C4ACDB01D5AC1DE0012887A /* EventCalendarViewController.h */,
 				9C4ACDB11D5AC1DE0012887A /* EventCalendarViewController.m */,
+				9C26D1AC1D5BAD75000AB055 /* NewEventViewController.h */,
+				9C26D1AD1D5BAD75000AB055 /* NewEventViewController.m */,
+				9CFBF22E1D5BE1F300031F06 /* PeopleAroundViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -467,6 +475,7 @@
 				55A098E11D4907CE005100BC /* UserManager.m in Sources */,
 				5599E7931D49C14F00E61B0E /* PingUserTableViewCell.m in Sources */,
 				9C93654E1D5925B0009E6262 /* Comment.m in Sources */,
+				9C26D1AE1D5BAD75000AB055 /* NewEventViewController.m in Sources */,
 				55A0985D1D46CB3E005100BC /* LoginViewController.m in Sources */,
 				55A099071D498F27005100BC /* MainViewController.m in Sources */,
 				5599E78D1D499E1C00E61B0E /* UserRecord.m in Sources */,
@@ -474,6 +483,7 @@
 				5599E78B1D499E1C00E61B0E /* RecordManager.m in Sources */,
 				9C4ACDB21D5AC1DE0012887A /* EventCalendarViewController.m in Sources */,
 				55AD89381D4B87F90097DE9B /* AverageUUidDuple.m in Sources */,
+				9CFBF22F1D5BE1F300031F06 /* PeopleAroundViewController.swift in Sources */,
 				9C60CDE41D593A9100139C48 /* Event+EventManager.m in Sources */,
 				5594DB001D45E2DE0096D5DF /* AppDelegate.m in Sources */,
 				9C9365511D59287B009E6262 /* Event.m in Sources */,
