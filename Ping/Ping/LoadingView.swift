@@ -458,9 +458,9 @@ class LoadingView: UIView {
             text.contentsScale   = UIScreen.mainScreen().scale
             text.string          = "Ping"
             text.font            = "Helvetica-Bold"
-            text.fontSize        = 35
+            text.fontSize        = 40
             text.alignmentMode   = kCAAlignmentCenter;
-            text.foregroundColor = UIColor.blueColor().CGColor;
+            text.foregroundColor = UIColor(red:0.44, green:0.96, blue:0.82, alpha:1.0).CGColor;
             text.shadowColor     = UIColor(red:0, green: 0, blue:0, alpha:0.69).CGColor
             text.shadowOpacity = 0.69
             text.shadowOffset  = CGSizeMake(4, 4)
@@ -571,7 +571,7 @@ class LoadingView: UIView {
         let textOpacityAnim          = CAKeyframeAnimation(keyPath:"opacity")
         textOpacityAnim.values       = [0, 0.757]
         textOpacityAnim.keyTimes     = [0, 1]
-        textOpacityAnim.duration     = 1
+        textOpacityAnim.duration     = 1.0
         textOpacityAnim.beginTime    = 5.14
         textOpacityAnim.autoreverses = true
         

@@ -37,10 +37,11 @@ typedef void(^myCompletion)(BOOL);
     [super viewDidLoad];
     
     self.loadingView = [[LoadingView alloc] initWithFrame:CGRectZero];
-    self.loadingView.backgroundColor = [UIColor whiteColor];
+//    self.loadingView.backgroundColor = [UIColor colorWithRed:0.44 green:0.96 blue:0.82 alpha:1.0];
+    self.loadingView.backgroundColor = [UIColor colorWithRed:0.85 green:0.98 blue:0.67 alpha:1.0];
     
     CGFloat boxSize = 320;
-    self.loadingView.frame = CGRectMake(self.view.bounds.size.width / 2 - boxSize / 2, 20, self.view.frame.size.width, self.view.frame.size.height);
+    self.loadingView.frame = CGRectMake(self.view.bounds.size.width / 2 - boxSize / 2, 0, self.view.frame.size.width, self.view.frame.size.height);
     [self.view addSubview:self.loadingView];
     
     self.userManager = [UserManager sharedUserManager];
