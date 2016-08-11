@@ -17,10 +17,17 @@
 
 #import "UserManager.h"
 
+#import "Ping-Swift.h"
+
 @interface LoginViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *linkedInLoginButton;
 @property (strong, nonatomic) UserManager *userManager;
+
+@property LoadingView *loadingView;
+
+typedef void(^myCompletion)(BOOL);
+
 
 @end
 
@@ -29,10 +36,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.loadingView = [[LoadingView alloc] initWithFrame:CGRectZero];
+    self.loadingView.backgroundColor = [UIColor whiteColor];
+    
+    CGFloat boxSize = 320;
+    self.loadingView.frame = CGRectMake(self.view.bounds.size.width / 2 - boxSize / 2, 20, self.view.frame.size.width, self.view.frame.size.height);
+    [self.view addSubview:self.loadingView];
+    
     self.userManager = [UserManager sharedUserManager];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    __weak LoginViewController *weakSelf = self;
+    [self.loadingView addLoadingAnimationGroupAnimationCompletionBlock:^(BOOL finished) {
+        if(finished){
+            [weakSelf.loadingView removeFromSuperview];
+            
+            NSLog(@"Done Animating!");
+        }
+    }];
     
     PingUser *previouslyLoggedInUser = [self.userManager fetchCurrentUserFromRealm];
     
