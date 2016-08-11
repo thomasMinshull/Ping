@@ -8,7 +8,7 @@
 
 #import "EventCalendarViewController.h"
 
-@interface EventCalendarViewController ()
+@interface EventCalendarViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIButton *addEventButton;
 @property (weak, nonatomic) IBOutlet UIButton *currentSurroundingsButton;
@@ -38,12 +38,29 @@
     [self performSegueWithIdentifier:@"showCurrentSurroundings" sender:self];
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 10;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    cell.textLabel.text = @"Martin Z.";
+    
+    return cell;
+}
+
 // No time for this, considering getting rid of
 // Too fancy animation?
 //- (void)setUpVideoBackgroundForStartNowButton {
 //    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"Green Color Water Moving Animation Video" ofType:@"mp4"]];
 //    
 //}
+
+
 
 #pragma mark - Navigation
 
