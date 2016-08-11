@@ -11,6 +11,7 @@
 @interface EventCalendarViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *addEventButton;
+@property (weak, nonatomic) IBOutlet UIButton *currentSurroundingsButton;
 
 @end
 
@@ -33,6 +34,9 @@
     [self performSegueWithIdentifier:@"showNewEventViewSegue" sender:self];
 }
 
+- (IBAction)currentSurroundingsButtonPressed:(id)sender {
+    [self performSegueWithIdentifier:@"showCurrentSurroundings" sender:self];
+}
 
 // No time for this, considering getting rid of
 // Too fancy animation?
