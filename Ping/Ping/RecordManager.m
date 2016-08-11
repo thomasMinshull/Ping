@@ -28,7 +28,7 @@
     return self;
 }
 
-dispatch_queue_t backgroundQueue() {
+- (dispatch_queue_t)backgroundQueue {
     static dispatch_once_t queueCreationGuard;
     static dispatch_queue_t queue;
     dispatch_once(&queueCreationGuard, ^{
@@ -37,10 +37,11 @@ dispatch_queue_t backgroundQueue() {
     return queue;
 }
 
-// convert userProximity string into a int 
+
+// convert userProximity string into a int
 
 -(void)storeBlueToothDataByUUID:(NSString *)userUUID userProximity:(int)proximity andTime:(NSDate *)time {
-    dispatch_queue_t queue = backgroundQueue();
+    dispatch_queue_t queue = self.backgroundQueue;
     dispatch_async(queue, ^{
         @synchronized (self) {
             RLMRealm *backgroundRealm = [RLMRealm defaultRealm];
@@ -69,7 +70,7 @@ dispatch_queue_t backgroundQueue() {
                                 UserRecord *aUserRec = previousTimePeriod.userRecords[i];
                                 
                                 if ([aUserRec.uUID isEqualToString: userUUID]) {
-                                    dispatch_queue_t queue = backgroundQueue();
+                                    dispatch_queue_t queue = self.backgroundQueue;
                                     dispatch_async(queue, ^{
                                         RLMRealm *backgroundRealm = [RLMRealm defaultRealm];
                                         [backgroundRealm beginWriteTransaction];
@@ -107,7 +108,7 @@ dispatch_queue_t backgroundQueue() {
 }
 
 -(void)increaseUserTotalDistanceAndObs:(UserRecord *)userRecord userProximity:(int)proximity {
-    dispatch_queue_t queue = backgroundQueue();
+    dispatch_queue_t queue = self.backgroundQueue;
     dispatch_async(queue, ^{
         
         RLMRealm *backgroundRealm = [RLMRealm defaultRealm];

@@ -12,18 +12,18 @@
 #import "Ping-Swift.h"
 
 #import <linkedin-sdk/LISDK.h>
-#import "Backendless.h"
 
-#define APP_ID @"9D4CD068-86ED-EE23-FFA3-9BA9140C1800"
-#define SECRET_KEY @"38C89559-F92A-B793-FF3C-CF09B6A31E00"
-#define VERSION @"v1"
+#import <Parse/Parse.h>
+#define Parse_APP_ID @"QaDwdtxkrP8gd42kZrvn1aHv64PKRNLxuuHY964v"
+#define Parse_Client_Key @"AZ8btrgurhLG306dVeWjKjx9nSszPI5sAoqwcZ6F"
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    //Backendless setup
-    [backendless initApp:APP_ID secret:SECRET_KEY version:VERSION];
+    
+    // Initialize Parse.
+    [Parse setApplicationId:Parse_APP_ID clientKey:Parse_Client_Key];
     
     return YES;
 }

@@ -47,7 +47,8 @@
     self.profilePicURL = profilePicURL;
     [realm commitWriteTransaction];
     
-    // ToDo add code to set profile pic in backendless 
+    // ToDo add code to set profile pic in parse
+    
 }
 
 @end

@@ -14,10 +14,7 @@
 
 + (CurrentUser *)makeCurrentUserWithProfileDictionary:(NSDictionary *)dic;
 + (CurrentUser *)getCurrentUser;
-- (void)save;
-
-
--(id)responseHandler:(id)response;
+//- (void)save;
 
 @end
 
