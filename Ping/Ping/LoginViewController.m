@@ -60,15 +60,6 @@ typedef void(^myCompletion)(BOOL);
             if (iM.loginManager.isFirstTimeUser) {
                 // ToDo display Onboarding else continue
                 NSLog(@"First time user");
-                //    if (iM.loginManager.isLoggedIn) {
-                //        [iM.loginManager attemptToLoginWithCompletion:^(BOOL success) {
-                //            if (success) {
-                //                [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
-                //            } else {
-                //                // ToDo display error message
-                //            }
-                //        }];
-                //    }
             }
         }
     }];
