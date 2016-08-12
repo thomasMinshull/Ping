@@ -1,15 +1,24 @@
 //
-//  CurrentUser.h
+//  currentUser.h
 //  Ping
 //
-//  Created by thomas minshull on 2016-07-28.
+//  Created by thomas minshull on 2016-08-09.
 //  Copyright © 2016 thomas minshull. All rights reserved.
 //
 
-#import "PingUser.h"
+#import "User.h"
+#import "Event.h"
 
-@interface CurrentUser : NSObject
+@interface CurrentUser : User
 
-@property (strong, nonatomic) PingUser *currentUser; 
+@property (strong) RLMArray<Event *><Event> *Events;
+
+// ToDo add comment list
+
++ (CurrentUser *)makeCurrentUserWithProfileDictionary:(NSDictionary *)dic;
++ (CurrentUser *)getCurrentUser;
+//- (void)save;
 
 @end
+
+RLM_ARRAY_TYPE(CurrentUser)

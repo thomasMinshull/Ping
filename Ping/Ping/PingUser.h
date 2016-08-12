@@ -15,7 +15,7 @@
 @property (strong, nonatomic) NSString *headline;
 @property (strong, nonatomic) NSString *linkedInID;
 @property (strong, nonatomic) NSString *profilePicURL;
-//@property (strong, nonatomic) NSDictionary *profileRequest;
+
 
 @property (strong, nonatomic) NSString *userUUID;
 

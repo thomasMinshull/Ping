@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PingUser.h"
+#import "User.h"
 
 @interface PingUserTableViewCell : UITableViewCell
 
-- (void)setUpWithPingUser:(PingUser *)user;
+- (void)setUpWithUser:(User *)user;
 
 @end
