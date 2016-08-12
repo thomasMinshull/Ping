@@ -50,8 +50,7 @@
     return currentUser;
 }
 
-
-#pragma mark -Private Methods
+#pragma mark -Instance Methods
 
 - (void)addEvent:(Event *)event {
     RLMRealm *currentUserRealm = [RLMRealm defaultRealm];
@@ -61,6 +60,17 @@
     }];
 
 }
+
+
+- (NSArray *)fetchEvents {
+    RLMResults<Event *> *events = [Event allObjects];
+    NSMutableArray *eventsToPass = [[NSMutableArray alloc] init];
+    for (Event *event in events) {
+        [eventsToPass addObject:event];
+    }
+    return [eventsToPass copy];
+}
+
 
 - (void)save { // not sure if used can propbably delete
     

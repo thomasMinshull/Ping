@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29662C6ADFE0F7FB6DD6A80D /* Pods_Ping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276205176E08A7EE3F6CC82A /* Pods_Ping.framework */; };
 		4063F8531D5C0AB300D13D6A /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4063F8521D5C0AB300D13D6A /* LoadingView.swift */; };
 		4063F8551D5C0B1200D13D6A /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4063F8541D5C0B1200D13D6A /* QCMethod.swift */; };
 		40F135421D4C33C200376973 /* BlueToothManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 555C1E791D4A9DE700007980 /* BlueToothManger.m */; };
@@ -38,7 +39,6 @@
 		55DCBF621D5D4D380085F5A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55DCBF611D5D4D380085F5A3 /* Main.storyboard */; };
 		55DCBF641D5D4D660085F5A3 /* SurroundingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCBF631D5D4D660085F5A3 /* SurroundingsTableViewCell.swift */; };
 		55FA848C1D5D9B250073FB1E /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FA848B1D5D9B250073FB1E /* ForgotPasswordViewController.swift */; };
-		71678BD4F8B7654916D3F4B0 /* libPods-Ping.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 099398FE9E3F4648F16B801E /* libPods-Ping.a */; };
 		9C18CAF81D4AE89B008519E1 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C18CAF71D4AE89B008519E1 /* User.m */; };
 		9C49692E1D5D72E2003DAE8C /* EventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C49692D1D5D72E2003DAE8C /* EventListViewController.swift */; };
 		9C4969301D5D7343003DAE8C /* EventListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C49692F1D5D7343003DAE8C /* EventListTableViewCell.swift */; };
@@ -47,7 +47,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		099398FE9E3F4648F16B801E /* libPods-Ping.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Ping.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		276205176E08A7EE3F6CC82A /* Pods_Ping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4063F8521D5C0AB300D13D6A /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		4063F8541D5C0B1200D13D6A /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
 		5511E5ED1D5CFA78000DFFB3 /* ParseUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseUser.h; sourceTree = "<group>"; };
@@ -115,8 +115,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71678BD4F8B7654916D3F4B0 /* libPods-Ping.a in Frameworks */,
 				55A0985F1D46CEC7005100BC /* linkedin-sdk.framework in Frameworks */,
+				29662C6ADFE0F7FB6DD6A80D /* Pods_Ping.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,7 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				55A0985E1D46CEC7005100BC /* linkedin-sdk.framework */,
-				099398FE9E3F4648F16B801E /* libPods-Ping.a */,
+				276205176E08A7EE3F6CC82A /* Pods_Ping.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

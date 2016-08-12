@@ -297,9 +297,11 @@
                         <outlet property="eventLocationTextField" destination="uyx-85-lXg" id="cfG-mX-Ia1"/>
                         <outlet property="eventNameTextField" destination="Lt8-b3-2lH" id="hkb-55-CIE"/>
                         <outlet property="startTimeButton" destination="doT-uN-Igh" id="1hE-0B-H49"/>
+                        <segue destination="zgJ-dS-fgs" kind="unwind" identifier="NewEventVCToEventListVC" unwindAction="unwindToMenu:" id="kwb-If-L7x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ux1-Ds-ptb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="zgJ-dS-fgs" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="HN5-vi-r3T">
                     <connections>
                         <action selector="backgroundTapped:" destination="5m0-C1-HRL" id="kgx-UB-vug"/>
@@ -371,17 +373,6 @@
                                     <outlet property="delegate" destination="usr-FW-ikr" id="L5q-X3-Maf"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rdP-8F-gXP">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="WqC-Wp-IaR"/>
-                                </constraints>
-                                <state key="normal" title="Button" image="CellButton" backgroundImage="realNowButtonBGDefault"/>
-                                <state key="highlighted" image="realNowButtonBGHovered"/>
-                                <connections>
-                                    <action selector="currentSurroundingButtonPressed:" destination="usr-FW-ikr" eventType="touchUpInside" id="BgH-EJ-Rve"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvk-gj-DHK">
                                 <rect key="frame" x="319" y="16" width="56" height="56"/>
                                 <constraints>
@@ -392,6 +383,17 @@
                                 <state key="normal" image="Plus"/>
                                 <connections>
                                     <action selector="addEventButtonPressed:" destination="usr-FW-ikr" eventType="touchUpInside" id="fPt-qM-ApA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rdP-8F-gXP">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="WqC-Wp-IaR"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="CellButton" backgroundImage="realNowButtonBGDefault"/>
+                                <state key="highlighted" image="realNowButtonBGHovered"/>
+                                <connections>
+                                    <action selector="currentSurroundingButtonPressed:" destination="usr-FW-ikr" eventType="touchUpInside" id="BgH-EJ-Rve"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -508,7 +510,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z0Q-Lp-8ha" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1514.5" y="105.5"/>
+            <point key="canvasLocation" x="1470.5" y="-46.5"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">

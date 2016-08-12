@@ -69,15 +69,13 @@
 - (IBAction)completeButtonPressed:(id)sender {
     CurrentUser *currentUser = [CurrentUser getCurrentUser];
     [currentUser addEvent:self.event];
-    
-    
+    [self performSegueWithIdentifier:@"NewEventVCToEventListVC" sender:self];
 }
 
 - (IBAction)backButtonPressed:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-        nil;
-    }];
+    [self performSegueWithIdentifier:@"NewEventVCToEventListVC" sender:self];
 }
+
 - (IBAction)startTimeButtonPressed:(id)sender {
     
     [self.view endEditing:YES];
@@ -213,14 +211,7 @@
 }
 
 
-/*
- #pragma mark - Navigation
+#pragma mark - Navigation
  
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end
