@@ -1,5 +1,4 @@
 PODS:
-  - Backendless (3.0.32)
   - Bolts/Tasks (1.8.4)
   - Parse (1.14.2):
     - Bolts/Tasks (~> 1.8)
@@ -11,18 +10,16 @@ PODS:
   - SDWebImage/Core (3.8.1)
 
 DEPENDENCIES:
-  - Backendless
   - Parse
   - Realm
   - SDWebImage
 
 SPEC CHECKSUMS:
-  Backendless: 48a96ea7f825b8b2a2832bcd4f5a52f41d7924a8
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Parse: 4335d65f40cb3d43190d723144bbe1afb9c38230
   Realm: 9d5c46a4d7d27958530a8dfc58f63a99e5c2cba3
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
 
-PODFILE CHECKSUM: 7031238b63e12c3c46ae679a79af57cb1c198c97
+PODFILE CHECKSUM: 32b6cf03298ff8c62b62028b44cf6edab9fc8542
 
 COCOAPODS: 1.0.1

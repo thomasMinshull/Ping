@@ -9,7 +9,6 @@
 #import "LoginViewController.h"
 #import <linkedin-sdk/LISDK.h>
 #import <Parse/Parse.h>
-#import "Backendless.h"
 
 #import "AppDelegate.h"
 
@@ -85,8 +84,9 @@ typedef void(^myCompletion)(BOOL);
     
     [iM.loginManager createNewUserAndLoginWithCompletion:^(BOOL success) {
         if (success) {
-            
-            [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
+            });
         } else {
             // Display Error
         }

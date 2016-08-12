@@ -19,6 +19,7 @@
 + (CurrentUser *)getCurrentUser;
 
 - (void)addEvent:(Event *)event;
+- (NSArray<Event *> *)fetchEvents;
 //- (void)save;
 @end
 
