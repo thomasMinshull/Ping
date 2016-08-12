@@ -223,7 +223,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="hoseNameChanged:" destination="5m0-C1-HRL" eventType="editingChanged" id="4eS-8N-JD1"/>
+                                    <action selector="hostNameChanged:" destination="5m0-C1-HRL" eventType="editingDidEnd" id="Lu3-vs-VHu"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="San Fransisco" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uyx-85-lXg">
