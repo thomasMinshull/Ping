@@ -78,14 +78,9 @@
                                             
                                             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
                                             
-                                            RecordManager *recordManager = [RecordManager new];
-                                            dispatch_queue_t queue = recordManager.backgroundQueue;
-                                            
-                                            dispatch_async(queue, ^{
-                                                if (![CurrentUser getCurrentUser]) {
-                                                    [CurrentUser makeCurrentUserWithProfileDictionary:json];
-                                                }
-                                            });
+                                            if (![CurrentUser getCurrentUser]) {
+                                                [CurrentUser makeCurrentUserWithProfileDictionary:json];
+                                            }
                                             
                                             completion(true);
                                         }

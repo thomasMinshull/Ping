@@ -287,7 +287,6 @@
 				5599E7901D49C12600E61B0E /* Managers */,
 				55A098B51D47FD2F005100BC /* catagories */,
 				5599E78E1D49BA4A00E61B0E /* Entities */,
-				5599E7941D49C15800E61B0E /* tabelViewCells */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -295,6 +294,7 @@
 		55A0985A1D46CAE7005100BC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5599E7941D49C15800E61B0E /* tabelViewCells */,
 				4063F8511D5C0A8E00D13D6A /* LoadingView */,
 			);
 			name = View;
