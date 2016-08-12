@@ -14,7 +14,7 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var addEventButton: UIButton!
     @IBOutlet weak var eventListTableView: UITableView!
     let mainBackGroundColor = UIColor(netHex:0xD9FAAA)
-        var tableData = ["AMG GT S World Primier", "Track day", "Drag race with police", "VanCity car meet"]
+        var tableData = ["AMG GT S World Primier", "Track day", "Drag race with police", "bla", "bla", "random text for cell style testing", "VanCity car meet", "bla", "blah"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,7 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         eventListTableView.backgroundColor = mainBackGroundColor
         eventListTableView.separatorStyle = UITableViewCellSeparatorStyle.None
         eventListTableView.tableFooterView = UIView(frame: CGRectZero)
-        eventListTableView.registerClass(EventListTableViewCell.self, forCellReuseIdentifier: "cell")
+//        eventListTableView.registerClass(EventListTableViewCell.self, forCellReuseIdentifier: "cell")
         // Do any additional setup after loading the view.
     }
 
@@ -40,20 +40,53 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 60
+        return 70
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! EventListTableViewCell
         
-        cell.textLabel?.text = tableData[indexPath.row]
-        cell.textLabel?.textColor = UIColor.blackColor()
-        cell.textLabel?.backgroundColor = UIColor.clearColor()
-        cell.textLabel?.font = UIFont(name: "Helvetica Neue Thin", size: 20)
-        cell.selectionStyle = UITableViewCellSelectionStyle.Default
+        cell.eventTitleLabel.text = tableData[indexPath.row]
+        cell.eventTitleLabel.textColor = UIColor.blackColor()
+        cell.eventTitleLabel.backgroundColor = UIColor.clearColor()
+        cell.selectionStyle = UITableViewCellSelectionStyle.Gray
+        
+        cell.eventTimeLabel.text = "2:45 PM, June 27th, 2016"
+        cell.eventTimeLabel.textColor = UIColor.blackColor()
+        cell.eventTimeLabel.backgroundColor = UIColor.clearColor()
+    
+//        cell.textLabel?.text = tableData[indexPath.row]
+//        cell.textLabel?.textColor = UIColor.blackColor()
+//        cell.textLabel?.backgroundColor = UIColor.clearColor()
+//        cell.textLabel?.font = UIFont(name: "Helvetica Neue Thin", size: 20)
         
         return cell
         
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("showParticularEventSegue", sender: self)
+    }
+    
+//    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+//        let delete = UITableViewRowAction(style: .Normal, title: "\nDelete Event") {
+//            action, index in
+//            print("Delete button pressed")
+//        }
+//        delete.backgroundColor = UIColor.redColor()
+//        
+//        return [delete]
+//    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            tableData.removeAtIndex(indexPath.row)
+            self.eventListTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
     }
     
     func colorforIndex(index: Int) -> UIColor {
@@ -69,16 +102,6 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.backgroundColor =  colorforIndex(indexPath.row)
         
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     @IBAction func currentSurroundingButtonPressed(sender: AnyObject) {
             self.performSegueWithIdentifier("showCurrentSurroundings", sender: self)
