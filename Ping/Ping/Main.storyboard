@@ -43,7 +43,7 @@
                                 </constraints>
                                 <state key="normal" title="Button" image="Sign-In-Large---Default"/>
                                 <connections>
-                                    <action selector="linkedInLoginButtonTapped:" destination="I87-hg-4Kb" eventType="touchUpInside" id="ah4-8w-Eyo"/>
+                                    <action selector="linkedInLoginButtonTapped:" destination="I87-hg-4Kb" eventType="touchUpInside" id="rUy-cW-05s"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in via LinkedIn account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KF6-aW-zBh">
@@ -71,7 +71,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="signInWithLinkedInButton" destination="jTh-Sr-5kU" id="nB0-rU-4r9"/>
+                        <outlet property="linkedInLoginButton" destination="jTh-Sr-5kU" id="kzO-C5-bzq"/>
                         <segue destination="usr-FW-ikr" kind="show" identifier="MainViewController" id="UPL-Cu-c7l"/>
                     </connections>
                 </viewController>
@@ -454,7 +454,7 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="linkedInLoginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NUb-ZE-HXR"/>
+                                    <action selector="linkedInLoginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZA0-J2-cfK"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Ping" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0BF-55-ZLX">
@@ -478,7 +478,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="linkedInLoginButton" destination="TXr-NC-92t" id="WVq-mL-cOl"/>
+                        <outlet property="linkedInLoginButton" destination="TXr-NC-92t" id="eOy-L6-oY2"/>
                         <segue destination="li8-sv-mvp" kind="show" identifier="MainViewController" id="gfR-kS-tok"/>
                     </connections>
                 </viewController>

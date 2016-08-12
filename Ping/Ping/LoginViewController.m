@@ -42,15 +42,15 @@
         NSLog(@"First time user");
     }
     
-    if (iM.loginManager.isLoggedIn) {
-        [iM.loginManager attemptToLoginWithCompletion:^(BOOL success) {
-            if (success) {
-                [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
-            } else {
-                // ToDo display error message
-            }
-        }];
-    }
+//    if (iM.loginManager.isLoggedIn) {
+//        [iM.loginManager attemptToLoginWithCompletion:^(BOOL success) {
+//            if (success) {
+//                [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
+//            } else {
+//                // ToDo display error message
+//            }
+//        }];
+//    }
     
 }
 
