@@ -7,286 +7,77 @@
 //
 
 #import "UserManager.h"
-#import <linkedin-sdk/LISDK.h>
-#import "PingUser.h"
 #import "CurrentUser.h"
-#import "Backendless.h"
-#import "PingUserRealm.h"
-
-#import "AppDelegate.h"
-
-#define LINKEDIN_USER_URL @"https://api.linkedin.com/v1/people/~"
-#define LINKEDIN_ADDITIONAL_INFO_URL @"https://api.linkedin.com/v1/people/~:(id,num-connections,picture-url)?format=json"
+#import "ParseUser.h"
+#import <Parse/Parse.h>
+#import "Ping-Swift.h"
 
 @interface UserManager ()
 
-@property (nonatomic) BOOL temp;
-@property (nonatomic) RLMRealm *currentRealmUser;
-
+//@property (nonatomic) BOOL temp;
+@property (strong, nonatomic)NSMutableSet __block *parseUsers;
 @end
 
 @implementation UserManager
 
-+ (instancetype)sharedUserManager {
-    static UserManager *sharedUserManager = nil;
-    static dispatch_once_t onceToken;
-    
-    dispatch_once(&onceToken, ^{
-        sharedUserManager = [[UserManager alloc] init];
-        sharedUserManager.userList = [NSMutableSet new];
-//        sharedUserManager.currentUser = [PingUser new];
-//        sharedUserManager.temp = false;
-    });
-    
-//    [sharedUserManager updateUserList];
-    
-    return sharedUserManager;
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self setUp];
+    }
+    return self;
 }
 
 - (void)setUp {
-    // get latest userList
-    id<IDataStore> dataStore = [backendless.persistenceService of:[PingUser class]];
     
-    @try {
-        BackendlessCollection *backendlessUserListCollection = [dataStore find];
-        // set page size to include the whole list of objects because backendless's pagination sucks!
-        // ToDo fix pagination so it works properly
-        [backendlessUserListCollection pageSize:[[backendlessUserListCollection getTotalObjects] integerValue]];
-        
-        NSArray *backendlessUserList = [backendlessUserListCollection getCurrentPage];
-        
-        NSMutableArray *uuidList = [NSMutableArray new];
-        for (PingUser *u in backendlessUserList) {
-            [self.userList addObject:u];
-            [uuidList addObject:u.userUUID];
+    PFQuery *query = [PFQuery queryWithClassName:@"ParseUser"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"error retreiving users from parse ERROR: %@", error);
+        } else {
+            self.parseUsers = [NSMutableSet new];
+            self.uuids = [NSMutableArray new];
+            
+            for (PFObject *parseUser in objects) {
+                
+                [self.parseUsers addObject:parseUser];
+                [self.uuids addObject:[parseUser objectForKey:@"UUID"]];
+            }
         }
         
-        AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        
-        self.blueToothManager = [BlueToothManager sharedrecordManager:[uuidList copy] andCurrentUUID:app.currentUser.userUUID];
-//        self.blueToothManager = [BlueToothManager sharedrecordManager:@[@"E20A39F4-73F5-4BC4-A12F-17D1AD07A961", @"1C6AAE1E-E4D1-42CB-A642-0856C315A75F", @"F124015B-5AF2-4969-A7A0-38BF2759600F"] andCurrentUUID:@"1C6AAE1E-E4D1-42CB-A642-0856C315A75F"];
-    } @catch (Fault *fault) {
-        NSLog(@"Server reported an error: %@", fault);
-    }
+    }];
+    
+//        User *user1 = [User new];
+//        user1.firstName = @"Martin";
+//        user1.lastName = @"Zhang";
+//        user1.headline = @"stuff";
+//        user1.linkedInID = @"stuff";
+//        user1.profilePicURL = @"https://media.licdn.com/mpr/mprx/0_toKw915dIk5rEJF8OU6IYKyHoARu2R5ygUeLKQodo1eD2INKgU6w41kdDkBD2Ib3YUEQ4FFWF1eS7xzKjMvBOF65C1e270r2RMvez61eW-g85dIKBHi6vtjMGQtp60bjtVAbtqut7mP";
+//        
+//        
+//        self.uuids = [@[@"FEBAA2DD-CE1A-4125-96D0-097DFD047E83", @"0D623438-99D7-4B39-B6BB-03936A6B379B",@"C826D6CF-E64B-4159-8B6F-FCE60C18C12D",@"71C12256-AFE6-4D3D-9E5A-1B0E6ED0CB8F",@"19A86001-A1B4-44DE-879B-F9FD6B7D945F",@"84241393-5155-4307-B5F6-38C013447E02",@"FB2165CD-B0FF-4F96-87AB-C9BC6C3851BE",@"8E88F0CC-C79F-46E8-B323-C06DB3ED32E5"] mutableCopy];
+
+ 
 }
 
-- (PingUser *)userForUUID:(NSString *)uuid {
+- (User *)userForUUID:(NSString *)uuid {
     
-    for (PingUser *user in self.userList) {
-        if ([user.userUUID isEqualToString:uuid]) {
+    for (PFObject *parseUser in self.parseUsers) {
+        if ([parseUser[@"UUID"] isEqualToString:uuid]) {
+            
+            // copy parse user as regular user
+            User *user = [[User alloc] init];
+            user.firstName = parseUser[@"name"];
+            user.lastName = parseUser[@"lastName"];
+            user.headline = parseUser[@"headline"];
+            user.linkedInID = parseUser[@"linkedInID"];
+            user.UUID = parseUser[@"UUID"];
+            user.profilePicURL = parseUser[@"profilePicURL"]; // should return empty string if null?
             return user;
         }
     }
     return nil;
-}
-
-- (void)updateProfilePicForUser:(PingUser *)user {
-    [self setProfilePicForUser:user WithCompletion:nil];
-    
-}
-
-
-#pragma  mark -Loggin Methods 
-
-- (BOOL)previouslyLoggedIn {
-    //query keychain
-    
-    NSMutableDictionary *query = [@{
-                                    (__bridge id)kSecReturnAttributes : (__bridge id)kCFBooleanTrue,
-                                    (__bridge id)kSecMatchLimit : (__bridge id)kSecMatchLimitAll,
-                                    (__bridge id)kSecClass : (__bridge id)kSecClassGenericPassword,
-                                    (__bridge id)kSecReturnData : (__bridge  id)kCFBooleanTrue
-                                    } mutableCopy];
-    
-    CFTypeRef result = NULL;
-    SecItemCopyMatching((__bridge CFDictionaryRef)query, &result);
-    NSLog(@"%@", (__bridge id)result);
-    
-    if (result != NULL) { // We found the key, maybe we should check it
-        return YES; // Nahh never mind :P
-        
-//              [self createNewSessionWithoutNewUsers];
-    }
-    return NO;
-    
-    /* ToDo Unfinished Code used to validate the key and create new session 
-     NSArray *resultArray = (__bridge_transfer NSArray *)result;
-     NSDictionary *resultDict = [resultArray firstObject];
-     NSData *pswd = resultDict[(__bridge id)kSecValueData];
-     NSString *password = [[NSString alloc] initWithData:pswd encoding:NSUTF16StringEncoding];
-     
-     NSLog(@"serialized token: %@", password);
-     //CFRelease(result);
-     
-     
-     [LISDKSessionManager createSessionWithAccessToken:[LISDKAccessToken LISDKAccessTokenWithSerializedString:password]];
-     
-     [self createNewSession];
-     
-     NSLog(@"ACcess tokens %@ ::::: %@",[[LISDKSessionManager sharedInstance].session.accessToken serializedString], password);
-     */
-}
-
-
-- (void)createNewSessionWithoutNewUsersWithCompletion:(void(^)())completion {
-    [LISDKSessionManager createSessionWithAuth:@[LISDK_BASIC_PROFILE_PERMISSION] state:@"login with button" showGoToAppStoreDialog:YES successBlock:^(NSString *state) {
-        NSLog(@"Success Segue to new screen");
-        completion();
-    } errorBlock:^(NSError *error) {
-        NSLog(@"Error when logging in with LinkedIn %@", error);
-        //ToDo display error message to user
-        
-    }];
-}
-
-
-- (void)createUserWithCompletion:(void(^)())completion {
-
-        [[LISDKAPIHelper sharedInstance] getRequest:LINKEDIN_USER_URL
-                                            success:^(LISDKAPIResponse *response) {
-                                                NSLog(@"got user profile: %@", response.data);
-                                                
-                                                PingUser *selfUser = [self createUserWithResponseString:response.data];
-                                                NSLog(@"self user uuid: %@", selfUser.userUUID);
-                                                
-                                                AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-                                                
-                                                app.currentUser = selfUser;
-                                                
-                                                // Add Profile Pic
-                                                
-                                                __weak UserManager *weakSelf = self;
-                                                [self setProfilePicForUser:selfUser WithCompletion:^{
-                                                    
-                                                    [weakSelf saveBackendlessUser:selfUser];
-                                                    // save to realm as current user
-                                                    [weakSelf persistCurrentUserToRealm:selfUser];
-                                                }];
-                                                
-                                                completion();
-                                            }
-                                              error:^(LISDKAPIError *apiError) {
-                                                  // do something with error
-                                                  NSLog(@"Failed to get user profile: %@", apiError);
-                                                  
-                                                  //ToDo display error
-                                              }];
-}
-
-- (PingUser *)createUserWithResponseString:(NSString *)response {
-    NSData *responseData = [response dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSError *jsonError;
-    
-    NSDictionary *myProfile = [NSJSONSerialization JSONObjectWithData:responseData
-                                                              options:NSJSONReadingMutableContainers
-                                                                error:&jsonError];
-    
-    PingUser *selfUser = [[PingUser alloc] init];
-    [selfUser setPropertiesWithProfileDictionary:myProfile];
-    
-    return selfUser;
-}
-
-- (void)setProfilePicForUser:(PingUser *)user WithCompletion:(void(^)())completion {
-    [[LISDKAPIHelper sharedInstance] getRequest:LINKEDIN_ADDITIONAL_INFO_URL success:^(LISDKAPIResponse *response) {
-        NSLog(@"successfully retrieved profile pic with response: %@", response.data);
-        
-        NSData *profilePicResponse = [response.data dataUsingEncoding:NSUTF8StringEncoding];
-        
-        NSError *picError;
-        NSDictionary *myPic = [NSJSONSerialization JSONObjectWithData:profilePicResponse
-                                                              options:NSJSONReadingMutableContainers
-                                                                error:&picError];
-        NSString *picURl = myPic[@"pictureUrl"];
-        
-        user.profilePicURL = picURl;
-        
-        completion();
-    
-    } error:^(LISDKAPIError *error) {
-        NSLog(@"Error when loading profile Pic: %@", error);
-        completion();
-    }];
-}
-
-#pragma mark - Backendless Methods
-
-- (void)saveBackendlessUser:(PingUser *)user {
-    id<IDataStore> dataStore = [backendless.persistenceService of:[PingUser class]];
-    
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-            [dataStore save:user];
-             });
-    
-    Fault *fault;
-    BackendlessCollection *collection = [dataStore findFault:&fault];
-    NSLog(@"log global list of users: %@", collection);
-}
-
-- (void)loginAndCreateNewUserWithCompletion:(void(^)())completion {
-    [LISDKSessionManager createSessionWithAuth:@[LISDK_BASIC_PROFILE_PERMISSION] state:@"login with button" showGoToAppStoreDialog:YES successBlock:^(NSString *state) {
-        NSLog(@"Success Segue to new screen");
-        
-        // ToDo am I a new user? check realm for currentUser
-        
-        
-        // if currentUser does not exist in realm
-        [self createUserWithCompletion:completion];
-        
-    } errorBlock:^(NSError *error) {
-        NSLog(@"Error when logging in with LinkedIn %@", error);
-        
-        //ToDo display error message to user
-        
-    }];
-}
-
-
-- (void)persistCurrentUserToRealm:(PingUser *)currentUser {
-    // wrap in queue ?
-    self.currentRealmUser = [RLMRealm defaultRealm];
-    PingUserRealm *pingUserForRealm = [[PingUserRealm alloc] initWithPingUserValue:currentUser];
-    [self.currentRealmUser beginWriteTransaction];
-    [self.currentRealmUser deleteAllObjects];
-    [self.currentRealmUser addObject:pingUserForRealm];
-    [self.currentRealmUser commitWriteTransaction];
-}
-
-- (PingUser *)fetchCurrentUserFromRealm {
-    if (![self.currentRealmUser isEmpty]) {
-        RLMResults<PingUserRealm *> *userResult = [PingUserRealm allObjects];
-        PingUserRealm *userFromRealm = [userResult firstObject];
-        PingUser *user = [[PingUser alloc] init];
-        user.firstName = userFromRealm.firstName;
-        user.lastName = userFromRealm.lastName;
-        user.headline = userFromRealm.headline;
-        user.linkedInID = userFromRealm.linkedInID;
-        user.profilePicURL = userFromRealm.profilePicURL;
-        user.userUUID = userFromRealm.userUUID;
-        return user;
-    }
-    return nil;
-}
-
-
-
-#pragma mark -Convience Methods
-
-- (void)realmUserFromBackendlessUser:(PingUser *)backendlessUser {
-    
-}
-
-//- (BOOL)isUserListUpToDate {
-//    return true;
-//}
-
-//- (BOOL)profilePicExistesForUser:(PingUser *)user {
-//    return NO;
-//}
-
-- (void)stopScanning {
-    [self.blueToothManager stop];
 }
 
 @end

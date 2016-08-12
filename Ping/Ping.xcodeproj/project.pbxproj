@@ -10,11 +10,11 @@
 		4063F8531D5C0AB300D13D6A /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4063F8521D5C0AB300D13D6A /* LoadingView.swift */; };
 		4063F8551D5C0B1200D13D6A /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4063F8541D5C0B1200D13D6A /* QCMethod.swift */; };
 		40F135421D4C33C200376973 /* BlueToothManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 555C1E791D4A9DE700007980 /* BlueToothManger.m */; };
+		5511E5EF1D5CFA78000DFFB3 /* ParseUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5511E5EE1D5CFA78000DFFB3 /* ParseUser.m */; };
+		5537CDCD1D593AA6002045C8 /* IntegrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5537CDCC1D593AA6002045C8 /* IntegrationManager.swift */; };
 		5594DAFD1D45E2DE0096D5DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594DAFC1D45E2DE0096D5DF /* main.m */; };
 		5594DB001D45E2DE0096D5DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594DAFF1D45E2DE0096D5DF /* AppDelegate.m */; };
-		5594DB061D45E2DE0096D5DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5594DB041D45E2DE0096D5DF /* Main.storyboard */; };
 		5594DB091D45E2DE0096D5DF /* Ping.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5594DB071D45E2DE0096D5DF /* Ping.xcdatamodeld */; };
-		5594DB0B1D45E2DE0096D5DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5594DB0A1D45E2DE0096D5DF /* Assets.xcassets */; };
 		5594DB0E1D45E2DE0096D5DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5594DB0C1D45E2DE0096D5DF /* LaunchScreen.storyboard */; };
 		5599E78B1D499E1C00E61B0E /* RecordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5599E7861D499E1C00E61B0E /* RecordManager.m */; };
 		5599E78C1D499E1C00E61B0E /* TimePeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 5599E7881D499E1C00E61B0E /* TimePeriod.m */; };
@@ -29,10 +29,19 @@
 		55A098B81D47FD73005100BC /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A098B71D47FD73005100BC /* NSString+UUID.m */; };
 		55A098E11D4907CE005100BC /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A098E01D4907CE005100BC /* UserManager.m */; };
 		55A099071D498F27005100BC /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A099061D498F27005100BC /* MainViewController.m */; };
-		55AD89351D4AD5B80097DE9B /* CurrentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 55AD89341D4AD5B80097DE9B /* CurrentUser.m */; };
 		55AD89381D4B87F90097DE9B /* AverageUUidDuple.m in Sources */ = {isa = PBXBuildFile; fileRef = 55AD89371D4B87F90097DE9B /* AverageUUidDuple.m */; };
+		55B0C3EE1D59796300394286 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B0C3ED1D59796300394286 /* LoginManager.m */; };
+		55B0C3F11D5A440D00394286 /* CurrentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B0C3F01D5A440D00394286 /* CurrentUser.m */; };
+		55DCBF581D5D34EC0085F5A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55DCBF571D5D34EC0085F5A3 /* Assets.xcassets */; };
+		55DCBF5A1D5D3D580085F5A3 /* CurrentSurroundingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCBF591D5D3D580085F5A3 /* CurrentSurroundingsViewController.swift */; };
+		55DCBF5D1D5D3D610085F5A3 /* NewEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DCBF5C1D5D3D610085F5A3 /* NewEventViewController.m */; };
+		55DCBF601D5D3D6A0085F5A3 /* EventCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DCBF5F1D5D3D6A0085F5A3 /* EventCalendarViewController.m */; };
+		55DCBF621D5D4D380085F5A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55DCBF611D5D4D380085F5A3 /* Main.storyboard */; };
+		55DCBF641D5D4D660085F5A3 /* SurroundingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCBF631D5D4D660085F5A3 /* SurroundingsTableViewCell.swift */; };
+		55E4584F1D5CD87800845E1B /* TestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E4584E1D5CD87800845E1B /* TestTableViewController.m */; };
+		55E458521D5CD88B00845E1B /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E458511D5CD88B00845E1B /* TestViewController.m */; };
 		71678BD4F8B7654916D3F4B0 /* libPods-Ping.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 099398FE9E3F4648F16B801E /* libPods-Ping.a */; };
-		9C18CAF81D4AE89B008519E1 /* PingUserRealm.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C18CAF71D4AE89B008519E1 /* PingUserRealm.m */; };
+		9C18CAF81D4AE89B008519E1 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C18CAF71D4AE89B008519E1 /* User.m */; };
 		9C93654E1D5925B0009E6262 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C93654D1D5925B0009E6262 /* Comment.m */; };
 		9C9365511D59287B009E6262 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9365501D59287B009E6262 /* Event.m */; };
 /* End PBXBuildFile section */
@@ -41,15 +50,16 @@
 		099398FE9E3F4648F16B801E /* libPods-Ping.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Ping.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4063F8521D5C0AB300D13D6A /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		4063F8541D5C0B1200D13D6A /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
+		5511E5ED1D5CFA78000DFFB3 /* ParseUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseUser.h; sourceTree = "<group>"; };
+		5511E5EE1D5CFA78000DFFB3 /* ParseUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseUser.m; sourceTree = "<group>"; };
+		5537CDCC1D593AA6002045C8 /* IntegrationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegrationManager.swift; sourceTree = "<group>"; };
 		555C1E781D4A9DE700007980 /* BlueToothManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueToothManager.h; sourceTree = "<group>"; };
 		555C1E791D4A9DE700007980 /* BlueToothManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueToothManger.m; sourceTree = "<group>"; };
 		5594DAF81D45E2DD0096D5DF /* Ping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5594DAFC1D45E2DE0096D5DF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5594DAFE1D45E2DE0096D5DF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5594DAFF1D45E2DE0096D5DF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5594DB051D45E2DE0096D5DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5594DB081D45E2DE0096D5DF /* Ping.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Ping.xcdatamodel; sourceTree = "<group>"; };
-		5594DB0A1D45E2DE0096D5DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5594DB0D1D45E2DE0096D5DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5594DB0F1D45E2DE0096D5DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5599E7851D499E1C00E61B0E /* RecordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordManager.h; sourceTree = "<group>"; };
@@ -74,12 +84,26 @@
 		55A098E01D4907CE005100BC /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
 		55A099051D498F27005100BC /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		55A099061D498F27005100BC /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		55AD89331D4AD5B80097DE9B /* CurrentUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentUser.h; sourceTree = "<group>"; };
-		55AD89341D4AD5B80097DE9B /* CurrentUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentUser.m; sourceTree = "<group>"; };
 		55AD89361D4B87F90097DE9B /* AverageUUidDuple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AverageUUidDuple.h; sourceTree = "<group>"; };
 		55AD89371D4B87F90097DE9B /* AverageUUidDuple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AverageUUidDuple.m; sourceTree = "<group>"; };
-		9C18CAF61D4AE89B008519E1 /* PingUserRealm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingUserRealm.h; sourceTree = "<group>"; };
-		9C18CAF71D4AE89B008519E1 /* PingUserRealm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingUserRealm.m; sourceTree = "<group>"; };
+		55B0C3EC1D59796300394286 /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginManager.h; sourceTree = "<group>"; };
+		55B0C3ED1D59796300394286 /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
+		55B0C3EF1D5A440D00394286 /* CurrentUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentUser.h; sourceTree = "<group>"; };
+		55B0C3F01D5A440D00394286 /* CurrentUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentUser.m; sourceTree = "<group>"; };
+		55DCBF571D5D34EC0085F5A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		55DCBF591D5D3D580085F5A3 /* CurrentSurroundingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentSurroundingsViewController.swift; sourceTree = "<group>"; };
+		55DCBF5B1D5D3D5C0085F5A3 /* NewEventViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewEventViewController.h; sourceTree = "<group>"; };
+		55DCBF5C1D5D3D610085F5A3 /* NewEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewEventViewController.m; sourceTree = "<group>"; };
+		55DCBF5E1D5D3D660085F5A3 /* EventCalendarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventCalendarViewController.h; sourceTree = "<group>"; };
+		55DCBF5F1D5D3D6A0085F5A3 /* EventCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCalendarViewController.m; sourceTree = "<group>"; };
+		55DCBF611D5D4D380085F5A3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		55DCBF631D5D4D660085F5A3 /* SurroundingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurroundingsTableViewCell.swift; sourceTree = "<group>"; };
+		55E4584D1D5CD87800845E1B /* TestTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTableViewController.h; sourceTree = "<group>"; };
+		55E4584E1D5CD87800845E1B /* TestTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTableViewController.m; sourceTree = "<group>"; };
+		55E458501D5CD88B00845E1B /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		55E458511D5CD88B00845E1B /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		9C18CAF61D4AE89B008519E1 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		9C18CAF71D4AE89B008519E1 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		9C9365491D592471009E6262 /* Ping-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ping-Bridging-Header.h"; sourceTree = "<group>"; };
 		9C93654C1D5925B0009E6262 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
 		9C93654D1D5925B0009E6262 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
@@ -125,6 +149,7 @@
 		5594DAEF1D45E2DD0096D5DF = {
 			isa = PBXGroup;
 			children = (
+				55E458531D5CD89300845E1B /* New Group */,
 				5594DAFA1D45E2DE0096D5DF /* Ping */,
 				5594DAF91D45E2DD0096D5DF /* Products */,
 				CE1CC1FAE2B604755B95FB8F /* Pods */,
@@ -157,6 +182,7 @@
 		5594DAFB1D45E2DE0096D5DF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9C9365491D592471009E6262 /* Ping-Bridging-Header.h */,
 				5594DB0F1D45E2DE0096D5DF /* Info.plist */,
 				5594DB071D45E2DE0096D5DF /* Ping.xcdatamodeld */,
 				5594DAFC1D45E2DE0096D5DF /* main.m */,
@@ -178,19 +204,20 @@
 		5599E78F1D49C0FA00E61B0E /* realmObjects */ = {
 			isa = PBXGroup;
 			children = (
-				55AD89331D4AD5B80097DE9B /* CurrentUser.h */,
-				55AD89341D4AD5B80097DE9B /* CurrentUser.m */,
 				5599E7871D499E1C00E61B0E /* TimePeriod.h */,
 				5599E7881D499E1C00E61B0E /* TimePeriod.m */,
-				9C18CAF61D4AE89B008519E1 /* PingUserRealm.h */,
-				9C18CAF71D4AE89B008519E1 /* PingUserRealm.m */,
+				9C18CAF61D4AE89B008519E1 /* User.h */,
+				9C18CAF71D4AE89B008519E1 /* User.m */,
+				5511E5ED1D5CFA78000DFFB3 /* ParseUser.h */,
+				5511E5EE1D5CFA78000DFFB3 /* ParseUser.m */,
+				55B0C3EF1D5A440D00394286 /* CurrentUser.h */,
+				55B0C3F01D5A440D00394286 /* CurrentUser.m */,
 				5599E7891D499E1C00E61B0E /* UserRecord.h */,
 				5599E78A1D499E1C00E61B0E /* UserRecord.m */,
 				9C93654F1D59287B009E6262 /* Event.h */,
 				9C9365501D59287B009E6262 /* Event.m */,
 				9C93654C1D5925B0009E6262 /* Comment.h */,
 				9C93654D1D5925B0009E6262 /* Comment.m */,
-				9C9365491D592471009E6262 /* Ping-Bridging-Header.h */,
 			);
 			name = realmObjects;
 			sourceTree = "<group>";
@@ -204,6 +231,9 @@
 				5599E7861D499E1C00E61B0E /* RecordManager.m */,
 				555C1E781D4A9DE700007980 /* BlueToothManager.h */,
 				555C1E791D4A9DE700007980 /* BlueToothManger.m */,
+				5537CDCC1D593AA6002045C8 /* IntegrationManager.swift */,
+				55B0C3EC1D59796300394286 /* LoginManager.h */,
+				55B0C3ED1D59796300394286 /* LoginManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -224,6 +254,12 @@
 				55A0985C1D46CB3E005100BC /* LoginViewController.m */,
 				55A099051D498F27005100BC /* MainViewController.h */,
 				55A099061D498F27005100BC /* MainViewController.m */,
+				55DCBF591D5D3D580085F5A3 /* CurrentSurroundingsViewController.swift */,
+				55DCBF631D5D4D660085F5A3 /* SurroundingsTableViewCell.swift */,
+				55DCBF5B1D5D3D5C0085F5A3 /* NewEventViewController.h */,
+				55DCBF5C1D5D3D610085F5A3 /* NewEventViewController.m */,
+				55DCBF5E1D5D3D660085F5A3 /* EventCalendarViewController.h */,
+				55DCBF5F1D5D3D6A0085F5A3 /* EventCalendarViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -232,9 +268,9 @@
 			isa = PBXGroup;
 			children = (
 				55A098521D46CA94005100BC /* images */,
-				5594DB041D45E2DE0096D5DF /* Main.storyboard */,
-				5594DB0A1D45E2DE0096D5DF /* Assets.xcassets */,
 				5594DB0C1D45E2DE0096D5DF /* LaunchScreen.storyboard */,
+				55DCBF611D5D4D380085F5A3 /* Main.storyboard */,
+				55DCBF571D5D34EC0085F5A3 /* Assets.xcassets */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -276,6 +312,17 @@
 				55A098B71D47FD73005100BC /* NSString+UUID.m */,
 			);
 			name = catagories;
+			sourceTree = "<group>";
+		};
+		55E458531D5CD89300845E1B /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				55E4584D1D5CD87800845E1B /* TestTableViewController.h */,
+				55E4584E1D5CD87800845E1B /* TestTableViewController.m */,
+				55E458501D5CD88B00845E1B /* TestViewController.h */,
+				55E458511D5CD88B00845E1B /* TestViewController.m */,
+			);
+			name = "New Group";
 			sourceTree = "<group>";
 		};
 		CE1CC1FAE2B604755B95FB8F /* Pods */ = {
@@ -324,7 +371,7 @@
 				TargetAttributes = {
 					5594DAF71D45E2DD0096D5DF = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = FHZ72ELYQ2;
+						DevelopmentTeam = 7TB5DTP7UM;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -358,9 +405,9 @@
 			files = (
 				5594DB0E1D45E2DE0096D5DF /* LaunchScreen.storyboard in Resources */,
 				55A098631D46DC89005100BC /* logo.png in Resources */,
-				5594DB0B1D45E2DE0096D5DF /* Assets.xcassets in Resources */,
-				5594DB061D45E2DE0096D5DF /* Main.storyboard in Resources */,
 				55A098651D46DC9C005100BC /* ghost_person.png in Resources */,
+				55DCBF621D5D4D380085F5A3 /* Main.storyboard in Resources */,
+				55DCBF581D5D34EC0085F5A3 /* Assets.xcassets in Resources */,
 				55A098611D46DC6A005100BC /* linkedin_login.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -465,22 +512,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5511E5EF1D5CFA78000DFFB3 /* ParseUser.m in Sources */,
 				40F135421D4C33C200376973 /* BlueToothManger.m in Sources */,
 				55A098B11D47F0FD005100BC /* PingUser.m in Sources */,
-				9C18CAF81D4AE89B008519E1 /* PingUserRealm.m in Sources */,
+				55DCBF641D5D4D660085F5A3 /* SurroundingsTableViewCell.swift in Sources */,
+				9C18CAF81D4AE89B008519E1 /* User.m in Sources */,
 				55A098E11D4907CE005100BC /* UserManager.m in Sources */,
 				5599E7931D49C14F00E61B0E /* PingUserTableViewCell.m in Sources */,
+				55B0C3EE1D59796300394286 /* LoginManager.m in Sources */,
+				55B0C3F11D5A440D00394286 /* CurrentUser.m in Sources */,
 				9C93654E1D5925B0009E6262 /* Comment.m in Sources */,
 				4063F8551D5C0B1200D13D6A /* QCMethod.swift in Sources */,
 				55A0985D1D46CB3E005100BC /* LoginViewController.m in Sources */,
 				55A099071D498F27005100BC /* MainViewController.m in Sources */,
+				5537CDCD1D593AA6002045C8 /* IntegrationManager.swift in Sources */,
 				5599E78D1D499E1C00E61B0E /* UserRecord.m in Sources */,
-				55AD89351D4AD5B80097DE9B /* CurrentUser.m in Sources */,
+				55E4584F1D5CD87800845E1B /* TestTableViewController.m in Sources */,
 				5599E78B1D499E1C00E61B0E /* RecordManager.m in Sources */,
+				55DCBF5A1D5D3D580085F5A3 /* CurrentSurroundingsViewController.swift in Sources */,
 				55AD89381D4B87F90097DE9B /* AverageUUidDuple.m in Sources */,
 				5594DB001D45E2DE0096D5DF /* AppDelegate.m in Sources */,
 				9C9365511D59287B009E6262 /* Event.m in Sources */,
+				55DCBF601D5D3D6A0085F5A3 /* EventCalendarViewController.m in Sources */,
 				5594DAFD1D45E2DE0096D5DF /* main.m in Sources */,
+				55E458521D5CD88B00845E1B /* TestViewController.m in Sources */,
+				55DCBF5D1D5D3D610085F5A3 /* NewEventViewController.m in Sources */,
 				5599E78C1D499E1C00E61B0E /* TimePeriod.m in Sources */,
 				55A098B81D47FD73005100BC /* NSString+UUID.m in Sources */,
 				4063F8531D5C0AB300D13D6A /* LoadingView.swift in Sources */,
@@ -491,14 +547,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		5594DB041D45E2DE0096D5DF /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5594DB051D45E2DE0096D5DF /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5594DB0C1D45E2DE0096D5DF /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -9,21 +9,20 @@
 #import <Realm/Realm.h>
 #import "PingUser.h"
 
-@interface PingUserRealm : RLMObject
+@interface User : RLMObject
 
 @property (strong, nonatomic) NSString *firstName;
 @property (strong, nonatomic) NSString *lastName;
 @property (strong, nonatomic) NSString *headline;
 @property (strong, nonatomic) NSString *linkedInID;
 @property (strong, nonatomic) NSString *profilePicURL;
-//@property (strong, nonatomic) NSDictionary *profileRequest;
+@property (strong, nonatomic) NSString *UUID;
 
-@property (strong, nonatomic) NSString *userUUID;
-
-- (instancetype)initWithPingUserValue:(PingUser *)aPingUser;
+- (void)setPropertiesWithProfileDictionary:(NSDictionary *)dic;
+- (void)addProfilePic:(NSString *)profilePicURL; // realm doesn't support overwriting setters, just wraps setting in realm transaction
 
 @end
 
 // This protocol enables typed collections. i.e.:
 // RLMArray<PingUserRealm>
-RLM_ARRAY_TYPE(PingUserRealm)
+

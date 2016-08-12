@@ -18,3 +18,5 @@
 - (instancetype)initWithUUID:(NSString *)uUID andDistance:(int)distance;
 
 @end
+
+RLM_ARRAY_TYPE(UserRecord)
