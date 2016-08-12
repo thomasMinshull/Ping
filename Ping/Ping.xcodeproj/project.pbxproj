@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4063F8531D5C0AB300D13D6A /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4063F8521D5C0AB300D13D6A /* LoadingView.swift */; };
+		4063F8551D5C0B1200D13D6A /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4063F8541D5C0B1200D13D6A /* QCMethod.swift */; };
 		40F135421D4C33C200376973 /* BlueToothManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 555C1E791D4A9DE700007980 /* BlueToothManger.m */; };
 		5511E5EF1D5CFA78000DFFB3 /* ParseUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5511E5EE1D5CFA78000DFFB3 /* ParseUser.m */; };
 		5537CDCD1D593AA6002045C8 /* IntegrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5537CDCC1D593AA6002045C8 /* IntegrationManager.swift */; };
@@ -46,6 +48,8 @@
 
 /* Begin PBXFileReference section */
 		099398FE9E3F4648F16B801E /* libPods-Ping.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Ping.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4063F8521D5C0AB300D13D6A /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		4063F8541D5C0B1200D13D6A /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
 		5511E5ED1D5CFA78000DFFB3 /* ParseUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseUser.h; sourceTree = "<group>"; };
 		5511E5EE1D5CFA78000DFFB3 /* ParseUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseUser.m; sourceTree = "<group>"; };
 		5537CDCC1D593AA6002045C8 /* IntegrationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegrationManager.swift; sourceTree = "<group>"; };
@@ -131,6 +135,15 @@
 				D2F63550978A2AEB46EFE90C /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4063F8511D5C0A8E00D13D6A /* LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				4063F8521D5C0AB300D13D6A /* LoadingView.swift */,
+				4063F8541D5C0B1200D13D6A /* QCMethod.swift */,
+			);
+			name = LoadingView;
 			sourceTree = "<group>";
 		};
 		5594DAEF1D45E2DD0096D5DF = {
@@ -287,6 +300,7 @@
 		55A0985A1D46CAE7005100BC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4063F8511D5C0A8E00D13D6A /* LoadingView */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -508,6 +522,7 @@
 				55B0C3EE1D59796300394286 /* LoginManager.m in Sources */,
 				55B0C3F11D5A440D00394286 /* CurrentUser.m in Sources */,
 				9C93654E1D5925B0009E6262 /* Comment.m in Sources */,
+				4063F8551D5C0B1200D13D6A /* QCMethod.swift in Sources */,
 				55A0985D1D46CB3E005100BC /* LoginViewController.m in Sources */,
 				55A099071D498F27005100BC /* MainViewController.m in Sources */,
 				5537CDCD1D593AA6002045C8 /* IntegrationManager.swift in Sources */,
@@ -524,6 +539,7 @@
 				55DCBF5D1D5D3D610085F5A3 /* NewEventViewController.m in Sources */,
 				5599E78C1D499E1C00E61B0E /* TimePeriod.m in Sources */,
 				55A098B81D47FD73005100BC /* NSString+UUID.m in Sources */,
+				4063F8531D5C0AB300D13D6A /* LoadingView.swift in Sources */,
 				5594DB091D45E2DE0096D5DF /* Ping.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -632,6 +648,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -655,6 +672,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
