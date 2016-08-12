@@ -9,12 +9,16 @@
 import UIKit
 
 class EventListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    // MARK: Outlets
     @IBOutlet weak var currentSurroundingButton: UIButton!
     @IBOutlet weak var addEventButton: UIButton!
     @IBOutlet weak var eventListTableView: UITableView!
+    
+    // MARK: Properties
+    var events = [Event]()
+//    var events = ["AMG GT S World Primier", "Track day", "Drag race with police", "VanCity car meet"]
+    
     let mainBackGroundColor = UIColor(netHex:0xD9FAAA)
-        var tableData = ["AMG GT S World Primier", "Track day", "Drag race with police", "VanCity car meet"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,20 +27,17 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         eventListTableView.separatorStyle = UITableViewCellSeparatorStyle.None
         eventListTableView.tableFooterView = UIView(frame: CGRectZero)
         eventListTableView.registerClass(EventListTableViewCell.self, forCellReuseIdentifier: "cell")
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        events = CurrentUser.getCurrentUser().fetchEvents();
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+    override func viewWillAppear(animated: Bool) {
+        events = CurrentUser.getCurrentUser().fetchEvents();
+        eventListTableView.reloadData()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableData.count
+        return events.count
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -45,8 +46,7 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-        
-        cell.textLabel?.text = tableData[indexPath.row]
+        cell.textLabel?.text = events[indexPath.row].eventName
         cell.textLabel?.textColor = UIColor.blackColor()
         cell.textLabel?.backgroundColor = UIColor.clearColor()
         cell.textLabel?.font = UIFont(name: "Helvetica Neue Thin", size: 20)
@@ -58,7 +58,7 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func colorforIndex(index: Int) -> UIColor {
         
-        let itemCount = tableData.count - 1
+        let itemCount = events.count - 1 // ToDo deal with edge case what happens when events is 0?
         let transparency = (CGFloat(index) / CGFloat(itemCount)) * 0.6
         return UIColor(red: 0.44314, green: 0.95686, blue: 0.81961, alpha: transparency)
         
@@ -69,16 +69,6 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.backgroundColor =  colorforIndex(indexPath.row)
         
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     @IBAction func currentSurroundingButtonPressed(sender: AnyObject) {
             self.performSegueWithIdentifier("showCurrentSurroundings", sender: self)
@@ -87,6 +77,10 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBAction func addEventButtonPressed(sender: AnyObject) {
         self .performSegueWithIdentifier("showNewEventViewSegue", sender: self)
     }
+    
+    // MARK: - Navigation
+    @IBAction func unwindToMenu(segue: UIStoryboardSegue) {}
+    
 }
 
 // (netHex:0xD9FAAA):
