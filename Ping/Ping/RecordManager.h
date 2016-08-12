@@ -14,11 +14,10 @@
 
 @property (strong, nonatomic) dispatch_queue_t backgroundQueue;
 
--(void)storeBlueToothDataByUUID:(NSString *)userUUID userProximity:(int)proximity andTime:(NSDate *)time;
--(NSMutableArray *)sortingUserRecordsInTimePeriodByProximity:(NSDate *)date;
+- (void)storeBlueToothDataByUUID:(NSString *)userUUID userProximity:(int)proximity andTime:(NSDate *)time;
+- (NSMutableArray *)sortingUserRecordsInTimePeriodByProximity:(NSDate *)date;
+- (NSDate *)getStartTimeForTimePeriod:(NSDate *)time;
 
-//-(NSDate *)getStartTimeForTimePeriod:(NSDate *)time;
-//-(void)increaseUserTotalDistanceAndObs:(UserRecord *)userRecord userProximity:(int)proximity;
 
 
 @end
