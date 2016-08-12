@@ -12,6 +12,8 @@
 
 @implementation CurrentUser
 
+#pragma mark -Public Methods
+
 + (CurrentUser *)getCurrentUser {
     RLMResults<CurrentUser *> *currentUsers = [CurrentUser allObjects];
    
@@ -46,6 +48,18 @@
         }
     }];
     return currentUser;
+}
+
+
+#pragma mark -Private Methods
+
+- (void)addEvent:(Event *)event {
+    RLMRealm *currentUserRealm = [RLMRealm defaultRealm];
+    
+    [currentUserRealm transactionWithBlock:^{
+        [self.events addObject:event];
+    }];
+
 }
 
 - (void)save { // not sure if used can propbably delete
