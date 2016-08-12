@@ -30,11 +30,12 @@
 		55AD89381D4B87F90097DE9B /* AverageUUidDuple.m in Sources */ = {isa = PBXBuildFile; fileRef = 55AD89371D4B87F90097DE9B /* AverageUUidDuple.m */; };
 		55B0C3EE1D59796300394286 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B0C3ED1D59796300394286 /* LoginManager.m */; };
 		55B0C3F11D5A440D00394286 /* CurrentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B0C3F01D5A440D00394286 /* CurrentUser.m */; };
-		55DCBF561D5D34470085F5A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55DCBF541D5D34470085F5A3 /* Main.storyboard */; };
 		55DCBF581D5D34EC0085F5A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55DCBF571D5D34EC0085F5A3 /* Assets.xcassets */; };
 		55DCBF5A1D5D3D580085F5A3 /* CurrentSurroundingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCBF591D5D3D580085F5A3 /* CurrentSurroundingsViewController.swift */; };
 		55DCBF5D1D5D3D610085F5A3 /* NewEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DCBF5C1D5D3D610085F5A3 /* NewEventViewController.m */; };
 		55DCBF601D5D3D6A0085F5A3 /* EventCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DCBF5F1D5D3D6A0085F5A3 /* EventCalendarViewController.m */; };
+		55DCBF621D5D4D380085F5A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55DCBF611D5D4D380085F5A3 /* Main.storyboard */; };
+		55DCBF641D5D4D660085F5A3 /* SurroundingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCBF631D5D4D660085F5A3 /* SurroundingsTableViewCell.swift */; };
 		55E4584F1D5CD87800845E1B /* TestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E4584E1D5CD87800845E1B /* TestTableViewController.m */; };
 		55E458521D5CD88B00845E1B /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E458511D5CD88B00845E1B /* TestViewController.m */; };
 		71678BD4F8B7654916D3F4B0 /* libPods-Ping.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 099398FE9E3F4648F16B801E /* libPods-Ping.a */; };
@@ -85,13 +86,14 @@
 		55B0C3ED1D59796300394286 /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
 		55B0C3EF1D5A440D00394286 /* CurrentUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentUser.h; sourceTree = "<group>"; };
 		55B0C3F01D5A440D00394286 /* CurrentUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentUser.m; sourceTree = "<group>"; };
-		55DCBF551D5D34470085F5A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		55DCBF571D5D34EC0085F5A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		55DCBF591D5D3D580085F5A3 /* CurrentSurroundingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentSurroundingsViewController.swift; sourceTree = "<group>"; };
 		55DCBF5B1D5D3D5C0085F5A3 /* NewEventViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewEventViewController.h; sourceTree = "<group>"; };
 		55DCBF5C1D5D3D610085F5A3 /* NewEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewEventViewController.m; sourceTree = "<group>"; };
 		55DCBF5E1D5D3D660085F5A3 /* EventCalendarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventCalendarViewController.h; sourceTree = "<group>"; };
 		55DCBF5F1D5D3D6A0085F5A3 /* EventCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCalendarViewController.m; sourceTree = "<group>"; };
+		55DCBF611D5D4D380085F5A3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		55DCBF631D5D4D660085F5A3 /* SurroundingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurroundingsTableViewCell.swift; sourceTree = "<group>"; };
 		55E4584D1D5CD87800845E1B /* TestTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTableViewController.h; sourceTree = "<group>"; };
 		55E4584E1D5CD87800845E1B /* TestTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTableViewController.m; sourceTree = "<group>"; };
 		55E458501D5CD88B00845E1B /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				55A099051D498F27005100BC /* MainViewController.h */,
 				55A099061D498F27005100BC /* MainViewController.m */,
 				55DCBF591D5D3D580085F5A3 /* CurrentSurroundingsViewController.swift */,
+				55DCBF631D5D4D660085F5A3 /* SurroundingsTableViewCell.swift */,
 				55DCBF5B1D5D3D5C0085F5A3 /* NewEventViewController.h */,
 				55DCBF5C1D5D3D610085F5A3 /* NewEventViewController.m */,
 				55DCBF5E1D5D3D660085F5A3 /* EventCalendarViewController.h */,
@@ -253,7 +256,7 @@
 			children = (
 				55A098521D46CA94005100BC /* images */,
 				5594DB0C1D45E2DE0096D5DF /* LaunchScreen.storyboard */,
-				55DCBF541D5D34470085F5A3 /* Main.storyboard */,
+				55DCBF611D5D4D380085F5A3 /* Main.storyboard */,
 				55DCBF571D5D34EC0085F5A3 /* Assets.xcassets */,
 			);
 			name = UI;
@@ -388,8 +391,8 @@
 			files = (
 				5594DB0E1D45E2DE0096D5DF /* LaunchScreen.storyboard in Resources */,
 				55A098631D46DC89005100BC /* logo.png in Resources */,
-				55DCBF561D5D34470085F5A3 /* Main.storyboard in Resources */,
 				55A098651D46DC9C005100BC /* ghost_person.png in Resources */,
+				55DCBF621D5D4D380085F5A3 /* Main.storyboard in Resources */,
 				55DCBF581D5D34EC0085F5A3 /* Assets.xcassets in Resources */,
 				55A098611D46DC6A005100BC /* linkedin_login.png in Resources */,
 			);
@@ -498,6 +501,7 @@
 				5511E5EF1D5CFA78000DFFB3 /* ParseUser.m in Sources */,
 				40F135421D4C33C200376973 /* BlueToothManger.m in Sources */,
 				55A098B11D47F0FD005100BC /* PingUser.m in Sources */,
+				55DCBF641D5D4D660085F5A3 /* SurroundingsTableViewCell.swift in Sources */,
 				9C18CAF81D4AE89B008519E1 /* User.m in Sources */,
 				55A098E11D4907CE005100BC /* UserManager.m in Sources */,
 				5599E7931D49C14F00E61B0E /* PingUserTableViewCell.m in Sources */,
@@ -533,14 +537,6 @@
 				5594DB0D1D45E2DE0096D5DF /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		55DCBF541D5D34470085F5A3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				55DCBF551D5D34470085F5A3 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
