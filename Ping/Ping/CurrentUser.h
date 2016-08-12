@@ -11,14 +11,15 @@
 
 @interface CurrentUser : User
 
-@property (strong) RLMArray<Event *><Event> *Events;
+@property (strong) RLMArray<Event *><Event> *events;
 
 // ToDo add comment list
 
 + (CurrentUser *)makeCurrentUserWithProfileDictionary:(NSDictionary *)dic;
 + (CurrentUser *)getCurrentUser;
-//- (void)save;
 
+- (void)addEvent:(Event *)event;
+//- (void)save;
 @end
 
 RLM_ARRAY_TYPE(CurrentUser)
