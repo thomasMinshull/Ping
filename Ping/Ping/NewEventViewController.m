@@ -169,11 +169,15 @@
 
 - (void)changeStartDate:(UIDatePicker *)sender {
     NSLog(@"New Date: %@", sender.date);
-    self.event.startTime = sender.date;
+    
+   // [realm transactionWithBlock:^{
+        self.event.startTime = sender.date;
+   // }];
 }
 
 - (void)changeEndDate:(UIDatePicker *)sender {
     NSLog(@"New Date: %@", sender.date);
+    
     self.event.endTime = sender.date;
 }
 
