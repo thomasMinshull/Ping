@@ -9,6 +9,7 @@
 #import "NewEventViewController.h"
 #import "Event.h"
 #import "CurrentUser.h"
+#import "RecordManager.h"
 
 @interface NewEventViewController () <UITextFieldDelegate>
 
@@ -62,14 +63,28 @@
     self.event.eventName = sender.text;
 }
 
-- (IBAction)hoseNameChanged:(UITextField *)sender {
-    self.event.eventName = sender.text;
+- (IBAction)hostNameChanged:(UITextField *)sender {
+    self.event.hostName = sender.text;
 }
 
 - (IBAction)completeButtonPressed:(id)sender {
-    CurrentUser *currentUser = [CurrentUser getCurrentUser];
-    [currentUser addEvent:self.event];
-    [self performSegueWithIdentifier:@"NewEventVCToEventListVC" sender:self];
+    
+    if ([self validEvent]) {
+        CurrentUser *currentUser = [CurrentUser getCurrentUser];
+        [currentUser addEvent:self.event];
+        [self performSegueWithIdentifier:@"NewEventVCToEventListVC" sender:self];
+    } else {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Incomplete Event"
+                                                                       message:@"Please make sure you've entered a name, host, start time, and end time. Please only enter future events"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"OK"
+                                                              style:UIAlertActionStyleDefault
+                                                            handler:nil];
+        [alert addAction:okButton];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+
 }
 
 - (IBAction)backButtonPressed:(id)sender {
@@ -167,22 +182,22 @@
 
 - (void)changeStartDate:(UIDatePicker *)sender {
     NSLog(@"New Date: %@", sender.date);
-    
-   // [realm transactionWithBlock:^{
-        self.event.startTime = sender.date;
-   // }];
+    RecordManager *recMan = [[RecordManager alloc] init];
+    NSDate *eventStartDate = [recMan getStartTimeForTimePeriod:sender.date];
+    self.event.startTime = eventStartDate;
 }
 
 - (void)changeEndDate:(UIDatePicker *)sender {
     NSLog(@"New Date: %@", sender.date);
-    
-    self.event.endTime = sender.date;
+    RecordManager *recMan = [[RecordManager alloc] init];
+    NSDate *eventEndDate = [recMan getStartTimeForTimePeriod:sender.date];
+    self.event.endTime = eventEndDate;
 }
 
 
 #pragma mark -custom methods
 
--(void) dueDateChanged:(UIDatePicker *)sender {
+- (void)dueDateChanged:(UIDatePicker *)sender {
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterLongStyle];
     [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
@@ -207,9 +222,19 @@
     [UIView setAnimationDidStopSelector:@selector(removeViews:)];
     [UIView commitAnimations];
     
-    
 }
 
+- (bool)validEvent {
+    if (!(self.event.eventName.length > 0) || !(self.event.hostName.length > 0) || !self.event.startTime || !self.event.endTime) {
+        return false;
+    } else if ([self.event.startTime compare:self.event.endTime] != NSOrderedAscending) {
+        return false;
+    } else if ([[NSDate date] compare:self.event.startTime ] != NSOrderedAscending) {
+        return false;
+    } else {
+        return true;
+    }
+}
 
 #pragma mark - Navigation
  

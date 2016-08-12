@@ -78,11 +78,9 @@
                                             
                                             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
                                             
-                                                if (![CurrentUser getCurrentUser]) {
-                                                    [CurrentUser makeCurrentUserWithProfileDictionary:json];
-                                                }
-
-                                            
+                                            if (![CurrentUser getCurrentUser]) {
+                                                [CurrentUser makeCurrentUserWithProfileDictionary:json];
+                                            }                                            
                                             completion(true);
                                         }
                                           error:^(LISDKAPIError *apiError) {
