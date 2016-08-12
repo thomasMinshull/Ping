@@ -33,11 +33,10 @@ typedef void(^myCompletion)(BOOL);
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.loadingView = [[LoadingView alloc] initWithFrame:CGRectZero];
+    CGFloat boxSize = 320;
+    self.loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width / 2 - boxSize / 2, 0, self.view.frame.size.width, self.view.frame.size.height)];
     self.loadingView.backgroundColor = [UIColor colorWithRed:0.85 green:0.98 blue:0.67 alpha:1.0];
     
-    CGFloat boxSize = 320;
-    self.loadingView.frame = CGRectMake(self.view.bounds.size.width / 2 - boxSize / 2, 0, self.view.frame.size.width, self.view.frame.size.height);
     [self.view addSubview:self.loadingView];
 
     // Highlight button when selected
@@ -60,15 +59,6 @@ typedef void(^myCompletion)(BOOL);
             if (iM.loginManager.isFirstTimeUser) {
                 // ToDo display Onboarding else continue
                 NSLog(@"First time user");
-                //    if (iM.loginManager.isLoggedIn) {
-                //        [iM.loginManager attemptToLoginWithCompletion:^(BOOL success) {
-                //            if (success) {
-                //                [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
-                //            } else {
-                //                // ToDo display error message
-                //            }
-                //        }];
-                //    }
             }
         }
     }];
