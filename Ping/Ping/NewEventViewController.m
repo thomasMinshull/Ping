@@ -81,14 +81,14 @@
     
     UIView *darkView = [[UIView alloc] initWithFrame:self.view.bounds];
     darkView.alpha = 0;
-    darkView.backgroundColor = [UIColor blackColor
+    darkView.backgroundColor = [UIColor clearColor
                                 ];
     darkView.tag = 9;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissDatePicker:)];
     [darkView addGestureRecognizer:tapGesture];
     [self.view addSubview:darkView];
     
-    UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, 216)];
+    UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, 380)];
     datePicker.tag = 10;
     //    datePicker.backgroundColor = [UIColor whiteColor];
     [datePicker addTarget:self action:@selector(changeDate:) forControlEvents:UIControlEventValueChanged];
@@ -108,9 +108,9 @@
     [UIView beginAnimations:@"MoveIn" context:nil];
     //    CGSize pickerSize = [datePicker sizeThatFits:CGSizeZero];
     //    CGSize toolSize = [toolBar sizeThatFits:CGSizeZero];
-    datePicker.frame = CGRectMake(0.0, self.view.bounds.size.height*5/10, self.view.bounds.size.width, 380);
+    datePicker.frame = CGRectMake(0.0, self.view.bounds.size.height*4.7/10, self.view.bounds.size.width, 380);
     
-    toolBar.frame = CGRectMake(0.0, self.view.bounds.size.height*5/10, self.view.bounds.size.width, 44);
+    toolBar.frame = CGRectMake(0.0, self.view.bounds.size.height*4.7/10, self.view.bounds.size.width, 44);
     //    toolBar.frame = toolbarTargetFrame;
     //    datePicker.frame = datePickerTargetFrame;
     darkView.alpha = 0.5;
@@ -123,7 +123,7 @@
     
     [UIView commitAnimations];
     
-    
+    // Old way abandoned
     
     //    UIDatePicker* picker = [[UIDatePicker alloc] init];
     //    picker.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -142,31 +142,22 @@
         return;
     }
     
-    //    CGRect toolbarTargetFrame = CGRectMake(0, self.view.bounds.size.height-216-44, 320, 44);
-    //    CGRect datePickerTargetFrame = CGRectMake(0, self.view.bounds.size.height-216, 360, 216);
-    
     UIView *darkView = [[UIView alloc] initWithFrame:self.view.bounds];
     darkView.alpha = 0;
-    //    darkView.backgroundColor = [UIColor whiteColor];
+    darkView.backgroundColor = [UIColor clearColor
+                                ];
     darkView.tag = 9;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissDatePicker:)];
     [darkView addGestureRecognizer:tapGesture];
     [self.view addSubview:darkView];
     
-    UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height+44, self.view.bounds.size.width, 216)];
+    UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, 380)];
     datePicker.tag = 10;
-    datePicker.backgroundColor = [UIColor whiteColor];
     [datePicker addTarget:self action:@selector(changeDate:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:datePicker];
     
-    NSLayoutConstraint *datePickerHieght = [datePicker.topAnchor constraintEqualToAnchor:self.endTimeButton.bottomAnchor];
-    datePickerHieght.active = YES;
-    datePickerHieght.priority = 750;
-    [datePicker.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
-    
-    UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height, 320, 44)];
+    UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, 44)];
     toolBar.tag = 11;
-    //    toolBar.barStyle = UIBarStyleBlackTranslucent;
     UIImage *toolBarImage = [UIImage imageNamed:@"realToolBarImage"];
     [toolBar setBackgroundImage:toolBarImage forToolbarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
     UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
@@ -176,17 +167,11 @@
     [self.view addSubview:toolBar];
     
     [UIView beginAnimations:@"MoveIn" context:nil];
-    //    CGSize pickerSize = [datePicker sizeThatFits:CGSizeZero];
-    //    CGSize toolSize = [toolBar sizeThatFits:CGSizeZero];
-    ////
-    datePicker.frame = CGRectMake(0.0, 250+46+40, self.view.bounds.size.width, 380);
-    toolBar.frame = CGRectMake(0.0, 250+92, self.view.bounds.size.width, 44);
+    datePicker.frame = CGRectMake(0.0, self.view.bounds.size.height*4.7/10, self.view.bounds.size.width, 380);
     
-    //    datePicker.frame = CGRectZero;
-    //    toolBar.frame = CGRectZero;
-    //    toolBar.frame = toolbarTargetFrame;
-    //    datePicker.frame = datePickerTargetFrame;
+    toolBar.frame = CGRectMake(0.0, self.view.bounds.size.height*4.7/10, self.view.bounds.size.width, 44);
     darkView.alpha = 0.5;
+
     [UIView commitAnimations];
 }
 

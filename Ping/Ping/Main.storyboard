@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="I87-hg-4Kb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="usr-FW-ikr">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -43,7 +43,7 @@
                                 </constraints>
                                 <state key="normal" title="Button" image="Sign-In-Large---Default"/>
                                 <connections>
-                                    <action selector="linkedInLoginButtonTapped:" destination="I87-hg-4Kb" eventType="touchUpInside" id="rUy-cW-05s"/>
+                                    <action selector="linkedInLoginButtonTapped:" destination="I87-hg-4Kb" eventType="touchUpInside" id="Pwc-0G-17I"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in via LinkedIn account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KF6-aW-zBh">
@@ -71,7 +71,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="linkedInLoginButton" destination="jTh-Sr-5kU" id="kzO-C5-bzq"/>
+                        <outlet property="linkedInLoginButton" destination="jTh-Sr-5kU" id="ERj-sQ-wi2"/>
                         <segue destination="usr-FW-ikr" kind="show" identifier="MainViewController" id="UPL-Cu-c7l"/>
                     </connections>
                 </viewController>
@@ -254,10 +254,10 @@
             </objects>
             <point key="canvasLocation" x="2032.5" y="-454.5"/>
         </scene>
-        <!--Event Calendar View Controller-->
+        <!--Event List View Controller-->
         <scene sceneID="KZg-dd-td9">
             <objects>
-                <viewController id="usr-FW-ikr" customClass="EventCalendarViewController" sceneMemberID="viewController">
+                <viewController id="usr-FW-ikr" customClass="EventListViewController" customModule="Ping" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="str-Ej-gaK"/>
                         <viewControllerLayoutGuide type="bottom" id="JNi-ld-GEp"/>
@@ -283,16 +283,27 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="weK-R3-DvW" id="cUk-fv-gzW">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="usr-FW-ikr" id="pBf-V5-2ei"/>
-                                    <outlet property="delegate" destination="usr-FW-ikr" id="NbT-zh-Ezp"/>
+                                    <outlet property="dataSource" destination="usr-FW-ikr" id="Yth-gS-lgr"/>
+                                    <outlet property="delegate" destination="usr-FW-ikr" id="L5q-X3-Maf"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rdP-8F-gXP">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="WqC-Wp-IaR"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="CellButton" backgroundImage="realNowButtonBGDefault"/>
+                                <state key="highlighted" image="realNowButtonBGHovered"/>
+                                <connections>
+                                    <action selector="currentSurroundingButtonPressed:" destination="usr-FW-ikr" eventType="touchUpInside" id="BgH-EJ-Rve"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvk-gj-DHK">
                                 <rect key="frame" x="319" y="16" width="56" height="56"/>
                                 <constraints>
@@ -302,18 +313,7 @@
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" image="Plus"/>
                                 <connections>
-                                    <action selector="addEventButtonPressed:" destination="usr-FW-ikr" eventType="touchUpInside" id="ftq-N9-6x0"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rdP-8F-gXP">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="WqC-Wp-IaR"/>
-                                </constraints>
-                                <state key="normal" title="Button" image="CellButton" backgroundImage="realNowButtonBGDefault"/>
-                                <state key="highlighted" image="realNowButtonBGHovered"/>
-                                <connections>
-                                    <action selector="currentSurroundingsButtonPressed:" destination="usr-FW-ikr" eventType="touchUpInside" id="Nct-cd-RSS"/>
+                                    <action selector="addEventButtonPressed:" destination="usr-FW-ikr" eventType="touchUpInside" id="fPt-qM-ApA"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -338,8 +338,9 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="addEventButton" destination="fvk-gj-DHK" id="a8l-Ls-Dwh"/>
-                        <outlet property="currentSurroundingsButton" destination="rdP-8F-gXP" id="gmk-jj-BoV"/>
+                        <outlet property="addEventButton" destination="fvk-gj-DHK" id="iV6-c0-VfT"/>
+                        <outlet property="currentSurroundingButton" destination="rdP-8F-gXP" id="KIC-ej-vgd"/>
+                        <outlet property="eventListTableView" destination="9jj-UA-2BI" id="IOX-rm-CqZ"/>
                         <segue destination="5m0-C1-HRL" kind="show" identifier="showNewEventViewSegue" id="o1V-sh-E4P"/>
                         <segue destination="gp6-7F-M4T" kind="show" identifier="showParticularEventSegue" id="UX4-E1-MgK"/>
                         <segue destination="re5-oi-69Z" kind="show" identifier="showCurrentSurroundings" id="Xle-HX-asW"/>
@@ -395,7 +396,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SH0-4I-jmu" id="Ydq-Qa-qbG">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -423,6 +424,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="currentSurroundingTableView" destination="krE-6C-1ET" id="Tzh-aY-xJ4"/>
                         <outlet property="longBackButton" destination="v6L-zp-ahz" id="vyz-XA-JlT"/>
                     </connections>
                 </viewController>
@@ -442,27 +444,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please login with..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tFI-5t-CBR">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Please login with..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tFI-5t-CBR">
                                 <rect key="frame" x="116" y="234" width="143" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TXr-NC-92t">
-                                <rect key="frame" x="41" y="270" width="293" height="126"/>
-                                <state key="normal" backgroundImage="linkedin_login.png">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="linkedInLoginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZA0-J2-cfK"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Ping" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0BF-55-ZLX">
                                 <rect key="frame" x="123" y="20" width="129" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TXr-NC-92t">
+                                <rect key="frame" x="41" y="271" width="293" height="126"/>
+                                <state key="normal" backgroundImage="linkedin_login.png">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="linkedInLoginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AFf-NY-Huv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -478,7 +480,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="linkedInLoginButton" destination="TXr-NC-92t" id="eOy-L6-oY2"/>
+                        <outlet property="linkedInLoginButton" destination="TXr-NC-92t" id="E9I-zI-LHk"/>
                         <segue destination="li8-sv-mvp" kind="show" identifier="MainViewController" id="gfR-kS-tok"/>
                     </connections>
                 </viewController>
@@ -506,7 +508,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wFF-lQ-QBZ" id="E6x-eD-PE3">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Zx-hl-FGc">
