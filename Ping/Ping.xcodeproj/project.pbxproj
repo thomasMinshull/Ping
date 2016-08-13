@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29662C6ADFE0F7FB6DD6A80D /* Pods_Ping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276205176E08A7EE3F6CC82A /* Pods_Ping.framework */; };
+		4063F8531D5C0AB300D13D6A /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4063F8521D5C0AB300D13D6A /* LoadingView.swift */; };
+		4063F8551D5C0B1200D13D6A /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4063F8541D5C0B1200D13D6A /* QCMethod.swift */; };
 		40F135421D4C33C200376973 /* BlueToothManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 555C1E791D4A9DE700007980 /* BlueToothManger.m */; };
 		5511E5EF1D5CFA78000DFFB3 /* ParseUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5511E5EE1D5CFA78000DFFB3 /* ParseUser.m */; };
 		5537CDCD1D593AA6002045C8 /* IntegrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5537CDCC1D593AA6002045C8 /* IntegrationManager.swift */; };
@@ -35,9 +38,7 @@
 		55DCBF5D1D5D3D610085F5A3 /* NewEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DCBF5C1D5D3D610085F5A3 /* NewEventViewController.m */; };
 		55DCBF621D5D4D380085F5A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55DCBF611D5D4D380085F5A3 /* Main.storyboard */; };
 		55DCBF641D5D4D660085F5A3 /* SurroundingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCBF631D5D4D660085F5A3 /* SurroundingsTableViewCell.swift */; };
-		55E4584F1D5CD87800845E1B /* TestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E4584E1D5CD87800845E1B /* TestTableViewController.m */; };
-		55E458521D5CD88B00845E1B /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E458511D5CD88B00845E1B /* TestViewController.m */; };
-		71678BD4F8B7654916D3F4B0 /* libPods-Ping.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 099398FE9E3F4648F16B801E /* libPods-Ping.a */; };
+		55FA848C1D5D9B250073FB1E /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FA848B1D5D9B250073FB1E /* ForgotPasswordViewController.swift */; };
 		9C18CAF81D4AE89B008519E1 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C18CAF71D4AE89B008519E1 /* User.m */; };
 		9C49692E1D5D72E2003DAE8C /* EventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C49692D1D5D72E2003DAE8C /* EventListViewController.swift */; };
 		9C4969301D5D7343003DAE8C /* EventListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C49692F1D5D7343003DAE8C /* EventListTableViewCell.swift */; };
@@ -47,7 +48,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		099398FE9E3F4648F16B801E /* libPods-Ping.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Ping.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		276205176E08A7EE3F6CC82A /* Pods_Ping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4063F8521D5C0AB300D13D6A /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		4063F8541D5C0B1200D13D6A /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
 		5511E5ED1D5CFA78000DFFB3 /* ParseUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseUser.h; sourceTree = "<group>"; };
 		5511E5EE1D5CFA78000DFFB3 /* ParseUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseUser.m; sourceTree = "<group>"; };
 		5537CDCC1D593AA6002045C8 /* IntegrationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegrationManager.swift; sourceTree = "<group>"; };
@@ -94,10 +97,7 @@
 		55DCBF5C1D5D3D610085F5A3 /* NewEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewEventViewController.m; sourceTree = "<group>"; };
 		55DCBF611D5D4D380085F5A3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		55DCBF631D5D4D660085F5A3 /* SurroundingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurroundingsTableViewCell.swift; sourceTree = "<group>"; };
-		55E4584D1D5CD87800845E1B /* TestTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTableViewController.h; sourceTree = "<group>"; };
-		55E4584E1D5CD87800845E1B /* TestTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTableViewController.m; sourceTree = "<group>"; };
-		55E458501D5CD88B00845E1B /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
-		55E458511D5CD88B00845E1B /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		55FA848B1D5D9B250073FB1E /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		9C18CAF61D4AE89B008519E1 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		9C18CAF71D4AE89B008519E1 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		9C49692D1D5D72E2003DAE8C /* EventListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListViewController.swift; sourceTree = "<group>"; };
@@ -109,7 +109,6 @@
 		9C93654F1D59287B009E6262 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		9C9365501D59287B009E6262 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		BBF5D50F2E3876EE0E2E3951 /* Pods-Ping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ping/Pods-Ping.debug.xcconfig"; sourceTree = "<group>"; };
-		D2F63550978A2AEB46EFE90C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB38DA1028CD9B2B046846B0 /* Pods-Ping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ping.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ping/Pods-Ping.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,8 +117,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71678BD4F8B7654916D3F4B0 /* libPods-Ping.a in Frameworks */,
 				55A0985F1D46CEC7005100BC /* linkedin-sdk.framework in Frameworks */,
+				29662C6ADFE0F7FB6DD6A80D /* Pods_Ping.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,16 +129,23 @@
 			isa = PBXGroup;
 			children = (
 				55A0985E1D46CEC7005100BC /* linkedin-sdk.framework */,
-				099398FE9E3F4648F16B801E /* libPods-Ping.a */,
-				D2F63550978A2AEB46EFE90C /* libPods.a */,
+				276205176E08A7EE3F6CC82A /* Pods_Ping.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4063F8511D5C0A8E00D13D6A /* LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				4063F8521D5C0AB300D13D6A /* LoadingView.swift */,
+				4063F8541D5C0B1200D13D6A /* QCMethod.swift */,
+			);
+			name = LoadingView;
 			sourceTree = "<group>";
 		};
 		5594DAEF1D45E2DD0096D5DF = {
 			isa = PBXGroup;
 			children = (
-				55E458531D5CD89300845E1B /* New Group */,
 				5594DAFA1D45E2DE0096D5DF /* Ping */,
 				5594DAF91D45E2DD0096D5DF /* Products */,
 				CE1CC1FAE2B604755B95FB8F /* Pods */,
@@ -185,6 +191,8 @@
 			children = (
 				55AD89361D4B87F90097DE9B /* AverageUUidDuple.h */,
 				55AD89371D4B87F90097DE9B /* AverageUUidDuple.m */,
+				5511E5ED1D5CFA78000DFFB3 /* ParseUser.h */,
+				5511E5EE1D5CFA78000DFFB3 /* ParseUser.m */,
 				55A098AF1D47F0FD005100BC /* PingUser.h */,
 				55A098B01D47F0FD005100BC /* PingUser.m */,
 			);
@@ -198,8 +206,6 @@
 				5599E7881D499E1C00E61B0E /* TimePeriod.m */,
 				9C18CAF61D4AE89B008519E1 /* User.h */,
 				9C18CAF71D4AE89B008519E1 /* User.m */,
-				5511E5ED1D5CFA78000DFFB3 /* ParseUser.h */,
-				5511E5EE1D5CFA78000DFFB3 /* ParseUser.m */,
 				55B0C3EF1D5A440D00394286 /* CurrentUser.h */,
 				55B0C3F01D5A440D00394286 /* CurrentUser.m */,
 				5599E7891D499E1C00E61B0E /* UserRecord.h */,
@@ -251,6 +257,7 @@
 				9C4969311D5E5FC6003DAE8C /* TheEventViewController.swift */,
 				9C49692D1D5D72E2003DAE8C /* EventListViewController.swift */,
 				55DCBF591D5D3D580085F5A3 /* CurrentSurroundingsViewController.swift */,
+				55FA848B1D5D9B250073FB1E /* ForgotPasswordViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -283,7 +290,6 @@
 				5599E7901D49C12600E61B0E /* Managers */,
 				55A098B51D47FD2F005100BC /* catagories */,
 				5599E78E1D49BA4A00E61B0E /* Entities */,
-				5599E7941D49C15800E61B0E /* tabelViewCells */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -291,6 +297,8 @@
 		55A0985A1D46CAE7005100BC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5599E7941D49C15800E61B0E /* tabelViewCells */,
+				4063F8511D5C0A8E00D13D6A /* LoadingView */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -302,17 +310,6 @@
 				55A098B71D47FD73005100BC /* NSString+UUID.m */,
 			);
 			name = catagories;
-			sourceTree = "<group>";
-		};
-		55E458531D5CD89300845E1B /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-				55E4584D1D5CD87800845E1B /* TestTableViewController.h */,
-				55E4584E1D5CD87800845E1B /* TestTableViewController.m */,
-				55E458501D5CD88B00845E1B /* TestViewController.h */,
-				55E458511D5CD88B00845E1B /* TestViewController.m */,
-			);
-			name = "New Group";
 			sourceTree = "<group>";
 		};
 		CE1CC1FAE2B604755B95FB8F /* Pods */ = {
@@ -513,11 +510,11 @@
 				55B0C3EE1D59796300394286 /* LoginManager.m in Sources */,
 				55B0C3F11D5A440D00394286 /* CurrentUser.m in Sources */,
 				9C93654E1D5925B0009E6262 /* Comment.m in Sources */,
+				4063F8551D5C0B1200D13D6A /* QCMethod.swift in Sources */,
 				55A0985D1D46CB3E005100BC /* LoginViewController.m in Sources */,
 				55A099071D498F27005100BC /* MainViewController.m in Sources */,
 				5537CDCD1D593AA6002045C8 /* IntegrationManager.swift in Sources */,
 				5599E78D1D499E1C00E61B0E /* UserRecord.m in Sources */,
-				55E4584F1D5CD87800845E1B /* TestTableViewController.m in Sources */,
 				5599E78B1D499E1C00E61B0E /* RecordManager.m in Sources */,
 				55DCBF5A1D5D3D580085F5A3 /* CurrentSurroundingsViewController.swift in Sources */,
 				9C4969301D5D7343003DAE8C /* EventListTableViewCell.swift in Sources */,
@@ -526,10 +523,11 @@
 				5594DB001D45E2DE0096D5DF /* AppDelegate.m in Sources */,
 				9C9365511D59287B009E6262 /* Event.m in Sources */,
 				5594DAFD1D45E2DE0096D5DF /* main.m in Sources */,
-				55E458521D5CD88B00845E1B /* TestViewController.m in Sources */,
 				55DCBF5D1D5D3D610085F5A3 /* NewEventViewController.m in Sources */,
 				5599E78C1D499E1C00E61B0E /* TimePeriod.m in Sources */,
 				55A098B81D47FD73005100BC /* NSString+UUID.m in Sources */,
+				4063F8531D5C0AB300D13D6A /* LoadingView.swift in Sources */,
+				55FA848C1D5D9B250073FB1E /* ForgotPasswordViewController.swift in Sources */,
 				5594DB091D45E2DE0096D5DF /* Ping.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -638,6 +636,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -661,6 +660,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
