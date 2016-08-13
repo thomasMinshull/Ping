@@ -13,20 +13,19 @@
 
 @interface BlueToothManager() <CBCentralManagerDelegate, CBPeripheralDelegate, CBPeripheralManagerDelegate>
 
-@property (strong, nonatomic) CBCentralManager          *centralManager;
-@property (strong, nonatomic) CBPeripheral              *discoveredPeripheral;
-@property (strong, nonatomic) NSMutableData             *data;
+@property (strong, nonatomic) CBCentralManager *centralManager;
+@property (strong, nonatomic) CBPeripheral *discoveredPeripheral;
+@property (strong, nonatomic) NSMutableData *data;
 
-@property (strong, nonatomic) CBPeripheralManager       *peripheralManager;
-@property (strong, nonatomic) CBMutableCharacteristic   *transferCharacteristic;
-@property (strong, nonatomic) NSData                    *dataToSend;
-@property (nonatomic, readwrite) NSInteger              sendDataIndex;
+@property (strong, nonatomic) CBPeripheralManager *peripheralManager;
+@property (strong, nonatomic) CBMutableCharacteristic *transferCharacteristic;
+@property (strong, nonatomic) NSData *dataToSend;
+@property (nonatomic, readwrite) NSInteger sendDataIndex;
 
 @property NSMutableArray *fetchedUUIDs;
 @property NSMutableArray *fetchedDistances;
 @property NSMutableArray *fetchedTimeStamp;
 
-@property NSArray *uuidList;
 @property RecordManager *recordManager;
 
 @property NSMutableArray *cbuuidLists;
@@ -39,53 +38,35 @@
 
 @implementation BlueToothManager
 
-//<<<<<<< HEAD
-//+ (instancetype)sharedrecordManager:(NSArray *)uuidList andCurrentUUID:(NSString *)currentUUID {
-//    static BlueToothManager *sharedrecordManager = nil;
-//    static dispatch_once_t onceToken;
-//    
-//    dispatch_once(&onceToken, ^{
-//        sharedrecordManager = [[BlueToothManager alloc] initWithUUIDList:uuidList andCurrentUUID:currentUUID];
-//        sharedrecordManager.recordManager = [RecordManager new];
-//    });
-//    
-//=======
 - (instancetype)init
 {
     self = [super init];
     if (self) {
         self.recordManager = [RecordManager new];
-//        self.saveSwitch = NO;
-        
+    
         self.fetchedUUIDs = [NSMutableArray array];
         self.fetchedDistances = [NSMutableArray array];
         self.fetchedTimeStamp = [NSMutableArray array];
-        
-//        self.uuids = [NSMutableArray array];
-//        self.distances = [NSMutableArray array];
-//        self.timeStamps = [NSMutableArray array];
-        
         self.cbuuidLists = [NSMutableArray array];
+
+        [self updateUUIDList];
         
-//        _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
-//        
-//        _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+        self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+        self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
     }
     return self;
 }
 
-- (void)setUUIDList:(NSArray *)uuidList andCurrentUUID:(NSString *)currentUUID {
-    self.uuidList = uuidList;
+- (void)updateUUIDList; {
+    RecordManager *recMan = [[RecordManager alloc] init];
+    NSArray *uuidList = [recMan uuidList];
     
     //changing uuid to cbuuid
-    for(NSString *aUUIDString in self.uuidList){
+    for(NSString *aUUIDString in uuidList){
         CBUUID *cbuuidString = [CBUUID UUIDWithString:aUUIDString];
         [self.cbuuidLists addObject:cbuuidString];
     }
-//>>>>>>> refactorAfterMidterm
-    
-    self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
-    self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+
 }
 
 #pragma mark - Start and Stop
@@ -156,8 +137,7 @@
 //    }
 //    return self;
 //}
-//=======
-//>>>>>>> refactorAfterMidterm
+
 
 #pragma mark - Central Methods
 

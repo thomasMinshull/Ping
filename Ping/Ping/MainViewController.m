@@ -35,7 +35,7 @@
     [super viewDidLoad];
     IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
     //[iM.userManager setUp]; //??? try this
-    [iM.blueToothManager setUUIDList:iM.userManager.uuids andCurrentUUID:[CurrentUser getCurrentUser].UUID]; // ToDo refactor to remove passing in Current
+   // [iM.blueToothManager setUUIDList:iM.userManager.uuids andCurrentUUID:[CurrentUser getCurrentUser].UUID]; // ToDo refactor to remove passing in Current
 
     self.recordManager = [[RecordManager alloc] init];
     
