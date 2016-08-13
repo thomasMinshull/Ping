@@ -10,6 +10,9 @@ import UIKit
 
 class EventListTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var eventTitleLabel: UILabel!
+    @IBOutlet weak var eventTimeLabel: UILabel!
+    
     let gradientLayer = CAGradientLayer()
 
     override func awakeFromNib() {
@@ -26,6 +29,10 @@ class EventListTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        sharedSetup()
+    }
+    
+    func sharedSetup() {
         gradientLayer.frame = self.bounds
         let color1 = UIColor(white: 1.0, alpha: 0.2).CGColor as CGColorRef
         let color2 = UIColor(white: 1.0, alpha: 0.1).CGColor as CGColorRef
@@ -35,7 +42,6 @@ class EventListTableViewCell: UITableViewCell {
         gradientLayer.colors = [color1, color2, color3, color4]
         gradientLayer.locations = [0.0, 0.04, 0.95, 1.0]
         layer.insertSublayer(gradientLayer, atIndex: 0)
-        
     }
     
     override func layoutSubviews() {
@@ -44,7 +50,8 @@ class EventListTableViewCell: UITableViewCell {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        sharedSetup()
     }
 
 }
