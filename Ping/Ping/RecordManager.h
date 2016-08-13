@@ -17,7 +17,7 @@
 - (void)storeBlueToothDataByUUID:(NSString *)userUUID userProximity:(int)proximity andTime:(NSDate *)time;
 - (NSMutableArray *)sortingUserRecordsInTimePeriodByProximity:(NSDate *)date;
 - (NSDate *)getStartTimeForTimePeriod:(NSDate *)time;
-
-
+- (void)backUpUsers:(NSMutableSet *)users;
+- (NSArray *)uuidList;
 
 @end

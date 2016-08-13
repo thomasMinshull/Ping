@@ -189,6 +189,7 @@
 		5599E78E1D49BA4A00E61B0E /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				5599E78F1D49C0FA00E61B0E /* realmObjects */,
 				55AD89361D4B87F90097DE9B /* AverageUUidDuple.h */,
 				55AD89371D4B87F90097DE9B /* AverageUUidDuple.m */,
 				5511E5ED1D5CFA78000DFFB3 /* ParseUser.h */,
@@ -286,7 +287,6 @@
 		55A098591D46CAD2005100BC /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5599E78F1D49C0FA00E61B0E /* realmObjects */,
 				5599E7901D49C12600E61B0E /* Managers */,
 				55A098B51D47FD2F005100BC /* catagories */,
 				5599E78E1D49BA4A00E61B0E /* Entities */,
