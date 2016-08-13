@@ -32,8 +32,8 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
-   [iM.blueToothManager stop];
+//IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
+//   [iM.blueToothManager stop];
 }
 
 #pragma mark -LinkedIn SDK
