@@ -15,7 +15,7 @@
 
 - (User *)userForUUID:(NSString *)uuid;
 
-- (void)updateUserlist;
+- (void)updateUserslist;
 
 @end
 
