@@ -49,15 +49,17 @@
         self.fetchedTimeStamp = [NSMutableArray array];
         self.cbuuidLists = [NSMutableArray array];
 
-        [self updateUUIDList];
+        [self updateCBUUIDList];
         
         self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+        
+        self.isScanning = FALSE;
     }
     return self;
 }
 
-- (void)updateUUIDList; {
+- (void)updateCBUUIDList; {
     RecordManager *recMan = [[RecordManager alloc] init];
     NSArray *uuidList = [recMan uuidList];
     
@@ -89,15 +91,20 @@
     }
 }
 
--(void)start{
+-(void)start{ // starts listening (central) & transmitting (peripheral)
     self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:[CurrentUser getCurrentUser].UUID]]}];
     self.isTimerValid = TRUE;
+    
+    self.myTimer = [NSTimer scheduledTimerWithTimeInterval: 1.0f
+                                                    target: self
+                                                  selector:@selector(flickSwitch:)
+                                                  userInfo: nil repeats:YES];
     NSLog(@"timer on");
 
 }
 
--(void)stop{
+-(void)stop{ // only stops transmitting (doesn't stop listening?)
     [self.peripheralManager stopAdvertising];
     self.isTimerValid = FALSE;
     NSLog(@"timer off");
