@@ -15,8 +15,8 @@
 
 @interface UserManager ()
 
-//@property (nonatomic) BOOL temp;
 @property (strong, nonatomic)NSMutableSet __block *parseUsers;
+
 @end
 
 @implementation UserManager
@@ -25,12 +25,12 @@
 {
     self = [super init];
     if (self) {
-        [self setUp];
+        [self updateUserslist];
     }
     return self;
 }
 
-- (void)updateUserList {
+- (void)updateUserslist {
     
     PFQuery *query = [PFQuery queryWithClassName:@"ParseUser"];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
