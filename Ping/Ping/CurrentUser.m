@@ -53,6 +53,21 @@
 #pragma mark -Instance Methods
 
 - (void)addEvent:(Event *)event {
+    
+    NSTimeInterval secondsPerHalfAnHour = 60 * 30;
+    
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.alertBody = @"Your event is starting soon!";
+    notification.alertAction = @"open";
+    NSDate *halfAnHourBefore = [event.startTime dateByAddingTimeInterval:-secondsPerHalfAnHour];
+    notification.fireDate = halfAnHourBefore;
+    notification.soundName = UILocalNotificationDefaultSoundName;
+    notification.category = @"BT_CATEGORY";
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    
+    NSLog(@"!!Saved notification!! %@", [notification description]);
+    
     RLMRealm *currentUserRealm = [RLMRealm defaultRealm];
     
     [currentUserRealm transactionWithBlock:^{

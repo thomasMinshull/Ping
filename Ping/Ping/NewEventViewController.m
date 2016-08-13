@@ -69,21 +69,21 @@
 
 - (IBAction)completeButtonPressed:(id)sender {
     
-    if ([self validEvent]) {
+//    if ([self validEvent]) {
         CurrentUser *currentUser = [CurrentUser getCurrentUser];
         [currentUser addEvent:self.event];
         [self performSegueWithIdentifier:@"NewEventVCToEventListVC" sender:self];
-    } else {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Incomplete Event"
-                                                                       message:@"Please make sure you've entered a name, host, start time, and end time. Please only enter future events"
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"OK"
-                                                              style:UIAlertActionStyleDefault
-                                                            handler:nil];
-        [alert addAction:okButton];
-        [self presentViewController:alert animated:YES completion:nil];
-    }
+//    } else {
+//        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Incomplete Event"
+//                                                                       message:@"Please make sure you've entered a name, host, start time, and end time. Please only enter future events"
+//                                                                preferredStyle:UIAlertControllerStyleAlert];
+//        
+//        UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"OK"
+//                                                              style:UIAlertActionStyleDefault
+//                                                            handler:nil];
+//        [alert addAction:okButton];
+//        [self presentViewController:alert animated:YES completion:nil];
+//    }
 
 }
 
