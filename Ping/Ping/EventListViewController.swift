@@ -32,6 +32,19 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewWillAppear(animated: Bool) {
         events = CurrentUser.getCurrentUser().fetchEvents();
         eventListTableView.reloadData()
+        
+        // scroll past old events but leave at least one event showing
+        let pastEvents = getIndexOfNextEvent()
+        var ip:NSIndexPath?
+        
+        if events.count > 0 {
+            ip = NSIndexPath(forRow: pastEvents, inSection: 0)
+        }
+        
+        if let ip = ip {
+            eventListTableView.scrollToRowAtIndexPath(ip, atScrollPosition: .Top, animated: false)
+        }
+        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -98,6 +111,23 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.backgroundColor =  colorforIndex(indexPath.row)
         
     }
+    
+    // Mark: - Custom Functions
+    
+    func getIndexOfNextEvent() -> Int {
+        var index = 0
+        let now = NSDate()
+        
+        for event in self.events {
+            if now.compare(event.endTime) != NSComparisonResult.OrderedAscending {
+                index += 1
+            }
+        }
+        
+        return index
+    }
+    
+    // MARK: - Actions
     
     @IBAction func currentSurroundingButtonPressed(sender: AnyObject) {
             self.performSegueWithIdentifier("showCurrentSurroundings", sender: self)
