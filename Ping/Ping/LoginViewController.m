@@ -12,6 +12,7 @@
 
 #import "AppDelegate.h"
 
+#import "UserManager.h"
 #import "MainViewController.h"
 #import "Ping-Swift.h"
 #import "LoginManager.h"
@@ -23,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *linkedInLoginButton;
 
 @property LoadingView *loadingView;
+@property (strong, nonatomic) LoginManager __block *loginManager;
+@property (strong, nonatomic) UserManager *userManager;
 
 typedef void(^myCompletion)(BOOL);
 
@@ -33,6 +36,11 @@ typedef void(^myCompletion)(BOOL);
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.loginManager = [[LoginManager alloc] init];
+    self.userManager = [[UserManager alloc] init];
+    [self.userManager updateUserslist]; // updates the latest list of UUID's in Real and gets latest users from parse
+    
     self.loadingView = [[LoadingView alloc] initWithFrame:CGRectZero];
     self.loadingView.backgroundColor = [UIColor colorWithRed:0.85 green:0.98 blue:0.67 alpha:1.0];
     
@@ -47,17 +55,15 @@ typedef void(^myCompletion)(BOOL);
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
+
     __weak LoginViewController *weakSelf = self;
     [self.loadingView addLoadingAnimationGroupAnimationCompletionBlock:^(BOOL finished) {
         if(finished){
             [weakSelf.loadingView removeFromSuperview];
             
             NSLog(@"Done Animating!");
-
-            IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
             
-            if (iM.loginManager.isFirstTimeUser) {
+            if (weakSelf.loginManager.isFirstTimeUser) {
                 // ToDo display Onboarding else continue
                 NSLog(@"First time user");
             }
@@ -71,9 +77,8 @@ typedef void(^myCompletion)(BOOL);
 #pragma mark -Actions
 
 - (IBAction)linkedInLoginButtonTapped:(id)sender {
-    IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
     
-    [iM.loginManager createNewUserAndLoginWithCompletion:^(BOOL success) {
+    [self.loginManager createNewUserAndLoginWithCompletion:^(BOOL success) {
         if (success) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
@@ -82,6 +87,16 @@ typedef void(^myCompletion)(BOOL);
             // Display Error
         }
     }];
+}
+
+
+#pragma mark -Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(nullable id)sender{
+    if ([[segue identifier] isEqualToString:@"EventListViewController"]) {
+        MainViewController *vc = [segue destinationViewController];
+        vc.userManager = self.userManager;
+    }
 }
 
 @end

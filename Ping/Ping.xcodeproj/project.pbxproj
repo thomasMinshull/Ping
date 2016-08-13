@@ -255,10 +255,10 @@
 				55A099061D498F27005100BC /* MainViewController.m */,
 				55DCBF5B1D5D3D5C0085F5A3 /* NewEventViewController.h */,
 				55DCBF5C1D5D3D610085F5A3 /* NewEventViewController.m */,
-				9C4969311D5E5FC6003DAE8C /* TheEventViewController.swift */,
 				9C49692D1D5D72E2003DAE8C /* EventListViewController.swift */,
 				55DCBF591D5D3D580085F5A3 /* CurrentSurroundingsViewController.swift */,
 				55FA848B1D5D9B250073FB1E /* ForgotPasswordViewController.swift */,
+				9C4969311D5E5FC6003DAE8C /* TheEventViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
