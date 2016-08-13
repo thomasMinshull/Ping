@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="I87-hg-4Kb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="I87-hg-4Kb">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -10,7 +10,7 @@
         <!--Login View Controller-->
         <scene sceneID="eI4-mW-kb9">
             <objects>
-                <viewController id="I87-hg-4Kb" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="I87-hg-4Kb" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dmc-qR-EbR"/>
                         <viewControllerLayoutGuide type="bottom" id="tCa-5i-ZPM"/>
@@ -27,6 +27,7 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
                                 <state key="normal" title="Having trouble loggin in?">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="EvZ-i5-qrH" kind="show" id="Lfw-Dj-OMU"/>
@@ -44,7 +45,11 @@
                                     <constraint firstAttribute="width" constant="267" id="6xU-vR-oBv"/>
                                     <constraint firstAttribute="height" constant="50" id="Nlx-WV-pGZ"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="Sign-In-Large---Default"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Button" image="Sign-In-Large---Default">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="linkedInLoginButtonTapped:" destination="I87-hg-4Kb" eventType="touchUpInside" id="Pwc-0G-17I"/>
                                 </connections>
@@ -107,8 +112,12 @@
                                     <constraint firstAttribute="height" constant="36" id="CBx-ST-XF9"/>
                                     <constraint firstAttribute="width" constant="96" id="X64-zB-OLw"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <inset key="contentEdgeInsets" minX="-10" minY="-10" maxX="-16" maxY="-16"/>
-                                <state key="normal" title="Back" image="longbackbutton"/>
+                                <state key="normal" title="Back" image="longbackbutton">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <state key="highlighted" image="backHovered"/>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="5m0-C1-HRL" eventType="touchUpInside" id="4wi-2r-buO"/>
@@ -136,7 +145,7 @@
         <!--New Event View Controller-->
         <scene sceneID="EWE-Ar-iAQ">
             <objects>
-                <viewController id="5m0-C1-HRL" customClass="NewEventViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewEventViewController" id="5m0-C1-HRL" customClass="NewEventViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rlh-Ce-mQQ"/>
                         <viewControllerLayoutGuide type="bottom" id="p3W-r0-8Dv"/>
@@ -173,8 +182,12 @@
                                     <constraint firstAttribute="height" constant="36" id="7UG-QM-XXO"/>
                                     <constraint firstAttribute="width" constant="96" id="er5-Qw-xIh"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <inset key="contentEdgeInsets" minX="-10" minY="-10" maxX="-16" maxY="-16"/>
-                                <state key="normal" title="Back" image="longbackbutton"/>
+                                <state key="normal" title="Back" image="longbackbutton">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <state key="highlighted" image="backHovered"/>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="5m0-C1-HRL" eventType="touchUpInside" id="ehH-1J-2LH"/>
@@ -186,7 +199,11 @@
                                     <constraint firstAttribute="width" constant="34" id="gRV-8E-VG3"/>
                                     <constraint firstAttribute="height" constant="34" id="hPJ-Hd-hZl"/>
                                 </constraints>
-                                <state key="normal" image="Checked"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" image="Checked">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <state key="highlighted" image="Checked Copy"/>
                                 <connections>
                                     <action selector="completeButtonPressed:" destination="5m0-C1-HRL" eventType="touchUpInside" id="4NH-Ji-EjK"/>
@@ -236,6 +253,7 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="22"/>
                                 <state key="normal" title="End time">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="endTimeButtonPressed:" destination="5m0-C1-HRL" eventType="touchUpInside" id="SnN-BB-377"/>
@@ -246,6 +264,7 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="22"/>
                                 <state key="normal" title="Start time">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="startTimeButtonPressed:" destination="5m0-C1-HRL" eventType="touchUpInside" id="tVH-YL-NVi"/>
@@ -315,10 +334,10 @@
             </objects>
             <point key="canvasLocation" x="1470.5" y="-1096.5"/>
         </scene>
-        <!--View Controller-->
+        <!--The Event View Controller-->
         <scene sceneID="V6n-B2-Uy7">
             <objects>
-                <viewController id="gp6-7F-M4T" sceneMemberID="viewController">
+                <viewController id="gp6-7F-M4T" customClass="TheEventViewController" customModule="Ping" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8u0-Hh-dLk"/>
                         <viewControllerLayoutGuide type="bottom" id="QWW-Co-joH"/>
@@ -326,18 +345,60 @@
                     <view key="view" contentMode="scaleToFill" id="3j7-PV-KK7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mercedes-AMG vs. BMW M Face 2 Face World Drag Race" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0o-Dw-1rZ">
+                                <rect key="frame" x="24" y="140" width="327" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="September 2nd, 2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kX3-6M-3Vu">
+                                <rect key="frame" x="105" y="201" width="166" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BMW USA, Mercedes-Benz USA" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMl-hZ-3fz">
+                                <rect key="frame" x="16" y="272" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lR8-eD-PcL">
+                                <rect key="frame" x="24" y="28" width="46" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="gp6-7F-M4T" eventType="touchUpInside" id="sDC-NJ-QWY"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kX3-6M-3Vu" firstAttribute="top" secondItem="F0o-Dw-1rZ" secondAttribute="bottom" constant="40" id="9EN-9e-f5w"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="F0o-Dw-1rZ" secondAttribute="trailing" constant="8" id="Gev-Gm-6P7"/>
+                            <constraint firstItem="F0o-Dw-1rZ" firstAttribute="top" secondItem="8u0-Hh-dLk" secondAttribute="bottom" constant="120" id="HFH-2n-gn2"/>
+                            <constraint firstItem="F0o-Dw-1rZ" firstAttribute="leading" secondItem="3j7-PV-KK7" secondAttribute="leadingMargin" constant="8" id="KgZ-GQ-uHU"/>
+                            <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="yMl-hZ-3fz" secondAttribute="trailing" id="PuA-vd-edh"/>
+                            <constraint firstItem="yMl-hZ-3fz" firstAttribute="leading" relation="lessThanOrEqual" secondItem="3j7-PV-KK7" secondAttribute="leadingMargin" id="bYE-zY-QaQ"/>
+                            <constraint firstItem="yMl-hZ-3fz" firstAttribute="top" secondItem="kX3-6M-3Vu" secondAttribute="bottom" constant="50" id="fX7-72-dau"/>
+                            <constraint firstItem="kX3-6M-3Vu" firstAttribute="centerX" secondItem="3j7-PV-KK7" secondAttribute="centerX" id="gro-Nm-GrS"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="2hl-0l-cB8"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vmc-Wy-CkR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2032.5" y="-454.5"/>
+            <point key="canvasLocation" x="1967.5" y="-454.5"/>
         </scene>
         <!--Event List View Controller-->
         <scene sceneID="KZg-dd-td9">
             <objects>
-                <viewController id="usr-FW-ikr" customClass="EventListViewController" customModule="Ping" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EventListViewController" id="usr-FW-ikr" customClass="EventListViewController" customModule="Ping" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="str-Ej-gaK"/>
                         <viewControllerLayoutGuide type="bottom" id="JNi-ld-GEp"/>
@@ -355,17 +416,43 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9jj-UA-2BI">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9jj-UA-2BI">
                                 <rect key="frame" x="0.0" y="66" width="375" height="557"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="weK-R3-DvW">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="60" id="weK-R3-DvW" customClass="EventListTableViewCell" customModule="Ping" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="weK-R3-DvW" id="cUk-fv-gzW">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ml-iG-6TW">
+                                                    <rect key="frame" x="8" y="30" width="38" height="19"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yej-EW-514">
+                                                    <rect key="frame" x="8" y="8" width="43" height="21"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Yej-EW-514" firstAttribute="top" secondItem="cUk-fv-gzW" secondAttribute="topMargin" id="3qe-nb-MuC"/>
+                                                <constraint firstItem="Yej-EW-514" firstAttribute="leading" secondItem="cUk-fv-gzW" secondAttribute="leadingMargin" id="GEX-qf-5fw"/>
+                                                <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="8ml-iG-6TW" secondAttribute="trailing" constant="323" id="M3F-RR-SwV"/>
+                                                <constraint firstItem="8ml-iG-6TW" firstAttribute="top" secondItem="Yej-EW-514" secondAttribute="bottom" constant="1" id="lZg-0j-g0X"/>
+                                                <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="Yej-EW-514" secondAttribute="trailing" constant="318" id="qxp-Qw-gOr"/>
+                                                <constraint firstItem="8ml-iG-6TW" firstAttribute="leading" secondItem="Yej-EW-514" secondAttribute="leading" id="uC5-dB-LSw"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="eventTimeLabel" destination="8ml-iG-6TW" id="Akg-3g-4PE"/>
+                                            <outlet property="eventTitleLabel" destination="Yej-EW-514" id="5Y2-kx-59t"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -379,8 +466,12 @@
                                     <constraint firstAttribute="width" constant="56" id="9KF-eM-IVP"/>
                                     <constraint firstAttribute="height" constant="56" id="Gzw-Z8-zQT"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                <state key="normal" image="Plus"/>
+                                <state key="normal" image="Plus">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="addEventButtonPressed:" destination="usr-FW-ikr" eventType="touchUpInside" id="fPt-qM-ApA"/>
                                 </connections>
@@ -390,7 +481,11 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="WqC-Wp-IaR"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="CellButton" backgroundImage="realNowButtonBGDefault"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Button" image="CellButton" backgroundImage="realNowButtonBGDefault">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <state key="highlighted" image="realNowButtonBGHovered"/>
                                 <connections>
                                     <action selector="currentSurroundingButtonPressed:" destination="usr-FW-ikr" eventType="touchUpInside" id="BgH-EJ-Rve"/>
@@ -422,8 +517,8 @@
                         <outlet property="currentSurroundingButton" destination="rdP-8F-gXP" id="KIC-ej-vgd"/>
                         <outlet property="eventListTableView" destination="9jj-UA-2BI" id="IOX-rm-CqZ"/>
                         <segue destination="5m0-C1-HRL" kind="show" identifier="showNewEventViewSegue" id="o1V-sh-E4P"/>
-                        <segue destination="gp6-7F-M4T" kind="show" identifier="showParticularEventSegue" id="UX4-E1-MgK"/>
                         <segue destination="re5-oi-69Z" kind="show" identifier="showCurrentSurroundings" id="Xle-HX-asW"/>
+                        <segue destination="gp6-7F-M4T" kind="show" identifier="showParticularEventSegue" id="cpn-7p-Rfb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4pf-iu-8vZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -433,7 +528,7 @@
         <!--Current Surroundings View Controller-->
         <scene sceneID="rXn-Hz-QMC">
             <objects>
-                <viewController id="re5-oi-69Z" customClass="CurrentSurroundingsViewController" customModule="Ping" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CurrentSurroundingsViewController" id="re5-oi-69Z" customClass="CurrentSurroundingsViewController" customModule="Ping" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gvW-Jx-2c0"/>
                         <viewControllerLayoutGuide type="bottom" id="HaV-vF-bfU"/>
@@ -460,8 +555,12 @@
                                     <constraint firstAttribute="height" constant="36" id="Hdb-61-MIn"/>
                                     <constraint firstAttribute="width" constant="96" id="TqN-Wi-GBz"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <inset key="contentEdgeInsets" minX="-10" minY="-10" maxX="-16" maxY="-16"/>
-                                <state key="normal" title="Back" image="longbackbutton"/>
+                                <state key="normal" title="Back" image="longbackbutton">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <state key="highlighted" image="backHovered"/>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="re5-oi-69Z" eventType="touchUpInside" id="8c1-fP-dXQ"/>
@@ -476,7 +575,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SH0-4I-jmu" id="Ydq-Qa-qbG">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -538,8 +637,10 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TXr-NC-92t">
                                 <rect key="frame" x="41" y="271" width="293" height="126"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" backgroundImage="linkedin_login.png">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="linkedInLoginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AFf-NY-Huv"/>
@@ -588,7 +689,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wFF-lQ-QBZ" id="E6x-eD-PE3">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Zx-hl-FGc">
@@ -642,13 +743,16 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="boR-Uz-HVT">
                                 <rect key="frame" x="0.0" y="298" width="375" height="36"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
-                                <state key="normal" title="Right NOW !!"/>
+                                <state key="normal" title="Right NOW !!">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="nowButtonTapped:" destination="li8-sv-mvp" eventType="touchUpInside" id="9PH-nh-m8L"/>
                                 </connections>
                             </button>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7mj-fx-Jsj">
-                                <rect key="frame" x="163" y="259" width="51" height="31"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7mj-fx-Jsj">
+                                <rect key="frame" x="135" y="261" width="79" height="27"/>
                                 <connections>
                                     <action selector="switchChanged:" destination="li8-sv-mvp" eventType="valueChanged" id="KcO-gH-QvS"/>
                                 </connections>
