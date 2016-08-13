@@ -8,4 +8,5 @@
 #import "RecordManager.h"
 #import "BlueToothManager.h"
 #import "LoginManager.h"
-
+#import "Event.h"
+#import "currentUser.h"

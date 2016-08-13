@@ -57,10 +57,7 @@
                                          state:@"login with button"
                         showGoToAppStoreDialog:YES
                                   successBlock:^(NSString *state) {;
-        
-        // ToDo am I a new user? my LinkedIn ID against a list of LinkedIn Id's
-        
-        // if currentUser does not exist in realm
+
         [self createUserWithCompletion:completion];
         
     } errorBlock:^(NSError *error) {
@@ -78,38 +75,12 @@
                                             NSData *data = [response.data dataUsingEncoding:NSUTF8StringEncoding];
                                             
                                             NSError *error;
-
+                                            
                                             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
                                             
-                                            RecordManager *recordManager = [RecordManager new];
-                                            dispatch_queue_t queue = recordManager.backgroundQueue;
-                                            
-                                            dispatch_async(queue, ^{
-                                                
-                                                RLMRealm *currentUserRealm = [RLMRealm defaultRealm];
-                                                
-                                                if (![CurrentUser getCurrentUser]) {
-                                                        CurrentUser *currentUser = [CurrentUser makeCurrentUserWithProfileDictionary:json];
-                                                }
-                                                
-                                                
-                                            });
-                                            
-                                            
-//
-//
-//                                            __block CurrentUser *currentUser;
-//                                            @synchronized (self) {// make sure we can't create duplicate users
-//
-//
-//
-//
-//
-//                                                
-//                                            }
-                                            
-                                            // Add Profile Pic
-                                            //[self setProfilePicForUser:currentUser];
+                                            if (![CurrentUser getCurrentUser]) {
+                                                [CurrentUser makeCurrentUserWithProfileDictionary:json];
+                                            }
                                             
                                             completion(true);
                                         }

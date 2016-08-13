@@ -12,6 +12,8 @@
 
 @implementation CurrentUser
 
+#pragma mark -Public Methods
+
 + (CurrentUser *)getCurrentUser {
     RLMResults<CurrentUser *> *currentUsers = [CurrentUser allObjects];
    
@@ -47,6 +49,28 @@
     }];
     return currentUser;
 }
+
+#pragma mark -Instance Methods
+
+- (void)addEvent:(Event *)event {
+    RLMRealm *currentUserRealm = [RLMRealm defaultRealm];
+    
+    [currentUserRealm transactionWithBlock:^{
+        [self.events addObject:event];
+    }];
+
+}
+
+
+- (NSArray *)fetchEvents {
+    RLMResults<Event *> *events = [Event allObjects];
+    NSMutableArray *eventsToPass = [[NSMutableArray alloc] init];
+    for (Event *event in events) {
+        [eventsToPass addObject:event];
+    }
+    return [eventsToPass copy];
+}
+
 
 - (void)save { // not sure if used can propbably delete
     
