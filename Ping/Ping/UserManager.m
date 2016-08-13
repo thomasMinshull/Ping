@@ -30,7 +30,7 @@
     return self;
 }
 
-- (void)setUp {
+- (void)updateUserList {
     
     PFQuery *query = [PFQuery queryWithClassName:@"ParseUser"];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
