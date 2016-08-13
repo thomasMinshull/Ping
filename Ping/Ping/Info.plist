@@ -31,6 +31,33 @@
 	<string>1</string>
 	<key>LIAppId</key>
 	<string>4977621</string>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>surrounding</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.Ping.surroundings</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Surroundings </string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>event</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Event List </string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.Ping.browseEvents</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>add</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.Ping.createEvent</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>New Event </string>
+		</dict>
+	</array>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>linkedin</string>
