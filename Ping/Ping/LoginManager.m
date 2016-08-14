@@ -80,8 +80,7 @@
                                             
                                             if (![CurrentUser getCurrentUser]) {
                                                 [CurrentUser makeCurrentUserWithProfileDictionary:json];
-                                            }
-                                            
+                                            }                                            
                                             completion(true);
                                         }
                                           error:^(LISDKAPIError *apiError) {
