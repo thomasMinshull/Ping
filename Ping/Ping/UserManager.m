@@ -38,7 +38,7 @@
             NSLog(@"error retreiving users from parse ERROR: %@", error);
         } else {
             self.parseUsers = [NSMutableSet new];
-            NSMutableSet *users = [NSMutableSet new];
+            NSMutableArray *users = [NSMutableArray new];
             
             for (PFObject *parseUser in objects) {
                 [self.parseUsers addObject:parseUser];
@@ -47,7 +47,7 @@
                 [users addObject:user];
             }
             RecordManager *recMan = [RecordManager new];
-            [recMan backUpUsers:users];
+            [recMan backUpUsers:[users copy]];
         }
     }];
 }

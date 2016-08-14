@@ -29,9 +29,7 @@
 }
 
 - (BOOL)isLoggedIn {
-    CurrentUser *currentUser = [CurrentUser getCurrentUser];
-    if (currentUser && currentUser.UUID ) {
-        // need to just get current user and check the UUID directly
+    if ([LISDKSessionManager hasValidSession] ) {
         return true;
     } else {
         return false;

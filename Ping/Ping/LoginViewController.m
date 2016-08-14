@@ -13,9 +13,10 @@
 #import "AppDelegate.h"
 
 #import "UserManager.h"
-#import "MainViewController.h"
+//#import "MainViewController.h"
 #import "Ping-Swift.h"
 #import "LoginManager.h"
+#import "CurrentUser.h"
 
 #import "Ping-Swift.h"
 
@@ -66,6 +67,10 @@ typedef void(^myCompletion)(BOOL);
             if (weakSelf.loginManager.isFirstTimeUser) {
                 // ToDo display Onboarding else continue
                 NSLog(@"First time user");
+            } else if ([weakSelf.loginManager isLoggedIn]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakSelf performSegueWithIdentifier:@"EventListViewController" sender:nil];
+                });
             }
         }
     }];
@@ -78,15 +83,28 @@ typedef void(^myCompletion)(BOOL);
 
 - (IBAction)linkedInLoginButtonTapped:(id)sender {
     
-    [self.loginManager createNewUserAndLoginWithCompletion:^(BOOL success) {
-        if (success) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
-            });
-        } else {
-            // Display Error
-        }
-    }];
+    if (![CurrentUser getCurrentUser]) { // Just being careful
+        [self.loginManager createNewUserAndLoginWithCompletion:^(BOOL success) {
+            if (success) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self performSegueWithIdentifier:@"EventListViewController" sender:self];
+                });
+            } else {
+                // Display Error
+            }
+        }];
+    } else { // Better not create another user
+        [self.loginManager attemptToLoginWithCompletion:^(BOOL success) {
+            if (success) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self performSegueWithIdentifier:@"EventListViewController" sender:self];
+                });
+            } else {
+                //Display Error
+            }
+        }];
+    }
+    
 }
 
 
@@ -94,7 +112,7 @@ typedef void(^myCompletion)(BOOL);
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(nullable id)sender{
     if ([[segue identifier] isEqualToString:@"EventListViewController"]) {
-        MainViewController *vc = [segue destinationViewController];
+        EventListViewController *vc = [segue destinationViewController];
         vc.userManager = self.userManager;
     }
 }
