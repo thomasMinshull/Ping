@@ -53,6 +53,31 @@
 #pragma mark -Instance Methods
 
 - (void)addEvent:(Event *)event {
+    
+    //schedule bluetooth
+    
+    NSTimeInterval secondsPerHalfAnHour = 60 * 30;
+    
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.alertBody = @"Your event is starting soon!";
+    notification.alertAction = @"open"; //slide to notification.alertAction
+    NSDate *halfAnHourBefore = [event.startTime dateByAddingTimeInterval:-secondsPerHalfAnHour];
+    notification.fireDate = halfAnHourBefore;
+    notification.soundName = UILocalNotificationDefaultSoundName;
+    notification.category = @"BT_CATEGORY";
+    
+//    UILocalNotification *notification1 = [[UILocalNotification alloc] init];
+//    notification1.alertBody = @"Your Bluetooth is not turned off!";
+//    notification1.fireDate = event.endTime;
+//    notification1.soundName = UILocalNotificationDefaultSoundName;
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    
+    NSLog(@"!!Saved notification!! %@", [notification description]);
+    
+    
+    //save event
+    
     RLMRealm *currentUserRealm = [RLMRealm defaultRealm];
     
     [currentUserRealm transactionWithBlock:^{
