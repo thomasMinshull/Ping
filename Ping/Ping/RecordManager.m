@@ -147,14 +147,24 @@
     return nil;
 }
 
-- (void)backUpUsers:(NSMutableSet *)users {
+- (void)backUpUsers:(NSMutableArray *)users {
     RLMRealm *realm = [RLMRealm defaultRealm];
-    [realm transactionWithBlock:^{
-        for (User *user in users) {
-            [self.users addObject:user];
-        }
-    }];
-}
+//    RLMArray<User *><User> *arrayToStore;
+    
+    for (User *user in users) {
+        
+        [realm beginWriteTransaction];
+        [realm addObject:user];
+        [realm commitWriteTransaction];
+        
+        
+//        [arrayToStore addObject:user];
+    }
+    
+//    [realm beginWriteTransaction];
+//    [realm addObject:arrayToStore];
+//    [realm commitWriteTransaction];
+    }
 
 - (NSArray *)uuidList {
     NSMutableArray *array = [[NSMutableArray alloc] init];

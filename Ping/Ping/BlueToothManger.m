@@ -81,12 +81,14 @@
             self.isScanning = FALSE;
             ///////
             NSLog(@"switch flicked to false");
+            [self.vc logToScreen:@"switch flicked to false"];
         }else{
             //////
             [self scan];
             self.isScanning = TRUE;
             //////
             NSLog(@"switch flicked to true");
+            [self.vc logToScreen:@"switch flicked to true"];
         }
     }
 }
@@ -101,6 +103,7 @@
                                                   selector:@selector(flickSwitch:)
                                                   userInfo: nil repeats:YES];
     NSLog(@"timer on");
+    [self.vc logToScreen:@"timer on"];
 
 }
 
@@ -108,6 +111,7 @@
     [self.peripheralManager stopAdvertising];
     self.isTimerValid = FALSE;
     NSLog(@"timer off");
+    [self.vc logToScreen:@"timer off"];
     
 }
 
@@ -152,6 +156,7 @@
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
     NSLog(@"central state: %ld", (long)central.state);
+    [self.vc logToScreen:[NSString stringWithFormat:@"central state: %ld", (long)central.state]];
     
     if (central.state != CBCentralManagerStatePoweredOn) {
         return;
@@ -167,12 +172,14 @@
      ];
     
     NSLog(@"Scanning started");
+    [self.vc logToScreen:@"Scanning started"];
 }
 
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
     NSLog(@"Discovered %@ at %@", peripheral.name, RSSI);
+    [self.vc logToScreen:[NSString stringWithFormat:@"Discovered %@ at %@", peripheral.name, RSSI]];
     
     [self.fetchedDistances addObject:[NSNumber numberWithInteger:[RSSI integerValue]]];
     
@@ -188,6 +195,8 @@
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
     NSLog(@"Failed to connect to %@. (%@)", peripheral, [error localizedDescription]);
+    [self.vc logToScreen:[NSString stringWithFormat:@"Failed to connect to %@. (%@)", peripheral, [error localizedDescription]]];
+    
     [self cleanup];
 }
 
@@ -195,6 +204,7 @@
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
     NSLog(@"Peripheral Connected");
+    [self.vc logToScreen:[NSString stringWithFormat:@"Peripheral Connected"]];
     
     peripheral.delegate = self;
     
@@ -206,6 +216,7 @@
 {
     if (error) {
         NSLog(@"Error discovering services: %@", [error localizedDescription]);
+        [self.vc logToScreen:[NSString stringWithFormat:@"Error discovering services: %@", [error localizedDescription]]];
         [self cleanup];
         return;
     }
@@ -213,12 +224,15 @@
     /////////////////////////////////////////////////////////////////////////////
     for (CBService *service in peripheral.services) {
         
+        NSLog(@"Phone Saving Record!!");
+        
         [self.fetchedUUIDs addObject:service.UUID.UUIDString];
         
         NSNumber *proximity = [self.fetchedDistances lastObject];
         [self.recordManager storeBlueToothDataByUUID:[self.fetchedUUIDs lastObject] userProximity:[proximity intValue] andTime:[self.fetchedTimeStamp lastObject]];
         
         NSLog(@"blueToothData: %@, %d, %@", [self.fetchedUUIDs lastObject],[proximity intValue],[self.fetchedTimeStamp lastObject]);
+        [self.vc logToScreen:[NSString stringWithFormat:@"blueToothData: %@, %d, %@", [self.fetchedUUIDs lastObject],[proximity intValue],[self.fetchedTimeStamp lastObject]]];
     }
     ////////////////////////////////////////////////////////////////////////////
 }
@@ -227,6 +241,7 @@
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
     NSLog(@"Peripheral Disconnected");
+    [self.vc logToScreen:[NSString stringWithFormat:@"Peripheral Disconnected"]];
     self.discoveredPeripheral = nil;
     
     [self scan];
@@ -252,6 +267,7 @@
     }
     
     NSLog(@"self.peripheralManager powered on.");
+    [self.vc logToScreen:[NSString stringWithFormat:@"self.peripheralManager powered on."]];
     
     CurrentUser *currentUser = [CurrentUser getCurrentUser];
     if (currentUser) {
