@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
+#import "BlueToothTestViewController.h" // temp for testing
 
 @interface BlueToothManager : NSObject
 
-- (void)setUUIDList:(NSArray *)uuidList andCurrentUUID:(NSString *)currentUUID;
+@property (weak, nonatomic) BlueToothTestViewController *vc; //temp for testing
+
+- (void)setUpBluetooth;
 - (void)start;
 - (void)stop;
 

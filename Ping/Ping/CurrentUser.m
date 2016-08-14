@@ -30,7 +30,7 @@
     [currentUser setPropertiesWithProfileDictionary:dic];
     [currentUser save];
     
-    PFObject *parseUser = [PFObject objectWithClassName:@"User"];
+    PFObject *parseUser = [PFObject objectWithClassName:@"ParseUser"];
     parseUser[@"firstName"] = currentUser.firstName;
     parseUser[@"lastName"] = currentUser.lastName;
     parseUser[@"headline"] = currentUser.headline;

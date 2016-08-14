@@ -13,12 +13,9 @@
 
 @interface UserManager : NSObject
 
-@property (strong, nonatomic) NSMutableArray __block *uuids;
-
 - (User *)userForUUID:(NSString *)uuid;
 
-// refactor into integration manager
-- (void)setUp;
+- (void)fetchUsersWthCompletion:(void(^)(NSArray *users))completion;
 
 @end
 
