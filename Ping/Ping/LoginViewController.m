@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *linkedInLoginButton;
 
 @property LoadingView *loadingView;
+@property UIView *extensionView;
 
 typedef void(^myCompletion)(BOOL);
 
@@ -33,11 +34,14 @@ typedef void(^myCompletion)(BOOL);
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.loadingView = [[LoadingView alloc] initWithFrame:CGRectZero];
-    self.loadingView.backgroundColor = [UIColor colorWithRed:0.85 green:0.98 blue:0.67 alpha:1.0];
+    self.extensionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    self.extensionView.backgroundColor = [UIColor colorWithRed:0.85 green:0.98 blue:0.67 alpha:1.0];
+    [self.view addSubview:self.extensionView];
     
     CGFloat boxSize = 320;
-    self.loadingView.frame = CGRectMake(self.view.bounds.size.width / 2 - boxSize / 2, 0, self.view.frame.size.width, self.view.frame.size.height);
+    self.loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - boxSize / 2, 0, self.view.frame.size.width + 100, self.view.frame.size.height)];
+    self.loadingView.backgroundColor = [UIColor colorWithRed:0.85 green:0.98 blue:0.67 alpha:1.0];
+    
     [self.view addSubview:self.loadingView];
 
     // Highlight button when selected
@@ -51,6 +55,7 @@ typedef void(^myCompletion)(BOOL);
     __weak LoginViewController *weakSelf = self;
     [self.loadingView addLoadingAnimationGroupAnimationCompletionBlock:^(BOOL finished) {
         if(finished){
+            [weakSelf.extensionView removeFromSuperview];
             [weakSelf.loadingView removeFromSuperview];
             
             NSLog(@"Done Animating!");
@@ -63,8 +68,6 @@ typedef void(^myCompletion)(BOOL);
             }
         }
     }];
-    
-    
 }
 
 
