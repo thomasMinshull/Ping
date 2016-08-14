@@ -10,6 +10,7 @@
 #import "RecordManager.h"
 #import "AppDelegate.h"
 #import "CurrentUser.h"
+#import "UserManager.h"
 
 @interface BlueToothManager() <CBCentralManagerDelegate, CBPeripheralDelegate, CBPeripheralManagerDelegate>
 
@@ -48,27 +49,35 @@
         self.fetchedDistances = [NSMutableArray array];
         self.fetchedTimeStamp = [NSMutableArray array];
         self.cbuuidLists = [NSMutableArray array];
-
-        [self updateCBUUIDList];
         
         self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+        
+        [self setUpBluetooth];
         
         self.isScanning = FALSE;
     }
     return self;
 }
 
-- (void)updateCBUUIDList; {
-    RecordManager *recMan = [[RecordManager alloc] init];
-    NSArray *uuidList = [recMan uuidList];
+
+- (void)setUpBluetooth {
+    UserManager *userMan = [[UserManager alloc] init];
+    [userMan fetchUsersWthCompletion:^(NSArray *users){
+        [self updateCBUUIDList:users];
+        [self start];
+    }];
+    
+}
+
+- (void)updateCBUUIDList:(NSArray *)uuids; {
     
     //changing uuid to cbuuid
-    for(NSString *aUUIDString in uuidList){
+    for(NSString *aUUIDString in uuids){
         CBUUID *cbuuidString = [CBUUID UUIDWithString:aUUIDString];
         [self.cbuuidLists addObject:cbuuidString];
     }
-
+//    }
 }
 
 #pragma mark - Start and Stop

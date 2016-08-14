@@ -40,8 +40,7 @@ typedef void(^myCompletion)(BOOL);
     
     self.loginManager = [[LoginManager alloc] init];
     self.userManager = [[UserManager alloc] init];
-    [self.userManager updateUserslist]; // updates the latest list of UUID's in Real and gets latest users from parse
-    
+ 
     self.loadingView = [[LoadingView alloc] initWithFrame:CGRectZero];
     self.loadingView.backgroundColor = [UIColor colorWithRed:0.85 green:0.98 blue:0.67 alpha:1.0];
     

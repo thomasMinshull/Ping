@@ -25,15 +25,15 @@
 {
     self = [super init];
     if (self) {
-        [self updateUserslist];
     }
     return self;
 }
 
-- (void)updateUserslist {
+- (void)fetchUsersWthCompletion:(void(^)(NSArray *users))completion {
     
     PFQuery *query = [PFQuery queryWithClassName:@"ParseUser"];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        RecordManager *recMan = [RecordManager new];
         if (error) {
             NSLog(@"error retreiving users from parse ERROR: %@", error);
         } else {
@@ -46,9 +46,11 @@
                 User *user = [self userFrom:parseUser];
                 [users addObject:user];
             }
-            RecordManager *recMan = [RecordManager new];
             [recMan backUpUsers:[users copy]];
+            
         }
+        NSArray *uuidList = [recMan uuidList];
+        completion(uuidList);
     }];
 }
 

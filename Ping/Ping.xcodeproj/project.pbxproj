@@ -12,7 +12,6 @@
 		4063F8551D5C0B1200D13D6A /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4063F8541D5C0B1200D13D6A /* QCMethod.swift */; };
 		40F135421D4C33C200376973 /* BlueToothManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 555C1E791D4A9DE700007980 /* BlueToothManger.m */; };
 		5511E5EF1D5CFA78000DFFB3 /* ParseUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5511E5EE1D5CFA78000DFFB3 /* ParseUser.m */; };
-		5537CDCD1D593AA6002045C8 /* IntegrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5537CDCC1D593AA6002045C8 /* IntegrationManager.swift */; };
 		5548D0CD1D5FD979006A78F9 /* BlueToothTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5548D0CC1D5FD979006A78F9 /* BlueToothTestViewController.m */; };
 		5594DAFD1D45E2DE0096D5DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594DAFC1D45E2DE0096D5DF /* main.m */; };
 		5594DB001D45E2DE0096D5DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594DAFF1D45E2DE0096D5DF /* AppDelegate.m */; };
@@ -54,7 +53,6 @@
 		4063F8541D5C0B1200D13D6A /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
 		5511E5ED1D5CFA78000DFFB3 /* ParseUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseUser.h; sourceTree = "<group>"; };
 		5511E5EE1D5CFA78000DFFB3 /* ParseUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseUser.m; sourceTree = "<group>"; };
-		5537CDCC1D593AA6002045C8 /* IntegrationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegrationManager.swift; sourceTree = "<group>"; };
 		5548D0CB1D5FD979006A78F9 /* BlueToothTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueToothTestViewController.h; sourceTree = "<group>"; };
 		5548D0CC1D5FD979006A78F9 /* BlueToothTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueToothTestViewController.m; sourceTree = "<group>"; };
 		555C1E781D4A9DE700007980 /* BlueToothManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueToothManager.h; sourceTree = "<group>"; };
@@ -241,7 +239,6 @@
 				5599E7861D499E1C00E61B0E /* RecordManager.m */,
 				555C1E781D4A9DE700007980 /* BlueToothManager.h */,
 				555C1E791D4A9DE700007980 /* BlueToothManger.m */,
-				5537CDCC1D593AA6002045C8 /* IntegrationManager.swift */,
 				55B0C3EC1D59796300394286 /* LoginManager.h */,
 				55B0C3ED1D59796300394286 /* LoginManager.m */,
 			);
@@ -527,7 +524,6 @@
 				4063F8551D5C0B1200D13D6A /* QCMethod.swift in Sources */,
 				55A0985D1D46CB3E005100BC /* LoginViewController.m in Sources */,
 				55A099071D498F27005100BC /* MainViewController.m in Sources */,
-				5537CDCD1D593AA6002045C8 /* IntegrationManager.swift in Sources */,
 				5599E78D1D499E1C00E61B0E /* UserRecord.m in Sources */,
 				5599E78B1D499E1C00E61B0E /* RecordManager.m in Sources */,
 				55DCBF5A1D5D3D580085F5A3 /* CurrentSurroundingsViewController.swift in Sources */,
