@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="I87-hg-4Kb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="I87-hg-4Kb">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Copyright bg" translatesAutoresizingMaskIntoConstraints="NO" id="RTU-lp-wUC">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Copyright bg" translatesAutoresizingMaskIntoConstraints="NO" id="RTU-lp-wUC">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOM-6C-56o">
@@ -80,7 +80,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="linkedInLoginButton" destination="jTh-Sr-5kU" id="ERj-sQ-wi2"/>
-                        <segue destination="usr-FW-ikr" kind="show" identifier="MainViewController" id="UPL-Cu-c7l"/>
+                        <segue destination="usr-FW-ikr" kind="show" identifier="EventListViewController" id="UPL-Cu-c7l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rgo-fA-SBJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -270,6 +270,13 @@
                                     <action selector="startTimeButtonPressed:" destination="5m0-C1-HRL" eventType="touchUpInside" id="tVH-YL-NVi"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JWU-sJ-Gfk">
+                                <rect key="frame" x="264" y="82" width="46" height="30"/>
+                                <state key="normal" title="BTtest"/>
+                                <connections>
+                                    <segue destination="oqY-Js-wbI" kind="show" id="u2Z-Hz-db0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -280,6 +287,7 @@
                             <constraint firstItem="nb1-ah-v6e" firstAttribute="leading" secondItem="uyx-85-lXg" secondAttribute="leading" id="70v-6t-Z2y"/>
                             <constraint firstItem="NGX-Bo-63T" firstAttribute="centerX" secondItem="Lt8-b3-2lH" secondAttribute="centerX" id="7ma-Jz-Upm"/>
                             <constraint firstItem="shG-a4-jPp" firstAttribute="top" secondItem="9vv-WK-QYZ" secondAttribute="bottom" id="83R-gy-9XD"/>
+                            <constraint firstItem="Lt8-b3-2lH" firstAttribute="top" secondItem="JWU-sJ-Gfk" secondAttribute="bottom" constant="8" id="AAn-5T-Jbs"/>
                             <constraint firstItem="uyx-85-lXg" firstAttribute="width" secondItem="Lt8-b3-2lH" secondAttribute="width" id="H7n-bj-5UM"/>
                             <constraint firstItem="nLN-nr-cqb" firstAttribute="top" secondItem="i5y-lK-eLO" secondAttribute="bottom" constant="24" id="HYG-Yj-xfd"/>
                             <constraint firstItem="9vv-WK-QYZ" firstAttribute="leading" secondItem="6Kp-4R-lvk" secondAttribute="leading" id="IY8-I4-Iog"/>
@@ -291,6 +299,7 @@
                             <constraint firstAttribute="trailing" secondItem="9vv-WK-QYZ" secondAttribute="trailing" id="MoW-Y1-gBG"/>
                             <constraint firstAttribute="trailing" secondItem="ccV-6E-OcP" secondAttribute="trailing" constant="4" id="U8v-Wt-7YU"/>
                             <constraint firstItem="8zL-z1-8of" firstAttribute="leading" secondItem="6Kp-4R-lvk" secondAttribute="leading" constant="-8" id="Uct-lE-frq"/>
+                            <constraint firstItem="JWU-sJ-Gfk" firstAttribute="centerX" secondItem="Lt8-b3-2lH" secondAttribute="centerX" id="UyQ-yA-blV"/>
                             <constraint firstItem="nb1-ah-v6e" firstAttribute="centerY" secondItem="doT-uN-Igh" secondAttribute="centerY" id="YZK-fy-IZA"/>
                             <constraint firstItem="9vv-WK-QYZ" firstAttribute="top" secondItem="6Kp-4R-lvk" secondAttribute="top" id="aun-d5-8GX"/>
                             <constraint firstItem="uyx-85-lXg" firstAttribute="centerY" secondItem="qyS-sW-3A8" secondAttribute="centerY" id="c1v-LW-61m"/>
@@ -334,6 +343,62 @@
             </objects>
             <point key="canvasLocation" x="1470.5" y="-1096.5"/>
         </scene>
+        <!--Blue Tooth Test View Controller-->
+        <scene sceneID="thS-eN-Es7">
+            <objects>
+                <viewController id="oqY-Js-wbI" customClass="BlueToothTestViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qdl-tH-5uW"/>
+                        <viewControllerLayoutGuide type="bottom" id="u3a-aQ-zfW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1aN-Tn-myy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wWP-O0-nC1">
+                                <rect key="frame" x="16" y="97" width="343" height="30"/>
+                                <state key="normal" title="stop"/>
+                                <connections>
+                                    <action selector="startButtonTapped:" destination="oqY-Js-wbI" eventType="touchUpInside" id="YIe-Xr-K5V"/>
+                                    <action selector="stopButtonTapped:" destination="oqY-Js-wbI" eventType="touchUpInside" id="smq-Hr-00o"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bVN-mv-hzu">
+                                <rect key="frame" x="16" y="163" width="343" height="484"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W9p-zy-otl">
+                                <rect key="frame" x="16" y="28" width="343" height="30"/>
+                                <state key="normal" title="start"/>
+                                <connections>
+                                    <action selector="startButtonTapped:" destination="oqY-Js-wbI" eventType="touchUpInside" id="360-iJ-wxw"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="u3a-aQ-zfW" firstAttribute="top" secondItem="bVN-mv-hzu" secondAttribute="bottom" constant="20" id="7Tr-3b-row"/>
+                            <constraint firstItem="bVN-mv-hzu" firstAttribute="trailing" secondItem="1aN-Tn-myy" secondAttribute="trailingMargin" id="Bes-ZY-YrP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wWP-O0-nC1" secondAttribute="trailing" id="DIS-hn-eqW"/>
+                            <constraint firstItem="wWP-O0-nC1" firstAttribute="leading" secondItem="1aN-Tn-myy" secondAttribute="leadingMargin" id="HMI-qW-LQK"/>
+                            <constraint firstItem="wWP-O0-nC1" firstAttribute="top" secondItem="W9p-zy-otl" secondAttribute="bottom" constant="39" id="RFt-We-JUY"/>
+                            <constraint firstItem="bVN-mv-hzu" firstAttribute="top" secondItem="wWP-O0-nC1" secondAttribute="bottom" constant="36" id="U0e-n4-fXS"/>
+                            <constraint firstItem="W9p-zy-otl" firstAttribute="leading" secondItem="1aN-Tn-myy" secondAttribute="leadingMargin" id="aZM-df-Ybi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="W9p-zy-otl" secondAttribute="trailing" id="lZF-Sr-dw0"/>
+                            <constraint firstItem="W9p-zy-otl" firstAttribute="top" secondItem="qdl-tH-5uW" secondAttribute="bottom" constant="8" id="pER-Bw-Ipd"/>
+                            <constraint firstItem="bVN-mv-hzu" firstAttribute="leading" secondItem="1aN-Tn-myy" secondAttribute="leadingMargin" id="ubi-D1-Wx1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="textField" destination="bVN-mv-hzu" id="8sf-AA-7FI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a8y-uv-kRX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2022.5" y="-1189.5"/>
+        </scene>
         <!--The Event View Controller-->
         <scene sceneID="V6n-B2-Uy7">
             <objects>
@@ -346,19 +411,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mercedes-AMG vs. BMW M Face 2 Face World Drag Race" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0o-Dw-1rZ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Mercedes-AMG vs. BMW M Face 2 Face World Drag Race" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0o-Dw-1rZ">
                                 <rect key="frame" x="24" y="140" width="327" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="September 2nd, 2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kX3-6M-3Vu">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="September 2nd, 2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kX3-6M-3Vu">
                                 <rect key="frame" x="105" y="201" width="166" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BMW USA, Mercedes-Benz USA" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMl-hZ-3fz">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="BMW USA, Mercedes-Benz USA" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMl-hZ-3fz">
                                 <rect key="frame" x="16" y="272" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -424,16 +489,16 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="weK-R3-DvW" id="cUk-fv-gzW">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ml-iG-6TW">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ml-iG-6TW">
                                                     <rect key="frame" x="8" y="30" width="38" height="19"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yej-EW-514">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yej-EW-514">
                                                     <rect key="frame" x="8" y="8" width="43" height="21"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -575,7 +640,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SH0-4I-jmu" id="Ydq-Qa-qbG">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -689,7 +754,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wFF-lQ-QBZ" id="E6x-eD-PE3">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Zx-hl-FGc">

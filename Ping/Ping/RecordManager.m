@@ -8,25 +8,17 @@
 
 #import "RecordManager.h"
 #import "AverageUUidDuple.h"
+#import "User.h"
 
 #define TIME_INTERVAL 10 * 60
 
 @interface RecordManager ()
 
-@property (atomic, strong) RLMRealm *writeRealm;
+@property (strong) RLMArray<User *><User> *users;
 
 @end
 
 @implementation RecordManager
-
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        _writeRealm = [RLMRealm defaultRealm];
-    }
-    return self;
-}
 
 - (dispatch_queue_t)backgroundQueue {
     static dispatch_once_t queueCreationGuard;
@@ -37,6 +29,8 @@
     return queue;
 }
 
+
+#pragma mark - BlueTooth Montioring Methods
 
 // convert userProximity string into a int
 
@@ -107,20 +101,6 @@
     });
 }
 
--(void)increaseUserTotalDistanceAndObs:(UserRecord *)userRecord userProximity:(int)proximity {
-    dispatch_queue_t queue = self.backgroundQueue;
-    dispatch_async(queue, ^{
-        
-        RLMRealm *backgroundRealm = [RLMRealm defaultRealm];
-        [backgroundRealm beginWriteTransaction];
-        userRecord.totalDistance += proximity;
-        userRecord.numberOfObs ++;
-        [backgroundRealm commitWriteTransaction];
-        
-    });
-    
-}
-
 -(NSDate *)getStartTimeForTimePeriod:(NSDate *)time{
     NSCalendar *cal = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian]; // get calander
     NSDateComponents *newDateComponenet = [[NSDateComponents alloc] init]; // create new component
@@ -166,6 +146,29 @@
     }
     return nil;
 }
+
+- (void)backUpUsers:(NSMutableArray *)users {
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    
+    for (User *user in users) {
+        
+        [realm beginWriteTransaction];
+        [realm addObject:user];
+        [realm commitWriteTransaction];
+    }
+}
+
+- (NSArray *)uuidList {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+
+    RLMResults<User *> *users = [User allObjects];
+    for (User *user in users) {
+        NSString *uuidString = user.UUID;
+        [array addObject:uuidString];
+    }
+    return [array copy];
+}
+
 
 @end
 

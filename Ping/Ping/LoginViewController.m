@@ -12,9 +12,11 @@
 
 #import "AppDelegate.h"
 
-#import "MainViewController.h"
+#import "UserManager.h"
+//#import "MainViewController.h"
 #import "Ping-Swift.h"
 #import "LoginManager.h"
+#import "CurrentUser.h"
 
 #import "Ping-Swift.h"
 
@@ -23,6 +25,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *linkedInLoginButton;
 
 @property LoadingView *loadingView;
+
+@property (strong, nonatomic) LoginManager __block *loginManager;
+@property (strong, nonatomic) UserManager *userManager;
 @property UIView *extensionView;
 
 typedef void(^myCompletion)(BOOL);
@@ -34,6 +39,12 @@ typedef void(^myCompletion)(BOOL);
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.loginManager = [[LoginManager alloc] init];
+    self.userManager = [[UserManager alloc] init];
+ 
+    self.loadingView = [[LoadingView alloc] initWithFrame:CGRectZero];
+    self.loadingView.backgroundColor = [UIColor colorWithRed:0.85 green:0.98 blue:0.67 alpha:1.0];
     self.extensionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     self.extensionView.backgroundColor = [UIColor colorWithRed:0.85 green:0.98 blue:0.67 alpha:1.0];
     [self.view addSubview:self.extensionView];
@@ -51,7 +62,7 @@ typedef void(^myCompletion)(BOOL);
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
+
     __weak LoginViewController *weakSelf = self;
     [self.loadingView addLoadingAnimationGroupAnimationCompletionBlock:^(BOOL finished) {
         if(finished){
@@ -59,12 +70,14 @@ typedef void(^myCompletion)(BOOL);
             [weakSelf.loadingView removeFromSuperview];
             
             NSLog(@"Done Animating!");
-
-            IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
             
-            if (iM.loginManager.isFirstTimeUser) {
+            if (weakSelf.loginManager.isFirstTimeUser) {
                 // ToDo display Onboarding else continue
                 NSLog(@"First time user");
+            } else if ([weakSelf.loginManager isLoggedIn]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakSelf performSegueWithIdentifier:@"EventListViewController" sender:nil];
+                });
             }
         }
     }];
@@ -74,17 +87,39 @@ typedef void(^myCompletion)(BOOL);
 #pragma mark -Actions
 
 - (IBAction)linkedInLoginButtonTapped:(id)sender {
-    IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
     
-    [iM.loginManager createNewUserAndLoginWithCompletion:^(BOOL success) {
-        if (success) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self performSegueWithIdentifier:NSStringFromClass([MainViewController class]) sender:self];
-            });
-        } else {
-            // Display Error
-        }
-    }];
+    if (![CurrentUser getCurrentUser]) { // Just being careful
+        [self.loginManager createNewUserAndLoginWithCompletion:^(BOOL success) {
+            if (success) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self performSegueWithIdentifier:@"EventListViewController" sender:self];
+                });
+            } else {
+                // Display Error
+            }
+        }];
+    } else { // Better not create another user
+        [self.loginManager attemptToLoginWithCompletion:^(BOOL success) {
+            if (success) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self performSegueWithIdentifier:@"EventListViewController" sender:self];
+                });
+            } else {
+                //Display Error
+            }
+        }];
+    }
+    
+}
+
+
+#pragma mark -Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(nullable id)sender{
+    if ([[segue identifier] isEqualToString:@"EventListViewController"]) {
+        EventListViewController *vc = [segue destinationViewController];
+        vc.userManager = self.userManager;
+    }
 }
 
 @end
