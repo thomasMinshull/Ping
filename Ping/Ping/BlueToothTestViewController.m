@@ -21,8 +21,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UserManager *userMan = [[UserManager alloc] init];
-    [userMan updateUserslist];
     self.btm = [[BlueToothManager alloc] init];
     self.btm.vc = self;
     

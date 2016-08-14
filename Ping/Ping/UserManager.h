@@ -15,7 +15,7 @@
 
 - (User *)userForUUID:(NSString *)uuid;
 
-- (void)updateUserslist;
+- (void)fetchUsersWthCompletion:(void(^)(NSArray *users))completion;
 
 @end
 

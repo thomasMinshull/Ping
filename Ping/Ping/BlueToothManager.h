@@ -14,7 +14,7 @@
 
 @property (weak, nonatomic) BlueToothTestViewController *vc; //temp for testing
 
-//- (void)updateUUIDList;
+- (void)setUpBluetooth;
 - (void)start;
 - (void)stop;
 
