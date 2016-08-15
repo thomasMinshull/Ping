@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -77,7 +78,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rgo-fA-SBJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="313.5" y="-454.5"/>
+            <point key="canvasLocation" x="334.5" y="-454.5"/>
         </scene>
         <!--New Event View Controller-->
         <scene sceneID="EWE-Ar-iAQ">
@@ -321,7 +322,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="weK-R3-DvW" id="cUk-fv-gzW">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ml-iG-6TW">
@@ -460,7 +461,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SH0-4I-jmu" id="Ydq-Qa-qbG">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -572,7 +573,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wFF-lQ-QBZ" id="E6x-eD-PE3">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Zx-hl-FGc">
@@ -661,6 +662,102 @@
             </objects>
             <point key="canvasLocation" x="962.5" y="308.5"/>
         </scene>
+        <!--Welcome Scrolling View Controller-->
+        <scene sceneID="YUc-J4-wQ7">
+            <objects>
+                <viewController storyboardIdentifier="WelcomePagingViewController" id="JHS-ku-vWK" customClass="WelcomeScrollingViewController" customModule="Ping" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JOH-rR-xj9"/>
+                        <viewControllerLayoutGuide type="bottom" id="Pce-Ne-eM8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hN6-tb-QJz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PwA-yR-znt">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </scrollView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="text-icon" translatesAutoresizingMaskIntoConstraints="NO" id="xUR-On-qWl">
+                                <rect key="frame" x="67" y="174" width="240" height="66"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="OAe-B6-Ke1"/>
+                                    <constraint firstAttribute="height" constant="66" id="gkq-7l-3pW"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="t9q-dd-4rA">
+                                <rect key="frame" x="133" y="64" width="109" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="A69-Du-05c"/>
+                                    <constraint firstAttribute="width" secondItem="t9q-dd-4rA" secondAttribute="height" multiplier="109:100" id="Kz7-Sg-Xe9"/>
+                                    <constraint firstAttribute="width" constant="109" id="Xpd-TZ-z9y"/>
+                                </constraints>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Kx1-9e-nQX">
+                                <rect key="frame" x="40" y="264" width="295" height="157.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Kx1-9e-nQX" secondAttribute="height" multiplier="15:8" id="M2R-zO-EJq"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="wT8-Bh-IJg">
+                                <rect key="frame" x="154" y="430" width="67" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="67" id="Y55-kJ-E5b"/>
+                                    <constraint firstAttribute="height" constant="37" id="xQo-sc-icd"/>
+                                </constraints>
+                                <color key="pageIndicatorTintColor" red="0.87058823529999996" green="0.20784313730000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </pageControl>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GNu-Do-GdW">
+                                <rect key="frame" x="36" y="567" width="303" height="57"/>
+                                <color key="backgroundColor" red="0.87058823529999996" green="0.20784313730000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="GNu-Do-GdW" secondAttribute="height" multiplier="16:3" id="7GX-wh-CXf"/>
+                                </constraints>
+                                <state key="normal" title="Let's Start">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="startButtonPressed:" destination="JHS-ku-vWK" eventType="touchUpInside" id="3eZ-fQ-zUI"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Kx1-9e-nQX" firstAttribute="top" secondItem="xUR-On-qWl" secondAttribute="bottom" constant="24" id="7Lr-Wl-GCG"/>
+                            <constraint firstAttribute="trailing" secondItem="Kx1-9e-nQX" secondAttribute="trailing" constant="40" id="9Bw-sg-rZz"/>
+                            <constraint firstItem="wT8-Bh-IJg" firstAttribute="top" secondItem="Kx1-9e-nQX" secondAttribute="bottom" constant="9" id="9Xz-sx-anY"/>
+                            <constraint firstItem="xUR-On-qWl" firstAttribute="centerX" secondItem="hN6-tb-QJz" secondAttribute="centerX" id="Akr-eM-QOT"/>
+                            <constraint firstItem="t9q-dd-4rA" firstAttribute="centerX" secondItem="hN6-tb-QJz" secondAttribute="centerX" id="CTY-8Y-X6b"/>
+                            <constraint firstAttribute="trailing" secondItem="PwA-yR-znt" secondAttribute="trailing" id="OZR-a8-MXv"/>
+                            <constraint firstItem="GNu-Do-GdW" firstAttribute="leading" secondItem="hN6-tb-QJz" secondAttribute="leadingMargin" constant="20" id="X1I-Pv-pTT"/>
+                            <constraint firstItem="PwA-yR-znt" firstAttribute="top" secondItem="JOH-rR-xj9" secondAttribute="bottom" constant="-20" id="YLU-iB-Hwl"/>
+                            <constraint firstItem="PwA-yR-znt" firstAttribute="leading" secondItem="hN6-tb-QJz" secondAttribute="leading" id="aI5-1u-Ob4"/>
+                            <constraint firstItem="wT8-Bh-IJg" firstAttribute="centerX" secondItem="hN6-tb-QJz" secondAttribute="centerX" id="cAn-6f-eU3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GNu-Do-GdW" secondAttribute="trailing" constant="20" id="eNA-h2-7ic"/>
+                            <constraint firstItem="xUR-On-qWl" firstAttribute="width" secondItem="t9q-dd-4rA" secondAttribute="height" multiplier="12:5" id="ejK-kL-urE"/>
+                            <constraint firstItem="Kx1-9e-nQX" firstAttribute="leading" secondItem="hN6-tb-QJz" secondAttribute="leading" constant="40" id="mzB-Gn-G5f"/>
+                            <constraint firstItem="t9q-dd-4rA" firstAttribute="top" secondItem="JOH-rR-xj9" secondAttribute="bottom" constant="44" id="pvk-hs-oBA"/>
+                            <constraint firstItem="xUR-On-qWl" firstAttribute="top" secondItem="t9q-dd-4rA" secondAttribute="bottom" constant="10" id="vAS-6Y-jv6"/>
+                            <constraint firstItem="GNu-Do-GdW" firstAttribute="centerX" secondItem="hN6-tb-QJz" secondAttribute="centerX" id="vFM-ks-Xwb"/>
+                            <constraint firstItem="Pce-Ne-eM8" firstAttribute="top" secondItem="GNu-Do-GdW" secondAttribute="bottom" constant="43" id="vpz-54-b6P"/>
+                            <constraint firstItem="Pce-Ne-eM8" firstAttribute="top" secondItem="PwA-yR-znt" secondAttribute="bottom" id="wfn-gs-F38"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="pageControl" destination="wT8-Bh-IJg" id="qs8-PH-rc4"/>
+                        <outlet property="scrollView" destination="PwA-yR-znt" id="GMW-pf-m7V"/>
+                        <outlet property="startButton" destination="GNu-Do-GdW" id="qNZ-gy-vij"/>
+                        <outlet property="textView" destination="Kx1-9e-nQX" id="Bn0-sa-7d7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="68Z-gS-UmT" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-254.5" y="-454.5"/>
+        </scene>
     </scenes>
     <resources>
         <image name="CellButton" width="1125" height="132"/>
@@ -672,9 +769,11 @@
         <image name="Rectangle 2" width="1125" height="198"/>
         <image name="Sign-In-Large---Default" width="430" height="80"/>
         <image name="backHovered" width="438" height="228"/>
+        <image name="icon" width="182" height="204"/>
         <image name="linkedin_login.png" width="640" height="126"/>
         <image name="longbackbutton" width="146" height="76"/>
         <image name="realNowButtonBGDefault" width="375" height="44"/>
         <image name="realNowButtonBGHovered" width="375" height="44"/>
+        <image name="text-icon" width="223" height="54"/>
     </resources>
 </document>
