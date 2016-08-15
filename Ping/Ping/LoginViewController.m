@@ -42,9 +42,17 @@ typedef void(^myCompletion)(BOOL);
     
     self.loginManager = [[LoginManager alloc] init];
     self.userManager = [[UserManager alloc] init];
- 
+    
     self.loadingView = [[LoadingView alloc] initWithFrame:CGRectZero];
     self.loadingView.backgroundColor = [UIColor colorWithRed:0.85 green:0.98 blue:0.67 alpha:1.0];
+    
+    self.view.userInteractionEnabled = YES;
+    self.loadingView.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *stopAnimateTap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(stopAnimateTap:)];
+    [self.view addGestureRecognizer:stopAnimateTap];
+    
     self.extensionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     self.extensionView.backgroundColor = [UIColor colorWithRed:0.85 green:0.98 blue:0.67 alpha:1.0];
     [self.view addSubview:self.extensionView];
@@ -54,7 +62,7 @@ typedef void(^myCompletion)(BOOL);
     self.loadingView.backgroundColor = [UIColor colorWithRed:0.85 green:0.98 blue:0.67 alpha:1.0];
     
     [self.view addSubview:self.loadingView];
-
+    
     // Highlight button when selected
     UIImage *signInWithLinkedInButtonHoveredImage = [UIImage imageNamed:@"Sign-In-Large---Hover"];
     [self.linkedInLoginButton setImage:signInWithLinkedInButtonHoveredImage forState:UIControlStateHighlighted];
@@ -62,23 +70,21 @@ typedef void(^myCompletion)(BOOL);
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-
+    
     __weak LoginViewController *weakSelf = self;
     [self.loadingView addLoadingAnimationGroupAnimationCompletionBlock:^(BOOL finished) {
-        if(finished){
-            [weakSelf.extensionView removeFromSuperview];
-            [weakSelf.loadingView removeFromSuperview];
-            
-            NSLog(@"Done Animating!");
-            
-            if (weakSelf.loginManager.isFirstTimeUser) {
-                // ToDo display Onboarding else continue
-                NSLog(@"First time user");
-            } else if ([weakSelf.loginManager isLoggedIn]) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [weakSelf performSegueWithIdentifier:@"EventListViewController" sender:nil];
-                });
-            }
+        [weakSelf.extensionView removeFromSuperview];
+        [weakSelf.loadingView removeFromSuperview];
+        
+        NSLog(@"Done Animating!");
+        
+        if (weakSelf.loginManager.isFirstTimeUser) {
+            // ToDo display Onboarding else continue
+            NSLog(@"First time user");
+        } else if ([weakSelf.loginManager isLoggedIn]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf performSegueWithIdentifier:@"EventListViewController" sender:nil];
+            });
         }
     }];
 }
@@ -121,5 +127,14 @@ typedef void(^myCompletion)(BOOL);
         vc.userManager = self.userManager;
     }
 }
+
+#pragma - Touch to stop the animation
+
+- (void)stopAnimateTap:(UITapGestureRecognizer *)recognizer {
+    [self.extensionView removeFromSuperview];
+    [self.loadingView removeFromSuperview];
+    NSLog(@"Touch gesture recognized. Stopping the Animation");
+}
+
 
 @end

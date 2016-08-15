@@ -14,6 +14,8 @@
 
 @property (weak, nonatomic) BlueToothTestViewController *vc; //temp for testing
 
++ (instancetype)sharedBluetoothManager;
+
 - (void)setUpBluetooth;
 - (void)start;
 - (void)stop;
