@@ -9,6 +9,8 @@
 #import "RecordManager.h"
 #import "AverageUUidDuple.h"
 #import "User.h"
+#import "Event.h"
+#import "CurrentUser.h"
 
 #define TIME_INTERVAL 10 * 60
 
@@ -41,60 +43,83 @@
             RLMRealm *backgroundRealm = [RLMRealm defaultRealm];
             [backgroundRealm transactionWithBlock:^{
                 
-                TimePeriod *previousTimePeriod = [[TimePeriod objectsWhere:@"startTime = %@", [self getStartTimeForTimePeriod:time]] firstObject];
+                RLMResults<Event *> *currentEvents = [Event objectsWhere:@"startTime <= %@ AND endTime >= %@", time, time];
+//                RLMResults<Event *> *currentEvents = [currentAndFutureEvents objectsWhere:@"endTime >= %@", time];
                 
-                if (previousTimePeriod == nil) { // Didn't find a time Period for this time, lets make one!
-                    TimePeriod *newTimePeriod = [[TimePeriod alloc] init];
-                    UserRecord *newUserRecord = [[UserRecord alloc] initWithUUID:userUUID andDistance:proximity];
+                if ([currentEvents count] == 0 ) {
+                    Event *rightNow = [[Event alloc] init];
+                    rightNow.startTime = [self getStartTimeForTimePeriod:[NSDate date]];
+                    NSTimeInterval oneHour = 60 * 60;
                     
-                    newTimePeriod.startTime = [self getStartTimeForTimePeriod:time];
-                    [newTimePeriod.userRecords addObject:newUserRecord];
-                    [backgroundRealm addObject:newTimePeriod];
-
-                } else {
-                    NSDate *endTimeDate = previousTimePeriod.startTime;
-                    NSDate *endTime = [endTimeDate dateByAddingTimeInterval:TIME_INTERVAL];
+                    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                    dateFormatter.dateStyle = NSDateFormatterMediumStyle;
+                    dateFormatter.timeStyle = NSDateFormatterMediumStyle;
                     
-                    if ([time timeIntervalSinceReferenceDate] > [previousTimePeriod.startTime timeIntervalSinceReferenceDate] && [time timeIntervalSinceReferenceDate] < [endTime timeIntervalSinceReferenceDate]) { //Found a time period where this start time, This should be the current time period, but we're double checking to be safe
-                        
-                        BOOL foundUser = NO;
-                        
-                        for (int i = 0; i < previousTimePeriod.userRecords.count; i++) {
-                            @synchronized (previousTimePeriod.userRecords[i]) { // prevents race condition
-                                UserRecord *aUserRec = previousTimePeriod.userRecords[i];
-                                
-                                if ([aUserRec.uUID isEqualToString: userUUID]) {
-                                    dispatch_queue_t queue = self.backgroundQueue;
-                                    dispatch_async(queue, ^{
-                                        RLMRealm *backgroundRealm = [RLMRealm defaultRealm];
-                                        [backgroundRealm beginWriteTransaction];
-                                        aUserRec.totalDistance += proximity;
-                                        aUserRec.numberOfObs ++;
-                                        [backgroundRealm commitWriteTransaction];
-                                    });
-                                    foundUser = YES;
-                                }
-                            }
-                        }
-
-                        
-                        if (foundUser == NO) {
-                            UserRecord *newRecord = [[UserRecord alloc] initWithUUID:userUUID andDistance:proximity];
-                            [previousTimePeriod.userRecords addObject:newRecord];
-                        }
-                    }
+                    rightNow.endTime = [rightNow.startTime dateByAddingTimeInterval:oneHour];
+                    rightNow.eventName = [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:rightNow.startTime]];
+                    rightNow.hostName = @"";
                     
-                    else if ([time timeIntervalSinceReferenceDate] > [endTime timeIntervalSinceReferenceDate]) { // Wow, we are passed the end time for this time interval, beter create a new one
+                    [[CurrentUser getCurrentUser].events addObject:rightNow];
+                    
+                }
+                
+                for (Event *currentEvent in currentEvents) {
+                    
+                    TimePeriod *previousTimePeriod = [[currentEvent.timePeriods objectsWhere:@"startTime = %@", [self getStartTimeForTimePeriod:time]] firstObject];
+                    
+                    if (previousTimePeriod == nil) { // Didn't find a time Period for this time, lets make one!
                         TimePeriod *newTimePeriod = [[TimePeriod alloc] init];
                         UserRecord *newUserRecord = [[UserRecord alloc] initWithUUID:userUUID andDistance:proximity];
                         
                         newTimePeriod.startTime = [self getStartTimeForTimePeriod:time];
-                        [backgroundRealm addObject:newTimePeriod];
                         [newTimePeriod.userRecords addObject:newUserRecord];
+                        [backgroundRealm addObject:newTimePeriod];
                         
+                    } else {
+                        NSDate *endTimeDate = previousTimePeriod.startTime;
+                        NSDate *endTime = [endTimeDate dateByAddingTimeInterval:TIME_INTERVAL];
+                        
+                        if ([time timeIntervalSinceReferenceDate] > [previousTimePeriod.startTime timeIntervalSinceReferenceDate] && [time timeIntervalSinceReferenceDate] < [endTime timeIntervalSinceReferenceDate]) { //Found a time period where this start time, This should be the current time period, but we're double checking to be safe
+                            
+                            BOOL foundUser = NO;
+                            
+                            for (int i = 0; i < previousTimePeriod.userRecords.count; i++) {
+                                @synchronized (previousTimePeriod.userRecords[i]) { // prevents race condition
+                                    UserRecord *aUserRec = previousTimePeriod.userRecords[i];
+                                    
+                                    if ([aUserRec.uUID isEqualToString: userUUID]) {
+                                        dispatch_queue_t queue = self.backgroundQueue;
+                                        dispatch_async(queue, ^{
+                                            RLMRealm *backgroundRealm = [RLMRealm defaultRealm];
+                                            [backgroundRealm beginWriteTransaction];
+                                            aUserRec.totalDistance += proximity;
+                                            aUserRec.numberOfObs ++;
+                                            [backgroundRealm commitWriteTransaction];
+                                        });
+                                        foundUser = YES;
+                                    }
+                                }
+                            }
+                            
+                            
+                            if (foundUser == NO) {
+                                UserRecord *newRecord = [[UserRecord alloc] initWithUUID:userUUID andDistance:proximity];
+                                [previousTimePeriod.userRecords addObject:newRecord];
+                            }
+                        }
+                        
+                        else if ([time timeIntervalSinceReferenceDate] > [endTime timeIntervalSinceReferenceDate]) { // Wow, we are passed the end time for this time interval, beter create a new one
+                            TimePeriod *newTimePeriod = [[TimePeriod alloc] init];
+                            UserRecord *newUserRecord = [[UserRecord alloc] initWithUUID:userUUID andDistance:proximity];
+                            
+                            newTimePeriod.startTime = [self getStartTimeForTimePeriod:time];
+                            [backgroundRealm addObject:newTimePeriod];
+                            [newTimePeriod.userRecords addObject:newUserRecord];
+                            
+                        }
                     }
                 }
-
+                
             }];
 
         }
