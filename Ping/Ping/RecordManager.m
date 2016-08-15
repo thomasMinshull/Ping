@@ -134,7 +134,7 @@
     
 }
 
--(NSMutableArray *)sortingUserRecordsInTimePeriodByProximity:(NSDate *)date {
+-(NSArray *)sortingUserRecordsInTimePeriodByProximity:(NSDate *)date {
     
     date = [self getStartTimeForTimePeriod:date]; // rounds down to correct start date
 
@@ -157,7 +157,7 @@
                 [uuidArray addObject:dup.UUID];
             }
             
-            return uuidArray;
+            return [uuidArray copy];
         }
     }
     return nil;

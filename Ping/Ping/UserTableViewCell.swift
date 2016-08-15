@@ -1,5 +1,5 @@
 //
-//  SurroundingsTableViewCell.swift
+//  UserTableViewCell.swift
 //  Ping
 //
 //  Created by Martin Zhang on 2016-08-11.
@@ -8,7 +8,15 @@
 
 import UIKit
 
-class SurroundingsTableViewCell: UITableViewCell {
+class UserTableViewCell: UITableViewCell {
+    
+    // MARK: Outlets
+    @IBOutlet weak var profilePicImageView: UIImageView!
+    @IBOutlet weak var firstNameLabel: UILabel!
+    @IBOutlet weak var lastNameLabel: UILabel!
+    @IBOutlet weak var headlineLabel: UILabel!
+    
+    
     
     let gradientLayer = CAGradientLayer()
 
@@ -33,6 +41,14 @@ class SurroundingsTableViewCell: UITableViewCell {
         gradientLayer.colors = [color1, color2, color3, color4]
         gradientLayer.locations = [0.0, 0.04, 0.95, 1.0]
         layer.insertSublayer(gradientLayer, atIndex: 0)
+        
+    }
+    
+    func configureWithUser(user:User) {
+        firstNameLabel.text = user.firstName;
+        lastNameLabel.text = user.lastName;
+        headlineLabel.text = user.headline;
+        
         
     }
     
