@@ -28,7 +28,7 @@
     
     UIMutableUserNotificationAction *noBTAction = [[UIMutableUserNotificationAction alloc] init];
     noBTAction.identifier = @"NO_BLUETOOTH";
-    noBTAction.title = @"Do not turn it on";
+    noBTAction.title = @"Dismiss The Event";
     noBTAction.activationMode = UIUserNotificationActivationModeBackground;
     noBTAction.authenticationRequired = false;
     noBTAction.destructive = true;
@@ -36,7 +36,7 @@
     UIMutableUserNotificationAction *turnOnBTAction = [[UIMutableUserNotificationAction alloc] init];
     turnOnBTAction.identifier = @"YES_BLUETOOTH";
     turnOnBTAction.title = @"Turn on BlueTooth";
-    turnOnBTAction.activationMode = UIUserNotificationActivationModeBackground;
+    turnOnBTAction.activationMode = UIUserNotificationActivationModeForeground;
     turnOnBTAction.authenticationRequired = false;
     turnOnBTAction.destructive = false;
     
@@ -61,8 +61,8 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-//IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
-//   [iM.blueToothManager stop];
+    //IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
+    //   [iM.blueToothManager stop];
 }
 
 #pragma mark -LinkedIn SDK
@@ -78,7 +78,8 @@
 
 -(void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification completionHandler:(void (^)())completionHandler{
     int caseNum;
-    BlueToothManager *btm = [[BlueToothManager alloc] init];
+    
+    BlueToothManager *btm = [BlueToothManager sharedBluetoothManager];
     
     if ([identifier isEqualToString: @"YES_BLUETOOTH"]){
         caseNum = 0;
