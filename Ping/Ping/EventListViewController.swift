@@ -38,7 +38,7 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         let pastEvents = getIndexOfNextEvent()
         var ip:NSIndexPath?
         
-        if events.count > 0 {
+        if pastEvents < events.count {
             ip = NSIndexPath(forRow: pastEvents, inSection: 0)
         }
         
@@ -120,7 +120,7 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         let now = NSDate()
         
         for event in self.events {
-            if now.compare(event.endTime) != NSComparisonResult.OrderedAscending {
+            if now.compare(event.endTime) == NSComparisonResult.OrderedDescending {
                 index += 1
             }
         }
