@@ -85,7 +85,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rgo-fA-SBJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="313.5" y="-454.5"/>
+            <point key="canvasLocation" x="312.5" y="-454.5"/>
         </scene>
         <!--Forgot Password View Controller-->
         <scene sceneID="oFI-cT-hlN">
@@ -121,6 +121,7 @@
                                 <state key="highlighted" image="backHovered"/>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="5m0-C1-HRL" eventType="touchUpInside" id="4wi-2r-buO"/>
+                                    <action selector="backButtonTapped:" destination="EvZ-i5-qrH" eventType="touchUpInside" id="sc6-tJ-WlX"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -136,11 +137,13 @@
                     </view>
                     <connections>
                         <outlet property="webView" destination="Ws4-4B-4wc" id="4qR-TD-UZa"/>
+                        <segue destination="aUz-TM-T0c" kind="unwind" identifier="unwindToLoginViewController" unwindAction="unwindToLoginViewController:" id="AvS-Gl-WHg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rDH-hq-QHO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="aUz-TM-T0c" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="312.5" y="280.5"/>
+            <point key="canvasLocation" x="312.5" y="391.5"/>
         </scene>
         <!--New Event View Controller-->
         <scene sceneID="EWE-Ar-iAQ">
@@ -458,7 +461,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vmc-Wy-CkR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1967.5" y="-454.5"/>
+            <point key="canvasLocation" x="2360.5" y="-471.5"/>
         </scene>
         <!--Event List View Controller-->
         <scene sceneID="KZg-dd-td9">
@@ -674,7 +677,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z0Q-Lp-8ha" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1470.5" y="-46.5"/>
+            <point key="canvasLocation" x="1470.5" y="187.5"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -732,7 +735,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="320.5" y="1044.5"/>
+            <point key="canvasLocation" x="334.5" y="1255.5"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="WpY-v3-vMg">
@@ -844,7 +847,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aWA-9L-ra6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="869.5" y="1044.5"/>
+            <point key="canvasLocation" x="858.5" y="1255.5"/>
         </scene>
     </scenes>
     <resources>
