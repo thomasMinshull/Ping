@@ -37,7 +37,7 @@
 		55DCBF5A1D5D3D580085F5A3 /* CurrentSurroundingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCBF591D5D3D580085F5A3 /* CurrentSurroundingsViewController.swift */; };
 		55DCBF5D1D5D3D610085F5A3 /* NewEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DCBF5C1D5D3D610085F5A3 /* NewEventViewController.m */; };
 		55DCBF621D5D4D380085F5A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55DCBF611D5D4D380085F5A3 /* Main.storyboard */; };
-		55DCBF641D5D4D660085F5A3 /* SurroundingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCBF631D5D4D660085F5A3 /* SurroundingsTableViewCell.swift */; };
+		55DCBF641D5D4D660085F5A3 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCBF631D5D4D660085F5A3 /* UserTableViewCell.swift */; };
 		55FA848C1D5D9B250073FB1E /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FA848B1D5D9B250073FB1E /* ForgotPasswordViewController.swift */; };
 		9C18CAF81D4AE89B008519E1 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C18CAF71D4AE89B008519E1 /* User.m */; };
 		9C49692E1D5D72E2003DAE8C /* EventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C49692D1D5D72E2003DAE8C /* EventListViewController.swift */; };
@@ -97,7 +97,7 @@
 		55DCBF5B1D5D3D5C0085F5A3 /* NewEventViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewEventViewController.h; sourceTree = "<group>"; };
 		55DCBF5C1D5D3D610085F5A3 /* NewEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewEventViewController.m; sourceTree = "<group>"; };
 		55DCBF611D5D4D380085F5A3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		55DCBF631D5D4D660085F5A3 /* SurroundingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurroundingsTableViewCell.swift; sourceTree = "<group>"; };
+		55DCBF631D5D4D660085F5A3 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		55FA848B1D5D9B250073FB1E /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		9C18CAF61D4AE89B008519E1 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		9C18CAF71D4AE89B008519E1 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
@@ -248,7 +248,7 @@
 		5599E7941D49C15800E61B0E /* tabelViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				55DCBF631D5D4D660085F5A3 /* SurroundingsTableViewCell.swift */,
+				55DCBF631D5D4D660085F5A3 /* UserTableViewCell.swift */,
 				9C49692F1D5D7343003DAE8C /* EventListTableViewCell.swift */,
 				5599E7911D49C14F00E61B0E /* PingUserTableViewCell.h */,
 				5599E7921D49C14F00E61B0E /* PingUserTableViewCell.m */,
@@ -513,7 +513,7 @@
 				9C49692E1D5D72E2003DAE8C /* EventListViewController.swift in Sources */,
 				40F135421D4C33C200376973 /* BlueToothManger.m in Sources */,
 				55A098B11D47F0FD005100BC /* PingUser.m in Sources */,
-				55DCBF641D5D4D660085F5A3 /* SurroundingsTableViewCell.swift in Sources */,
+				55DCBF641D5D4D660085F5A3 /* UserTableViewCell.swift in Sources */,
 				9C18CAF81D4AE89B008519E1 /* User.m in Sources */,
 				55A098E11D4907CE005100BC /* UserManager.m in Sources */,
 				5599E7931D49C14F00E61B0E /* PingUserTableViewCell.m in Sources */,
