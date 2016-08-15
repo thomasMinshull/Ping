@@ -10,11 +10,11 @@
 
 @implementation UserRecord
 
-- (instancetype)initWithUUID:(NSString *)uUID andDistance:(int)distance
+- (instancetype)initWithUUID:(NSString *)UUID andDistance:(int)distance
 {
     self = [super init];
     if (self) {
-        _uUID = uUID;
+        _UUID = UUID;
         _totalDistance = distance;
         _numberOfObs = 1;
     }
