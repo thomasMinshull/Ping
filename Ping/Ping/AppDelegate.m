@@ -28,8 +28,15 @@
     // Initialize Parse.
     [Parse setApplicationId:Parse_APP_ID clientKey:Parse_Client_Key];
     
+//    // Configure welcome tutorial paging view down below:
+   
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+        [self launchWelcomePagingViews];
+    }
     return YES;
-}
+}    
 
 - (void)applicationWillTerminate:(UIApplication *)application {
 IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
@@ -113,6 +120,18 @@ IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
     
     self.window.rootViewController = loginVC;
     [self.window makeKeyAndVisible];
+    
+}
+
+#pragma mark -Intro paging tutorial
+
+- (void)launchWelcomePagingViews {
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    WelcomeScrollingViewController *welcomeVC = [storyboard instantiateViewControllerWithIdentifier:@"WelcomePagingViewController"];
+    
+    self.window.rootViewController = welcomeVC;
     
 }
 
