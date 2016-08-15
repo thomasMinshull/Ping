@@ -39,12 +39,22 @@
 
 @implementation BlueToothManager
 
+
++ (instancetype)sharedBluetoothManager {
+    static BlueToothManager *sharedManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedManager = [[self alloc] init];
+    });
+    return sharedManager;
+}
+
 - (instancetype)init
 {
     self = [super init];
     if (self) {
         self.recordManager = [RecordManager new];
-    
+        
         self.fetchedUUIDs = [NSMutableArray array];
         self.fetchedDistances = [NSMutableArray array];
         self.fetchedTimeStamp = [NSMutableArray array];
@@ -77,7 +87,7 @@
         CBUUID *cbuuidString = [CBUUID UUIDWithString:aUUIDString];
         [self.cbuuidLists addObject:cbuuidString];
     }
-//    }
+    //    }
 }
 
 #pragma mark - Start and Stop
@@ -113,7 +123,7 @@
                                                   userInfo: nil repeats:YES];
     NSLog(@"timer on");
     [self.vc logToScreen:@"timer on"];
-
+    
 }
 
 -(void)stop{ // only stops transmitting (doesn't stop listening?)
@@ -131,18 +141,18 @@
 //{
 //    self = [super init];
 //    if (self) {
-//        
+//
 //        self.uuidList = uuidList;
 //        self.currentUserUUID = currentUUID;
-//        
+//
 //        self.fetchedUUIDs = [NSMutableArray array];
 //        self.fetchedDistances = [NSMutableArray array];
 //        self.fetchedTimeStamp = [NSMutableArray array];
-//        
+//
 //        self.cbuuidLists = [NSMutableArray array];
-//        
+//
 //        self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
-//        
+//
 //        self.isScanning = FALSE;
 //        self.isTimerValid = FALSE;
 //        self.myTimer = [NSTimer scheduledTimerWithTimeInterval: 1.0f
