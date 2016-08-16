@@ -59,11 +59,11 @@
     
 //    // Configure welcome tutorial paging view down below:
    
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
-//        [[NSUserDefaults standardUserDefaults] synchronize];
-        [self launchWelcomePagingViews];
-    }
+//    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
+//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
+////        [[NSUserDefaults standardUserDefaults] synchronize];
+//        [self launchWelcomePagingViews];
+//    }
     return YES;
 }    
 
@@ -129,7 +129,6 @@
             [self launchEventCalenderViewController];
         }
     } else {
-        // Launch Login screen to the sucker who wants to use app without logging in 😹
         [self launchLogInScreen];
     }
 }
@@ -138,9 +137,10 @@
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
-    NewEventViewController *newEventVC = [storyboard instantiateViewControllerWithIdentifier:@"NewEventViewController"];
+    NewEventViewController *eventListVC = [storyboard instantiateViewControllerWithIdentifier:@"EventListViewController"];
+    [eventListVC performSegueWithIdentifier:@"showNewEventViewSegueNoAnimation" sender:nil];
     
-    self.window.rootViewController = newEventVC;
+    self.window.rootViewController = eventListVC;
     [self.window makeKeyAndVisible];
     
 }

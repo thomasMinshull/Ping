@@ -66,11 +66,7 @@ typedef void(^myCompletion)(BOOL);
     // Highlight button when selected
     UIImage *signInWithLinkedInButtonHoveredImage = [UIImage imageNamed:@"Sign-In-Large---Hover"];
     [self.linkedInLoginButton setImage:signInWithLinkedInButtonHoveredImage forState:UIControlStateHighlighted];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
+   
     __weak LoginViewController *weakSelf = self;
     [self.loadingView addLoadingAnimationGroupAnimationCompletionBlock:^(BOOL finished) {
         [weakSelf.extensionView removeFromSuperview];
@@ -80,6 +76,9 @@ typedef void(^myCompletion)(BOOL);
         
         if (weakSelf.loginManager.isFirstTimeUser) {
             // ToDo display Onboarding else continue
+            
+            [weakSelf performSegueWithIdentifier:@"showOnboardingSlides" sender: weakSelf];
+            
             NSLog(@"First time user");
         } else if ([weakSelf.loginManager isLoggedIn]) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -87,6 +86,11 @@ typedef void(^myCompletion)(BOOL);
             });
         }
     }];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
 }
 
 
@@ -124,6 +128,9 @@ typedef void(^myCompletion)(BOOL);
     if ([[segue identifier] isEqualToString:@"EventListViewController"]) {
         EventListViewController *vc = [segue destinationViewController];
         vc.userManager = self.userManager;
+    } else if ([[segue identifier] isEqualToString:@"showOnboardingSlides"]) {
+        WelcomeScrollingViewController *welcomeVC = [segue destinationViewController];
+        [welcomeVC startButtonPressed:self];
     }
 }
 
