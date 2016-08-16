@@ -75,7 +75,6 @@ class CurrentSurroundingsViewController: UIViewController, UITableViewDelegate, 
             }
             
             btm.setUpBluetooth()
-            btm.start()
             
             NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector:#selector(CurrentSurroundingsViewController.updateTableView), userInfo: nil, repeats: false)
             

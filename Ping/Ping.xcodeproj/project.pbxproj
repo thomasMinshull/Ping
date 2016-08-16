@@ -46,6 +46,7 @@
 		9C4969321D5E5FC6003DAE8C /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4969311D5E5FC6003DAE8C /* EventViewController.swift */; };
 		9C93654E1D5925B0009E6262 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C93654D1D5925B0009E6262 /* Comment.m */; };
 		9C9365511D59287B009E6262 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9365501D59287B009E6262 /* Event.m */; };
+		9CD7F5A11D6137AA003A701B /* WelcomeScrollingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD7F5A01D6137AA003A701B /* WelcomeScrollingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -113,6 +114,9 @@
 		9C93654D1D5925B0009E6262 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		9C93654F1D59287B009E6262 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		9C9365501D59287B009E6262 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		9CD7F5A01D6137AA003A701B /* WelcomeScrollingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScrollingViewController.swift; sourceTree = "<group>"; };
+		BBF5D50F2E3876EE0E2E3951 /* Pods-Ping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ping/Pods-Ping.debug.xcconfig"; sourceTree = "<group>"; };
+		EB38DA1028CD9B2B046846B0 /* Pods-Ping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ping.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ping/Pods-Ping.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +265,7 @@
 		55A098501D46CA69005100BC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9CD7F5A01D6137AA003A701B /* WelcomeScrollingViewController.swift */,
 				55A0985B1D46CB3E005100BC /* LoginViewController.h */,
 				55A0985C1D46CB3E005100BC /* LoginViewController.m */,
 				55A099051D498F27005100BC /* MainViewController.h */,
@@ -494,6 +499,7 @@
 				9C93654E1D5925B0009E6262 /* Comment.m in Sources */,
 				4063F8551D5C0B1200D13D6A /* QCMethod.swift in Sources */,
 				55A0985D1D46CB3E005100BC /* LoginViewController.m in Sources */,
+				9CD7F5A11D6137AA003A701B /* WelcomeScrollingViewController.swift in Sources */,
 				55A099071D498F27005100BC /* MainViewController.m in Sources */,
 				5599E78D1D499E1C00E61B0E /* UserRecord.m in Sources */,
 				5599E78B1D499E1C00E61B0E /* RecordManager.m in Sources */,
