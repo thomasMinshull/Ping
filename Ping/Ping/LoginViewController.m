@@ -69,8 +69,8 @@ typedef void(^myCompletion)(BOOL);
     
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     __weak LoginViewController *weakSelf = self;
     [self.loadingView addLoadingAnimationGroupAnimationCompletionBlock:^(BOOL finished) {
