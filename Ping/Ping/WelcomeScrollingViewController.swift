@@ -11,7 +11,6 @@ import UIKit
 class WelcomeScrollingViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var startButton: UIButton!
     
@@ -24,19 +23,16 @@ class WelcomeScrollingViewController: UIViewController, UIScrollViewDelegate {
         let scrollViewWidth: CGFloat = self.scrollView.frame.width
         let scrollViewHeight: CGFloat = self.scrollView.frame.height
         
-        textView.textAlignment = .Center
-        textView.text = "Sweettutos.com is your blog of choice for Mobile tutorials"
-        textView.textColor = .blackColor()
         self.startButton.layer.cornerRadius = 4.0
         
         let imgOne = UIImageView(frame: CGRectMake(0, 0,scrollViewWidth, scrollViewHeight))
-        imgOne.image = UIImage(named: "slide1")
+        imgOne.image = UIImage(named: "vancouver")
         let imgTwo = UIImageView(frame: CGRectMake(scrollViewWidth, 0,scrollViewWidth, scrollViewHeight))
-        imgTwo.image = UIImage(named: "slide2")
+        imgTwo.image = UIImage(named: "iphone")
         let imgThree = UIImageView(frame: CGRectMake(scrollViewWidth*2, 0,scrollViewWidth, scrollViewHeight))
-        imgThree.image = UIImage(named: "slide3")
+        imgThree.image = UIImage(named: "cheers")
         let imgFour = UIImageView(frame: CGRectMake(scrollViewWidth*3, 0,scrollViewWidth, scrollViewHeight))
-        imgFour.image = UIImage(named: "slide4")
+        imgFour.image = UIImage(named: "concert")
         
         self.scrollView.addSubview(imgOne)
         self.scrollView.addSubview(imgTwo)
@@ -56,24 +52,17 @@ class WelcomeScrollingViewController: UIViewController, UIScrollViewDelegate {
         // Change the indicator
         self.pageControl.currentPage = Int(currentPage);
         // Change the text accordingly
-        if Int(currentPage) == 0{
-            textView.text = "Sweettutos.com is your blog of choice for Mobile tutorials"
-        }else if Int(currentPage) == 1{
-            textView.text = "I write mobile tutorials mainly targeting iOS"
-        }else if Int(currentPage) == 2{
-            textView.text = "And sometimes I write games tutorials about Unity"
-        }else{
-            textView.text = "Keep visiting sweettutos.com for new coming tutorials, and don't forget to subscribe to be notified by email :)"
+        if Int(currentPage) == 3 {
+            
             // Show the "Let's Start" button in the last slide (with a fade in animation)
-            UIView.animateWithDuration(1.0, animations: { () -> Void in
+            UIView.animateWithDuration(1.0) {
                 self.startButton.alpha = 1.0
-                
-            })
+            }
         }
     }
 
     @IBAction func startButtonPressed(sender: AnyObject) {
-        
+        performSegueWithIdentifier("showLoginViewController", sender: self)
     }
     /*
     // MARK: - Navigation
