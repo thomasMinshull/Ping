@@ -139,7 +139,7 @@
     date = [self getStartTimeForTimePeriod:date]; // rounds down to correct start date
 
     for (TimePeriod *tp in [TimePeriod allObjects]) {
-        if (date == tp.startTime) { // This is the time period you are looking for
+        if ([date compare:tp.startTime] == NSOrderedSame) { // This is the time period you are looking for
             NSMutableArray *userRecordsArrayInTimePeriod = [[NSMutableArray alloc] init];
             
             for (UserRecord *aUserRecord in tp.userRecords) {
