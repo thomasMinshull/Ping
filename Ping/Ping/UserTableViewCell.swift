@@ -13,7 +13,8 @@ class UserTableViewCell: UITableViewCell {
     // MARK: Outlets
     @IBOutlet weak var profilePicImageView: UIImageView! {
         didSet {
-            profilePicImageView.layer.cornerRadius = 60
+            profilePicImageView.layer.cornerRadius = profilePicImageView.frame.width/2
+            profilePicImageView.clipsToBounds = true
         }
     }
     @IBOutlet weak var firstNameLabel: UILabel!

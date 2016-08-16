@@ -16,6 +16,6 @@
 - (User *)userForUUID:(NSString *)uuid;
 
 - (void)fetchUsersWthCompletion:(void(^)(NSArray *users))completion;
-
+- (void)addProfilePic:(NSString *)profilePicURL;
 @end
 

@@ -77,6 +77,20 @@
     return user;
 }
 
+- (void)addProfilePic:(NSString *)profilePicURL {
+    if (profilePicURL) {
+        PFQuery *query = [PFQuery queryWithClassName:@"ParseUser"];
+        [query whereKey:@"UUID" equalTo:[CurrentUser getCurrentUser].UUID];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!error) {
+                PFObject *currentParseUser = [objects firstObject];
+                currentParseUser[@"profilePicURL"] = profilePicURL;
+            } else {
+                NSLog(@"Error when saving profile pic to parse: %@", error);
+            }
+        }];
+    }
+}
 
 
 @end
