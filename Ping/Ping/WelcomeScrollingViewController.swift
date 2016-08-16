@@ -62,7 +62,8 @@ class WelcomeScrollingViewController: UIViewController, UIScrollViewDelegate {
     }
 
     @IBAction func startButtonPressed(sender: AnyObject) {
-        performSegueWithIdentifier("showLoginViewController", sender: self)
+//        performSegueWithIdentifier("showLoginViewController", sender: self)
+        [self.dismissViewControllerAnimated(true, completion: nil)]
     }
     /*
     // MARK: - Navigation
