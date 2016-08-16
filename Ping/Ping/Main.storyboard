@@ -849,7 +849,7 @@
         <!--Welcome Scrolling View Controller-->
         <scene sceneID="YUc-J4-wQ7">
             <objects>
-                <viewController storyboardIdentifier="WelcomePagingViewController" id="JHS-ku-vWK" customClass="WelcomeScrollingViewController" customModule="Ping" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="welcomeVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JHS-ku-vWK" customClass="WelcomeScrollingViewController" customModule="Ping" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JOH-rR-xj9"/>
                         <viewControllerLayoutGuide type="bottom" id="Pce-Ne-eM8"/>

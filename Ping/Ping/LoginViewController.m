@@ -66,7 +66,12 @@ typedef void(^myCompletion)(BOOL);
     // Highlight button when selected
     UIImage *signInWithLinkedInButtonHoveredImage = [UIImage imageNamed:@"Sign-In-Large---Hover"];
     [self.linkedInLoginButton setImage:signInWithLinkedInButtonHoveredImage forState:UIControlStateHighlighted];
-   
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
     __weak LoginViewController *weakSelf = self;
     [self.loadingView addLoadingAnimationGroupAnimationCompletionBlock:^(BOOL finished) {
         [weakSelf.extensionView removeFromSuperview];
@@ -77,7 +82,18 @@ typedef void(^myCompletion)(BOOL);
         if (weakSelf.loginManager.isFirstTimeUser) {
             // ToDo display Onboarding else continue
             
-            [weakSelf performSegueWithIdentifier:@"showOnboardingSlides" sender: weakSelf];
+            if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"])
+            {
+                
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                
+                WelcomeScrollingViewController *welcomeVC = [storyboard instantiateViewControllerWithIdentifier:@"welcomeVC"];
+                
+                [weakSelf.navigationController pushViewController:welcomeVC animated:YES];
+                
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+            }
             
             NSLog(@"First time user");
         } else if ([weakSelf.loginManager isLoggedIn]) {
@@ -87,12 +103,6 @@ typedef void(^myCompletion)(BOOL);
         }
     }];
 }
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-}
-
 
 #pragma mark -Actions
 
