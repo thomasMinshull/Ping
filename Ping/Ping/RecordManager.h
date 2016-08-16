@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "TimePeriod.h"
 #import "UserRecord.h"
+#import "Event.h"
 
 @interface RecordManager : NSObject
 
@@ -19,5 +20,6 @@
 - (NSDate *)getStartTimeForTimePeriod:(NSDate *)time;
 - (void)backUpUsers:(NSMutableArray *)users;
 - (NSArray *)uuidList;
+- (void)deleteEvent:(Event *)event;
 
 @end
