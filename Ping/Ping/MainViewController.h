@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserManager.h"
 
 @interface MainViewController : UIViewController
 
+@property (strong, nonatomic) UserManager *userManager;
 
 @end

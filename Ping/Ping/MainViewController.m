@@ -13,6 +13,7 @@
 #import <linkedin-sdk/LISDK.h>
 #import "Ping-Swift.h"
 #import "CurrentUser.h"
+#import "BlueToothManager.h"
 
 @interface MainViewController ()  <UITableViewDelegate, UITableViewDataSource>
 
@@ -22,9 +23,8 @@
 
 @property (strong, nonatomic) NSArray<NSString *> *orderedListOfUUIDs;
 
-@property (strong, nonatomic) UserManager *userManager;
 @property (strong, nonatomic) RecordManager *recordManager;
-
+@property (strong, nonatomic) BlueToothManager *blueToothManager;
 @end
 
 @implementation MainViewController {
@@ -33,16 +33,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
-    //[iM.userManager setUp]; //??? try this
-    [iM.blueToothManager setUUIDList:iM.userManager.uuids andCurrentUUID:[CurrentUser getCurrentUser].UUID]; // ToDo refactor to remove passing in Current
 
+    self.blueToothManager = [[BlueToothManager alloc] init];
     self.recordManager = [[RecordManager alloc] init];
     
     CurrentUser *user = [CurrentUser getCurrentUser];
     NSLog(@"%@", user);
-    
-//    [self.userManager setUp];
 
     self.orderedListOfUUIDs = [self.recordManager sortingUserRecordsInTimePeriodByProximity:[NSDate date]];
     if (!self.orderedListOfUUIDs) {
@@ -58,28 +54,6 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    
-    
-////    aRecordManager.timePeriods
-//    [aRecordManager storeBlueToothDataByUUID:@"14EE37F6-C9EC-4E15-9676-EB9491BD71F1" userProximity:27 andTime:[NSDate date]];
-//    
-//    PingUser *hardCodedUser = [PingUser new];
-//    hardCodedUser.firstName = @"Tom";
-//    hardCodedUser.lastName = @"minshull";
-//    hardCodedUser.headline = @"Hard Core Hard Coded!";
-//    hardCodedUser.linkedInID = @"QDL7qxV5lM";
-//    hardCodedUser.userUUID = @"16256070-EA80-42B3-94F1-EFC7CBF9CA0B";
-//    hardCodedUser.profilePicURL = @"https://media.licdn.com/mpr/mprx/0_a4AifdDWRR1F7X4bmpdCkRBWYIKU2qqndVbioj3WZeCVWXosSa5i3E2WpfbVdFo9uV5Cem7d9IAsorfwGwq0FjmLPIARormBTwqh2pUHZoXBh6vIDVCmuevJ1YII_rJQHHKfwC__vym";
-//    
-//    PingUser *martin = [PingUser new];
-//    martin.firstName = @"Martin";
-//    martin.lastName = @"Zhang";
-//    martin.headline = @"CARZZZZZZ!";
-//    martin.linkedInID = @"XOP3JP80MN";
-//    martin.userUUID = @"78025C33-230F-4A02-B483-2AA9ABF3C72F";
-//    martin.profilePicURL = @"https://media.licdn.com/mpr/mprx/0_toKw915dIk5rEJF8OU6IYKyHoARu2R5ygUeLKQodo1eD2INKgU6w41kdDkBD2Ib3YUEQ4FFWF1eS7xzKjMvBOF65C1e270r2RMvez61eW-g85dIKBHi6vtjMGQtp60bjtVAbtqut7mP";
-//    
-//    self.orderedListOfUsers = [@[hardCodedUser, martin, hardCodedUser, hardCodedUser, martin] mutableCopy];
 }
 
 
@@ -103,9 +77,7 @@
         return cell;
     }
     
-    IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
-    
-    User *user = [iM.userManager userForUUID:self.orderedListOfUUIDs[indexPath.row]];
+    User *user = [self.userManager userForUUID:self.orderedListOfUUIDs[indexPath.row]];
     
     [cell setUpWithUser:user];
     
@@ -140,13 +112,12 @@
 }
 
 - (IBAction)switchChanged:(id)sender {
-    IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
     if (self.advertisingSwitch.on) {
-        [iM.blueToothManager start];
+        [self.blueToothManager start];
     }
     
     else {
-        [iM.blueToothManager stop];
+        [self.blueToothManager stop];
     }
 }
 

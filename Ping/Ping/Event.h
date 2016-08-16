@@ -14,6 +14,7 @@
 @property (nonatomic) NSDate *startTime;
 @property (nonatomic) NSDate *endTime;
 @property (nonatomic) NSString *eventName;
+@property (nonatomic) NSString *hostName;
 @property (strong) RLMArray<TimePeriod *><TimePeriod> *timePeriods;
 
 @end
