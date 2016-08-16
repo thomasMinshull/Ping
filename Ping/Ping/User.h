@@ -23,6 +23,4 @@
 
 @end
 
-// This protocol enables typed collections. i.e.:
-// RLMArray<PingUserRealm>
-
+RLM_ARRAY_TYPE(User)

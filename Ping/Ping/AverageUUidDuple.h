@@ -11,7 +11,7 @@
 @interface AverageUUidDuple : NSObject
 
 @property int userAverage;
-@property (strong, nonatomic) NSString *uUID;
+@property (strong, nonatomic) NSString *UUID;
 
 
 @end

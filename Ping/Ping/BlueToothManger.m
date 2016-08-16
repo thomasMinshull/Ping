@@ -10,23 +10,23 @@
 #import "RecordManager.h"
 #import "AppDelegate.h"
 #import "CurrentUser.h"
+#import "UserManager.h"
 
 @interface BlueToothManager() <CBCentralManagerDelegate, CBPeripheralDelegate, CBPeripheralManagerDelegate>
 
-@property (strong, nonatomic) CBCentralManager          *centralManager;
-@property (strong, nonatomic) CBPeripheral              *discoveredPeripheral;
-@property (strong, nonatomic) NSMutableData             *data;
+@property (strong, nonatomic) CBCentralManager *centralManager;
+@property (strong, nonatomic) CBPeripheral *discoveredPeripheral;
+@property (strong, nonatomic) NSMutableData *data;
 
-@property (strong, nonatomic) CBPeripheralManager       *peripheralManager;
-@property (strong, nonatomic) CBMutableCharacteristic   *transferCharacteristic;
-@property (strong, nonatomic) NSData                    *dataToSend;
-@property (nonatomic, readwrite) NSInteger              sendDataIndex;
+@property (strong, nonatomic) CBPeripheralManager *peripheralManager;
+@property (strong, nonatomic) CBMutableCharacteristic *transferCharacteristic;
+@property (strong, nonatomic) NSData *dataToSend;
+@property (nonatomic, readwrite) NSInteger sendDataIndex;
 
 @property NSMutableArray *fetchedUUIDs;
 @property NSMutableArray *fetchedDistances;
 @property NSMutableArray *fetchedTimeStamp;
 
-@property NSArray *uuidList;
 @property RecordManager *recordManager;
 
 @property NSMutableArray *cbuuidLists;
@@ -39,53 +39,55 @@
 
 @implementation BlueToothManager
 
-//<<<<<<< HEAD
-//+ (instancetype)sharedrecordManager:(NSArray *)uuidList andCurrentUUID:(NSString *)currentUUID {
-//    static BlueToothManager *sharedrecordManager = nil;
-//    static dispatch_once_t onceToken;
-//    
-//    dispatch_once(&onceToken, ^{
-//        sharedrecordManager = [[BlueToothManager alloc] initWithUUIDList:uuidList andCurrentUUID:currentUUID];
-//        sharedrecordManager.recordManager = [RecordManager new];
-//    });
-//    
-//=======
+
++ (instancetype)sharedBluetoothManager {
+    static BlueToothManager *sharedManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedManager = [[self alloc] init];
+    });
+    return sharedManager;
+}
+
 - (instancetype)init
 {
     self = [super init];
     if (self) {
         self.recordManager = [RecordManager new];
-//        self.saveSwitch = NO;
         
         self.fetchedUUIDs = [NSMutableArray array];
         self.fetchedDistances = [NSMutableArray array];
         self.fetchedTimeStamp = [NSMutableArray array];
-        
-//        self.uuids = [NSMutableArray array];
-//        self.distances = [NSMutableArray array];
-//        self.timeStamps = [NSMutableArray array];
-        
         self.cbuuidLists = [NSMutableArray array];
         
-//        _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
-//        
-//        _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+        self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+        self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+        
+        [self setUpBluetooth];
+        
+        self.isScanning = FALSE;
     }
     return self;
 }
 
-- (void)setUUIDList:(NSArray *)uuidList andCurrentUUID:(NSString *)currentUUID {
-    self.uuidList = uuidList;
+
+- (void)setUpBluetooth {
+    UserManager *userMan = [[UserManager alloc] init];
+    [userMan fetchUsersWthCompletion:^(NSArray *users){
+        [self updateCBUUIDList:users];
+        [self start];
+    }];
+    
+}
+
+- (void)updateCBUUIDList:(NSArray *)uuids; {
     
     //changing uuid to cbuuid
-    for(NSString *aUUIDString in self.uuidList){
+    for(NSString *aUUIDString in uuids){
         CBUUID *cbuuidString = [CBUUID UUIDWithString:aUUIDString];
         [self.cbuuidLists addObject:cbuuidString];
     }
-//>>>>>>> refactorAfterMidterm
-    
-    self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
-    self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+    //    }
 }
 
 #pragma mark - Start and Stop
@@ -98,28 +100,37 @@
             self.isScanning = FALSE;
             ///////
             NSLog(@"switch flicked to false");
+            [self.vc logToScreen:@"switch flicked to false"];
         }else{
             //////
             [self scan];
             self.isScanning = TRUE;
             //////
             NSLog(@"switch flicked to true");
+            [self.vc logToScreen:@"switch flicked to true"];
         }
     }
 }
 
--(void)start{
+-(void)start{ // starts listening (central) & transmitting (peripheral)
     self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:[CurrentUser getCurrentUser].UUID]]}];
     self.isTimerValid = TRUE;
+    
+    self.myTimer = [NSTimer scheduledTimerWithTimeInterval: 1.0f
+                                                    target: self
+                                                  selector:@selector(flickSwitch:)
+                                                  userInfo: nil repeats:YES];
     NSLog(@"timer on");
-
+    [self.vc logToScreen:@"timer on"];
+    
 }
 
--(void)stop{
+-(void)stop{ // only stops transmitting (doesn't stop listening?)
     [self.peripheralManager stopAdvertising];
     self.isTimerValid = FALSE;
     NSLog(@"timer off");
+    [self.vc logToScreen:@"timer off"];
     
 }
 
@@ -130,18 +141,18 @@
 //{
 //    self = [super init];
 //    if (self) {
-//        
+//
 //        self.uuidList = uuidList;
 //        self.currentUserUUID = currentUUID;
-//        
+//
 //        self.fetchedUUIDs = [NSMutableArray array];
 //        self.fetchedDistances = [NSMutableArray array];
 //        self.fetchedTimeStamp = [NSMutableArray array];
-//        
+//
 //        self.cbuuidLists = [NSMutableArray array];
-//        
+//
 //        self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
-//        
+//
 //        self.isScanning = FALSE;
 //        self.isTimerValid = FALSE;
 //        self.myTimer = [NSTimer scheduledTimerWithTimeInterval: 1.0f
@@ -156,8 +167,7 @@
 //    }
 //    return self;
 //}
-//=======
-//>>>>>>> refactorAfterMidterm
+
 
 #pragma mark - Central Methods
 
@@ -165,6 +175,7 @@
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
     NSLog(@"central state: %ld", (long)central.state);
+    [self.vc logToScreen:[NSString stringWithFormat:@"central state: %ld", (long)central.state]];
     
     if (central.state != CBCentralManagerStatePoweredOn) {
         return;
@@ -180,12 +191,14 @@
      ];
     
     NSLog(@"Scanning started");
+    [self.vc logToScreen:@"Scanning started"];
 }
 
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
     NSLog(@"Discovered %@ at %@", peripheral.name, RSSI);
+    [self.vc logToScreen:[NSString stringWithFormat:@"Discovered %@ at %@", peripheral.name, RSSI]];
     
     [self.fetchedDistances addObject:[NSNumber numberWithInteger:[RSSI integerValue]]];
     
@@ -201,6 +214,8 @@
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
     NSLog(@"Failed to connect to %@. (%@)", peripheral, [error localizedDescription]);
+    [self.vc logToScreen:[NSString stringWithFormat:@"Failed to connect to %@. (%@)", peripheral, [error localizedDescription]]];
+    
     [self cleanup];
 }
 
@@ -208,6 +223,7 @@
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
     NSLog(@"Peripheral Connected");
+    [self.vc logToScreen:[NSString stringWithFormat:@"Peripheral Connected"]];
     
     peripheral.delegate = self;
     
@@ -219,6 +235,7 @@
 {
     if (error) {
         NSLog(@"Error discovering services: %@", [error localizedDescription]);
+        [self.vc logToScreen:[NSString stringWithFormat:@"Error discovering services: %@", [error localizedDescription]]];
         [self cleanup];
         return;
     }
@@ -226,12 +243,15 @@
     /////////////////////////////////////////////////////////////////////////////
     for (CBService *service in peripheral.services) {
         
+        NSLog(@"Phone Saving Record!!");
+        
         [self.fetchedUUIDs addObject:service.UUID.UUIDString];
         
         NSNumber *proximity = [self.fetchedDistances lastObject];
         [self.recordManager storeBlueToothDataByUUID:[self.fetchedUUIDs lastObject] userProximity:[proximity intValue] andTime:[self.fetchedTimeStamp lastObject]];
         
         NSLog(@"blueToothData: %@, %d, %@", [self.fetchedUUIDs lastObject],[proximity intValue],[self.fetchedTimeStamp lastObject]);
+        [self.vc logToScreen:[NSString stringWithFormat:@"blueToothData: %@, %d, %@", [self.fetchedUUIDs lastObject],[proximity intValue],[self.fetchedTimeStamp lastObject]]];
     }
     ////////////////////////////////////////////////////////////////////////////
 }
@@ -240,6 +260,7 @@
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
     NSLog(@"Peripheral Disconnected");
+    [self.vc logToScreen:[NSString stringWithFormat:@"Peripheral Disconnected"]];
     self.discoveredPeripheral = nil;
     
     [self scan];
@@ -265,6 +286,7 @@
     }
     
     NSLog(@"self.peripheralManager powered on.");
+    [self.vc logToScreen:[NSString stringWithFormat:@"self.peripheralManager powered on."]];
     
     CurrentUser *currentUser = [CurrentUser getCurrentUser];
     if (currentUser) {
