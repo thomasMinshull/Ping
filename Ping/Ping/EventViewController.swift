@@ -1,5 +1,5 @@
 //
-//  TheEventViewController.swift
+//  EventViewController.swift
 //  Ping
 //
 //  Created by Martin Zhang on 2016-08-12.
@@ -16,10 +16,7 @@ class EventViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+
     
     @IBAction func backButtonPressed(sender: AnyObject) {
         
