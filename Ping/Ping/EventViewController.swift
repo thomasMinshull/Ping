@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TheEventViewController: UIViewController {
+class EventViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,7 @@ class TheEventViewController: UIViewController {
     }
     
     @IBAction func backButtonPressed(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        
     }
 
     /*
