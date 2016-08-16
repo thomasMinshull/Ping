@@ -113,7 +113,7 @@
 
 - (IBAction)switchChanged:(id)sender {
     if (self.advertisingSwitch.on) {
-        [self.blueToothManager start];
+        [self.blueToothManager setUpBluetooth];
     }
     
     else {

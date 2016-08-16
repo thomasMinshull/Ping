@@ -60,11 +60,6 @@
         self.fetchedTimeStamp = [NSMutableArray array];
         self.cbuuidLists = [NSMutableArray array];
         
-        self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
-        self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
-        
-        [self setUpBluetooth];
-        
         self.isScanning = FALSE;
     }
     return self;
@@ -114,6 +109,8 @@
 
 -(void)start{ // starts listening (central) & transmitting (peripheral)
     self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+    self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+
     [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:[CurrentUser getCurrentUser].UUID]]}];
     self.isTimerValid = TRUE;
     
