@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		29662C6ADFE0F7FB6DD6A80D /* Pods_Ping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276205176E08A7EE3F6CC82A /* Pods_Ping.framework */; };
 		4063F8531D5C0AB300D13D6A /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4063F8521D5C0AB300D13D6A /* LoadingView.swift */; };
 		4063F8551D5C0B1200D13D6A /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4063F8541D5C0B1200D13D6A /* QCMethod.swift */; };
 		40F135421D4C33C200376973 /* BlueToothManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 555C1E791D4A9DE700007980 /* BlueToothManger.m */; };
@@ -49,7 +48,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		276205176E08A7EE3F6CC82A /* Pods_Ping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4063F8521D5C0AB300D13D6A /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		4063F8541D5C0B1200D13D6A /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
 		550391181D62B203009F32E0 /* GradientColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientColorExtension.swift; sourceTree = "<group>"; };
@@ -113,6 +111,7 @@
 		9C9365501D59287B009E6262 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		BBF5D50F2E3876EE0E2E3951 /* Pods-Ping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ping/Pods-Ping.debug.xcconfig"; sourceTree = "<group>"; };
 		EB38DA1028CD9B2B046846B0 /* Pods-Ping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ping.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ping/Pods-Ping.release.xcconfig"; sourceTree = "<group>"; };
+		FDC21B33917CD8D644EA6C06 /* Pods_Ping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +120,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				55A0985F1D46CEC7005100BC /* linkedin-sdk.framework in Frameworks */,
-				29662C6ADFE0F7FB6DD6A80D /* Pods_Ping.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,7 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				55A0985E1D46CEC7005100BC /* linkedin-sdk.framework */,
-				276205176E08A7EE3F6CC82A /* Pods_Ping.framework */,
+				FDC21B33917CD8D644EA6C06 /* Pods_Ping.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -655,6 +653,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Parse",
 				);
 				INFOPLIST_FILE = Ping/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -679,6 +678,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Parse",
 				);
 				INFOPLIST_FILE = Ping/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
