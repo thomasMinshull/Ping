@@ -19,19 +19,28 @@ class WelcomeScrollingViewController: UIViewController, UIScrollViewDelegate {
 
         // Do any additional setup after loading the view.
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         self.scrollView.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
+        self.scrollView.contentInset = UIEdgeInsetsZero
         let scrollViewWidth: CGFloat = self.scrollView.frame.width
         let scrollViewHeight: CGFloat = self.scrollView.frame.height
         
         self.startButton.layer.cornerRadius = 4.0
         
-        let imgOne = UIImageView(frame: CGRectMake(0, 0,scrollViewWidth, scrollViewHeight))
+        let imageOneLocationX: CGFloat = 0
+        let imageTwoLocationX: CGFloat = scrollViewWidth
+        let imageThreeLocationX: CGFloat = scrollViewWidth * 2
+        let imageFourLocationX: CGFloat = scrollViewWidth * 3
+        
+        let imgOne = UIImageView(frame: CGRectMake(imageOneLocationX, -20,scrollViewWidth+20, scrollViewHeight+40))
         imgOne.image = UIImage(named: "vancouver")
-        let imgTwo = UIImageView(frame: CGRectMake(scrollViewWidth, 0,scrollViewWidth, scrollViewHeight))
+        let imgTwo = UIImageView(frame: CGRectMake(imageTwoLocationX, -20,scrollViewWidth+20, scrollViewHeight+40))
         imgTwo.image = UIImage(named: "iphone")
-        let imgThree = UIImageView(frame: CGRectMake(scrollViewWidth*2, 0,scrollViewWidth, scrollViewHeight))
+        let imgThree = UIImageView(frame: CGRectMake(imageThreeLocationX, -20,scrollViewWidth+20, scrollViewHeight+40))
         imgThree.image = UIImage(named: "cheers")
-        let imgFour = UIImageView(frame: CGRectMake(scrollViewWidth*3, 0,scrollViewWidth, scrollViewHeight))
+        let imgFour = UIImageView(frame: CGRectMake(imageFourLocationX, -20,scrollViewWidth+20, scrollViewHeight+40))
         imgFour.image = UIImage(named: "concert")
         
         self.scrollView.addSubview(imgOne)
@@ -39,7 +48,7 @@ class WelcomeScrollingViewController: UIViewController, UIScrollViewDelegate {
         self.scrollView.addSubview(imgThree)
         self.scrollView.addSubview(imgFour)
         
-        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width * 4, self.scrollView.frame.height)
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width * 4, 0)
         self.scrollView.delegate = self
         self.pageControl.currentPage = 0
     }

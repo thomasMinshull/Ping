@@ -140,7 +140,7 @@
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
-    NewEventViewController *eventListVC = [storyboard instantiateViewControllerWithIdentifier:@"EventListViewController"];
+    EventListViewController *eventListVC = [storyboard instantiateViewControllerWithIdentifier:@"EventListViewController"];
     [eventListVC performSegueWithIdentifier:@"showNewEventViewSegueNoAnimation" sender:nil];
     
     self.window.rootViewController = eventListVC;
