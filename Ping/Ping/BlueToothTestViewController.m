@@ -32,7 +32,7 @@
 }
 
 - (IBAction)startButtonTapped:(id)sender {
-    [self.btm start];
+    [self.btm setUpBluetooth];
 }
 
 - (IBAction)stopButtonTapped:(id)sender {

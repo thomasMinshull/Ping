@@ -17,7 +17,6 @@
 + (instancetype)sharedBluetoothManager;
 
 - (void)setUpBluetooth;
-- (void)start;
 - (void)stop;
 
 @end
