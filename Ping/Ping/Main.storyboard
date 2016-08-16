@@ -647,17 +647,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ghost_person.png" translatesAutoresizingMaskIntoConstraints="NO" id="BGx-4c-UYv">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BGx-4c-UYv">
                                                     <rect key="frame" x="8" y="0.0" width="120" height="120"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="BGx-4c-UYv" secondAttribute="height" multiplier="1:1" id="hY9-i6-Tpv"/>
                                                         <constraint firstAttribute="width" constant="120" id="tF0-Wo-PbJ"/>
                                                     </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="60"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="firstName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cL9-jL-ouS">
                                                     <rect key="frame" x="136" y="8" width="86" height="26"/>
@@ -918,7 +914,6 @@
         <image name="Rectangle 2" width="1125" height="198"/>
         <image name="Sign-In-Large---Default" width="430" height="80"/>
         <image name="backHovered" width="438" height="228"/>
-        <image name="ghost_person.png" width="200" height="200"/>
         <image name="linkedin_login.png" width="640" height="126"/>
         <image name="longbackbutton" width="146" height="76"/>
         <image name="realNowButtonBGDefault" width="375" height="44"/>

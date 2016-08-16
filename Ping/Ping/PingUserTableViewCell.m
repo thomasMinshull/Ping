@@ -7,7 +7,7 @@
 //
 
 #import "PingUserTableViewCell.h"
-#import <SDWebImage/UIImageView+WebCache.h>
+//#import <SDWebImage/UIImageView+WebCache.h> // switched to nuke
 
 @interface PingUserTableViewCell ()
 
@@ -34,6 +34,6 @@
        user.profilePicURL = @"";
     }
     
-    [self.profileImageView sd_setImageWithURL:[NSURL URLWithString:user.profilePicURL] placeholderImage:[UIImage imageNamed:@"ghost_person.png"]];
+  //  [self.profileImageView sd_setImageWithURL:[NSURL URLWithString:user.profilePicURL] placeholderImage:[UIImage imageNamed:@"ghost_person.png"]];
 }
 @end

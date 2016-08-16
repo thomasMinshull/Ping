@@ -11,6 +11,7 @@
 		4063F8531D5C0AB300D13D6A /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4063F8521D5C0AB300D13D6A /* LoadingView.swift */; };
 		4063F8551D5C0B1200D13D6A /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4063F8541D5C0B1200D13D6A /* QCMethod.swift */; };
 		40F135421D4C33C200376973 /* BlueToothManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 555C1E791D4A9DE700007980 /* BlueToothManger.m */; };
+		550391191D62B203009F32E0 /* GradientColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550391181D62B203009F32E0 /* GradientColorExtension.swift */; };
 		5511E5EF1D5CFA78000DFFB3 /* ParseUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5511E5EE1D5CFA78000DFFB3 /* ParseUser.m */; };
 		5548D0CD1D5FD979006A78F9 /* BlueToothTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5548D0CC1D5FD979006A78F9 /* BlueToothTestViewController.m */; };
 		5594DAFD1D45E2DE0096D5DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594DAFC1D45E2DE0096D5DF /* main.m */; };
@@ -51,6 +52,7 @@
 		276205176E08A7EE3F6CC82A /* Pods_Ping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4063F8521D5C0AB300D13D6A /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		4063F8541D5C0B1200D13D6A /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
+		550391181D62B203009F32E0 /* GradientColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientColorExtension.swift; sourceTree = "<group>"; };
 		5511E5ED1D5CFA78000DFFB3 /* ParseUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseUser.h; sourceTree = "<group>"; };
 		5511E5EE1D5CFA78000DFFB3 /* ParseUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseUser.m; sourceTree = "<group>"; };
 		5548D0CB1D5FD979006A78F9 /* BlueToothTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueToothTestViewController.h; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 			children = (
 				5599E7941D49C15800E61B0E /* tabelViewCells */,
 				4063F8511D5C0A8E00D13D6A /* LoadingView */,
+				550391181D62B203009F32E0 /* GradientColorExtension.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -535,6 +538,7 @@
 				5594DAFD1D45E2DE0096D5DF /* main.m in Sources */,
 				55DCBF5D1D5D3D610085F5A3 /* NewEventViewController.m in Sources */,
 				5599E78C1D499E1C00E61B0E /* TimePeriod.m in Sources */,
+				550391191D62B203009F32E0 /* GradientColorExtension.swift in Sources */,
 				55A098B81D47FD73005100BC /* NSString+UUID.m in Sources */,
 				4063F8531D5C0AB300D13D6A /* LoadingView.swift in Sources */,
 				55FA848C1D5D9B250073FB1E /* ForgotPasswordViewController.swift in Sources */,

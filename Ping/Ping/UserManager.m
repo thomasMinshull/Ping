@@ -68,7 +68,7 @@
 - (User *)userFrom:(PFObject *)parseUser {
     // copy parse user as regular user
     User *user = [[User alloc] init];
-    user.firstName = parseUser[@"firstname"]; // ToDo these parse getters will return nil if the there is an error wrap them in nil checks and replace with empty strings 
+    user.firstName = parseUser[@"firstName"]; // ToDo these parse getters will return nil if the there is an error wrap them in nil checks and replace with empty strings 
     user.lastName = parseUser[@"lastName"];
     user.headline = parseUser[@"headline"];
     user.linkedInID = parseUser[@"linkedInID"];

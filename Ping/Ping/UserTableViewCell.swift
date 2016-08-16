@@ -11,17 +11,21 @@ import UIKit
 class UserTableViewCell: UITableViewCell {
     
     // MARK: Outlets
-    @IBOutlet weak var profilePicImageView: UIImageView!
+    @IBOutlet weak var profilePicImageView: UIImageView! {
+        didSet {
+            profilePicImageView.layer.cornerRadius = 60
+        }
+    }
     @IBOutlet weak var firstNameLabel: UILabel!
     @IBOutlet weak var lastNameLabel: UILabel!
     @IBOutlet weak var headlineLabel: UILabel!
     
-    
-    
     let gradientLayer = CAGradientLayer()
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    
+    
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
         
         gradientLayer.frame = self.bounds
         let color1 = UIColor(white: 1.0, alpha: 0.2).CGColor as CGColorRef
@@ -32,6 +36,7 @@ class UserTableViewCell: UITableViewCell {
         gradientLayer.colors = [color1, color2, color3, color4]
         gradientLayer.locations = [0.0, 0.04, 0.95, 1.0]
         layer.insertSublayer(gradientLayer, atIndex: 0)
+
     }
     
     func configureWithUser(user:User) {
@@ -39,7 +44,11 @@ class UserTableViewCell: UITableViewCell {
         firstNameLabel.text = user.firstName;
         lastNameLabel.text = user.lastName;
         headlineLabel.text = user.headline;
-        
+        if let profileURL = user.profilePicURL, url = NSURL(string: profileURL) {
+            profilePicImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "ghost_person"))
+        } else {
+            profilePicImageView.image = UIImage(named: "ghost_person")
+        }
         
     }
     
