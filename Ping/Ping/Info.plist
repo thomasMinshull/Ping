@@ -43,7 +43,7 @@
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemIconFile</key>
-			<string>event</string>
+			<string>bdaycake</string>
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>Event List </string>
 			<key>UIApplicationShortcutItemType</key>
