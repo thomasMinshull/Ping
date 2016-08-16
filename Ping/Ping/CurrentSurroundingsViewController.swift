@@ -9,14 +9,15 @@
 import UIKit
 
 class CurrentSurroundingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    // Hard coded car data, replace with real people around
-//    var tableData = ["Read 3 car articles", "Cleanup car", "Go for a ride", "Hit the road", "Build another car project", "Driving training", "Fix the layout problem of a client car project", "Get gas for car", "Check car parts dispatch status", "Booking the ticket to New York International Car Show", "Test the BMW M Performane Electronic Steering Wheel", "Call auto inspector"]
     
     // MARK: Outlets
     @IBOutlet weak var longBackButton: UIButton!
     @IBOutlet weak var currentSurroundingTableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    // MARK: Properties 
+    let userMan = UserManager()
+    let btm = BlueToothManager.sharedBluetoothManager()
     
     var users = [User]()
 
@@ -24,19 +25,19 @@ class CurrentSurroundingsViewController: UIViewController, UITableViewDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        userMan.fetchUsersWthCompletion { (userArray) in
+            self.updateTableView()
+        }
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(CurrentSurroundingsViewController.updateTableView), forControlEvents: UIControlEvents.ValueChanged)
+        
         currentSurroundingTableView.backgroundColor = UIColor(netHex:0xD9FAAA)
         currentSurroundingTableView.separatorStyle = UITableViewCellSeparatorStyle.None
         currentSurroundingTableView.tableFooterView = UIView(frame: CGRectZero)
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if users.count == 0 {
-            activityIndicator.startAnimating()
-            
-        }
-    }
+
     
     // MARK: TableView Delegate/DataSource
     
@@ -65,16 +66,36 @@ class CurrentSurroundingsViewController: UIViewController, UITableViewDelegate, 
     
     // MARK: Custom Methods
     
+    func updateTableView() {
+        updateUsers()
+        
+        if users.count == 0 {
+            if !activityIndicator.isAnimating() {
+                activityIndicator.startAnimating()
+            }
+            
+            btm.setUpBluetooth()
+            btm.start()
+            
+            NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector:#selector(CurrentSurroundingsViewController.updateTableView), userInfo: nil, repeats: false)
+            
+        } else {
+            activityIndicator.hidesWhenStopped = true
+            activityIndicator.stopAnimating()
+            currentSurroundingTableView.reloadData()
+        }
+    }
+    
     func updateUsers() {
         let recMan = RecordManager()
         let sortedUUIDs = recMan.sortingUserRecordsInTimePeriodByProximity(NSDate()) ?? []
         
         users.removeAll()
-        let userMan = UserManager()
         
         for uuid:String in sortedUUIDs {
-            let user = userMan.userForUUID(uuid)
-            users.append(user)
+            if let user = userMan.userForUUID(uuid) {
+                users.append(user)
+            }
         }
         
     }
@@ -91,6 +112,7 @@ class CurrentSurroundingsViewController: UIViewController, UITableViewDelegate, 
     // MARK: Actions
     
     @IBAction func backButtonPressed(sender: AnyObject) {
+        btm.stop()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

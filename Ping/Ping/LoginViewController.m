@@ -124,7 +124,7 @@ typedef void(^myCompletion)(BOOL);
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(nullable id)sender{
     if ([[segue identifier] isEqualToString:@"EventListViewController"]) {
         EventListViewController *vc = [segue destinationViewController];
-        vc.userManager = self.userManager;
+      //  vc.userManager = self.userManager;
     }
 }
 

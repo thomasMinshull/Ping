@@ -639,10 +639,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="126" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="krE-6C-1ET">
                                 <rect key="frame" x="0.0" y="66" width="375" height="601"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="SNM-1d-Pli">
-                                    <rect key="frame" x="0.0" y="154" width="375" height="20"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                </activityIndicatorView>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserCell" rowHeight="126" id="SH0-4I-jmu" customClass="UserTableViewCell" customModule="Ping" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="126"/>
@@ -651,7 +647,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BGx-4c-UYv">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ghost_person.png" translatesAutoresizingMaskIntoConstraints="NO" id="BGx-4c-UYv">
                                                     <rect key="frame" x="8" y="0.0" width="120" height="120"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="BGx-4c-UYv" secondAttribute="height" multiplier="1:1" id="hY9-i6-Tpv"/>
@@ -709,6 +705,9 @@
                                     <outlet property="delegate" destination="re5-oi-69Z" id="K5Y-7h-85w"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="SNM-1d-Pli">
+                                <rect key="frame" x="178" y="357" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -719,6 +718,8 @@
                             <constraint firstItem="v6L-zp-ahz" firstAttribute="leading" secondItem="kzP-VS-yBf" secondAttribute="leading" constant="-8" id="FPS-DV-N2q"/>
                             <constraint firstItem="Xfm-AX-W8e" firstAttribute="centerX" secondItem="kzP-VS-yBf" secondAttribute="centerX" id="L8r-kM-6va"/>
                             <constraint firstItem="vDh-Rc-MrP" firstAttribute="leading" secondItem="kzP-VS-yBf" secondAttribute="leading" id="S8L-fE-ibg"/>
+                            <constraint firstItem="SNM-1d-Pli" firstAttribute="centerX" secondItem="krE-6C-1ET" secondAttribute="centerX" id="WwD-L3-wnr"/>
+                            <constraint firstItem="SNM-1d-Pli" firstAttribute="centerY" secondItem="krE-6C-1ET" secondAttribute="centerY" id="chJ-x2-by8"/>
                             <constraint firstItem="HaV-vF-bfU" firstAttribute="top" secondItem="krE-6C-1ET" secondAttribute="bottom" id="eHa-NR-QP4"/>
                             <constraint firstItem="v6L-zp-ahz" firstAttribute="top" secondItem="gvW-Jx-2c0" secondAttribute="bottom" id="jGV-bX-RFr"/>
                             <constraint firstItem="Xfm-AX-W8e" firstAttribute="top" secondItem="gvW-Jx-2c0" secondAttribute="bottom" constant="4" id="r5q-A0-ErE"/>
@@ -917,6 +918,7 @@
         <image name="Rectangle 2" width="1125" height="198"/>
         <image name="Sign-In-Large---Default" width="430" height="80"/>
         <image name="backHovered" width="438" height="228"/>
+        <image name="ghost_person.png" width="200" height="200"/>
         <image name="linkedin_login.png" width="640" height="126"/>
         <image name="longbackbutton" width="146" height="76"/>
         <image name="realNowButtonBGDefault" width="375" height="44"/>

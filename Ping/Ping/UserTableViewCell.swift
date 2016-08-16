@@ -20,17 +20,8 @@ class UserTableViewCell: UITableViewCell {
     
     let gradientLayer = CAGradientLayer()
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-    }
-    
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         
         gradientLayer.frame = self.bounds
         let color1 = UIColor(white: 1.0, alpha: 0.2).CGColor as CGColorRef
@@ -41,10 +32,10 @@ class UserTableViewCell: UITableViewCell {
         gradientLayer.colors = [color1, color2, color3, color4]
         gradientLayer.locations = [0.0, 0.04, 0.95, 1.0]
         layer.insertSublayer(gradientLayer, atIndex: 0)
-        
     }
     
     func configureWithUser(user:User) {
+        
         firstNameLabel.text = user.firstName;
         lastNameLabel.text = user.lastName;
         headlineLabel.text = user.headline;
@@ -55,10 +46,6 @@ class UserTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         gradientLayer.frame = self.bounds
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 
 }

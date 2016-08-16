@@ -15,7 +15,7 @@
 
 @interface UserManager ()
 
-@property (strong, nonatomic)NSMutableSet __block *parseUsers;
+@property (strong, nonatomic) NSMutableSet *parseUsers;
 
 @end
 
@@ -25,6 +25,7 @@
 {
     self = [super init];
     if (self) {
+        self.parseUsers = [NSMutableSet new];
     }
     return self;
 }
@@ -37,7 +38,6 @@
         if (error) {
             NSLog(@"error retreiving users from parse ERROR: %@", error);
         } else {
-            self.parseUsers = [NSMutableSet new];
             NSMutableArray *users = [NSMutableArray new];
             
             for (PFObject *parseUser in objects) {
@@ -68,12 +68,12 @@
 - (User *)userFrom:(PFObject *)parseUser {
     // copy parse user as regular user
     User *user = [[User alloc] init];
-    user.firstName = parseUser[@"name"];
+    user.firstName = parseUser[@"firstname"]; // ToDo these parse getters will return nil if the there is an error wrap them in nil checks and replace with empty strings 
     user.lastName = parseUser[@"lastName"];
     user.headline = parseUser[@"headline"];
     user.linkedInID = parseUser[@"linkedInID"];
     user.UUID = parseUser[@"UUID"];
-    user.profilePicURL = parseUser[@"profilePicURL"]; // should return empty string if null?
+    user.profilePicURL = parseUser[@"profilePicURL"];
     return user;
 }
 

@@ -15,7 +15,7 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var eventListTableView: UITableView!
     
     // MARK: Properties
-    var userManager:UserManager?
+   // var userManager:UserManager?
     var events = [Event]()
 //    var events = ["AMG GT S World Primier", "Track day", "Drag race with police", "VanCity car meet"]
     
