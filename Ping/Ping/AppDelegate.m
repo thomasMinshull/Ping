@@ -57,8 +57,16 @@
     // Initialize Parse.
     [Parse setApplicationId:Parse_APP_ID clientKey:Parse_Client_Key];
     
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    WelcomeScrollingViewController *loginVC = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    
+    UINavigationController *navCtrlr = [[UINavigationController alloc]initWithRootViewController:loginVC];
+    [self.window setRootViewController:navCtrlr];
+    navCtrlr.navigationBarHidden = YES;
+    
     return YES;
-}
+}    
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     //IntegrationManager *iM = [IntegrationManager sharedIntegrationManager];
@@ -124,7 +132,6 @@
             [self launchEventCalenderViewController];
         }
     } else {
-        // Launch Login screen to the sucker who wants to use app without logging in 😹
         [self launchLogInScreen];
     }
 }
@@ -133,9 +140,10 @@
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
-    NewEventViewController *newEventVC = [storyboard instantiateViewControllerWithIdentifier:@"NewEventViewController"];
+    NewEventViewController *eventListVC = [storyboard instantiateViewControllerWithIdentifier:@"EventListViewController"];
+    [eventListVC performSegueWithIdentifier:@"showNewEventViewSegueNoAnimation" sender:nil];
     
-    self.window.rootViewController = newEventVC;
+    self.window.rootViewController = eventListVC;
     [self.window makeKeyAndVisible];
     
 }
