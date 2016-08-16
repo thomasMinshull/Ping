@@ -78,15 +78,19 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         performSegueWithIdentifier("showParticularEventSegue", sender: self)
     }
     
-//    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-//        let delete = UITableViewRowAction(style: .Normal, title: "\nDelete Event") {
-//            action, index in
-//            print("Delete button pressed")
-//        }
-//        delete.backgroundColor = UIColor.redColor()
-//        
-//        return [delete]
-//    }
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .Normal, title: "\nDelete Event") {
+            action, index in
+            
+            let eventToDelete = self.events[indexPath.row]
+            let recMan = RecordManager()
+            recMan.deleteEvent(eventToDelete)
+            self.events.removeAtIndex(indexPath.row)
+        }
+        delete.backgroundColor = UIColor.redColor()
+        
+        return [delete]
+    }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true

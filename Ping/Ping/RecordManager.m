@@ -9,7 +9,6 @@
 #import "RecordManager.h"
 #import "AverageUUidDuple.h"
 #import "User.h"
-#import "Event.h"
 #import "CurrentUser.h"
 
 #define TIME_INTERVAL 10 * 60
@@ -185,6 +184,15 @@
     return [array copy];
 }
 
+- (void)deleteEvent:(Event *)event {
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    
+    [realm transactionWithBlock:^{
+        CurrentUser *currentUser = [CurrentUser getCurrentUser];
+        NSUInteger index = [currentUser.events indexOfObject:event];
+        [currentUser.events removeObjectAtIndex:index];
+    }];
+}
 
 @end
 
