@@ -19,7 +19,7 @@
 @property (strong, nonatomic) NSString *UUID;
 
 - (void)setPropertiesWithProfileDictionary:(NSDictionary *)dic;
-- (void)addProfilePic:(NSString *)profilePicURL; // realm doesn't support overwriting setters, just wraps setting in realm transaction
+//- (void)addProfilePic:(NSString *)profilePicURL; // realm doesn't support overwriting setters, just wraps setting in realm transaction
 
 @end
 

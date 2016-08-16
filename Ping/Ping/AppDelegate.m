@@ -28,7 +28,7 @@
     
     UIMutableUserNotificationAction *noBTAction = [[UIMutableUserNotificationAction alloc] init];
     noBTAction.identifier = @"NO_BLUETOOTH";
-    noBTAction.title = @"Dismiss The Event";
+    noBTAction.title = @"Turn off BlueTooth";
     noBTAction.activationMode = UIUserNotificationActivationModeBackground;
     noBTAction.authenticationRequired = false;
     noBTAction.destructive = true;
@@ -85,7 +85,7 @@
 #pragma mark - Action upon notification
 
 -(void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification completionHandler:(void (^)())completionHandler{
-    int caseNum;
+    int caseNum = 0;
     
     BlueToothManager *btm = [BlueToothManager sharedBluetoothManager];
     
@@ -95,9 +95,11 @@
         caseNum = 1;
     }
     
+    NSLog(@"Action identifier is %@", identifier);
+    
     switch (caseNum) {
         case 0:
-            [btm start];
+            [btm setUpBluetooth];
             NSLog(@"bluetooth is on!");
             break;
         case 1:

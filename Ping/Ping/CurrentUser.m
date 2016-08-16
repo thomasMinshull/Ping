@@ -60,20 +60,23 @@
     
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     notification.alertBody = @"Your event is starting soon!";
-    notification.alertAction = @"open"; //slide to notification.alertAction
+    notification.alertAction = @"start the Bluetooth"; //slide to notification.alertAction
     NSDate *halfAnHourBefore = [event.startTime dateByAddingTimeInterval:-secondsPerHalfAnHour];
     notification.fireDate = halfAnHourBefore;
     notification.soundName = UILocalNotificationDefaultSoundName;
     notification.category = @"BT_CATEGORY";
     
-//    UILocalNotification *notification1 = [[UILocalNotification alloc] init];
-//    notification1.alertBody = @"Your Bluetooth is not turned off!";
-//    notification1.fireDate = event.endTime;
-//    notification1.soundName = UILocalNotificationDefaultSoundName;
+    UILocalNotification *endNotification = [[UILocalNotification alloc] init];
+    endNotification.alertBody = @"Your Bluetooth is not turned off!";
+    endNotification.alertAction = @"stop the Bluetooth";
+    endNotification.fireDate = event.endTime;
+    endNotification.soundName = UILocalNotificationDefaultSoundName;
+    endNotification.category = @"BT_CATEGORY";
     
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    [[UIApplication sharedApplication] scheduleLocalNotification:endNotification];
     
-    NSLog(@"!!Saved notification!! %@", [notification description]);
+    NSLog(@"!!Saved notifications!! Start:%@ and End:%@", [notification description], [endNotification description]);
     
     
     //save event

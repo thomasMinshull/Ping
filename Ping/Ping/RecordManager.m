@@ -9,7 +9,6 @@
 #import "RecordManager.h"
 #import "AverageUUidDuple.h"
 #import "User.h"
-#import "Event.h"
 #import "CurrentUser.h"
 
 #define TIME_INTERVAL 10 * 60
@@ -134,12 +133,12 @@
     
 }
 
--(NSMutableArray *)sortingUserRecordsInTimePeriodByProximity:(NSDate *)date {
+-(NSArray *)sortingUserRecordsInTimePeriodByProximity:(NSDate *)date {
     
     date = [self getStartTimeForTimePeriod:date]; // rounds down to correct start date
 
     for (TimePeriod *tp in [TimePeriod allObjects]) {
-        if (date == tp.startTime) { // This is the time period you are looking for
+        if ([date compare:tp.startTime] == NSOrderedSame) { // This is the time period you are looking for
             NSMutableArray *userRecordsArrayInTimePeriod = [[NSMutableArray alloc] init];
             
             for (UserRecord *aUserRecord in tp.userRecords) {
@@ -157,7 +156,7 @@
                 [uuidArray addObject:dup.UUID];
             }
             
-            return uuidArray;
+            return [uuidArray copy];
         }
     }
     return nil;
@@ -185,6 +184,15 @@
     return [array copy];
 }
 
+- (void)deleteEvent:(Event *)event {
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    
+    [realm transactionWithBlock:^{
+        CurrentUser *currentUser = [CurrentUser getCurrentUser];
+        NSUInteger index = [currentUser.events indexOfObject:event];
+        [currentUser.events removeObjectAtIndex:index];
+    }];
+}
 
 @end
 
