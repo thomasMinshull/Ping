@@ -75,18 +75,22 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("showParticularEventSegue", sender: self)
+        performSegueWithIdentifier("EventSegue", sender: self)
     }
     
-//    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-//        let delete = UITableViewRowAction(style: .Normal, title: "\nDelete Event") {
-//            action, index in
-//            print("Delete button pressed")
-//        }
-//        delete.backgroundColor = UIColor.redColor()
-//        
-//        return [delete]
-//    }
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .Normal, title: "\nDelete Event") {
+            action, index in
+            
+            let eventToDelete = self.events[indexPath.row]
+            let recMan = RecordManager()
+            recMan.deleteEvent(eventToDelete)
+            self.events.removeAtIndex(indexPath.row)
+        }
+        delete.backgroundColor = UIColor.redColor()
+        
+        return [delete]
+    }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
@@ -94,6 +98,25 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            
+//            // Delete the local notificaitons when the event is removed.
+//            // Not going to work until deletion acutally WORKS on realm.
+//
+//            if let notificationArray: Array = UIApplication.sharedApplication().scheduledLocalNotifications{
+//                if let startNotificationToCancel: UILocalNotification = notificationArray[indexPath.row * 2]{
+//                    UIApplication.sharedApplication().cancelLocalNotification(startNotificationToCancel)
+//                }else{
+//                    print("Could not find start notification to cancel")
+//                }
+//                if let endNotificationToCancel: UILocalNotification = notificationArray[indexPath.row * 2 + 1]{
+//                    UIApplication.sharedApplication().cancelLocalNotification(endNotificationToCancel)
+//                }else{
+//                    print("Could not find ending notification to cancel")
+//                }
+//            }else{
+//                print("Could not find array of notifications")
+//            }
+            
             events.removeAtIndex(indexPath.row)
             self.eventListTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         }
@@ -143,28 +166,4 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     
 }
 
-// (netHex:0xD9FAAA):
-// color hex quickly accessible UIColor extension
-// do NOT delete v
-//           v
-//           v
-//           v
-//           v
-//           v
-//           v
-//           v
-//           v
 
-extension UIColor {
-    convenience init(red: Int, green: Int, blue: Int) {
-        assert(red >= 0 && red <= 255, "Invalid red component")
-        assert(green >= 0 && green <= 255, "Invalid green component")
-        assert(blue >= 0 && blue <= 255, "Invalid blue component")
-        
-        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
-    }
-    
-    convenience init(netHex:Int) {
-        self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
-    }
-}

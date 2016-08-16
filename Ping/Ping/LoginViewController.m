@@ -13,7 +13,7 @@
 #import "AppDelegate.h"
 
 #import "UserManager.h"
-//#import "MainViewController.h"
+#import "MainViewController.h"
 #import "Ping-Swift.h"
 #import "LoginManager.h"
 #import "CurrentUser.h"
@@ -143,6 +143,10 @@ typedef void(^myCompletion)(BOOL);
         [welcomeVC startButtonPressed:self];
     }
 }
+
+- (IBAction)unwindToLoginViewController:(UIStoryboardSegue*)sender {
+}
+
 
 #pragma - Touch to stop the animation
 

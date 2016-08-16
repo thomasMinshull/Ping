@@ -78,7 +78,10 @@
                                             
                                             if (![CurrentUser getCurrentUser]) {
                                                 [CurrentUser makeCurrentUserWithProfileDictionary:json];
-                                            }                                            
+                                            }
+                                            
+                                            [self updateUsersProfilePic];
+                                            
                                             completion(true);
                                         }
                                           error:^(LISDKAPIError *apiError) {
@@ -91,7 +94,7 @@
 
 
 
-- (void)setProfilePicForUser:(User *)user {
+- (void)updateUsersProfilePic {
     [[LISDKAPIHelper sharedInstance] getRequest:LINKEDIN_ADDITIONAL_INFO_URL success:^(LISDKAPIResponse *response) {
         NSLog(@"successfully retrieved profile pic with response: %@", response.data);
         
@@ -103,7 +106,10 @@
                                                                 error:&picError];
         NSString *picURl = myPic[@"pictureUrl"];
         
-        [user addProfilePic:picURl];
+        UserManager *userMan = [[UserManager alloc] init];
+        [userMan addProfilePic:picURl];
+        
+        
         
     } error:^(LISDKAPIError *error) {
         NSLog(@"Error when loading profile Pic: %@", error);

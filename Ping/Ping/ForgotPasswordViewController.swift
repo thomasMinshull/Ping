@@ -22,6 +22,9 @@ class ForgotPasswordViewController: UIViewController {
         }
     }
 
-    // ToDo add a way to dismiss this view controller 
+    @IBAction func backButtonTapped(sender: UIButton) {
+        [self .performSegueWithIdentifier("unwindToLoginViewController", sender: self)];
+    }
+    
 
 }

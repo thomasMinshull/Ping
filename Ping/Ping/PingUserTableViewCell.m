@@ -7,7 +7,7 @@
 //
 
 #import "PingUserTableViewCell.h"
-#import <SDWebImage/UIImageView+WebCache.h>
+#import <SDWebImage/UIImageView+WebCache.h> // switched to nuke
 
 @interface PingUserTableViewCell ()
 
