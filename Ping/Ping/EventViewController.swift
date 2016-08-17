@@ -82,7 +82,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     
-    // MARK: datasource Methods
+    // MARK: delegate/datasource methods
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return uuids.count
@@ -95,6 +95,11 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         let user = userManager.userForUUID(uuids[indexPath.row])
         cell.configureWithUser(user)
         return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let user = self.userManager.userForUUID(uuids[indexPath.row])
+        LISDKDeeplinkHelper.sharedInstance().viewOtherProfile(user.linkedInID, withState: "eventCellSelected", showGoToAppStoreDialog: false, success: nil, error: nil)
     }
     
     

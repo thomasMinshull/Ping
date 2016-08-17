@@ -13,3 +13,4 @@
 #import "currentUser.h"
 #import "AppDelegate.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <linkedin-sdk/LISDK.h>
