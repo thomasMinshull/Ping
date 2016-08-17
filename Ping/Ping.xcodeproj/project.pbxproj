@@ -53,8 +53,6 @@
 /* Begin PBXFileReference section */
 		2FE2D22B0F6D9E8EA16626E2 /* Pods_Ping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40208B7A1D63AC25009407AA /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
-		403C570F1D64E0BC00C3E3D6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		403C57111D64E0C600C3E3D6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4063F8521D5C0AB300D13D6A /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		4063F8541D5C0B1200D13D6A /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
 		550391181D62B203009F32E0 /* GradientColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientColorExtension.swift; sourceTree = "<group>"; };
@@ -137,8 +135,6 @@
 		08964D78EC31F1C43E173827 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				403C57111D64E0C600C3E3D6 /* MapKit.framework */,
-				403C570F1D64E0BC00C3E3D6 /* CoreLocation.framework */,
 				55A0985E1D46CEC7005100BC /* linkedin-sdk.framework */,
 				2FE2D22B0F6D9E8EA16626E2 /* Pods_Ping.framework */,
 			);
