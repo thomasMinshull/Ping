@@ -193,7 +193,12 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
             if let vc = segue.destinationViewController as? CurrentSurroundingsViewController {
                 vc.userManager = self.userManager
             }
+        } else if identifier == "showCurrentSurroundingsNoAnimation" {
+            if let vc = segue.destinationViewController as? CurrentSurroundingsViewController {
+                vc.userManager = self.userManager
+            }
         }
+        
         
     }
     
