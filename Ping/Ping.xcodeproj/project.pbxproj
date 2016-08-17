@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		36EC22A771BF10EEE86A27D6 /* Pods_Ping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FE2D22B0F6D9E8EA16626E2 /* Pods_Ping.framework */; };
+		40208B7B1D63AC25009407AA /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40208B7A1D63AC25009407AA /* LocationViewController.swift */; };
 		4063F8531D5C0AB300D13D6A /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4063F8521D5C0AB300D13D6A /* LoadingView.swift */; };
 		4063F8551D5C0B1200D13D6A /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4063F8541D5C0B1200D13D6A /* QCMethod.swift */; };
 		40F135421D4C33C200376973 /* BlueToothManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 555C1E791D4A9DE700007980 /* BlueToothManger.m */; };
@@ -51,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		2FE2D22B0F6D9E8EA16626E2 /* Pods_Ping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		40208B7A1D63AC25009407AA /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		4063F8521D5C0AB300D13D6A /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		4063F8541D5C0B1200D13D6A /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
 		550391181D62B203009F32E0 /* GradientColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientColorExtension.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				55DCBF591D5D3D580085F5A3 /* CurrentSurroundingsViewController.swift */,
 				55FA848B1D5D9B250073FB1E /* ForgotPasswordViewController.swift */,
 				9C4969311D5E5FC6003DAE8C /* EventViewController.swift */,
+				40208B7A1D63AC25009407AA /* LocationViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -510,6 +513,7 @@
 				5594DAFD1D45E2DE0096D5DF /* main.m in Sources */,
 				55DCBF5D1D5D3D610085F5A3 /* NewEventViewController.m in Sources */,
 				5599E78C1D499E1C00E61B0E /* TimePeriod.m in Sources */,
+				40208B7B1D63AC25009407AA /* LocationViewController.swift in Sources */,
 				550391191D62B203009F32E0 /* GradientColorExtension.swift in Sources */,
 				55A098B81D47FD73005100BC /* NSString+UUID.m in Sources */,
 				4063F8531D5C0AB300D13D6A /* LoadingView.swift in Sources */,
@@ -623,7 +627,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -649,7 +653,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
