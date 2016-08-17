@@ -9,6 +9,7 @@
 #import "BlueToothManager.h"
 #import "LoginManager.h"
 #import "Event.h"
+#import "TimePeriod.h"
 #import "currentUser.h"
 #import "AppDelegate.h"
 #import <SDWebImage/UIImageView+WebCache.h>
