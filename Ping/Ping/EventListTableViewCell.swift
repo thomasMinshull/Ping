@@ -12,6 +12,7 @@ class EventListTableViewCell: UITableViewCell {
     
     @IBOutlet weak var eventTitleLabel: UILabel!
     @IBOutlet weak var eventTimeLabel: UILabel!
+    @IBOutlet weak var eventHostLabel: UILabel!
     
     let gradientLayer = CAGradientLayer()
 
@@ -30,6 +31,17 @@ class EventListTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         sharedSetup()
+    }
+    
+    func configureWithEvent(event:Event) {
+        eventTimeLabel.text = event.eventName
+        eventHostLabel.text = event.hostName
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "EEE MMM d h m a"
+        
+        eventTimeLabel.text = dateFormatter.stringFromDate(event.startTime)
+        
     }
     
     func sharedSetup() {

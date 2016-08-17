@@ -39,6 +39,10 @@
     [self.btm stop];
 }
 
+- (IBAction)homeButtonTapped:(id)sender {
+    [self performSegueWithIdentifier:@"TestToHome" sender:self];
+}
+
 - (void)logToScreen:(NSString *)string {
     NSString *currentText = self.textField.text;
     currentText = [NSString stringWithFormat:@"%@\n%@",currentText, string];
