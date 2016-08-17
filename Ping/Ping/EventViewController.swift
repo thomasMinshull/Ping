@@ -18,7 +18,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     //MARK: Properties 
     var event:Event!
     var userManager:UserManager!
-    var timePeriods:RLMArray!
+    var timePeriods = [TimePeriod]()
     var uuids = [String]()
     var currentTimePeriod:TimePeriod?
     
@@ -41,25 +41,31 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
             updateDateLabelWithDate(startTime)
         }
         
-        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 130
+
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        print("appaer")
     }
     
     func updateTimePeriods() {
         
-        timePeriods = TimePeriod.sortArray(event.timePeriods, byDateAscending: true) //implemented in objective-C because realm-objective-C hates swift
+        self.timePeriods = TimePeriod.sortArray(event.timePeriods, byDateAscending: true) as![TimePeriod] //implemented in objective-C because realm-objective-C hates swift
         
-        if let timePeriods = timePeriods {
-            if timePeriods.count > 0 {
-                timeSlider.maximumValue = Float(timePeriods.count) - 1
-                return
-            }
+        let timePeriods = self.timePeriods
+        
+        if timePeriods.count > 0 {
+            timeSlider.maximumValue = Float(timePeriods.count) - 1
+            return
         }
         
         timeSlider.maximumValue = 0
     }
 
     func getCurrentTimePeriodForSliderValue(sliderValue:UInt) -> TimePeriod {
-        return timePeriods?.objectAtIndex(UInt(sliderValue)) as! TimePeriod
+        return self.timePeriods[Int(sliderValue)] 
     }
     
     func getUUIDsForTimePeriod(timePeriod:TimePeriod) -> [String] {
@@ -85,6 +91,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // refactor to reorder cells & insert and delete
         let cell:UserTableViewCell = tableView.dequeueReusableCellWithIdentifier("UserTableViewCell") as! UserTableViewCell
+        
         let user = userManager.userForUUID(uuids[indexPath.row])
         cell.configureWithUser(user)
         return cell
@@ -104,10 +111,6 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.reloadData()
         
     }
-//    @IBAction func timeSliderChanged(sender: UISlider) { // ToDo finish implementing this method
-//        timeSlider.value = roundf(sender.value)
-//        
-//    }
 
     @IBAction func backButtonPressed(sender: AnyObject) {
         performSegueWithIdentifier("unwindFromEventToEventList", sender: self)

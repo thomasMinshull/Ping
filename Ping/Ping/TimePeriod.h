@@ -15,7 +15,7 @@
 @property (atomic) NSDate *startTime;
 @property (atomic) RLMArray<UserRecord *><UserRecord> *userRecords;
 
-+ (RLMArray<TimePeriod *> *)sortArray:(RLMArray<TimePeriod *> *)array byDateAscending:(BOOL)ascending;
++ (NSArray *)sortArray:(RLMArray<TimePeriod *> *)array byDateAscending:(BOOL)ascending;
 
 @end
 
