@@ -25,7 +25,9 @@ class CurrentSurroundingsViewController: UIViewController, UITableViewDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         userManager!.fetchUsersWthCompletion { (userArray) in
+            self.btm.setUpBluetooth()
             self.updateTableView()
         }
         
@@ -74,7 +76,6 @@ class CurrentSurroundingsViewController: UIViewController, UITableViewDelegate, 
                 activityIndicator.startAnimating()
             }
             
-            btm.setUpBluetooth()
             
             NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector:#selector(CurrentSurroundingsViewController.updateTableView), userInfo: nil, repeats: false)
             
@@ -111,7 +112,13 @@ class CurrentSurroundingsViewController: UIViewController, UITableViewDelegate, 
     // MARK: Actions
     
     @IBAction func backButtonPressed(sender: AnyObject) {
+        
+        // *******************************************************************************************
+        
         btm.stop()
+        
+        // Creating an event each time user presses current surrounding button, should the app stop transmitting BT data after the user leaves the view or keep it going?
+        // *******************************************************************************************
         performSegueWithIdentifier("currentSurroundingsToEventList", sender: self)
     }
     
