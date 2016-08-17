@@ -16,7 +16,7 @@ class CurrentSurroundingsViewController: UIViewController, UITableViewDelegate, 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: Properties 
-    let userMan = UserManager()
+    var userManager:UserManager?
     let btm = BlueToothManager.sharedBluetoothManager()
     
     var users = [User]()
@@ -25,7 +25,7 @@ class CurrentSurroundingsViewController: UIViewController, UITableViewDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        userMan.fetchUsersWthCompletion { (userArray) in
+        userManager!.fetchUsersWthCompletion { (userArray) in
             self.updateTableView()
         }
         
@@ -87,12 +87,12 @@ class CurrentSurroundingsViewController: UIViewController, UITableViewDelegate, 
     
     func updateUsers() {
         let recMan = RecordManager()
-        let sortedUUIDs = recMan.sortingUserRecordsInTimePeriodByProximity(NSDate()) ?? []
+        let sortedUUIDs = recMan.UUIDsSortedAtTime(NSDate()) ?? []
         
         users.removeAll()
         
         for uuid:String in sortedUUIDs {
-            if let user = userMan.userForUUID(uuid) {
+            if let user = userManager!.userForUUID(uuid) {
                 users.append(user)
             }
         }
@@ -112,7 +112,7 @@ class CurrentSurroundingsViewController: UIViewController, UITableViewDelegate, 
     
     @IBAction func backButtonPressed(sender: AnyObject) {
         btm.stop()
-        self.dismissViewControllerAnimated(true, completion: nil)
+        performSegueWithIdentifier("currentSurroundingsToEventList", sender: self)
     }
     
     
