@@ -116,6 +116,14 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.reloadData()
         
     }
+    
+    @IBAction func sliderValueChanged(sender: UISlider) {
+        // ToDo Make Dry, code repeated in timeSliderFinishSliding
+        timeSlider.value = roundf(sender.value)
+        currentTimePeriod = getCurrentTimePeriodForSliderValue(UInt(timeSlider.value))
+        updateDateLabelWithDate(currentTimePeriod!.startTime)
+    }
+    
 
     @IBAction func backButtonPressed(sender: AnyObject) {
         performSegueWithIdentifier("unwindFromEventToEventList", sender: self)
