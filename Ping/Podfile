@@ -11,8 +11,6 @@ target 'Ping' do
 	pod 'Parse'
 	pod 'Realm'
 	pod ‘GooglePlaces’
-	pod ‘GooglePlacePicker’
-	pod ‘GoogleMaps’
 
   # Pods for Ping
 

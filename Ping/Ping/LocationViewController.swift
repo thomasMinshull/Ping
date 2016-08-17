@@ -69,7 +69,7 @@ extension LocationViewController: GMSAutocompleteResultsViewControllerDelegate {
         // Do something with the selected place.
         print("Place name: ", place.name)
         print("Place address: ", place.formattedAddress)
-        resultTextView?.text = place.formattedAddress
+        resultTextView?.text = place.name
         
         completionButton.hidden = false
     }

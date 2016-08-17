@@ -111,9 +111,6 @@
         self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
         
-        [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:[CurrentUser getCurrentUser].UUID]]}];
-        self.isTimerValid = TRUE;
-        
         self.myTimer = [NSTimer scheduledTimerWithTimeInterval: 1.0f
                                                         target: self
                                                       selector:@selector(flickSwitch:)
@@ -122,6 +119,10 @@
         [self.vc logToScreen:@"timer on"];
         
     }
+    
+    [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:[CurrentUser getCurrentUser].UUID]]}];
+    self.isTimerValid = TRUE;
+    
 }
 
 -(void)stop{ // only stops transmitting (doesn't stop listening?)
