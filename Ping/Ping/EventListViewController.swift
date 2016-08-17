@@ -173,7 +173,7 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func addEventButtonPressed(sender: AnyObject) {
-        self .performSegueWithIdentifier("showNewEventViewSegue", sender: self)
+        self.performSegueWithIdentifier("showNewEventViewSegue", sender: self)
     }
     
     // MARK: - Navigation
@@ -193,7 +193,12 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
             if let vc = segue.destinationViewController as? CurrentSurroundingsViewController {
                 vc.userManager = self.userManager
             }
+        } else if identifier == "showCurrentSurroundingsNoAnimation" {
+            if let vc = segue.destinationViewController as? CurrentSurroundingsViewController {
+                vc.userManager = self.userManager
+            }
         }
+        
         
     }
     
