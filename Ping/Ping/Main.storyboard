@@ -242,17 +242,6 @@
                                     <action selector="endTimeButtonPressed:" destination="5m0-C1-HRL" eventType="touchUpInside" id="SnN-BB-377"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="doT-uN-Igh">
-                                <rect key="frame" x="32" y="268" width="92" height="38"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="22"/>
-                                <state key="normal" title="Start time">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="startTimeButtonPressed:" destination="5m0-C1-HRL" eventType="touchUpInside" id="tVH-YL-NVi"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JWU-sJ-Gfk">
                                 <rect key="frame" x="268" y="82" width="46" height="30"/>
                                 <state key="normal" title="BTtest"/>
@@ -261,7 +250,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deP-ta-IAm">
-                                <rect key="frame" x="243" y="219.5" width="96" height="31"/>
+                                <rect key="frame" x="216" y="219.5" width="150" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="VCA-py-PTK"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="31" id="ajI-yK-DE4"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <state key="normal" title="Add Location"/>
                                 <connections>
@@ -283,6 +276,17 @@
                                 <state key="highlighted" image="backHovered"/>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="5m0-C1-HRL" eventType="touchUpInside" id="ehH-1J-2LH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="doT-uN-Igh">
+                                <rect key="frame" x="32" y="268" width="92" height="38"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="22"/>
+                                <state key="normal" title="Start time">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startTimeButtonPressed:" destination="5m0-C1-HRL" eventType="touchUpInside" id="tVH-YL-NVi"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -312,7 +316,6 @@
                             <constraint firstItem="9vv-WK-QYZ" firstAttribute="top" secondItem="6Kp-4R-lvk" secondAttribute="top" id="aun-d5-8GX"/>
                             <constraint firstAttribute="trailing" secondItem="shG-a4-jPp" secondAttribute="trailing" id="d2Q-j5-EAt"/>
                             <constraint firstItem="8zL-z1-8of" firstAttribute="top" secondItem="rlh-Ce-mQQ" secondAttribute="bottom" id="dXT-bY-OxI"/>
-                            <constraint firstItem="doT-uN-Igh" firstAttribute="top" secondItem="qyS-sW-3A8" secondAttribute="bottom" constant="20" id="dZI-Kq-FSV"/>
                             <constraint firstItem="NGX-Bo-63T" firstAttribute="centerY" secondItem="nLN-nr-cqb" secondAttribute="centerY" id="fCX-BA-dW4"/>
                             <constraint firstItem="nLN-nr-cqb" firstAttribute="leading" secondItem="i5y-lK-eLO" secondAttribute="leading" id="fJs-u3-JAq"/>
                             <constraint firstItem="nb1-ah-v6e" firstAttribute="centerX" secondItem="NGX-Bo-63T" secondAttribute="centerX" id="fO6-z7-e79"/>
@@ -321,6 +324,7 @@
                             <constraint firstItem="i5y-lK-eLO" firstAttribute="leading" secondItem="6Kp-4R-lvk" secondAttribute="leadingMargin" constant="16" id="wce-Kk-Vpo"/>
                             <constraint firstItem="i5y-lK-eLO" firstAttribute="top" secondItem="9vv-WK-QYZ" secondAttribute="bottom" constant="56" id="zZG-n0-5dc"/>
                             <constraint firstItem="RQX-cl-fBA" firstAttribute="top" secondItem="rlh-Ce-mQQ" secondAttribute="bottom" constant="2" id="zja-kj-liw"/>
+                            <constraint firstItem="nb1-ah-v6e" firstAttribute="top" secondItem="deP-ta-IAm" secondAttribute="bottom" constant="17.5" id="ztX-it-kIv"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -330,6 +334,7 @@
                         <outlet property="endTimeButton" destination="nb1-ah-v6e" id="mjb-Ca-g70"/>
                         <outlet property="eventHostTextField" destination="NGX-Bo-63T" id="OOT-Z3-X2z"/>
                         <outlet property="eventNameTextField" destination="Lt8-b3-2lH" id="hkb-55-CIE"/>
+                        <outlet property="locationButton" destination="deP-ta-IAm" id="oXx-T0-gGI"/>
                         <outlet property="startTimeButton" destination="doT-uN-Igh" id="1hE-0B-H49"/>
                         <segue destination="zgJ-dS-fgs" kind="unwind" identifier="NewEventVCToEventListVC" unwindAction="unwindToMenu:" id="kwb-If-L7x"/>
                     </connections>

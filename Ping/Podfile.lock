@@ -1,13 +1,6 @@
 PODS:
   - Bolts/Tasks (1.8.4)
-  - GoogleMaps (2.0.0):
-    - GoogleMaps/Maps (= 2.0.0)
   - GoogleMaps/Base (2.0.0)
-  - GoogleMaps/Maps (2.0.0):
-    - GoogleMaps/Base (= 2.0.0)
-  - GooglePlacePicker (2.0.0):
-    - GoogleMaps (= 2.0.0)
-    - GooglePlaces (= 2.0.0)
   - GooglePlaces (2.0.0):
     - GoogleMaps/Base (= 2.0.0)
   - Parse (1.14.2):
@@ -20,8 +13,6 @@ PODS:
   - SDWebImage/Core (3.8.1)
 
 DEPENDENCIES:
-  - GoogleMaps
-  - GooglePlacePicker
   - GooglePlaces
   - Parse
   - Realm
@@ -30,12 +21,11 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   GoogleMaps: ed04212f95710a19639fd9950ef97b897e4391de
-  GooglePlacePicker: 98ab548cedda3a7acb8efde486d1c2bcd316007e
   GooglePlaces: e3bd7cf10fb691ad3f40f03e467fd807e1940e9c
   Parse: 4335d65f40cb3d43190d723144bbe1afb9c38230
   Realm: 9d5c46a4d7d27958530a8dfc58f63a99e5c2cba3
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
 
-PODFILE CHECKSUM: 6fa3562e40bc72da7634a29b44a1ccf05b4d25ae
+PODFILE CHECKSUM: a3d875abbffe683a9d81a63517dc1d9d5f9bd017
 
 COCOAPODS: 1.0.1

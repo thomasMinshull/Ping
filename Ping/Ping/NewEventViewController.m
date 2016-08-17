@@ -21,6 +21,7 @@
 //@property (weak, nonatomic) IBOutlet UITextField *eventLocationTextField;
 @property (weak, nonatomic) IBOutlet UIButton *startTimeButton;
 @property (weak, nonatomic) IBOutlet UIButton *endTimeButton;
+@property (weak, nonatomic) IBOutlet UIButton *locationButton;
 
 @property NSString *fetchedLocation;
 
@@ -32,6 +33,7 @@
 
 - (void)sendData:(NSString *)text{
     self.event.eventAddress = text;
+    [self.locationButton setTitle:text forState:UIControlStateNormal];
 }
 
 - (void)viewDidLoad {
@@ -43,6 +45,7 @@
     
     self.event = [[Event alloc] init];
     
+    [self.locationButton setTitle:@"Add location" forState:UIControlStateNormal];
 }
 
 

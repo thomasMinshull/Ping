@@ -11,7 +11,6 @@
 		40208B7B1D63AC25009407AA /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40208B7A1D63AC25009407AA /* LocationViewController.swift */; };
 		4063F8531D5C0AB300D13D6A /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4063F8521D5C0AB300D13D6A /* LoadingView.swift */; };
 		4063F8551D5C0B1200D13D6A /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4063F8541D5C0B1200D13D6A /* QCMethod.swift */; };
-		408856BD1D640EF80067D62B /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 408856BC1D640EF80067D62B /* LocationManager.m */; };
 		40F135421D4C33C200376973 /* BlueToothManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 555C1E791D4A9DE700007980 /* BlueToothManger.m */; };
 		550391191D62B203009F32E0 /* GradientColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550391181D62B203009F32E0 /* GradientColorExtension.swift */; };
 		5511E5EF1D5CFA78000DFFB3 /* ParseUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5511E5EE1D5CFA78000DFFB3 /* ParseUser.m */; };
@@ -54,10 +53,10 @@
 /* Begin PBXFileReference section */
 		2FE2D22B0F6D9E8EA16626E2 /* Pods_Ping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40208B7A1D63AC25009407AA /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		403C570F1D64E0BC00C3E3D6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		403C57111D64E0C600C3E3D6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4063F8521D5C0AB300D13D6A /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		4063F8541D5C0B1200D13D6A /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
-		408856BB1D640EF80067D62B /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
-		408856BC1D640EF80067D62B /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		550391181D62B203009F32E0 /* GradientColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientColorExtension.swift; sourceTree = "<group>"; };
 		5511E5ED1D5CFA78000DFFB3 /* ParseUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseUser.h; sourceTree = "<group>"; };
 		5511E5EE1D5CFA78000DFFB3 /* ParseUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseUser.m; sourceTree = "<group>"; };
@@ -138,6 +137,8 @@
 		08964D78EC31F1C43E173827 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				403C57111D64E0C600C3E3D6 /* MapKit.framework */,
+				403C570F1D64E0BC00C3E3D6 /* CoreLocation.framework */,
 				55A0985E1D46CEC7005100BC /* linkedin-sdk.framework */,
 				2FE2D22B0F6D9E8EA16626E2 /* Pods_Ping.framework */,
 			);
@@ -250,8 +251,6 @@
 				555C1E791D4A9DE700007980 /* BlueToothManger.m */,
 				55B0C3EC1D59796300394286 /* LoginManager.h */,
 				55B0C3ED1D59796300394286 /* LoginManager.m */,
-				408856BB1D640EF80067D62B /* LocationManager.h */,
-				408856BC1D640EF80067D62B /* LocationManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -499,7 +498,6 @@
 				9C18CAF81D4AE89B008519E1 /* User.m in Sources */,
 				55A098E11D4907CE005100BC /* UserManager.m in Sources */,
 				5599E7931D49C14F00E61B0E /* PingUserTableViewCell.m in Sources */,
-				408856BD1D640EF80067D62B /* LocationManager.m in Sources */,
 				55B0C3EE1D59796300394286 /* LoginManager.m in Sources */,
 				5548D0CD1D5FD979006A78F9 /* BlueToothTestViewController.m in Sources */,
 				55B0C3F11D5A440D00394286 /* CurrentUser.m in Sources */,
