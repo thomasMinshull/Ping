@@ -183,8 +183,7 @@
 }
 
 
-- (void)scan
-{
+- (void)scan {
     [self.centralManager scanForPeripheralsWithServices:[self.cbuuidLists copy]
                                                 options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @NO }
      ];

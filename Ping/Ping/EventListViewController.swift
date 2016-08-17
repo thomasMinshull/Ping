@@ -17,34 +17,48 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     // MARK: Properties
     var userManager:UserManager?
     var events = [Event]()
-//    var events = ["AMG GT S World Primier", "Track day", "Drag race with police", "VanCity car meet"]
     
     let mainBackGroundColor = UIColor(netHex:0xD9FAAA)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+            // If selected EventlistVC, do things as usual
         eventListTableView.backgroundColor = mainBackGroundColor
         eventListTableView.separatorStyle = UITableViewCellSeparatorStyle.None
         eventListTableView.tableFooterView = UIView(frame: CGRectZero)
+            
         
     }
     
     override func viewWillAppear(animated: Bool) {
-        events = CurrentUser.getCurrentUser().fetchEvents();
-        eventListTableView.reloadData()
+//        
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        
+//        if (appDelegate.userShouldBeDirectedToNewEventViewController) {
+//            // If user selects create event shortcut, direct him to NeweventVC
+//            self.performSegueWithIdentifier("showNewEventViewSegueNoAnimation", sender: self)
+//        } else if (appDelegate.userShouldBeDirectedToCurrentSurroundingsViewController){
+//            // If selected CurrentsurroundingsVC
+//            self.performSegueWithIdentifier("showCurrentSurroundingsNoAnimation", sender: self)
+//        } else {
         
-        // scroll past old events but leave at least one event showing
-        let pastEvents = getIndexOfNextEvent()
-        var ip:NSIndexPath?
-        
-        if pastEvents < events.count {
-            ip = NSIndexPath(forRow: pastEvents, inSection: 0)
-        }
-        
-        if let ip = ip {
-            eventListTableView.scrollToRowAtIndexPath(ip, atScrollPosition: .Top, animated: false)
-        }
+            events = CurrentUser.getCurrentUser().fetchEvents();
+            eventListTableView.reloadData()
+            
+            // scroll past old events but leave at least one event showing
+            let pastEvents = getIndexOfNextEvent()
+            var ip:NSIndexPath?
+            
+            if pastEvents < events.count {
+                ip = NSIndexPath(forRow: pastEvents, inSection: 0)
+            }
+            
+            if let ip = ip {
+                eventListTableView.scrollToRowAtIndexPath(ip, atScrollPosition: .Top, animated: false)
+            }
+            
+//        }
         
     }
     
@@ -78,19 +92,19 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         performSegueWithIdentifier("EventSegue", sender: self)
     }
     
-    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let delete = UITableViewRowAction(style: .Normal, title: "\nDelete Event") {
-            action, index in
-            
-            let eventToDelete = self.events[indexPath.row]
-            let recMan = RecordManager()
-            recMan.deleteEvent(eventToDelete)
-            self.events.removeAtIndex(indexPath.row)
-        }
-        delete.backgroundColor = UIColor.redColor()
-        
-        return [delete]
-    }
+//    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+//        let delete = UITableViewRowAction(style: .Normal, title: "\nDelete Event") {
+//            action, index in
+//            
+//            let eventToDelete = self.events[indexPath.row]
+//            let recMan = RecordManager()
+//            recMan.deleteEvent(eventToDelete)
+//            self.events.removeAtIndex(indexPath.row)
+//        }
+//        delete.backgroundColor = UIColor.redColor()
+//        
+//        return [delete]
+//    }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
@@ -100,7 +114,6 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
             
 //            // Delete the local notificaitons when the event is removed.
-//            // Not going to work until deletion acutally WORKS on realm.
 //
 //            if let notificationArray: Array = UIApplication.sharedApplication().scheduledLocalNotifications{
 //                if let startNotificationToCancel: UILocalNotification = notificationArray[indexPath.row * 2]{
@@ -116,9 +129,11 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
 //            }else{
 //                print("Could not find array of notifications")
 //            }
-            
-            events.removeAtIndex(indexPath.row)
-            self.eventListTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+//            
+//            
+//            events.removeAtIndex(indexPath.row)
+//            self.eventListTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+//        
         }
     }
     
@@ -158,11 +173,34 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func addEventButtonPressed(sender: AnyObject) {
-        self .performSegueWithIdentifier("showNewEventViewSegue", sender: self)
+        self.performSegueWithIdentifier("showNewEventViewSegue", sender: self)
     }
     
     // MARK: - Navigation
     @IBAction func unwindToMenu(segue: UIStoryboardSegue) {}
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let identifier = segue.identifier else { return }
+        
+        if let indexPath = eventListTableView.indexPathForSelectedRow where identifier == "EventSegue" {
+            let event = events[indexPath.row]
+            if let vc = segue.destinationViewController as? EventViewController {
+                vc.event = event
+                vc.userManager = userManager
+            }
+            
+        } else if identifier == "showCurrentSurroundings" {
+            if let vc = segue.destinationViewController as? CurrentSurroundingsViewController {
+                vc.userManager = self.userManager
+            }
+        } else if identifier == "showCurrentSurroundingsNoAnimation" {
+            if let vc = segue.destinationViewController as? CurrentSurroundingsViewController {
+                vc.userManager = self.userManager
+            }
+        }
+        
+        
+    }
     
 }
 
