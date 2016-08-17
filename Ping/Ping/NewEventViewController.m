@@ -88,7 +88,8 @@
 }
 
 - (IBAction)backButtonPressed:(id)sender {
-    [self performSegueWithIdentifier:@"NewEventVCToEventListVC" sender:self];
+//    [self performSegueWithIdentifier:@"NewEventVCToEventListVC" sender:self];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)startTimeButtonPressed:(id)sender {
