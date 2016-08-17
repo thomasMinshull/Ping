@@ -17,34 +17,48 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     // MARK: Properties
     var userManager:UserManager?
     var events = [Event]()
-//    var events = ["AMG GT S World Primier", "Track day", "Drag race with police", "VanCity car meet"]
     
     let mainBackGroundColor = UIColor(netHex:0xD9FAAA)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+            // If selected EventlistVC, do things as usual
         eventListTableView.backgroundColor = mainBackGroundColor
         eventListTableView.separatorStyle = UITableViewCellSeparatorStyle.None
         eventListTableView.tableFooterView = UIView(frame: CGRectZero)
+            
         
     }
     
     override func viewWillAppear(animated: Bool) {
-        events = CurrentUser.getCurrentUser().fetchEvents();
-        eventListTableView.reloadData()
+//        
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        
+//        if (appDelegate.userShouldBeDirectedToNewEventViewController) {
+//            // If user selects create event shortcut, direct him to NeweventVC
+//            self.performSegueWithIdentifier("showNewEventViewSegueNoAnimation", sender: self)
+//        } else if (appDelegate.userShouldBeDirectedToCurrentSurroundingsViewController){
+//            // If selected CurrentsurroundingsVC
+//            self.performSegueWithIdentifier("showCurrentSurroundingsNoAnimation", sender: self)
+//        } else {
         
-        // scroll past old events but leave at least one event showing
-        let pastEvents = getIndexOfNextEvent()
-        var ip:NSIndexPath?
-        
-        if pastEvents < events.count {
-            ip = NSIndexPath(forRow: pastEvents, inSection: 0)
-        }
-        
-        if let ip = ip {
-            eventListTableView.scrollToRowAtIndexPath(ip, atScrollPosition: .Top, animated: false)
-        }
+            events = CurrentUser.getCurrentUser().fetchEvents();
+            eventListTableView.reloadData()
+            
+            // scroll past old events but leave at least one event showing
+            let pastEvents = getIndexOfNextEvent()
+            var ip:NSIndexPath?
+            
+            if pastEvents < events.count {
+                ip = NSIndexPath(forRow: pastEvents, inSection: 0)
+            }
+            
+            if let ip = ip {
+                eventListTableView.scrollToRowAtIndexPath(ip, atScrollPosition: .Top, animated: false)
+            }
+            
+//        }
         
     }
     
