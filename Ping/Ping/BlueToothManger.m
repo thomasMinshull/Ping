@@ -111,7 +111,6 @@
         self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
         
-        
         self.myTimer = [NSTimer scheduledTimerWithTimeInterval: 1.0f
                                                         target: self
                                                       selector:@selector(flickSwitch:)
