@@ -424,7 +424,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="126"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zqS-Qw-QFA" id="Uxq-kc-O5p">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="126"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="125.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DnN-qd-c7R">
@@ -631,7 +631,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="weK-R3-DvW" id="cUk-fv-gzW">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ml-iG-6TW">
@@ -726,7 +726,8 @@
                         <segue destination="5m0-C1-HRL" kind="show" identifier="showNewEventViewSegue" id="o1V-sh-E4P"/>
                         <segue destination="re5-oi-69Z" kind="show" identifier="showCurrentSurroundings" id="Xle-HX-asW"/>
                         <segue destination="gp6-7F-M4T" kind="show" identifier="showParticularEventSegue" id="cpn-7p-Rfb"/>
-                        <segue destination="5m0-C1-HRL" kind="show" identifier="showNewEventViewSegueNoAnimation" animates="NO" id="cur-Co-cod"/>
+                        <segue destination="5m0-C1-HRL" kind="show" identifier="showNewEventViewSegueNoAnimation" animates="NO" id="M1I-8a-hdM"/>
+                        <segue destination="re5-oi-69Z" kind="show" identifier="showCurrentSurroundingsNoAnimation" animates="NO" id="ogp-9O-CUV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4pf-iu-8vZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -783,7 +784,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="126"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SH0-4I-jmu" id="Ydq-Qa-qbG">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="126"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="125.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BGx-4c-UYv">
@@ -870,7 +871,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z0Q-Lp-8ha" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1508.5" y="391.5"/>
+            <point key="canvasLocation" x="1508.5" y="384.5"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -950,7 +951,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wFF-lQ-QBZ" id="E6x-eD-PE3">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Zx-hl-FGc">
@@ -1057,13 +1058,6 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PwA-yR-znt">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </scrollView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Welcome_Ping" translatesAutoresizingMaskIntoConstraints="NO" id="xUR-On-qWl">
-                                <rect key="frame" x="67" y="165" width="240" height="66"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="OAe-B6-Ke1"/>
-                                    <constraint firstAttribute="height" constant="66" id="gkq-7l-3pW"/>
-                                </constraints>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PingIcon" translatesAutoresizingMaskIntoConstraints="NO" id="t9q-dd-4rA">
                                 <rect key="frame" x="133" y="55" width="109" height="100"/>
                                 <constraints>
@@ -1072,6 +1066,21 @@
                                     <constraint firstAttribute="width" constant="109" id="Xpd-TZ-z9y"/>
                                 </constraints>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Welcome_Ping" translatesAutoresizingMaskIntoConstraints="NO" id="xUR-On-qWl">
+                                <rect key="frame" x="67" y="165" width="240" height="66"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="OAe-B6-Ke1"/>
+                                    <constraint firstAttribute="height" constant="66" id="gkq-7l-3pW"/>
+                                </constraints>
+                            </imageView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="wT8-Bh-IJg">
+                                <rect key="frame" x="154" y="510" width="67" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="67" id="J0v-E7-XzA"/>
+                                    <constraint firstAttribute="height" constant="37" id="e6w-OZ-MiB"/>
+                                </constraints>
+                                <color key="pageIndicatorTintColor" red="0.6705882352941176" green="0.96862745098039216" blue="0.73333333333333328" alpha="1" colorSpace="calibratedRGB"/>
+                            </pageControl>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GNu-Do-GdW">
                                 <rect key="frame" x="36" y="567" width="303" height="57"/>
                                 <color key="backgroundColor" red="0.6705882352941176" green="0.96862745098039216" blue="0.73333333333333328" alpha="1" colorSpace="calibratedRGB"/>
@@ -1085,14 +1094,6 @@
                                     <action selector="startButtonPressed:" destination="JHS-ku-vWK" eventType="touchUpInside" id="3eZ-fQ-zUI"/>
                                 </connections>
                             </button>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="wT8-Bh-IJg">
-                                <rect key="frame" x="154" y="510" width="67" height="37"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="67" id="J0v-E7-XzA"/>
-                                    <constraint firstAttribute="height" constant="37" id="e6w-OZ-MiB"/>
-                                </constraints>
-                                <color key="pageIndicatorTintColor" red="0.6705882352941176" green="0.96862745098039216" blue="0.73333333333333328" alpha="1" colorSpace="calibratedRGB"/>
-                            </pageControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -1143,6 +1144,7 @@
         <image name="realNowButtonBGHovered" width="375" height="44"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="o1V-sh-E4P"/>
+        <segue reference="M1I-8a-hdM"/>
+        <segue reference="ogp-9O-CUV"/>
     </inferredMetricsTieBreakers>
 </document>
