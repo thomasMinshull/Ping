@@ -128,6 +128,7 @@
         
         if ([shortcutItem.type isEqualToString:@"com.Ping.createEvent"]) {
             [self launchNewEventViewController];
+//            self.userShouldBeDirectedToNewEventViewController = YES;
         }
         
         if ([shortcutItem.type isEqualToString:@"com.Ping.surroundings"]) {
@@ -136,6 +137,7 @@
         
         if ([shortcutItem.type isEqualToString:@"com.Ping.browseEvents"]) {
             [self launchEventCalenderViewController];
+//            self.userShouldBeDirectedToCurrentSurroundingsViewController = YES;
         }
     } else {
         [self launchLogInScreen];
@@ -146,11 +148,14 @@
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
-    NewEventViewController *eventListVC = [storyboard instantiateViewControllerWithIdentifier:@"EventListViewController"];
-    [eventListVC performSegueWithIdentifier:@"showNewEventViewSegueNoAnimation" sender:nil];
+//    NewEventViewController *newEventVC = [storyboard instantiateViewControllerWithIdentifier:@"NewEventViewController"];
+    EventListViewController *eventListVC = [storyboard instantiateViewControllerWithIdentifier:@"EventListViewController"];
     
     self.window.rootViewController = eventListVC;
     [self.window makeKeyAndVisible];
+    
+    [eventListVC performSegueWithIdentifier:@"showNewEventViewSegueNoAnimation" sender:nil];
+
     
 }
 
@@ -168,11 +173,17 @@
 - (void)launchSurroundingsViewController {
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+
+    EventListViewController *eventListVC = [storyboard instantiateViewControllerWithIdentifier:@"EventListViewController"];
     
-    CurrentSurroundingsViewController *surroundingVC = [storyboard instantiateViewControllerWithIdentifier:@"CurrentSurroundingsViewController"];
+    eventListVC.userManager = [[UserManager alloc] init];
+    [eventListVC.userManager fetchUsersWthCompletion:^(NSArray *users) {}];
     
-    self.window.rootViewController = surroundingVC;
+    
+    self.window.rootViewController = eventListVC;
     [self.window makeKeyAndVisible];
+    
+    [eventListVC performSegueWithIdentifier:@"showCurrentSurroundingsNoAnimation" sender:nil];
     
 }
 
