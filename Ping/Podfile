@@ -10,6 +10,9 @@ target 'Ping' do
    pod 'SDWebImage'
 	pod 'Parse'
 	pod 'Realm'
+	pod ‘GooglePlaces’
+	pod ‘GooglePlacePicker’
+	pod ‘GoogleMaps’
 
   # Pods for Ping
 

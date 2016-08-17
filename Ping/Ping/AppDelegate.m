@@ -21,6 +21,9 @@
 #define Parse_APP_ID @"***REMOVED***"
 #define Parse_Client_Key @"***REMOVED***"
 
+@import GooglePlaces;
+#define GOOGLE_KEY @"***REMOVED***"
+
 @implementation AppDelegate
 
 
@@ -56,6 +59,9 @@
     
     // Initialize Parse.
     [Parse setApplicationId:Parse_APP_ID clientKey:Parse_Client_Key];
+    
+    // Initialize Google Map API
+    [GMSPlacesClient provideAPIKey:GOOGLE_KEY];
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
