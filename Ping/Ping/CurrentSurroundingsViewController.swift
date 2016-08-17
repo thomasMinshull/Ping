@@ -112,7 +112,13 @@ class CurrentSurroundingsViewController: UIViewController, UITableViewDelegate, 
     // MARK: Actions
     
     @IBAction func backButtonPressed(sender: AnyObject) {
+        
+        // *******************************************************************************************
+        
         btm.stop()
+        
+        // Creating an event each time user presses current surrounding button, should the app stop transmitting BT data after the user leaves the view or keep it going?
+        // *******************************************************************************************
         performSegueWithIdentifier("currentSurroundingsToEventList", sender: self)
     }
     
