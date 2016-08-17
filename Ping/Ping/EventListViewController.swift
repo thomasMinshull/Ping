@@ -164,6 +164,25 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     // MARK: - Navigation
     @IBAction func unwindToMenu(segue: UIStoryboardSegue) {}
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let identifier = segue.identifier else { return }
+        
+        if let indexPath = eventListTableView.indexPathForSelectedRow where identifier == "EventSegue" {
+            let event = events[indexPath.row]
+            if let vc = segue.destinationViewController as? EventViewController {
+                vc.event = event
+                vc.userManager = userManager
+            }
+            
+        } else if let indexPath = eventListTableView.indexPathForSelectedRow where identifier == "showCurrentSurroundings" {
+            if let vc = segue.destinationViewController as? CurrentSurroundingsViewController {
+                vc.event = event
+                vc.userManager = userManager
+            }
+        }
+        
+    }
+    
 }
 
 
