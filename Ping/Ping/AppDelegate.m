@@ -21,6 +21,9 @@
 #define Parse_APP_ID @"QaDwdtxkrP8gd42kZrvn1aHv64PKRNLxuuHY964v"
 #define Parse_Client_Key @"AZ8btrgurhLG306dVeWjKjx9nSszPI5sAoqwcZ6F"
 
+@import GooglePlaces;
+#define GOOGLE_KEY @"AIzaSyAUSze3iQQHpyNSQhmZCpaMKCu8ZrRV22c"
+
 @implementation AppDelegate
 
 
@@ -56,6 +59,9 @@
     
     // Initialize Parse.
     [Parse setApplicationId:Parse_APP_ID clientKey:Parse_Client_Key];
+    
+    // Initialize Google Map API
+    [GMSPlacesClient provideAPIKey:GOOGLE_KEY];
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
