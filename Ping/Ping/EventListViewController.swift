@@ -78,19 +78,19 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         performSegueWithIdentifier("EventSegue", sender: self)
     }
     
-    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let delete = UITableViewRowAction(style: .Normal, title: "\nDelete Event") {
-            action, index in
-            
-            let eventToDelete = self.events[indexPath.row]
-            let recMan = RecordManager()
-            recMan.deleteEvent(eventToDelete)
-            self.events.removeAtIndex(indexPath.row)
-        }
-        delete.backgroundColor = UIColor.redColor()
-        
-        return [delete]
-    }
+//    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+//        let delete = UITableViewRowAction(style: .Normal, title: "\nDelete Event") {
+//            action, index in
+//            
+//            let eventToDelete = self.events[indexPath.row]
+//            let recMan = RecordManager()
+//            recMan.deleteEvent(eventToDelete)
+//            self.events.removeAtIndex(indexPath.row)
+//        }
+//        delete.backgroundColor = UIColor.redColor()
+//        
+//        return [delete]
+//    }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
@@ -100,7 +100,6 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
             
 //            // Delete the local notificaitons when the event is removed.
-//            // Not going to work until deletion acutally WORKS on realm.
 //
 //            if let notificationArray: Array = UIApplication.sharedApplication().scheduledLocalNotifications{
 //                if let startNotificationToCancel: UILocalNotification = notificationArray[indexPath.row * 2]{
@@ -116,9 +115,11 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
 //            }else{
 //                print("Could not find array of notifications")
 //            }
-            
-            events.removeAtIndex(indexPath.row)
-            self.eventListTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+//            
+//            
+//            events.removeAtIndex(indexPath.row)
+//            self.eventListTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+//        
         }
     }
     
@@ -174,10 +175,9 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
                 vc.userManager = userManager
             }
             
-        } else if let indexPath = eventListTableView.indexPathForSelectedRow where identifier == "showCurrentSurroundings" {
+        } else if identifier == "showCurrentSurroundings" {
             if let vc = segue.destinationViewController as? CurrentSurroundingsViewController {
-                vc.event = event
-                vc.userManager = userManager
+                vc.userManager = self.userManager
             }
         }
         

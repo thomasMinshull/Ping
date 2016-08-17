@@ -16,7 +16,7 @@ class CurrentSurroundingsViewController: UIViewController, UITableViewDelegate, 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: Properties 
-    let userManager:UserManager?
+    var userManager:UserManager?
     let btm = BlueToothManager.sharedBluetoothManager()
     
     var users = [User]()
@@ -112,7 +112,7 @@ class CurrentSurroundingsViewController: UIViewController, UITableViewDelegate, 
     
     @IBAction func backButtonPressed(sender: AnyObject) {
         btm.stop()
-        self.dismissViewControllerAnimated(true, completion: nil)
+        performSegueWithIdentifier("currentSurroundingsToEventList", sender: self)
     }
     
     
