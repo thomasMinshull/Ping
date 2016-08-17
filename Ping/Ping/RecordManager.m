@@ -116,7 +116,7 @@
     });
 }
 
--(NSDate *)getStartTimeForTimePeriod:(NSDate *)time{
+- (NSDate *)getStartTimeForTimePeriod:(NSDate *)time{
     NSCalendar *cal = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian]; // get calander
     NSDateComponents *newDateComponenet = [[NSDateComponents alloc] init]; // create new component
     
@@ -133,7 +133,7 @@
     
 }
 
--(NSArray *)sortingUserRecordsInTimePeriodByProximity:(NSDate *)date {
+- (NSArray<NSString *> *)UUIDsSortedAtTime:(NSDate *)date; {
     
     date = [self getStartTimeForTimePeriod:date]; // rounds down to correct start date
 
