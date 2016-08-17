@@ -66,7 +66,6 @@ typedef void(^myCompletion)(BOOL);
     // Highlight button when selected
     UIImage *signInWithLinkedInButtonHoveredImage = [UIImage imageNamed:@"Sign-In-Large---Hover"];
     [self.linkedInLoginButton setImage:signInWithLinkedInButtonHoveredImage forState:UIControlStateHighlighted];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
