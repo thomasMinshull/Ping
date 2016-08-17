@@ -10,4 +10,6 @@
 
 @interface NewEventViewController : UIViewController
 
+@property NSString *passingLocation;
+
 @end

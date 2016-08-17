@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		36EC22A771BF10EEE86A27D6 /* Pods_Ping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FE2D22B0F6D9E8EA16626E2 /* Pods_Ping.framework */; };
+		40208B7B1D63AC25009407AA /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40208B7A1D63AC25009407AA /* LocationViewController.swift */; };
 		4063F8531D5C0AB300D13D6A /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4063F8521D5C0AB300D13D6A /* LoadingView.swift */; };
 		4063F8551D5C0B1200D13D6A /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4063F8541D5C0B1200D13D6A /* QCMethod.swift */; };
+		408856BD1D640EF80067D62B /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 408856BC1D640EF80067D62B /* LocationManager.m */; };
 		40F135421D4C33C200376973 /* BlueToothManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 555C1E791D4A9DE700007980 /* BlueToothManger.m */; };
 		550391191D62B203009F32E0 /* GradientColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550391181D62B203009F32E0 /* GradientColorExtension.swift */; };
 		5511E5EF1D5CFA78000DFFB3 /* ParseUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5511E5EE1D5CFA78000DFFB3 /* ParseUser.m */; };
@@ -51,8 +53,11 @@
 
 /* Begin PBXFileReference section */
 		2FE2D22B0F6D9E8EA16626E2 /* Pods_Ping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		40208B7A1D63AC25009407AA /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		4063F8521D5C0AB300D13D6A /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		4063F8541D5C0B1200D13D6A /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
+		408856BB1D640EF80067D62B /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
+		408856BC1D640EF80067D62B /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		550391181D62B203009F32E0 /* GradientColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientColorExtension.swift; sourceTree = "<group>"; };
 		5511E5ED1D5CFA78000DFFB3 /* ParseUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseUser.h; sourceTree = "<group>"; };
 		5511E5EE1D5CFA78000DFFB3 /* ParseUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseUser.m; sourceTree = "<group>"; };
@@ -115,8 +120,6 @@
 		9C93654F1D59287B009E6262 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		9C9365501D59287B009E6262 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		9CD7F5A01D6137AA003A701B /* WelcomeScrollingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScrollingViewController.swift; sourceTree = "<group>"; };
-		BBF5D50F2E3876EE0E2E3951 /* Pods-Ping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ping/Pods-Ping.debug.xcconfig"; sourceTree = "<group>"; };
-		EB38DA1028CD9B2B046846B0 /* Pods-Ping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ping.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ping/Pods-Ping.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +250,8 @@
 				555C1E791D4A9DE700007980 /* BlueToothManger.m */,
 				55B0C3EC1D59796300394286 /* LoginManager.h */,
 				55B0C3ED1D59796300394286 /* LoginManager.m */,
+				408856BB1D640EF80067D62B /* LocationManager.h */,
+				408856BC1D640EF80067D62B /* LocationManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -276,6 +281,7 @@
 				55DCBF591D5D3D580085F5A3 /* CurrentSurroundingsViewController.swift */,
 				55FA848B1D5D9B250073FB1E /* ForgotPasswordViewController.swift */,
 				9C4969311D5E5FC6003DAE8C /* EventViewController.swift */,
+				40208B7A1D63AC25009407AA /* LocationViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -493,6 +499,7 @@
 				9C18CAF81D4AE89B008519E1 /* User.m in Sources */,
 				55A098E11D4907CE005100BC /* UserManager.m in Sources */,
 				5599E7931D49C14F00E61B0E /* PingUserTableViewCell.m in Sources */,
+				408856BD1D640EF80067D62B /* LocationManager.m in Sources */,
 				55B0C3EE1D59796300394286 /* LoginManager.m in Sources */,
 				5548D0CD1D5FD979006A78F9 /* BlueToothTestViewController.m in Sources */,
 				55B0C3F11D5A440D00394286 /* CurrentUser.m in Sources */,
@@ -512,6 +519,7 @@
 				5594DAFD1D45E2DE0096D5DF /* main.m in Sources */,
 				55DCBF5D1D5D3D610085F5A3 /* NewEventViewController.m in Sources */,
 				5599E78C1D499E1C00E61B0E /* TimePeriod.m in Sources */,
+				40208B7B1D63AC25009407AA /* LocationViewController.swift in Sources */,
 				550391191D62B203009F32E0 /* GradientColorExtension.swift in Sources */,
 				55A098B81D47FD73005100BC /* NSString+UUID.m in Sources */,
 				4063F8531D5C0AB300D13D6A /* LoadingView.swift in Sources */,

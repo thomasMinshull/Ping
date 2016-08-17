@@ -10,16 +10,19 @@
 #import "Event.h"
 #import "CurrentUser.h"
 #import "RecordManager.h"
+#import "Ping-Swift.h"
 
-@interface NewEventViewController () <UITextFieldDelegate>
+@interface NewEventViewController () <UITextFieldDelegate, SendDataDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *completeButton;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (weak, nonatomic) IBOutlet UITextField *eventNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *eventHostTextField;
-@property (weak, nonatomic) IBOutlet UITextField *eventLocationTextField;
+//@property (weak, nonatomic) IBOutlet UITextField *eventLocationTextField;
 @property (weak, nonatomic) IBOutlet UIButton *startTimeButton;
 @property (weak, nonatomic) IBOutlet UIButton *endTimeButton;
+
+@property NSString *fetchedLocation;
 
 @property (strong) Event *event;
 
@@ -27,12 +30,16 @@
 
 @implementation NewEventViewController
 
+- (void)sendData:(NSString *)text{
+    self.event.eventAddress = text;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.eventNameTextField.delegate = self;
     self.eventHostTextField.delegate = self;
-    self.eventLocationTextField.delegate = self;
+    //    self.eventLocationTextField.delegate = self;
     
     self.event = [[Event alloc] init];
     
@@ -44,18 +51,27 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if ([textField isEqual:self.eventNameTextField]) {
         [self.eventHostTextField becomeFirstResponder];
-    } else if ([textField isEqual:self.eventHostTextField]) {
-        [self.eventLocationTextField becomeFirstResponder];
-    } else {
+    }
+    //    else if ([textField isEqual:self.eventHostTextField]) {
+    //        [self.eventLocationTextField becomeFirstResponder];
+    //    }
+    else {
         [textField resignFirstResponder];
     }
     return YES;
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier  isEqual: @"locationSegue"]) {
+        LocationViewController *locVC = [segue destinationViewController];
+        locVC.delegate = self;
+    }
+}
+
 #pragma mark - Actions
 
 - (IBAction)backgroundTapped:(id)sender {
-        [self.view endEditing:YES];
+    [self.view endEditing:YES];
 }
 
 
@@ -79,12 +95,12 @@
                                                                 preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"OK"
-                                                              style:UIAlertActionStyleDefault
-                                                            handler:nil];
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:nil];
         [alert addAction:okButton];
         [self presentViewController:alert animated:YES completion:nil];
     }
-
+    
 }
 
 - (IBAction)backButtonPressed:(id)sender {
@@ -131,9 +147,9 @@
     [self.view addSubview:toolBar];
     
     
-    // Make a cool enterince 
+    // Make a cool enterince
     [UIView beginAnimations:@"MoveIn" context:nil];
-
+    
     datePicker.frame = CGRectMake(0.0, self.view.bounds.size.height*4.7/10, self.view.bounds.size.width, 380);
     
     toolBar.frame = CGRectMake(0.0, self.view.bounds.size.height*4.7/10, self.view.bounds.size.width, 44);
@@ -176,7 +192,7 @@
     
     toolBar.frame = CGRectMake(0.0, self.view.bounds.size.height*4.7/10, self.view.bounds.size.width, 44);
     darkView.alpha = 0.5;
-
+    
     [UIView commitAnimations];
 }
 
@@ -225,7 +241,7 @@
 }
 
 - (bool)validEvent {
-    if (!(self.event.eventName.length > 0) || !(self.event.hostName.length > 0) || !self.event.startTime || !self.event.endTime) {
+    if (!(self.event.eventName.length > 0) || !(self.event.hostName.length > 0) || !self.event.startTime || !self.event.endTime || !self.event.eventAddress) {
         return false;
     } else if ([self.event.startTime compare:self.event.endTime] != NSOrderedAscending) {
         return false;
@@ -237,6 +253,9 @@
 }
 
 #pragma mark - Navigation
- 
+
+- (IBAction)unwindToNewEventViewController:(UIStoryboardSegue*)sender {
+}
+
 
 @end
