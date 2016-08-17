@@ -441,8 +441,8 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="headline" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IaT-SI-Mvw">
-                                                    <rect key="frame" x="136" y="48" width="77" height="26"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="headline" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IaT-SI-Mvw">
+                                                    <rect key="frame" x="136" y="47" width="77" height="26"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="22"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -623,40 +623,50 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9jj-UA-2BI">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="76" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9jj-UA-2BI">
                                 <rect key="frame" x="0.0" y="66" width="375" height="557"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="60" id="weK-R3-DvW" customClass="EventListTableViewCell" customModule="Ping" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="60"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="76" id="weK-R3-DvW" customClass="EventListTableViewCell" customModule="Ping" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="76"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="weK-R3-DvW" id="cUk-fv-gzW">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ml-iG-6TW">
-                                                    <rect key="frame" x="8" y="30" width="38" height="19"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="startTime" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ml-iG-6TW">
+                                                    <rect key="frame" x="302" y="10" width="65" height="19"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yej-EW-514">
-                                                    <rect key="frame" x="8" y="8" width="43" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EventTitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yej-EW-514" userLabel="Title">
+                                                    <rect key="frame" x="8" y="8" width="76" height="22"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Host" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJg-JO-8vQ">
+                                                    <rect key="frame" x="8" y="38" width="37" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Yej-EW-514" firstAttribute="top" secondItem="cUk-fv-gzW" secondAttribute="topMargin" id="3qe-nb-MuC"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="hJg-JO-8vQ" secondAttribute="bottom" constant="8" id="7nK-El-9mv"/>
                                                 <constraint firstItem="Yej-EW-514" firstAttribute="leading" secondItem="cUk-fv-gzW" secondAttribute="leadingMargin" id="GEX-qf-5fw"/>
-                                                <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="8ml-iG-6TW" secondAttribute="trailing" constant="323" id="M3F-RR-SwV"/>
-                                                <constraint firstItem="8ml-iG-6TW" firstAttribute="top" secondItem="Yej-EW-514" secondAttribute="bottom" constant="1" id="lZg-0j-g0X"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="8ml-iG-6TW" secondAttribute="trailing" id="Ig6-xp-UOh"/>
+                                                <constraint firstItem="hJg-JO-8vQ" firstAttribute="leading" secondItem="cUk-fv-gzW" secondAttribute="leadingMargin" id="Lin-bV-Lc8"/>
+                                                <constraint firstItem="8ml-iG-6TW" firstAttribute="centerY" secondItem="Yej-EW-514" secondAttribute="centerY" id="XFm-pk-kAd"/>
+                                                <constraint firstItem="8ml-iG-6TW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Yej-EW-514" secondAttribute="trailing" constant="8" id="itb-W6-WqU"/>
+                                                <constraint firstItem="hJg-JO-8vQ" firstAttribute="top" secondItem="Yej-EW-514" secondAttribute="bottom" constant="8" id="kjR-gw-3KG"/>
                                                 <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="Yej-EW-514" secondAttribute="trailing" constant="318" id="qxp-Qw-gOr"/>
-                                                <constraint firstItem="8ml-iG-6TW" firstAttribute="leading" secondItem="Yej-EW-514" secondAttribute="leading" id="uC5-dB-LSw"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="eventHostLabel" destination="hJg-JO-8vQ" id="0MO-fu-Npe"/>
                                             <outlet property="eventTimeLabel" destination="8ml-iG-6TW" id="Akg-3g-4PE"/>
                                             <outlet property="eventTitleLabel" destination="Yej-EW-514" id="5Y2-kx-59t"/>
                                         </connections>
