@@ -49,6 +49,10 @@ typedef void(^myCompletion)(BOOL);
     self.view.userInteractionEnabled = YES;
     self.loadingView.userInteractionEnabled = YES;
     
+    [self.userManager fetchUsersWthCompletion:^(NSArray *users) {
+        NSLog(@"User List Fetched");
+    }];
+    
     UITapGestureRecognizer *stopAnimateTap =
     [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(stopAnimateTap:)];
     [self.view addGestureRecognizer:stopAnimateTap];

@@ -32,17 +32,7 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     override func viewWillAppear(animated: Bool) {
-//        
-//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//        
-//        if (appDelegate.userShouldBeDirectedToNewEventViewController) {
-//            // If user selects create event shortcut, direct him to NeweventVC
-//            self.performSegueWithIdentifier("showNewEventViewSegueNoAnimation", sender: self)
-//        } else if (appDelegate.userShouldBeDirectedToCurrentSurroundingsViewController){
-//            // If selected CurrentsurroundingsVC
-//            self.performSegueWithIdentifier("showCurrentSurroundingsNoAnimation", sender: self)
-//        } else {
-        
+
             events = CurrentUser.getCurrentUser().fetchEvents();
             eventListTableView.reloadData()
             
@@ -186,7 +176,7 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
             let event = events[indexPath.row]
             if let vc = segue.destinationViewController as? EventViewController {
                 vc.event = event
-                vc.userManager = userManager
+                vc.userManager = self.userManager
             }
             
         } else if identifier == "showCurrentSurroundings" {
