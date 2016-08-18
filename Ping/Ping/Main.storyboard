@@ -474,7 +474,6 @@
                                 <rect key="frame" x="16" y="97" width="343" height="30"/>
                                 <state key="normal" title="stop"/>
                                 <connections>
-                                    <action selector="startButtonTapped:" destination="oqY-Js-wbI" eventType="touchUpInside" id="YIe-Xr-K5V"/>
                                     <action selector="stopButtonTapped:" destination="oqY-Js-wbI" eventType="touchUpInside" id="smq-Hr-00o"/>
                                 </connections>
                             </button>
