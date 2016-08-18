@@ -77,7 +77,7 @@
                         
                     } else {
                         // Otherwise add this record to the current time period
-                        RLMResults<TimePeriod *> *possibletimePeriods = [timePeriods objectsWhere:@"startTime >= %@", [time dateByAddingTimeInterval:-TIME_INTERVAL]]; //effectively if time >endTime 
+                        RLMResults<TimePeriod *> *possibletimePeriods = [timePeriods objectsWhere:@"startTime >= %@", [time dateByAddingTimeInterval:-TIME_INTERVAL]]; //effectively if time >endTime
                         
                         if ([possibletimePeriods count] >= 1) { // we found our timePeriod, Horray!!
                             TimePeriod *previousTimePeriod = [timePeriods firstObject];
@@ -136,7 +136,7 @@
 - (NSArray<NSString *> *)UUIDsSortedAtTime:(NSDate *)date; {
     
     date = [self getStartTimeForTimePeriod:date]; // rounds down to correct start date
-
+    
     for (TimePeriod *tp in [TimePeriod allObjects]) {
         if ([date compare:tp.startTime] == NSOrderedSame) { // This is the time period you are looking for
             NSMutableArray *userRecordsArrayInTimePeriod = [[NSMutableArray alloc] init];
@@ -175,7 +175,7 @@
 
 - (NSArray *)uuidList {
     NSMutableArray *array = [[NSMutableArray alloc] init];
-
+    
     RLMResults<User *> *users = [User allObjects];
     for (User *user in users) {
         NSString *uuidString = user.UUID;
@@ -188,24 +188,12 @@
     RLMRealm *realm = [RLMRealm defaultRealm];
     
     [realm transactionWithBlock:^{
-        CurrentUser *currentUser = [CurrentUser getCurrentUser];
-        NSUInteger index = [currentUser.events indexOfObject:event];
-        [currentUser.events removeObjectAtIndex:index];
+        
+        // ToDo add checking mechanism to check if realm already contains event
+        
+        [realm deleteObject:event];
+        
     }];
 }
 
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-

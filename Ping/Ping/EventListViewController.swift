@@ -113,11 +113,15 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
 //            }else{
 //                print("Could not find array of notifications")
 //            }
-//            
-//            
-//            events.removeAtIndex(indexPath.row)
-//            self.eventListTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-//        
+            
+            // Deleting event from table(row) local array and realm
+            
+            
+            let eventRecordManager = RecordManager()
+            eventRecordManager.deleteEvent(events[indexPath.row])
+            events.removeAtIndex(indexPath.row)
+            self.eventListTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+
         }
     }
     
