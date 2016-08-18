@@ -13,6 +13,7 @@ class EventListTableViewCell: UITableViewCell {
     @IBOutlet weak var eventTitleLabel: UILabel!
     @IBOutlet weak var eventTimeLabel: UILabel!
     @IBOutlet weak var eventHostLabel: UILabel!
+    @IBOutlet weak var eventLocationLabel: UILabel!
     
     let gradientLayer = CAGradientLayer()
 
@@ -34,11 +35,12 @@ class EventListTableViewCell: UITableViewCell {
     }
     
     func configureWithEvent(event:Event) {
-        eventTimeLabel.text = event.eventName
+        eventTitleLabel.text = event.eventName
         eventHostLabel.text = event.hostName
+        eventLocationLabel.text = event.eventAddress
         
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "EEE MMM d h m a"
+        dateFormatter.dateFormat = "EEE MMM d h:mm a"
         
         eventTimeLabel.text = dateFormatter.stringFromDate(event.startTime)
         
