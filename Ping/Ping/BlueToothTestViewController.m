@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.btm = [[BlueToothManager alloc] init];
+    self.btm = [BlueToothManager sharedBluetoothManager];
     self.btm.vc = self;
     
 }
