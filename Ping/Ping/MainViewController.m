@@ -112,13 +112,13 @@
 }
 
 - (IBAction)switchChanged:(id)sender {
-    if (self.advertisingSwitch.on) {
-        [self.blueToothManager setUpBluetooth];
-    }
-    
-    else {
-        [self.blueToothManager stop];
-    }
+//    if (self.advertisingSwitch.on) {
+//        [self.blueToothManager setUpBluetooth];
+//    }
+//    
+//    else {
+//        [self.blueToothManager stop];
+//    }
 }
 
 #pragma mark -Helper Methodes
