@@ -13,7 +13,7 @@
 
 @interface UserManager : NSObject
 
-- (User *)userForUUID:(NSString *)uuid;
+- ( User * _Nullable )userForUUID:(NSString *)uuid;
 
 - (void)fetchUsersWthCompletion:(void(^)(NSArray *users))completion;
 - (void)addProfilePic:(NSString *)profilePicURL;

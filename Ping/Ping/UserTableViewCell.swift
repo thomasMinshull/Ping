@@ -40,6 +40,13 @@ class UserTableViewCell: UITableViewCell {
 
     }
     
+    override func prepareForReuse() {
+        firstNameLabel.text = "Unknown User"
+        lastNameLabel.text = ""
+        headlineLabel.text = ""
+        profilePicImageView.image = UIImage(named: "ghost_person")
+    }
+    
     func configureWithUser(user:User) {
         
         firstNameLabel.text = user.firstName;

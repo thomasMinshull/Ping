@@ -113,14 +113,20 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         // refactor to reorder cells & insert and delete
         let cell:UserTableViewCell = tableView.dequeueReusableCellWithIdentifier("UserTableViewCell") as! UserTableViewCell
         
-        let user = userManager.userForUUID(uuids[indexPath.row])
-        cell.configureWithUser(user)
+        if let user = userManager.userForUUID(uuids[indexPath.row]) {
+            cell.configureWithUser(user)
+        }
+        
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let user = self.userManager.userForUUID(uuids[indexPath.row])
-        LISDKDeeplinkHelper.sharedInstance().viewOtherProfile(user.linkedInID, withState: "eventCellSelected", showGoToAppStoreDialog: false, success: nil, error: nil)
+        
+        if let user = user {
+            LISDKDeeplinkHelper.sharedInstance().viewOtherProfile(user.linkedInID, withState: "eventCellSelected", showGoToAppStoreDialog: false, success: nil, error: nil)
+        }
+        
     }
     
     func colorForIndex(index: Int) -> UIColor {
