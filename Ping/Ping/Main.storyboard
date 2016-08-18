@@ -756,21 +756,31 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z4Q-jO-6yo">
+                                                    <rect key="frame" x="301" y="38" width="66" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Yej-EW-514" firstAttribute="top" secondItem="cUk-fv-gzW" secondAttribute="topMargin" id="3qe-nb-MuC"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="hJg-JO-8vQ" secondAttribute="bottom" constant="8" id="7nK-El-9mv"/>
                                                 <constraint firstItem="Yej-EW-514" firstAttribute="leading" secondItem="cUk-fv-gzW" secondAttribute="leadingMargin" id="GEX-qf-5fw"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Z4Q-jO-6yo" secondAttribute="bottom" constant="8" id="GnE-pc-THt"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="8ml-iG-6TW" secondAttribute="trailing" id="Ig6-xp-UOh"/>
                                                 <constraint firstItem="hJg-JO-8vQ" firstAttribute="leading" secondItem="cUk-fv-gzW" secondAttribute="leadingMargin" id="Lin-bV-Lc8"/>
                                                 <constraint firstItem="8ml-iG-6TW" firstAttribute="centerY" secondItem="Yej-EW-514" secondAttribute="centerY" id="XFm-pk-kAd"/>
                                                 <constraint firstItem="8ml-iG-6TW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Yej-EW-514" secondAttribute="trailing" constant="8" id="itb-W6-WqU"/>
                                                 <constraint firstItem="hJg-JO-8vQ" firstAttribute="top" secondItem="Yej-EW-514" secondAttribute="bottom" constant="8" id="kjR-gw-3KG"/>
                                                 <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="Yej-EW-514" secondAttribute="trailing" constant="318" id="qxp-Qw-gOr"/>
+                                                <constraint firstItem="Z4Q-jO-6yo" firstAttribute="trailing" secondItem="8ml-iG-6TW" secondAttribute="trailing" id="sMM-LU-YoO"/>
+                                                <constraint firstItem="Z4Q-jO-6yo" firstAttribute="top" secondItem="8ml-iG-6TW" secondAttribute="bottom" constant="9" id="uE2-q4-ymJ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="eventHostLabel" destination="hJg-JO-8vQ" id="0MO-fu-Npe"/>
+                                            <outlet property="eventLocationLabel" destination="Z4Q-jO-6yo" id="j3F-z8-BtO"/>
                                             <outlet property="eventTimeLabel" destination="8ml-iG-6TW" id="Akg-3g-4PE"/>
                                             <outlet property="eventTitleLabel" destination="Yej-EW-514" id="5Y2-kx-59t"/>
                                         </connections>

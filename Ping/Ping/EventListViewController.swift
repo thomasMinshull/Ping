@@ -63,16 +63,10 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! EventListTableViewCell
+
+        cell.selectionStyle = UITableViewCellSelectionStyle.Gray // ToDo move into cell class
         
-        cell.eventTitleLabel.text = events[indexPath.row].eventName
-        cell.eventTimeLabel.text = String(events[indexPath.row].startTime)
-        
-        cell.eventTitleLabel.textColor = UIColor.blackColor()
-        cell.eventTitleLabel.backgroundColor = UIColor.clearColor()
-        cell.selectionStyle = UITableViewCellSelectionStyle.Gray
-        
-        cell.eventTimeLabel.textColor = UIColor.blackColor()
-        cell.eventTimeLabel.backgroundColor = UIColor.clearColor()
+        cell.configureWithEvent(events[indexPath.row])
         
         return cell
         
