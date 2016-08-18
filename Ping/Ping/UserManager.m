@@ -54,7 +54,7 @@
     }];
 }
 
-- (User *)userForUUID:(NSString *)uuid {
+- ( User * _Nullable )userForUUID:(NSString *)uuid {
     
     for (PFObject *parseUser in self.parseUsers) {
         if ([parseUser[@"UUID"] isEqualToString:uuid]) {
