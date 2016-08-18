@@ -40,7 +40,6 @@ class CurrentSurroundingsViewController: UIViewController, UITableViewDelegate, 
         currentSurroundingTableView.tableFooterView = UIView(frame: CGRectZero)
     }
 
-    
     // MARK: TableView Delegate/DataSource
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -49,23 +48,27 @@ class CurrentSurroundingsViewController: UIViewController, UITableViewDelegate, 
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 136
-        
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let userCell = tableView.dequeueReusableCellWithIdentifier("UserCell", forIndexPath: indexPath) as! UserTableViewCell
         
         userCell.selectionStyle = UITableViewCellSelectionStyle.Default
+        userCell.configureWithUser(users[indexPath.row])
         
-        userCell.configureWithUser(users[indexPath.row]);
+        return userCell
+    }
+    
+    func colorForIndex(index: Int) -> UIColor {
         
-        return userCell;
+        let itemCount = users.count - 1
+        let transparency = (CGFloat(index) / CGFloat(itemCount)) * 0.6
+        return UIColor(red: 0.44314, green: 0.95686, blue: 0.81961, alpha: transparency)
     }
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         cell.backgroundColor =  colorForIndex(indexPath.row)
     }
-    
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let user = users[indexPath.row]
@@ -106,15 +109,6 @@ class CurrentSurroundingsViewController: UIViewController, UITableViewDelegate, 
         }
         
     }
-    
-    func colorForIndex(index: Int) -> UIColor {
-        
-        let itemIndex = users.count - 1
-        let transparency = (CGFloat(index) / CGFloat(itemIndex)) * 0.6
-        
-        return UIColor(red: 0.85098, green: 0.98039, blue: 0.66667, alpha: transparency)
-    }
-    
     
     // MARK: Actions
     

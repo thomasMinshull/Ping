@@ -47,8 +47,6 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
             if let ip = ip {
                 eventListTableView.scrollToRowAtIndexPath(ip, atScrollPosition: .Top, animated: false)
             }
-            
-//        }
         
     }
     
@@ -63,9 +61,7 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! EventListTableViewCell
-
         cell.selectionStyle = UITableViewCellSelectionStyle.Gray // ToDo move into cell class
-        
         cell.configureWithEvent(events[indexPath.row])
         
         return cell
@@ -75,20 +71,6 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         performSegueWithIdentifier("EventSegue", sender: self)
     }
-    
-//    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-//        let delete = UITableViewRowAction(style: .Normal, title: "\nDelete Event") {
-//            action, index in
-//            
-//            let eventToDelete = self.events[indexPath.row]
-//            let recMan = RecordManager()
-//            recMan.deleteEvent(eventToDelete)
-//            self.events.removeAtIndex(indexPath.row)
-//        }
-//        delete.backgroundColor = UIColor.redColor()
-//        
-//        return [delete]
-//    }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
@@ -125,6 +107,8 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    // Prepare to display gradient cells
+    
     func colorforIndex(index: Int) -> UIColor {
         
         let itemCount = events.count - 1 // ToDo deal with edge case what happens when events is 0?
@@ -132,6 +116,8 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         return UIColor(red: 0.44314, green: 0.95686, blue: 0.81961, alpha: transparency)
         
     }
+    
+    // Displaying gradient cells
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         
@@ -187,9 +173,6 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         }
         
-        
     }
     
 }
-
-
