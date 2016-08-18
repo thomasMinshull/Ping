@@ -747,23 +747,33 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EventTitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yej-EW-514" userLabel="Title">
-                                                    <rect key="frame" x="8" y="8" width="76" height="22"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
+                                                    <rect key="frame" x="8" y="8" width="79.5" height="22"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Host" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJg-JO-8vQ">
-                                                    <rect key="frame" x="8" y="38" width="37" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="8" y="34" width="38" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="oGi-7O-7HE"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z4Q-jO-6yo">
-                                                    <rect key="frame" x="301" y="38" width="66" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="300" y="34" width="67" height="25"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pin" translatesAutoresizingMaskIntoConstraints="NO" id="G3V-ES-xu9">
+                                                    <rect key="frame" x="271" y="34" width="25" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="BCC-hE-a7i"/>
+                                                        <constraint firstAttribute="width" constant="25" id="Pem-Yb-r7j"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Yej-EW-514" firstAttribute="top" secondItem="cUk-fv-gzW" secondAttribute="topMargin" id="3qe-nb-MuC"/>
@@ -773,11 +783,14 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="8ml-iG-6TW" secondAttribute="trailing" id="Ig6-xp-UOh"/>
                                                 <constraint firstItem="hJg-JO-8vQ" firstAttribute="leading" secondItem="cUk-fv-gzW" secondAttribute="leadingMargin" id="Lin-bV-Lc8"/>
                                                 <constraint firstItem="8ml-iG-6TW" firstAttribute="centerY" secondItem="Yej-EW-514" secondAttribute="centerY" id="XFm-pk-kAd"/>
+                                                <constraint firstItem="Z4Q-jO-6yo" firstAttribute="leading" secondItem="G3V-ES-xu9" secondAttribute="trailing" constant="4" id="dqm-Ph-TBh"/>
+                                                <constraint firstItem="Z4Q-jO-6yo" firstAttribute="centerY" secondItem="hJg-JO-8vQ" secondAttribute="centerY" id="gsX-nV-fLl"/>
+                                                <constraint firstItem="G3V-ES-xu9" firstAttribute="centerY" secondItem="Z4Q-jO-6yo" secondAttribute="centerY" id="iKq-v8-D3F"/>
                                                 <constraint firstItem="8ml-iG-6TW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Yej-EW-514" secondAttribute="trailing" constant="8" id="itb-W6-WqU"/>
-                                                <constraint firstItem="hJg-JO-8vQ" firstAttribute="top" secondItem="Yej-EW-514" secondAttribute="bottom" constant="8" id="kjR-gw-3KG"/>
+                                                <constraint firstItem="hJg-JO-8vQ" firstAttribute="top" secondItem="Yej-EW-514" secondAttribute="bottom" constant="4" id="kjR-gw-3KG"/>
                                                 <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="Yej-EW-514" secondAttribute="trailing" constant="318" id="qxp-Qw-gOr"/>
+                                                <constraint firstItem="Z4Q-jO-6yo" firstAttribute="height" secondItem="hJg-JO-8vQ" secondAttribute="height" id="rr3-lt-2ZO"/>
                                                 <constraint firstItem="Z4Q-jO-6yo" firstAttribute="trailing" secondItem="8ml-iG-6TW" secondAttribute="trailing" id="sMM-LU-YoO"/>
-                                                <constraint firstItem="Z4Q-jO-6yo" firstAttribute="top" secondItem="8ml-iG-6TW" secondAttribute="bottom" constant="9" id="uE2-q4-ymJ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1271,6 +1284,7 @@
         <image name="backHovered" width="438" height="228"/>
         <image name="linkedin_login.png" width="640" height="126"/>
         <image name="longbackbutton" width="146" height="76"/>
+        <image name="pin" width="75" height="75"/>
         <image name="realNowButtonBGDefault" width="375" height="44"/>
         <image name="realNowButtonBGHovered" width="375" height="44"/>
     </resources>

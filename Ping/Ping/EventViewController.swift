@@ -33,12 +33,14 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         updateTimePeriods()
         timeSlider.value = timeSlider.maximumValue
         
-        currentTimePeriod = getCurrentTimePeriodForSliderValue(UInt(timeSlider.value))
-        
-        uuids = getUUIDsForTimePeriod(currentTimePeriod!)
-        
-        if let startTime = currentTimePeriod!.startTime {
-            updateDateLabelWithDate(startTime)
+        if timePeriods.count != 0 {
+            
+            currentTimePeriod = getCurrentTimePeriodForSliderValue(UInt(timeSlider.value))
+            uuids = getUUIDsForTimePeriod(currentTimePeriod!)
+            
+            if let startTime = currentTimePeriod!.startTime {
+                updateDateLabelWithDate(startTime)
+            }
         }
         
         tableView.rowHeight = UITableViewAutomaticDimension
