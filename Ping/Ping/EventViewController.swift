@@ -18,7 +18,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     //MARK: Properties 
     var event:Event!
     var userManager:UserManager!
-    var timePeriods = [TimePeriod]()
+    var timePeriods:[TimePeriod]? // note can't be nil if no timePeriods will have empty array
     var uuids = [String]()
     var currentTimePeriod:TimePeriod?
     
@@ -33,14 +33,11 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         updateTimePeriods()
         timeSlider.value = timeSlider.maximumValue
         
-        if timePeriods.count != 0 {
-            
-            currentTimePeriod = getCurrentTimePeriodForSliderValue(UInt(timeSlider.value))
-            uuids = getUUIDsForTimePeriod(currentTimePeriod!)
-            
-            if let startTime = currentTimePeriod!.startTime {
-                updateDateLabelWithDate(startTime)
-            }
+        currentTimePeriod = getCurrentTimePeriodForSliderValue(UInt(timeSlider.value))
+        uuids = getUUIDsForTimePeriod(currentTimePeriod)
+        
+        if let startTime = currentTimePeriod?.startTime {
+            updateDateLabelWithDate(startTime)
         }
         
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -54,25 +51,41 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func updateTimePeriods() {
         
-        self.timePeriods = TimePeriod.sortArray(event.timePeriods, byDateAscending: true) as![TimePeriod] //implemented in objective-C because realm-objective-C hates swift
+        self.timePeriods = TimePeriod.sortArray(event.timePeriods, byDateAscending: true) as?[TimePeriod] //implemented in objective-C because realm-objective-C hates swift
         
-        let timePeriods = self.timePeriods
-        
-        if timePeriods.count > 0 {
-            timeSlider.maximumValue = Float(timePeriods.count) - 1
-            return
+        if let timePeriods = self.timePeriods {
+            
+            if timePeriods.count > 0 {
+                timeSlider.maximumValue = Float(timePeriods.count) - 1
+                return
+            }
+            
+            timeSlider.maximumValue = 0
+            
         }
-        
-        timeSlider.maximumValue = 0
     }
 
-    func getCurrentTimePeriodForSliderValue(sliderValue:UInt) -> TimePeriod {
-        return self.timePeriods[Int(sliderValue)] 
+    
+    func getCurrentTimePeriodForSliderValue(sliderValue:UInt) -> TimePeriod? {
+        
+        if let timePeriods = timePeriods {
+            if timePeriods.count != 0 {
+                if Int(sliderValue) < timePeriods.count {
+                    return timePeriods[Int(sliderValue)]
+                }
+            }
+        }
+        return nil
     }
     
-    func getUUIDsForTimePeriod(timePeriod:TimePeriod) -> [String] {
+    func getUUIDsForTimePeriod(timePeriod:TimePeriod?) -> [String] {
         let recMan = RecordManager()
-        return recMan.UUIDsSortedAtTime(timePeriod.startTime)
+        
+        if let timePeriod = timePeriod {
+            return recMan.UUIDsSortedAtTime(timePeriod.startTime)
+        } else {
+            return [String]()
+        }
     }
     
     func updateDateLabelWithDate(date:NSDate) {
@@ -113,9 +126,12 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         // ToDo Refactor so we are reordering cells, inserting and deleting instead of reloading table view
         currentTimePeriod = getCurrentTimePeriodForSliderValue(UInt(timeSlider.value))
-        uuids = getUUIDsForTimePeriod(currentTimePeriod!)
-        updateDateLabelWithDate(currentTimePeriod!.startTime)
-        tableView.reloadData()
+        
+        if let currentTimePeriod = currentTimePeriod {
+            
+            uuids = getUUIDsForTimePeriod(currentTimePeriod)
+            tableView.reloadData()
+        }
         
     }
     
@@ -123,7 +139,12 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         // ToDo Make Dry, code repeated in timeSliderFinishSliding
         timeSlider.value = roundf(sender.value)
         currentTimePeriod = getCurrentTimePeriodForSliderValue(UInt(timeSlider.value))
-        updateDateLabelWithDate(currentTimePeriod!.startTime)
+        
+        if let currentTimePeriod = currentTimePeriod {
+            updateDateLabelWithDate(currentTimePeriod.startTime)
+        } else {
+            updateDateLabelWithDate(event.startTime)
+        }
     }
     
 
