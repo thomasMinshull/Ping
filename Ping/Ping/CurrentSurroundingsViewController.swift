@@ -70,8 +70,8 @@ class CurrentSurroundingsViewController: UIViewController, UITableViewDelegate, 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let user = users[indexPath.row]
         LISDKDeeplinkHelper.sharedInstance().viewOtherProfile(user.linkedInID, withState: "eventCellSelected", showGoToAppStoreDialog: false, success: nil, error: nil)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-
     
     // MARK: Custom Methods
     
