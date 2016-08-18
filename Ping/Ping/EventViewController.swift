@@ -21,12 +21,18 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     var timePeriods = [TimePeriod]()
     var uuids = [String]()
     var currentTimePeriod:TimePeriod?
+    // Definint theme background color:
+    let thmeBackGroundColor = UIColor(netHex:0xD9FAAA)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.dataSource = self
         tableView.delegate = self
+        
+        tableView.backgroundColor = thmeBackGroundColor
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        tableView.tableFooterView = UIView(frame: CGRectZero)
         
         timeSlider.minimumValue = 0
         
@@ -104,6 +110,17 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         LISDKDeeplinkHelper.sharedInstance().viewOtherProfile(user.linkedInID, withState: "eventCellSelected", showGoToAppStoreDialog: false, success: nil, error: nil)
     }
     
+    func colorForIndex(index: Int) -> UIColor {
+        
+        let userCount = uuids.count - 1
+        let transparency = (CGFloat(index) / CGFloat(userCount)) * 0.6
+        return UIColor(red: 0.44314, green: 0.95686, blue: 0.81961, alpha: transparency)
+        
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        cell.backgroundColor = colorForIndex(indexPath.row)
+    }
     
     // MARK: Actions
     

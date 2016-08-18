@@ -112,7 +112,7 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     func colorforIndex(index: Int) -> UIColor {
         
         let itemCount = events.count - 1 // ToDo deal with edge case what happens when events is 0?
-        let transparency = (CGFloat(index) / CGFloat(itemCount)) * 0.6
+        let  transparency = (CGFloat(index) / CGFloat(itemCount)) * 0.6
         return UIColor(red: 0.44314, green: 0.95686, blue: 0.81961, alpha: transparency)
         
     }
