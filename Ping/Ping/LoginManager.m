@@ -104,10 +104,10 @@
         NSDictionary *myPic = [NSJSONSerialization JSONObjectWithData:profilePicResponse
                                                               options:NSJSONReadingMutableContainers
                                                                 error:&picError];
-        NSString *picURl = myPic[@"pictureUrl"];
+        NSString *picURL = myPic[@"pictureUrl"];
         
         UserManager *userMan = [[UserManager alloc] init];
-        [userMan addProfilePic:picURl];
+        [userMan addProfilePic:picURL];
         
         
         
