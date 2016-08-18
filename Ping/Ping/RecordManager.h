@@ -16,7 +16,7 @@
 @property (strong, nonatomic) dispatch_queue_t backgroundQueue;
 
 - (void)storeBlueToothDataByUUID:(NSString *)userUUID userProximity:(int)proximity andTime:(NSDate *)time;
-- (NSArray<NSString *> *)sortingUserRecordsInTimePeriodByProximity:(NSDate *)date;
+- (NSArray<NSString *> *)UUIDsSortedAtTime:(NSDate *)date;
 - (NSDate *)getStartTimeForTimePeriod:(NSDate *)time;
 - (void)backUpUsers:(NSMutableArray *)users;
 - (NSArray *)uuidList;

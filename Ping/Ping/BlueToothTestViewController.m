@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.btm = [[BlueToothManager alloc] init];
+    self.btm = [BlueToothManager sharedBluetoothManager];
     self.btm.vc = self;
     
 }
@@ -37,6 +37,10 @@
 
 - (IBAction)stopButtonTapped:(id)sender {
     [self.btm stop];
+}
+
+- (IBAction)homeButtonTapped:(id)sender {
+    [self performSegueWithIdentifier:@"TestToHome" sender:self];
 }
 
 - (void)logToScreen:(NSString *)string {

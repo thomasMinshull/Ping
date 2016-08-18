@@ -32,17 +32,7 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     override func viewWillAppear(animated: Bool) {
-//        
-//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//        
-//        if (appDelegate.userShouldBeDirectedToNewEventViewController) {
-//            // If user selects create event shortcut, direct him to NeweventVC
-//            self.performSegueWithIdentifier("showNewEventViewSegueNoAnimation", sender: self)
-//        } else if (appDelegate.userShouldBeDirectedToCurrentSurroundingsViewController){
-//            // If selected CurrentsurroundingsVC
-//            self.performSegueWithIdentifier("showCurrentSurroundingsNoAnimation", sender: self)
-//        } else {
-        
+
             events = CurrentUser.getCurrentUser().fetchEvents();
             eventListTableView.reloadData()
             
@@ -92,19 +82,19 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         performSegueWithIdentifier("EventSegue", sender: self)
     }
     
-    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let delete = UITableViewRowAction(style: .Normal, title: "\nDelete Event") {
-            action, index in
-            
-            let eventToDelete = self.events[indexPath.row]
-            let recMan = RecordManager()
-            recMan.deleteEvent(eventToDelete)
-            self.events.removeAtIndex(indexPath.row)
-        }
-        delete.backgroundColor = UIColor.redColor()
-        
-        return [delete]
-    }
+//    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+//        let delete = UITableViewRowAction(style: .Normal, title: "\nDelete Event") {
+//            action, index in
+//            
+//            let eventToDelete = self.events[indexPath.row]
+//            let recMan = RecordManager()
+//            recMan.deleteEvent(eventToDelete)
+//            self.events.removeAtIndex(indexPath.row)
+//        }
+//        delete.backgroundColor = UIColor.redColor()
+//        
+//        return [delete]
+//    }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
@@ -114,7 +104,6 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
             
 //            // Delete the local notificaitons when the event is removed.
-//            // Not going to work until deletion acutally WORKS on realm.
 //
 //            if let notificationArray: Array = UIApplication.sharedApplication().scheduledLocalNotifications{
 //                if let startNotificationToCancel: UILocalNotification = notificationArray[indexPath.row * 2]{
@@ -131,8 +120,14 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
 //                print("Could not find array of notifications")
 //            }
             
+            // Deleting event from table(row) local array and realm
+            
+            
+            let eventRecordManager = RecordManager()
+            eventRecordManager.deleteEvent(events[indexPath.row])
             events.removeAtIndex(indexPath.row)
             self.eventListTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+
         }
     }
     
@@ -172,11 +167,34 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func addEventButtonPressed(sender: AnyObject) {
-        self .performSegueWithIdentifier("showNewEventViewSegue", sender: self)
+        self.performSegueWithIdentifier("showNewEventViewSegue", sender: self)
     }
     
     // MARK: - Navigation
     @IBAction func unwindToMenu(segue: UIStoryboardSegue) {}
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let identifier = segue.identifier else { return }
+        
+        if let indexPath = eventListTableView.indexPathForSelectedRow where identifier == "EventSegue" {
+            let event = events[indexPath.row]
+            if let vc = segue.destinationViewController as? EventViewController {
+                vc.event = event
+                vc.userManager = self.userManager
+            }
+            
+        } else if identifier == "showCurrentSurroundings" {
+            if let vc = segue.destinationViewController as? CurrentSurroundingsViewController {
+                vc.userManager = self.userManager
+            }
+        } else if identifier == "showCurrentSurroundingsNoAnimation" {
+            if let vc = segue.destinationViewController as? CurrentSurroundingsViewController {
+                vc.userManager = self.userManager
+            }
+        }
+        
+        
+    }
     
 }
 
