@@ -10,4 +10,15 @@
 
 @implementation TimePeriod
 
++ (NSArray *)sortArray:(RLMArray<TimePeriod *> *)array byDateAscending:(BOOL)ascending {
+
+    NSMutableArray *sortArray = [[NSMutableArray alloc] init];
+    RLMResults<TimePeriod *> *results = [[array objectsWhere:@"startTime != nil" ] sortedResultsUsingProperty:@"startTime" ascending:ascending];
+    
+    for (TimePeriod *timePeriod in results) {
+        [sortArray addObject:timePeriod];
+    }
+    return [sortArray copy];
+}
+
 @end

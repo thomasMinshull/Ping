@@ -40,7 +40,7 @@
     CurrentUser *user = [CurrentUser getCurrentUser];
     NSLog(@"%@", user);
 
-    self.orderedListOfUUIDs = [self.recordManager sortingUserRecordsInTimePeriodByProximity:[NSDate date]];
+    self.orderedListOfUUIDs = [self.recordManager UUIDsSortedAtTime:[NSDate date]];
     if (!self.orderedListOfUUIDs) {
         self.orderedListOfUUIDs = @[];
     }
@@ -104,7 +104,7 @@
 - (void)datePickerChanged:(UIDatePicker *)sender {
     
     // change orderedListOfUsers to be the list for this new date
-    self.orderedListOfUUIDs = [self.recordManager sortingUserRecordsInTimePeriodByProximity:datePicker.date];
+    self.orderedListOfUUIDs = [self.recordManager UUIDsSortedAtTime:datePicker.date];
     if (!self.orderedListOfUUIDs) {
         self.orderedListOfUUIDs = @[];
     }
@@ -112,13 +112,13 @@
 }
 
 - (IBAction)switchChanged:(id)sender {
-    if (self.advertisingSwitch.on) {
-        [self.blueToothManager setUpBluetooth];
-    }
-    
-    else {
-        [self.blueToothManager stop];
-    }
+//    if (self.advertisingSwitch.on) {
+//        [self.blueToothManager setUpBluetooth];
+//    }
+//    
+//    else {
+//        [self.blueToothManager stop];
+//    }
 }
 
 #pragma mark -Helper Methodes
