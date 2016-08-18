@@ -53,6 +53,18 @@
 {
     self = [super init];
     if (self) {
+        
+        self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+        self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+        
+        self.myTimer = [NSTimer scheduledTimerWithTimeInterval: 1.0f
+                                                        target: self
+                                                      selector:@selector(flickSwitch:)
+                                                      userInfo: nil repeats:YES];
+    
+        NSLog(@"timer on");
+        [self.vc logToScreen:@"timer on"];
+        
         self.recordManager = [RecordManager new];
         
         self.fetchedUUIDs = [NSMutableArray array];
@@ -60,6 +72,7 @@
         self.fetchedTimeStamp = [NSMutableArray array];
         self.cbuuidLists = [NSMutableArray array];
         self.isScanning = FALSE;
+        self.isTimerValid = FALSE;
     }
     return self;
 }
@@ -81,13 +94,13 @@
         CBUUID *cbuuidString = [CBUUID UUIDWithString:aUUIDString];
         [self.cbuuidLists addObject:cbuuidString];
     }
-    //    }
+    
 }
 
 #pragma mark - Start and Stop
 
 -(void)flickSwitch:(NSTimer *)timer{
-    if (self.isTimerValid) {
+    if (self.isTimerValid == TRUE) {
         if (self.isScanning == TRUE) {
             //////
             [self.centralManager stopScan];
@@ -107,21 +120,9 @@
 }
 
 -(void)start{ // starts listening (central) & transmitting (peripheral)
-    if (!self.centralManager) {
-        self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
-        self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
-        
-        self.myTimer = [NSTimer scheduledTimerWithTimeInterval: 1.0f
-                                                        target: self
-                                                      selector:@selector(flickSwitch:)
-                                                      userInfo: nil repeats:YES];
-        NSLog(@"timer on");
-        [self.vc logToScreen:@"timer on"];
-        
-    }
-    
     [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:[CurrentUser getCurrentUser].UUID]]}];
     self.isTimerValid = TRUE;
+    
     
 }
 
@@ -132,40 +133,6 @@
     [self.vc logToScreen:@"timer off"];
     
 }
-
-//<<<<<<< HEAD
-//#pragma mark - Lifecycle
-//
-//- (instancetype) initWithUUIDList:(NSArray *)uuidList andCurrentUUID:(NSString *)currentUUID
-//{
-//    self = [super init];
-//    if (self) {
-//
-//        self.uuidList = uuidList;
-//        self.currentUserUUID = currentUUID;
-//
-//        self.fetchedUUIDs = [NSMutableArray array];
-//        self.fetchedDistances = [NSMutableArray array];
-//        self.fetchedTimeStamp = [NSMutableArray array];
-//
-//        self.cbuuidLists = [NSMutableArray array];
-//
-//        self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
-//
-//        self.isScanning = FALSE;
-//        self.isTimerValid = FALSE;
-//        self.myTimer = [NSTimer scheduledTimerWithTimeInterval: 1.0f
-//                                                        target: self
-//                                                      selector:@selector(flickSwitch:)
-//                                                      userInfo: nil repeats:YES];
-//        //chaning uuid to cbuuid
-//        for(NSString *aUUIDString in self.uuidList){
-//            CBUUID *cbuuidString = [CBUUID UUIDWithString:aUUIDString];
-//            [self.cbuuidLists addObject:cbuuidString];
-//        }
-//    }
-//    return self;
-//}
 
 
 #pragma mark - Central Methods
