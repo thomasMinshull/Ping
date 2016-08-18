@@ -38,7 +38,7 @@
     parseUser[@"UUID"] = currentUser.UUID;
     if (currentUser.profilePicURL) {
         parseUser[@"profilePicURL"] = currentUser.profilePicURL;
-    }
+    } 
     
     [parseUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {

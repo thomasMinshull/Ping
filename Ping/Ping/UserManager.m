@@ -85,6 +85,7 @@
             if (!error) {
                 PFObject *currentParseUser = [objects firstObject];
                 currentParseUser[@"profilePicURL"] = profilePicURL;
+                [currentParseUser saveInBackground];
             } else {
                 NSLog(@"Error when saving profile pic to parse: %@", error);
             }
