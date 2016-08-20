@@ -13,7 +13,6 @@
 #import "AppDelegate.h"
 
 #import "UserManager.h"
-#import "MainViewController.h"
 #import "Ping-Swift.h"
 #import "LoginManager.h"
 #import "CurrentUser.h"
