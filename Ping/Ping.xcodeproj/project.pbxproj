@@ -28,10 +28,8 @@
 		55A098611D46DC6A005100BC /* linkedin_login.png in Resources */ = {isa = PBXBuildFile; fileRef = 55A098601D46DC6A005100BC /* linkedin_login.png */; };
 		55A098631D46DC89005100BC /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 55A098621D46DC89005100BC /* logo.png */; };
 		55A098651D46DC9C005100BC /* ghost_person.png in Resources */ = {isa = PBXBuildFile; fileRef = 55A098641D46DC9C005100BC /* ghost_person.png */; };
-		55A098B11D47F0FD005100BC /* PingUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A098B01D47F0FD005100BC /* PingUser.m */; };
 		55A098B81D47FD73005100BC /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A098B71D47FD73005100BC /* NSString+UUID.m */; };
 		55A098E11D4907CE005100BC /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A098E01D4907CE005100BC /* UserManager.m */; };
-		55A099071D498F27005100BC /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A099061D498F27005100BC /* MainViewController.m */; };
 		55AD89381D4B87F90097DE9B /* AverageUUidDuple.m in Sources */ = {isa = PBXBuildFile; fileRef = 55AD89371D4B87F90097DE9B /* AverageUUidDuple.m */; };
 		55B0C3EE1D59796300394286 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B0C3ED1D59796300394286 /* LoginManager.m */; };
 		55B0C3F11D5A440D00394286 /* CurrentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B0C3F01D5A440D00394286 /* CurrentUser.m */; };
@@ -83,14 +81,10 @@
 		55A098601D46DC6A005100BC /* linkedin_login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = linkedin_login.png; sourceTree = "<group>"; };
 		55A098621D46DC89005100BC /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		55A098641D46DC9C005100BC /* ghost_person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ghost_person.png; sourceTree = "<group>"; };
-		55A098AF1D47F0FD005100BC /* PingUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingUser.h; sourceTree = "<group>"; };
-		55A098B01D47F0FD005100BC /* PingUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingUser.m; sourceTree = "<group>"; };
 		55A098B61D47FD73005100BC /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UUID.h"; sourceTree = "<group>"; };
 		55A098B71D47FD73005100BC /* NSString+UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UUID.m"; sourceTree = "<group>"; };
 		55A098DF1D4907CE005100BC /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
 		55A098E01D4907CE005100BC /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
-		55A099051D498F27005100BC /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		55A099061D498F27005100BC /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		55AD89361D4B87F90097DE9B /* AverageUUidDuple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AverageUUidDuple.h; sourceTree = "<group>"; };
 		55AD89371D4B87F90097DE9B /* AverageUUidDuple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AverageUUidDuple.m; sourceTree = "<group>"; };
 		55B0C3EC1D59796300394286 /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginManager.h; sourceTree = "<group>"; };
@@ -211,8 +205,6 @@
 				55AD89371D4B87F90097DE9B /* AverageUUidDuple.m */,
 				5511E5ED1D5CFA78000DFFB3 /* ParseUser.h */,
 				5511E5EE1D5CFA78000DFFB3 /* ParseUser.m */,
-				55A098AF1D47F0FD005100BC /* PingUser.h */,
-				55A098B01D47F0FD005100BC /* PingUser.m */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -268,8 +260,6 @@
 				9CD7F5A01D6137AA003A701B /* WelcomeScrollingViewController.swift */,
 				55A0985B1D46CB3E005100BC /* LoginViewController.h */,
 				55A0985C1D46CB3E005100BC /* LoginViewController.m */,
-				55A099051D498F27005100BC /* MainViewController.h */,
-				55A099061D498F27005100BC /* MainViewController.m */,
 				55DCBF5B1D5D3D5C0085F5A3 /* NewEventViewController.h */,
 				55DCBF5C1D5D3D610085F5A3 /* NewEventViewController.m */,
 				9C49692D1D5D72E2003DAE8C /* EventListViewController.swift */,
@@ -489,7 +479,6 @@
 				5511E5EF1D5CFA78000DFFB3 /* ParseUser.m in Sources */,
 				9C49692E1D5D72E2003DAE8C /* EventListViewController.swift in Sources */,
 				40F135421D4C33C200376973 /* BlueToothManger.m in Sources */,
-				55A098B11D47F0FD005100BC /* PingUser.m in Sources */,
 				55DCBF641D5D4D660085F5A3 /* UserTableViewCell.swift in Sources */,
 				9C18CAF81D4AE89B008519E1 /* User.m in Sources */,
 				55A098E11D4907CE005100BC /* UserManager.m in Sources */,
@@ -501,7 +490,6 @@
 				4063F8551D5C0B1200D13D6A /* QCMethod.swift in Sources */,
 				55A0985D1D46CB3E005100BC /* LoginViewController.m in Sources */,
 				9CD7F5A11D6137AA003A701B /* WelcomeScrollingViewController.swift in Sources */,
-				55A099071D498F27005100BC /* MainViewController.m in Sources */,
 				5599E78D1D499E1C00E61B0E /* UserRecord.m in Sources */,
 				5599E78B1D499E1C00E61B0E /* RecordManager.m in Sources */,
 				55DCBF5A1D5D3D580085F5A3 /* CurrentSurroundingsViewController.swift in Sources */,
