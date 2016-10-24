@@ -14,16 +14,16 @@ class ForgotPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let urlComponents = NSURLComponents(string: "https://www.linkedin.com/uas/request-password-reset")
+        let urlComponents = URLComponents(string: "https://www.linkedin.com/uas/request-password-reset")
         
-        if let url = urlComponents?.URL {
-            let request = NSURLRequest(URL: url)
+        if let url = urlComponents?.url {
+            let request = URLRequest(url: url)
             self.webView.loadRequest(request)
         }
     }
 
-    @IBAction func backButtonTapped(sender: UIButton) {
-        [self .performSegueWithIdentifier("unwindToLoginViewController", sender: self)];
+    @IBAction func backButtonTapped(_ sender: UIButton) {
+        [self .performSegue(withIdentifier: "unwindToLoginViewController", sender: self)];
     }
     
 

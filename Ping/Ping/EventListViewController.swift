@@ -25,59 +25,59 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         
             // If selected EventlistVC, do things as usual
         eventListTableView.backgroundColor = mainBackGroundColor
-        eventListTableView.separatorStyle = UITableViewCellSeparatorStyle.None
-        eventListTableView.tableFooterView = UIView(frame: CGRectZero)
+        eventListTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        eventListTableView.tableFooterView = UIView(frame: CGRect.zero)
             
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
 
             events = CurrentUser.getCurrentUser().fetchEvents();
             eventListTableView.reloadData()
             
             // scroll past old events but leave at least one event showing
             let pastEvents = getIndexOfNextEvent()
-            var ip:NSIndexPath?
+            var ip:IndexPath?
             
             if pastEvents < events.count {
-                ip = NSIndexPath(forRow: pastEvents, inSection: 0)
+                ip = IndexPath(row: pastEvents, section: 0)
             }
             
             if let ip = ip {
-                eventListTableView.scrollToRowAtIndexPath(ip, atScrollPosition: .Top, animated: false)
+                eventListTableView.scrollToRow(at: ip, at: .top, animated: false)
             }
         
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! EventListTableViewCell
-        cell.selectionStyle = UITableViewCellSelectionStyle.Gray // ToDo move into cell class
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! EventListTableViewCell
+        cell.selectionStyle = UITableViewCellSelectionStyle.gray // ToDo move into cell class
         cell.configureWithEvent(events[indexPath.row])
         
         return cell
         
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("EventSegue", sender: self)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "EventSegue", sender: self)
     }
     
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
             
 //            // Delete the local notificaitons when the event is removed.
 //
@@ -100,16 +100,16 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
             
             
             let eventRecordManager = RecordManager()
-            eventRecordManager.deleteEvent(events[indexPath.row])
-            events.removeAtIndex(indexPath.row)
-            self.eventListTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            eventRecordManager.delete(events[indexPath.row])
+            events.remove(at: indexPath.row)
+            self.eventListTableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
 
         }
     }
     
     // Prepare to display gradient cells
     
-    func colorforIndex(index: Int) -> UIColor {
+    func colorforIndex(_ index: Int) -> UIColor {
         
         let itemCount = events.count - 1 // ToDo deal with edge case what happens when events is 0?
         let  transparency = (CGFloat(index) / CGFloat(itemCount)) * 0.6
@@ -119,9 +119,9 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     // Displaying gradient cells
     
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        cell.backgroundColor =  colorforIndex(indexPath.row)
+        cell.backgroundColor =  colorforIndex((indexPath as NSIndexPath).row)
         
     }
     
@@ -129,10 +129,10 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func getIndexOfNextEvent() -> Int {
         var index = 0
-        let now = NSDate()
+        let now = Date()
         
         for event in self.events {
-            if now.compare(event.endTime) == NSComparisonResult.OrderedDescending {
+            if now.compare(event.endTime) == ComparisonResult.orderedDescending {
                 index += 1
             }
         }
@@ -142,33 +142,33 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     // MARK: - Actions
     
-    @IBAction func currentSurroundingButtonPressed(sender: AnyObject) {
-            self.performSegueWithIdentifier("showCurrentSurroundings", sender: self)
+    @IBAction func currentSurroundingButtonPressed(_ sender: AnyObject) {
+            self.performSegue(withIdentifier: "showCurrentSurroundings", sender: self)
     }
     
-    @IBAction func addEventButtonPressed(sender: AnyObject) {
-        self.performSegueWithIdentifier("showNewEventViewSegue", sender: self)
+    @IBAction func addEventButtonPressed(_ sender: AnyObject) {
+        self.performSegue(withIdentifier: "showNewEventViewSegue", sender: self)
     }
     
     // MARK: - Navigation
-    @IBAction func unwindToMenu(segue: UIStoryboardSegue) {}
+    @IBAction func unwindToMenu(_ segue: UIStoryboardSegue) {}
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier else { return }
         
-        if let indexPath = eventListTableView.indexPathForSelectedRow where identifier == "EventSegue" {
+        if let indexPath = eventListTableView.indexPathForSelectedRow , identifier == "EventSegue" {
             let event = events[indexPath.row]
-            if let vc = segue.destinationViewController as? EventViewController {
+            if let vc = segue.destination as? EventViewController {
                 vc.event = event
                 vc.userManager = self.userManager
             }
             
         } else if identifier == "showCurrentSurroundings" {
-            if let vc = segue.destinationViewController as? CurrentSurroundingsViewController {
+            if let vc = segue.destination as? CurrentSurroundingsViewController {
                 vc.userManager = self.userManager
             }
         } else if identifier == "showCurrentSurroundingsNoAnimation" {
-            if let vc = segue.destinationViewController as? CurrentSurroundingsViewController {
+            if let vc = segue.destination as? CurrentSurroundingsViewController {
                 vc.userManager = self.userManager
             }
         }

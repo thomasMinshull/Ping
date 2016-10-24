@@ -9,7 +9,7 @@ import UIKit
 import GooglePlaces
 
 @objc protocol SendDataDelegate {
-    func sendData(text:String)
+    func sendData(_ text:String)
 }
 
 class LocationViewController: UIViewController{
@@ -28,14 +28,14 @@ class LocationViewController: UIViewController{
         resultsViewController = GMSAutocompleteResultsViewController()
         resultsViewController?.delegate = self
         
-        resultsViewController?.tableCellBackgroundColor = UIColor.clearColor()
+        resultsViewController?.tableCellBackgroundColor = UIColor.clear
         
         searchController = UISearchController(searchResultsController: resultsViewController)
         searchController?.searchResultsUpdater = resultsViewController
         
-        completionButton.hidden = true
+        completionButton.isHidden = true
         
-        let subView = UIView(frame: CGRectMake(0.0, 66.0, self.view.frame.width, 66.0))
+        let subView = UIView(frame: CGRect(x: 0.0, y: 66.0, width: self.view.frame.width, height: 66.0))
         
         subView.addSubview((searchController?.searchBar)!)
         self.view.addSubview(subView)
@@ -50,42 +50,42 @@ class LocationViewController: UIViewController{
         self.definesPresentationContext = true
     }
     
-    @IBAction func backButtonPressed(sender: AnyObject) {
-        performSegueWithIdentifier("NewLocationVCToNewEventVC", sender: self)
+    @IBAction func backButtonPressed(_ sender: AnyObject) {
+        performSegue(withIdentifier: "NewLocationVCToNewEventVC", sender: self)
     }
     
-    @IBAction func completeButtonPressed(sender: AnyObject) {
+    @IBAction func completeButtonPressed(_ sender: AnyObject) {
         self.delegate?.sendData(resultTextView.text)
-        performSegueWithIdentifier("NewLocationVCToNewEventVC", sender: self)
+        performSegue(withIdentifier: "NewLocationVCToNewEventVC", sender: self)
     }
     
 }
 
 // Handle the user's selection.
 extension LocationViewController: GMSAutocompleteResultsViewControllerDelegate {
-    func resultsController(resultsController: GMSAutocompleteResultsViewController,
-                           didAutocompleteWithPlace place: GMSPlace) {
-        searchController?.active = false
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
+                           didAutocompleteWith place: GMSPlace) {
+        searchController?.isActive = false
         // Do something with the selected place.
         print("Place name: ", place.name)
         print("Place address: ", place.formattedAddress)
         resultTextView?.text = place.name
         
-        completionButton.hidden = false
+        completionButton.isHidden = false
     }
     
-    func resultsController(resultsController: GMSAutocompleteResultsViewController,
-                           didFailAutocompleteWithError error: NSError){
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
+                           didFailAutocompleteWithError error: Error){
         // TODO: handle the error.
-        print("Error: ", error.description)
+        print("Error: ", error.localizedDescription)
     }
     
     // Turn the network activity indicator on and off again.
-    func didRequestAutocompletePredictionsForResultsController(resultsController: GMSAutocompleteResultsViewController) {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+    func didRequestAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
     }
     
-    func didUpdateAutocompletePredictionsForResultsController(resultsController: GMSAutocompleteResultsViewController) {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+    func didUpdateAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
 }

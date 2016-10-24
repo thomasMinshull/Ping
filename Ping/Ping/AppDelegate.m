@@ -10,6 +10,7 @@
 #import "Ping-Bridging-Header.h"
 #import "UserManager.h"
 #import "Ping-Swift.h"
+#import "WelcomeScrollingViewController.swift"
 #import "BlueToothManager.h"
 #import "NewEventViewController.h"
 #import "LoginViewController.h"
@@ -18,11 +19,19 @@
 #import <linkedin-sdk/LISDK.h>
 
 #import <Parse/Parse.h>
-#define Parse_APP_ID @"QaDwdtxkrP8gd42kZrvn1aHv64PKRNLxuuHY964v"
-#define Parse_Client_Key @"AZ8btrgurhLG306dVeWjKjx9nSszPI5sAoqwcZ6F"
+//<<<<<<< HEAD
+//#define Parse_APP_ID @"QaDwdtxkrP8gd42kZrvn1aHv64PKRNLxuuHY964v"
+//#define Parse_Client_Key @"AZ8btrgurhLG306dVeWjKjx9nSszPI5sAoqwcZ6F"
+//
+//@import GooglePlaces;
+//#define GOOGLE_KEY @"AIzaSyAUSze3iQQHpyNSQhmZCpaMKCu8ZrRV22c"
+//=======
+#define Parse_APP_ID @"***REMOVED***"
+#define Parse_Client_Key @"***REMOVED***"
 
 @import GooglePlaces;
-#define GOOGLE_KEY @"AIzaSyAUSze3iQQHpyNSQhmZCpaMKCu8ZrRV22c"
+#define GOOGLE_KEY @"***REMOVED***"
+//>>>>>>> 45ec2018937f48fc96bc536cc9ec10419818b6ab
 
 @implementation AppDelegate
 

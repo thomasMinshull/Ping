@@ -13,7 +13,7 @@
 
 class QCMethod
 {
-    class func reverseAnimation(anim : CAAnimation, totalDuration : CFTimeInterval) -> CAAnimation{
+    class func reverseAnimation(_ anim : CAAnimation, totalDuration : CFTimeInterval) -> CAAnimation{
         var duration :CFTimeInterval = anim.duration + (anim.autoreverses ? anim.duration : 0)
         if anim.repeatCount > 1 {
             duration = duration * CFTimeInterval(anim.repeatCount)
@@ -31,8 +31,8 @@ class QCMethod
                 if timingFunction != nil{
                     var first : [Float] = [0,0]
                     var second : [Float] = [0,0]
-                    timingFunction?.getControlPointAtIndex(1, values: &first)
-                    timingFunction?.getControlPointAtIndex(2, values: &second)
+                    timingFunction?.getControlPoint(at: 1, values: &first)
+                    timingFunction?.getControlPoint(at: 2, values: &second)
                     
                     theAnim.timingFunction = CAMediaTimingFunction(controlPoints: 1-second[0], 1-second[1], 1-first[0], 1-first[1])
                 }
@@ -41,7 +41,7 @@ class QCMethod
         //Reverse animation values appropriately
         if let basicAnim = anim as? CABasicAnimation{
             if !anim.autoreverses{
-                let fromValue: AnyObject! = basicAnim.toValue
+                let fromValue: AnyObject! = basicAnim.toValue as AnyObject!
                 basicAnim.toValue = basicAnim.fromValue
                 basicAnim.fromValue = fromValue
                 reverseTimingFunction(basicAnim)
@@ -65,7 +65,7 @@ class QCMethod
         }
         else if let keyAnim = anim as? CAKeyframeAnimation{
             if !anim.autoreverses{
-                let values : [AnyObject] = (keyAnim.values?.reverse())!
+                let values : [AnyObject] = (keyAnim.values?.reversed())!
                 keyAnim.values = values;
                 reverseTimingFunction(keyAnim)
             }
@@ -101,7 +101,7 @@ class QCMethod
         }
         return newAnim
     }
-    class func groupAnimations(animations : [CAAnimation], fillMode : String!, forEffectLayer : Bool, sublayersCount : NSInteger) -> CAAnimationGroup!{
+    class func groupAnimations(_ animations : [CAAnimation], fillMode : String!, forEffectLayer : Bool, sublayersCount : NSInteger) -> CAAnimationGroup!{
         let groupAnimation = CAAnimationGroup()
         groupAnimation.animations = animations
         
@@ -112,7 +112,7 @@ class QCMethod
                 }
             }
             groupAnimation.fillMode = fillMode
-            groupAnimation.removedOnCompletion = false
+            groupAnimation.isRemovedOnCompletion = false
         }
         
         if forEffectLayer{
@@ -124,27 +124,27 @@ class QCMethod
         return groupAnimation
     }
     
-    class func groupAnimations(animations : [CAAnimation], fillMode : String!) -> CAAnimationGroup!{
+    class func groupAnimations(_ animations : [CAAnimation], fillMode : String!) -> CAAnimationGroup!{
         return groupAnimations(animations, fillMode: fillMode, forEffectLayer: false, sublayersCount: 0)
     }
-    class func maxDurationFromAnimations(anims : [CAAnimation]) -> CFTimeInterval{
+    class func maxDurationFromAnimations(_ anims : [CAAnimation]) -> CFTimeInterval{
         var maxDuration: CGFloat = 0;
         for anim in anims {
             maxDuration = max(CGFloat(anim.beginTime + anim.duration) * CGFloat(anim.repeatCount == 0 ? 1.0 : anim.repeatCount) * (anim.autoreverses ? 2.0 : 1.0), maxDuration);
         }
         
-        if isinf(maxDuration){ return NSTimeInterval(NSIntegerMax)}
+        if isinf(maxDuration){ return TimeInterval(NSIntegerMax)}
         
         return CFTimeInterval(maxDuration);
     }
     
-    class func maxDurationOfEffectAnimation(anim : CAAnimation, sublayersCount : NSInteger) -> CFTimeInterval{
+    class func maxDurationOfEffectAnimation(_ anim : CAAnimation, sublayersCount : NSInteger) -> CFTimeInterval{
         var maxDuration : CGFloat = 0
         if let groupAnim = anim as? CAAnimationGroup{
             for subAnim in groupAnim.animations! as [CAAnimation]{
                 
                 var delay : CGFloat = 0
-                let instDelay = subAnim.valueForKey("instanceDelay")?.floatValue;
+                let instDelay = (subAnim.value(forKey: "instanceDelay") as AnyObject).floatValue;
                 if (instDelay != nil) {
                     delay = CGFloat(instDelay!) * CGFloat(sublayersCount - 1);
                 }
@@ -164,14 +164,14 @@ class QCMethod
         return CFTimeInterval(maxDuration);
     }
     
-    class func updateValueFromAnimationsForLayers(layers : [CALayer]){
+    class func updateValueFromAnimationsForLayers(_ layers : [CALayer]){
         CATransaction.begin()
         CATransaction.setDisableActions(true)
         
         for aLayer in layers{
             if let keys = aLayer.animationKeys() as [String]!{
                 for animKey in keys{
-                    let anim = aLayer.animationForKey(animKey)
+                    let anim = aLayer.animation(forKey: animKey)
                     updateValueForAnimation(anim!, theLayer: aLayer);
                 }
             }
@@ -181,7 +181,7 @@ class QCMethod
         CATransaction.commit()
     }
     
-    class func updateValueForAnimation(anim : CAAnimation, theLayer : CALayer){
+    class func updateValueForAnimation(_ anim : CAAnimation, theLayer : CALayer){
         if let basicAnim = anim as? CABasicAnimation{
             if (!basicAnim.autoreverses) {
                 theLayer.setValue(basicAnim.toValue, forKeyPath: basicAnim.keyPath!)
@@ -197,11 +197,11 @@ class QCMethod
         }
     }
     
-    class func updateValueFromPresentationLayerForAnimation(anim : CAAnimation!, theLayer : CALayer){
+    class func updateValueFromPresentationLayerForAnimation(_ anim : CAAnimation!, theLayer : CALayer){
         if let basicAnim = anim as? CABasicAnimation{
-            theLayer.setValue(theLayer.presentationLayer()?.valueForKeyPath(basicAnim.keyPath!), forKeyPath: basicAnim.keyPath!)
+            theLayer.setValue(theLayer.presentation()?.value(forKeyPath: basicAnim.keyPath!), forKeyPath: basicAnim.keyPath!)
         }else if let keyAnim = anim as? CAKeyframeAnimation{
-            theLayer.setValue(theLayer.presentationLayer()?.valueForKeyPath(keyAnim.keyPath!), forKeyPath: keyAnim.keyPath!)
+            theLayer.setValue(theLayer.presentation()?.value(forKeyPath: keyAnim.keyPath!), forKeyPath: keyAnim.keyPath!)
         }else if let groupAnim = anim as? CAAnimationGroup{
             for subAnim in groupAnim.animations! as [CAAnimation]{
                 updateValueFromPresentationLayerForAnimation(subAnim, theLayer: theLayer)
@@ -209,11 +209,11 @@ class QCMethod
         }
     }
     
-    class func addSublayersAnimation(anim : CAAnimation, key : String, layer : CALayer){
+    class func addSublayersAnimation(_ anim : CAAnimation, key : String, layer : CALayer){
         return addSublayersAnimationNeedReverse(anim, key: key, layer: layer, reverseAnimation: false, totalDuration: 0)
     }
     
-    class func addSublayersAnimationNeedReverse(anim : CAAnimation, key : String, layer : CALayer, reverseAnimation : Bool, totalDuration : CFTimeInterval){
+    class func addSublayersAnimationNeedReverse(_ anim : CAAnimation, key : String, layer : CALayer, reverseAnimation : Bool, totalDuration : CFTimeInterval){
         let sublayers = layer.sublayers
         let sublayersCount = sublayers!.count
         
@@ -221,10 +221,10 @@ class QCMethod
             {
                 (subAnim:CAAnimation, sublayerIdx:NSInteger) -> Void  in
                 
-                let instDelay = subAnim.valueForKey("instanceDelay")?.floatValue;
+                let instDelay = (subAnim.value(forKey: "instanceDelay") as AnyObject).floatValue;
                 if (instDelay != nil) {
                     let instanceDelay = CGFloat(instDelay!)
-                    let orderType : NSInteger = (subAnim.valueForKey("instanceOrder")!).integerValue
+                    let orderType : NSInteger = ((subAnim.value(forKey: "instanceOrder")!) as AnyObject).intValue
                     switch (orderType) {
                     case 0: subAnim.beginTime = CFTimeInterval(CGFloat(subAnim.beginTime) + CGFloat(sublayerIdx) * instanceDelay)
                     case 1: subAnim.beginTime = CFTimeInterval(CGFloat(subAnim.beginTime) + CGFloat(sublayersCount - sublayerIdx - 1) * instanceDelay)
@@ -244,7 +244,7 @@ class QCMethod
                 }
         }
         
-        for (idx, sublayer) in sublayers!.enumerate() {
+        for (idx, sublayer) in sublayers!.enumerated() {
             
             if let groupAnim = anim.copy() as? CAAnimationGroup{
                 var newSubAnimations : [CAAnimation] = []
@@ -261,12 +261,12 @@ class QCMethod
                     }
                     
                 }
-                sublayer.addAnimation(groupAnim, forKey: key)
+                sublayer.add(groupAnim, forKey: key)
             }
             else{
                 let copiedAnim = anim.copy() as! CAAnimation
                 setBeginTime(copiedAnim, idx)
-                sublayer.addAnimation(copiedAnim, forKey: key)
+                sublayer.add(copiedAnim, forKey: key)
             }
             
         }
@@ -274,16 +274,16 @@ class QCMethod
     
     
     #if os(iOS)
-    class func alignToBottomPath(path : UIBezierPath, layer: CALayer) -> UIBezierPath{
-    let diff = CGRectGetMaxY(layer.bounds) - CGRectGetMaxY(path.bounds)
-    let transform = CGAffineTransformTranslate(CGAffineTransformIdentity, 0, diff)
-    path.applyTransform(transform)
+    class func alignToBottomPath(_ path : UIBezierPath, layer: CALayer) -> UIBezierPath{
+    let diff = layer.bounds.maxY - path.bounds.maxY
+    let transform = CGAffineTransform.identity.translatedBy(x: 0, y: diff)
+    path.apply(transform)
     return path;
     }
     
-    class func offsetPath(path : UIBezierPath, offset : CGPoint) -> UIBezierPath{
-    let affineTransform = CGAffineTransformTranslate(CGAffineTransformIdentity, offset.x, offset.y)
-    path.applyTransform(affineTransform)
+    class func offsetPath(_ path : UIBezierPath, offset : CGPoint) -> UIBezierPath{
+    let affineTransform = CGAffineTransform.identity.translatedBy(x: offset.x, y: offset.y)
+    path.apply(affineTransform)
     return path
     }
     

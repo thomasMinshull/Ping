@@ -7,7 +7,6 @@
 //
 
 #import <Realm/Realm.h>
-#import "PingUser.h"
 
 @interface User : RLMObject
 

@@ -17,7 +17,7 @@ class CurrentSurroundingsViewController: UIViewController, UITableViewDelegate, 
     
     // MARK: Properties 
     var userManager:UserManager?
-    let btm = BlueToothManager.sharedBluetoothManager()
+    let btm = BlueToothManager.sharedBluetooth()
     
     var users = [User]()
 
@@ -27,53 +27,53 @@ class CurrentSurroundingsViewController: UIViewController, UITableViewDelegate, 
         
         
         userManager!.fetchUsersWthCompletion { (userArray) in
-            self.btm.setUpBluetooth()
+            self.btm?.setUpBluetooth()
             self.updateTableView()
         }
         
         let refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl.addTarget(self, action: #selector(CurrentSurroundingsViewController.updateTableView), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: #selector(CurrentSurroundingsViewController.updateTableView), for: UIControlEvents.valueChanged)
         
         currentSurroundingTableView.backgroundColor = UIColor(netHex:0xD9FAAA)
-        currentSurroundingTableView.separatorStyle = UITableViewCellSeparatorStyle.None
-        currentSurroundingTableView.tableFooterView = UIView(frame: CGRectZero)
+        currentSurroundingTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        currentSurroundingTableView.tableFooterView = UIView(frame: CGRect.zero)
     }
 
     // MARK: TableView Delegate/DataSource
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 136
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let userCell = tableView.dequeueReusableCellWithIdentifier("UserCell", forIndexPath: indexPath) as! UserTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let userCell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as! UserTableViewCell
         
-        userCell.selectionStyle = UITableViewCellSelectionStyle.Default
+        userCell.selectionStyle = UITableViewCellSelectionStyle.default
         userCell.configureWithUser(users[indexPath.row])
         
         return userCell
     }
     
-    func colorForIndex(index: Int) -> UIColor {
+    func colorForIndex(_ index: Int) -> UIColor {
         
         let itemCount = users.count - 1
         let transparency = (CGFloat(index) / CGFloat(itemCount)) * 0.6
         return UIColor(red: 0.44314, green: 0.95686, blue: 0.81961, alpha: transparency)
     }
     
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        cell.backgroundColor =  colorForIndex(indexPath.row)
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor =  colorForIndex((indexPath as NSIndexPath).row)
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = users[indexPath.row]
         LISDKDeeplinkHelper.sharedInstance().viewOtherProfile(user.linkedInID, withState: "eventCellSelected", showGoToAppStoreDialog: false, success: nil, error: nil)
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // MARK: Custom Methods
@@ -82,12 +82,12 @@ class CurrentSurroundingsViewController: UIViewController, UITableViewDelegate, 
         updateUsers()
         
         if users.count == 0 {
-            if !activityIndicator.isAnimating() {
+            if !activityIndicator.isAnimating {
                 activityIndicator.startAnimating()
             }
             
             
-            NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector:#selector(CurrentSurroundingsViewController.updateTableView), userInfo: nil, repeats: false)
+            Timer.scheduledTimer(timeInterval: 1.0, target: self, selector:#selector(CurrentSurroundingsViewController.updateTableView), userInfo: nil, repeats: false)
             
         } else {
             activityIndicator.hidesWhenStopped = true
@@ -98,12 +98,12 @@ class CurrentSurroundingsViewController: UIViewController, UITableViewDelegate, 
     
     func updateUsers() {
         let recMan = RecordManager()
-        let sortedUUIDs = recMan.UUIDsSortedAtTime(NSDate()) ?? []
+        let sortedUUIDs = recMan.uuidsSorted(atTime: Date()) ?? []
         
         users.removeAll()
         
         for uuid:String in sortedUUIDs {
-            if let user = userManager!.userForUUID(uuid) {
+            if let user = userManager!.user(forUUID: uuid) {
                 users.append(user)
             }
         }
@@ -112,21 +112,21 @@ class CurrentSurroundingsViewController: UIViewController, UITableViewDelegate, 
     
     // MARK: Actions
     
-    @IBAction func backButtonPressed(sender: AnyObject) {
+    @IBAction func backButtonPressed(_ sender: AnyObject) {
         
         // *******************************************************************************************
         
-        btm.stop()
+        btm?.stop()
         
         // Creating an event each time user presses current surrounding button, should the app stop transmitting BT data after the user leaves the view or keep it going?
         // *******************************************************************************************
-        performSegueWithIdentifier("currentSurroundingsToEventList", sender: self)
+        performSegue(withIdentifier: "currentSurroundingsToEventList", sender: self)
     }
     
     
     // MARK: Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
     }
 

@@ -31,8 +31,8 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.delegate = self
         
         tableView.backgroundColor = thmeBackGroundColor
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-        tableView.tableFooterView = UIView(frame: CGRectZero)
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
         
         timeSlider.minimumValue = 0
         
@@ -51,7 +51,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         print("appaer")
     }
     
@@ -72,7 +72,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
 
     
-    func getCurrentTimePeriodForSliderValue(sliderValue:UInt) -> TimePeriod? {
+    func getCurrentTimePeriodForSliderValue(_ sliderValue:UInt) -> TimePeriod? {
         
         if let timePeriods = timePeriods {
             if timePeriods.count != 0 {
@@ -84,44 +84,44 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         return nil
     }
     
-    func getUUIDsForTimePeriod(timePeriod:TimePeriod?) -> [String] {
+    func getUUIDsForTimePeriod(_ timePeriod:TimePeriod?) -> [String] {
         let recMan = RecordManager()
         
         if let timePeriod = timePeriod {
-            return recMan.UUIDsSortedAtTime(timePeriod.startTime)
+            return recMan.uuidsSorted(atTime: timePeriod.startTime)
         } else {
             return [String]()
         }
     }
     
-    func updateDateLabelWithDate(date:NSDate) {
-        let formatter = NSDateFormatter()
-        formatter.dateStyle = NSDateFormatterStyle.ShortStyle
-        formatter.timeStyle = .ShortStyle
+    func updateDateLabelWithDate(_ date:Date) {
+        let formatter = DateFormatter()
+        formatter.dateStyle = DateFormatter.Style.short
+        formatter.timeStyle = .short
         
-        dateLabel.text = formatter.stringFromDate(date)
+        dateLabel.text = formatter.string(from: date)
     }
     
     
     // MARK: delegate/datasource methods
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return uuids.count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // refactor to reorder cells & insert and delete
-        let cell:UserTableViewCell = tableView.dequeueReusableCellWithIdentifier("UserTableViewCell") as! UserTableViewCell
+        let cell:UserTableViewCell = tableView.dequeueReusableCell(withIdentifier: "UserTableViewCell") as! UserTableViewCell
         
-        if let user = userManager.userForUUID(uuids[indexPath.row]) {
+        if let user = userManager.user(forUUID: uuids[indexPath.row]) {
             cell.configureWithUser(user)
         }
         
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let user = self.userManager.userForUUID(uuids[indexPath.row])
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let user = self.userManager.user(forUUID: uuids[indexPath.row])
         
         if let user = user {
             LISDKDeeplinkHelper.sharedInstance().viewOtherProfile(user.linkedInID, withState: "eventCellSelected", showGoToAppStoreDialog: false, success: nil, error: nil)
@@ -129,7 +129,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         
     }
     
-    func colorForIndex(index: Int) -> UIColor {
+    func colorForIndex(_ index: Int) -> UIColor {
         
         let userCount = uuids.count - 1
         let transparency = (CGFloat(index) / CGFloat(userCount)) * 0.6
@@ -137,13 +137,13 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         
     }
     
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        cell.backgroundColor = colorForIndex(indexPath.row)
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = colorForIndex((indexPath as NSIndexPath).row)
     }
     
     // MARK: Actions
     
-    @IBAction func timerSliderFinishSliding(sender: UISlider) {
+    @IBAction func timerSliderFinishSliding(_ sender: UISlider) {
         print("timeSliderFinishSlidingFired")
         timeSlider.value = roundf(sender.value)
         
@@ -158,7 +158,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         
     }
     
-    @IBAction func sliderValueChanged(sender: UISlider) {
+    @IBAction func sliderValueChanged(_ sender: UISlider) {
         // ToDo Make Dry, code repeated in timeSliderFinishSliding
         timeSlider.value = roundf(sender.value)
         currentTimePeriod = getCurrentTimePeriodForSliderValue(UInt(timeSlider.value))
@@ -171,8 +171,8 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
 
-    @IBAction func backButtonPressed(sender: AnyObject) {
-        performSegueWithIdentifier("unwindFromEventToEventList", sender: self)
+    @IBAction func backButtonPressed(_ sender: AnyObject) {
+        performSegue(withIdentifier: "unwindFromEventToEventList", sender: self)
     }
 
 }

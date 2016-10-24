@@ -21,9 +21,9 @@ class WelcomeScrollingViewController: UIViewController, UIScrollViewDelegate {
         
     }
     
-    override func viewWillAppear(animated: Bool) {
-        self.scrollView.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
-        self.scrollView.contentInset = UIEdgeInsetsZero
+    override func viewWillAppear(_ animated: Bool) {
+        self.scrollView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        self.scrollView.contentInset = UIEdgeInsets.zero
         let scrollViewWidth: CGFloat = self.scrollView.frame.width
         let scrollViewHeight: CGFloat = self.scrollView.frame.height
         
@@ -34,13 +34,13 @@ class WelcomeScrollingViewController: UIViewController, UIScrollViewDelegate {
         let imageThreeLocationX: CGFloat = scrollViewWidth * 2
         let imageFourLocationX: CGFloat = scrollViewWidth * 3
         
-        let imgOne = UIImageView(frame: CGRectMake(imageOneLocationX, -20,scrollViewWidth+20, scrollViewHeight+40))
+        let imgOne = UIImageView(frame: CGRect(x: imageOneLocationX, y: -20,width: scrollViewWidth+20, height: scrollViewHeight+40))
         imgOne.image = UIImage(named: "vancouver")
-        let imgTwo = UIImageView(frame: CGRectMake(imageTwoLocationX, -20,scrollViewWidth+20, scrollViewHeight+40))
+        let imgTwo = UIImageView(frame: CGRect(x: imageTwoLocationX, y: -20,width: scrollViewWidth+20, height: scrollViewHeight+40))
         imgTwo.image = UIImage(named: "iphone")
-        let imgThree = UIImageView(frame: CGRectMake(imageThreeLocationX, -20,scrollViewWidth+20, scrollViewHeight+40))
+        let imgThree = UIImageView(frame: CGRect(x: imageThreeLocationX, y: -20,width: scrollViewWidth+20, height: scrollViewHeight+40))
         imgThree.image = UIImage(named: "cheers")
-        let imgFour = UIImageView(frame: CGRectMake(imageFourLocationX, -20,scrollViewWidth+20, scrollViewHeight+40))
+        let imgFour = UIImageView(frame: CGRect(x: imageFourLocationX, y: -20,width: scrollViewWidth+20, height: scrollViewHeight+40))
         imgFour.image = UIImage(named: "concert")
         
         self.scrollView.addSubview(imgOne)
@@ -48,15 +48,15 @@ class WelcomeScrollingViewController: UIViewController, UIScrollViewDelegate {
         self.scrollView.addSubview(imgThree)
         self.scrollView.addSubview(imgFour)
         
-        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width * 4, 0)
+        self.scrollView.contentSize = CGSize(width: self.scrollView.frame.width * 4, height: 0)
         self.scrollView.delegate = self
         self.pageControl.currentPage = 0
     }
 
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView){
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView){
         
         // Test the offset and calculate the current page after scrolling ends
-        let pageWidth:CGFloat = CGRectGetWidth(scrollView.frame)
+        let pageWidth:CGFloat = scrollView.frame.width
         let currentPage:CGFloat = floor((scrollView.contentOffset.x-pageWidth/2)/pageWidth)+1
         // Change the indicator
         self.pageControl.currentPage = Int(currentPage);
@@ -64,15 +64,15 @@ class WelcomeScrollingViewController: UIViewController, UIScrollViewDelegate {
         if Int(currentPage) == 3 {
             
             // Show the "Let's Start" button in the last slide (with a fade in animation)
-            UIView.animateWithDuration(1.0) {
+            UIView.animate(withDuration: 1.0, animations: {
                 self.startButton.alpha = 1.0
-            }
+            }) 
         }
     }
 
-    @IBAction func startButtonPressed(sender: AnyObject) {
+    @IBAction func startButtonPressed(_ sender: AnyObject) {
         if let navController = self.navigationController {
-            navController.popViewControllerAnimated(true)
+            navController.popViewController(animated: true)
         }
     }
 }
