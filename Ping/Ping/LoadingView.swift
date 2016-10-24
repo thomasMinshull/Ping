@@ -480,7 +480,7 @@ class LoadingView: UIView {
         if completionBlock != nil{
             let completionAnim = CABasicAnimation(keyPath:"completionAnim")
             completionAnim.duration = 7.145
-            completionAnim.delegate = self
+//            completionAnim.delegate = self
             completionAnim.setValue("LoadingAnimationGroup", forKey:"animId")
             completionAnim.setValue(false, forKey:"needEndAnim")
             layer.add(completionAnim, forKey:"LoadingAnimationGroup")
@@ -581,7 +581,7 @@ class LoadingView: UIView {
     
     //MARK: - Animation Cleanup
     
-    override func animationDidStop(_ anim: CAAnimation, finished flag: Bool){
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool){
         if let completionBlock = completionBlocks[anim]{
             completionBlocks.removeValue(forKey: anim)
             if (flag && updateLayerValueForCompletedAnimation) || anim.value(forKey: "needEndAnim") as! Bool{

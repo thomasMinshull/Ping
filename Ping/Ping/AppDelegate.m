@@ -10,7 +10,7 @@
 #import "Ping-Bridging-Header.h"
 #import "UserManager.h"
 #import "Ping-Swift.h"
-#import "WelcomeScrollingViewController.swift"
+//#import "WelcomeScrollingViewController.swift"
 #import "BlueToothManager.h"
 #import "NewEventViewController.h"
 #import "LoginViewController.h"
